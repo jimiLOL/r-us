@@ -1,0 +1,10 @@
+declare const cash: any;
+declare module "tail.select.js";
+declare module "velocity-animate";
+declare module "google-maps-api-loader";
+declare module "@google/markerclusterer";
+declare module "feather-icons";
+declare module "tabulator-tables";
+declare module "toastify-js";
+declare module "litepicker";
+declare module "vue-multiselect";

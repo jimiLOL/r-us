@@ -1,0 +1,182 @@
+<template>
+  <div
+    id="main"
+    :class="[
+      'flex',
+      'flex-col',
+      'items-center',
+      'mb-20',
+      $device.isMobile ? 'pt-9' : 'pt-6',
+    ]"
+  >
+      <NuxtLink to="/"><h2 :class="['inline-flex', $device.isMobile ? 'text-2xl' : 'text-5xl', 'font-bold', 'hover:underline hover:text-theme-10', 'focus:text-theme-10 focus:underline']">
+        Что делать после смерти человека
+        <font-awesome-icon
+        icon="arrow-right"
+        transform="shrink-6"
+        class="self-center hover:animate-ping"
+        :style="{ color: '#FFBB30', fontSize: '40px' }"
+      />
+
+        
+      </h2>
+      </NuxtLink>
+
+      
+    <div
+      :class="[
+        'grid',
+        $device.isMobile
+          ? 'grid-rows-6 grid-cols-1'
+          : 'grid-rows-2 grid-cols-3',
+        'gap-4',
+        'w-full',
+        'mt-10',
+        'h-max',
+      ]"
+    >
+      <div
+        class="
+          flex flex-col
+          items-center
+          align-baseline
+          border-2
+          rounded-lg
+          border-theme-11 border-solid
+          gap-4
+          p-8
+        "
+      >
+        <!-- <div class="cross w-full h-36">
+            
+        </div> -->
+        <img src="/cross/Group.svg" alt="" />
+
+        <span>Захоронение</span>
+        <p>
+          И нет сомнений, что многие известные личности преданы
+          социально-демократической анафеме.
+        </p>
+      </div>
+      <div
+        class="
+          flex flex-col
+          items-center
+          align-baseline
+          border-2
+          rounded-lg
+          border-theme-1 border-solid
+          gap-4
+          p-8
+        "
+      >
+        <!-- <div class="cross w-full h-36">
+            
+        </div> -->
+        <img src="/plate/Union.svg" alt="" />
+        <span>Захоронение</span>
+        <p>
+          И нет сомнений, что многие известные личности преданы
+          социально-демократической анафеме.
+        </p>
+      </div>
+      <div
+        class="
+          flex flex-col
+          items-center
+          align-baseline
+          border-2
+          rounded-lg
+          border-theme-1 border-solid
+          gap-4
+          p-8
+        "
+      >
+        <img src="/grob/grob.svg" alt="" />
+
+        <span>Захоронение</span>
+        <p>
+          И нет сомнений, что многие известные личности преданы
+          социально-демократической анафеме.
+        </p>
+      </div>
+      <div
+        class="
+          flex flex-col
+          items-center
+          align-baseline
+          border-2
+          rounded-lg
+          border-theme-1 border-solid
+          gap-4
+          p-8
+        "
+      >
+        <img src="/creamation/Vector.svg" alt="" />
+
+        <span>Захоронение</span>
+        <p>
+          И нет сомнений, что многие известные личности преданы
+          социально-демократической анафеме.
+        </p>
+      </div>
+      <div
+        class="
+          flex flex-col
+          items-center
+          align-baseline
+          border-2
+          rounded-lg
+          border-theme-1 border-solid
+          gap-4
+          p-8
+        "
+      >
+        <img src="/calculation/Vector.svg" alt="" />
+
+        <span>Захоронение</span>
+        <p>
+          И нет сомнений, что многие известные личности преданы
+          социально-демократической анафеме.
+        </p>
+      </div>
+      <div
+        class="
+          flex flex-col
+          items-center
+          align-baseline
+          border-2
+          rounded-lg
+          border-theme-1 border-solid
+          gap-4
+          p-8
+        "
+      >
+        <img src="/proof/proof.svg" alt="" />
+
+        <span>Захоронение</span>
+        <p>
+          И нет сомнений, что многие известные личности преданы
+          социально-демократической анафеме.
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+
+<script>
+import { Vue, Component } from "vue-property-decorator";
+
+@Component({})
+export default class BlockMenu extends Vue {}
+</script>
+
+<style scoped>
+.cross {
+  background: url("/cross/vector_2.svg") 50% 100%/69px 84px no-repeat,
+    url("/cross/vector_1.svg") 40% 50%/54px 91px no-repeat,
+    url("/cross/vector_3.svg") 60% 50%/54px 91px no-repeat;
+}
+</style>

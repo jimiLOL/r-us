@@ -1,0 +1,28 @@
+.scrollbar-hidden {
+  &::-webkit-scrollbar {
+    @apply w-0 bg-transparent;
+  }
+}
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #222222;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: #222222;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.72, rgb(255,187,48)),
+									   color-stop(0.44, rgb(34,34,34)),
+									   color-stop(0.86, rgb(252,243,228)));
+}
