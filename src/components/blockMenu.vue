@@ -9,20 +9,26 @@
       $device.isMobile ? 'pt-9' : 'pt-6',
     ]"
   >
-      <NuxtLink to="/"><h2 :class="['inline-flex', $device.isMobile ? 'text-2xl' : 'text-5xl', 'font-bold', 'hover:underline hover:text-theme-10', 'focus:text-theme-10 focus:underline']">
+    <NuxtLink to="/"
+      ><h2
+        :class="[
+          'inline-flex',
+          $device.isMobile ? 'text-2xl' : 'text-5xl',
+          'font-bold',
+          'hover:underline hover:text-theme-10',
+          'focus:text-theme-10 focus:underline',
+        ]"
+      >
         Что делать после смерти человека
         <font-awesome-icon
-        icon="arrow-right"
-        transform="shrink-6"
-        class="self-center hover:animate-ping"
-        :style="{ color: '#FFBB30', fontSize: '40px' }"
-      />
-
-        
+          icon="arrow-right"
+          transform="shrink-6"
+          class="self-center hover:animate-ping"
+          :style="{ color: '#FFBB30', fontSize: '40px' }"
+        />
       </h2>
-      </NuxtLink>
+    </NuxtLink>
 
-      
     <div
       :class="[
         'grid',
@@ -42,7 +48,7 @@
           align-baseline
           border-2
           rounded-lg
-          border-theme-11 border-solid
+          border-theme-1 border-solid
           gap-4
           p-8
         "
@@ -74,7 +80,7 @@
             
         </div> -->
         <img src="/plate/Union.svg" alt="" />
-        <span>Захоронение</span>
+        <span>Место на кладбище</span>
         <p>
           И нет сомнений, что многие известные личности преданы
           социально-демократической анафеме.
@@ -94,7 +100,7 @@
       >
         <img src="/grob/grob.svg" alt="" />
 
-        <span>Захоронение</span>
+        <span>Груз 200</span>
         <p>
           И нет сомнений, что многие известные личности преданы
           социально-демократической анафеме.
@@ -114,7 +120,7 @@
       >
         <img src="/creamation/Vector.svg" alt="" />
 
-        <span>Захоронение</span>
+        <span>Кремация</span>
         <p>
           И нет сомнений, что многие известные личности преданы
           социально-демократической анафеме.
@@ -134,7 +140,7 @@
       >
         <img src="/calculation/Vector.svg" alt="" />
 
-        <span>Захоронение</span>
+        <span>Посчитать стоимость похорон</span>
         <p>
           И нет сомнений, что многие известные личности преданы
           социально-демократической анафеме.
@@ -154,7 +160,7 @@
       >
         <img src="/proof/proof.svg" alt="" />
 
-        <span>Захоронение</span>
+        <span>Ритуальные услуги под ключ</span>
         <p>
           И нет сомнений, что многие известные личности преданы
           социально-демократической анафеме.

@@ -59,7 +59,7 @@ export default {
 
   fontawesome: {
     icons:{
-      solid: ['faHome', 'faTruckFast', 'faBox', 'faEye', 'faClock', 'faArrowRight'],
+      solid: ['faHome', 'faTruckFast', 'faBox', 'faEye', 'faClock', 'faArrowRight', 'faCircleDot'],
       // regular: ['faAdjust']
     }
   },
