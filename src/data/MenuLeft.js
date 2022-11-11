@@ -61,7 +61,7 @@ const dataMenuLeft = [
   {
     type: 'link',
     title: 'Комплексные услуги',
-    url: '/',
+    url: '/price',
     children: [
       {
         type: 'link',

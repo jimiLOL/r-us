@@ -14,15 +14,15 @@
           Официальное похоронное бюро Кургана
         </h3>
         <div :class="['flex', $device.isMobile ? 'flex-col' : '', 'gap-4']">
-          <a href="/" :class="['flex', $device.isMobile ? 'self-center' :'self-start mr-6']">
+          <NuxtLink to="/" :class="['flex', $device.isMobile ? 'self-center' :'self-start mr-6']">
             <img
               src="https://s3-alpha-sig.figma.com/img/96b7/f68a/9d4964aea26fde815a6d55c29d22041d?Expires=1668988800&Signature=FdeVl5A67-NC0HZXyDgOieDZYTR-vonAEEswv8AXckI5ghz4JhbCTC4UQd-zSYOS5Sz0LpCK2xTdXvVQ3N9y21irrOAYMuP3y79vHXNxFfciOCxYIBmOdEqxeKaSe4U~RcaHAgipqxHFeN9YmaC1CNKPA6P~Az8MV-4SL47QYNUGne~7OJ83WbSyDEmRk8eTgHbMthxMuzVKyNvH8skhF04Kw3nq4hEIbYpKoT0PlFSWE~LgW-dlZ8~7RBYztkZbzSdDM333M0o5E~RD7ZZnwvWrXKYWsO9BtaBa2dhyNg5O2Z90Xcv0SGgOb9yyVAhGpgwzYxO3rrhYLmsPRtMfag__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
               class="w-40"
               alt="Flowbite Logo"
             />
-          </a>
+          </NuxtLink>
           <div
-            :class="['flex', 'flex-col', $device.isMobile ? 'gap-4 self-center text-center' : 'gap-11']"
+            :class="['flex', 'flex-col', $device.isMobile ? 'gap-4 self-center text-center leading-6' : 'gap-11']"
           >
             <ul>
               <li class="my-0.5">

@@ -1,9 +1,9 @@
 <template>
   <div class="font-raleway bg-theme-8 text-white">
     <div class="site__container">
-      <div :class="[!$device.isMobile?'img-position h-screen':'']">
+      <div :class="[!$device.isMobile && hoverEnable?'img-position h-screen':'']">
         <header :class="[$device.isMobile?'px-2':'px-6']">
-          <Header :enable="true" />
+          <Header :hoverEnable="$route.fullPath == '/'?true:false" :enable="true" />
         </header>
       </div>
 
@@ -32,12 +32,13 @@ export default class Layout extends Vue {
   //     },
   //   };
   // }
+  hoverEnable = false;
 
   bodyClasses = ["disable-transitions"];
  
 
   async mounted() {
-
+console.log(this.$route.fullPath);
     await this.$nextTick();
 
     this.bodyClasses = [];

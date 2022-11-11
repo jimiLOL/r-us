@@ -21,6 +21,7 @@
           rounded-sm
           font-bold
           hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
+          focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
         "
       >Заказать звонок</button>
       <button
@@ -35,6 +36,7 @@
           rounded-sm
           font-bold
           hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
+          focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
         "
       >Расчитать стоимость похорон</button>
     </div>

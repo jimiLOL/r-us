@@ -1,7 +1,7 @@
 <template>
   <div
     id="priceList"
-    :class="['flex', 'flex-col', 'px-4', $device.isMobile ? 'pt-20' : 'py-20']"
+    :class="['flex', 'flex-col', $device.isMobile ? 'pt-20 px-2' : 'py-20 px-4']"
   >
     <h3
       :class="[
@@ -11,16 +11,31 @@
     >
       Цены на ритуальные услуги под ключ
     </h3>
-    <div class="flex gap-9 text-base pl-4 mt-9 mb-2">
-      <span class="hover:underline hover:text-theme-1 cursor-pointer"
-        >Православные</span
-      >
-      <span class="hover:underline hover:text-theme-1 cursor-pointer"
-        >Мусульманские</span
-      >
-      <span class="hover:underline hover:text-theme-1 cursor-pointer"
-        >Кремация</span
-      >
+    <div v-if="!$device.isMobile" class="flex gap-9 text-base pl-4 mt-9 mb-2">
+        <div class="hover:underline hover:text-theme-1 cursor-pointer">
+          Православные
+        </div>
+        <div class="hover:underline hover:text-theme-1 cursor-pointer">
+          Мусульманские
+        </div>
+        <div class="hover:underline hover:text-theme-1 cursor-pointer">
+          Кремация
+        </div>
+    </div>
+    <div v-else class="mt-9 mb-2 text-base">
+        <SlickSlider ref="forSlick" :settings="setting_slider">
+        <div class="focus:underline focus:text-theme-1 cursor-pointer">
+          Православные
+        </div>
+        <div class="focus:underline focus:text-theme-1 cursor-pointer">
+          Мусульманские
+        </div>
+        <div class="focus:underline focus:text-theme-1 cursor-pointer">
+          Кремация
+        </div>
+      </SlickSlider>
+        
+        
     </div>
     <div
       :class="[
@@ -59,7 +74,7 @@
             @click="idVar === index ? closeList() : ''"
           >
             <span>{{ item.title }}</span>
-            <span class="grow">{{ item.price }} ₽</span>
+            <span class="grow">от {{ item.price }} ₽</span>
           </div>
 
           <div v-if="idVar === index">
@@ -149,6 +164,7 @@
                     'hover:transform',
                     'hover:scale-95',
                     'hover:underline',
+                    'focus:bg-theme-10', 'focus:transform', 'focus:scale-95', 'focus:underline',
                     $device.isMobile ? 'w-full' : '',
                   ]"
                 >
@@ -171,8 +187,12 @@ import {
   ref,
   onMounted,
 } from "@nuxtjs/composition-api";
+import SlickSlider from "~/components/slickSlider.vue";
 
 export default defineComponent({
+  components: {
+    SlickSlider,
+  },
   data() {
     return {
       data: [
@@ -307,6 +327,17 @@ export default defineComponent({
     const showAll = ref(null);
     const idVar = ref(null);
     const showList = ref(false);
+    const setting_slider = {
+      slidesToShow: 2,
+      infinite: true,
+      autoplay: true,
+      dots: false,
+      arrows: false,
+       swipe: true,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      touchMove: true
+    };
 
     const closeList = () => {
       setTimeout(() => {
@@ -335,6 +366,7 @@ export default defineComponent({
       showAll,
       idVar: computed(() => idVar.value),
       showList,
+      setting_slider,
     };
   },
 });

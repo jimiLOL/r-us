@@ -55,17 +55,17 @@
     <div>
       <NavMenu :dataMenu="dataMenuLeft" />
     </div>
-    <Hover :clientHeight="clientHeight - clientHeight * 0.27" />
+    <Hover v-if="hoverEnable" :clientHeight="clientHeight - clientHeight * 0.27" />
   </div>
   <div class="pb-4" v-else>
     <div class="flex flex-nowrap justify-between content-center gap-2">
-      <a href="/" class="flex items-center">
+      <NuxtLink to="/" class="flex items-center">
         <img
           src="https://s3-alpha-sig.figma.com/img/96b7/f68a/9d4964aea26fde815a6d55c29d22041d?Expires=1668988800&Signature=FdeVl5A67-NC0HZXyDgOieDZYTR-vonAEEswv8AXckI5ghz4JhbCTC4UQd-zSYOS5Sz0LpCK2xTdXvVQ3N9y21irrOAYMuP3y79vHXNxFfciOCxYIBmOdEqxeKaSe4U~RcaHAgipqxHFeN9YmaC1CNKPA6P~Az8MV-4SL47QYNUGne~7OJ83WbSyDEmRk8eTgHbMthxMuzVKyNvH8skhF04Kw3nq4hEIbYpKoT0PlFSWE~LgW-dlZ8~7RBYztkZbzSdDM333M0o5E~RD7ZZnwvWrXKYWsO9BtaBa2dhyNg5O2Z90Xcv0SGgOb9yyVAhGpgwzYxO3rrhYLmsPRtMfag__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
           class="w-14"
           alt="Flowbite Logo"
         />
-      </a>
+      </NuxtLink>
       <a
         href="tel:+73522610630"
         class="font-bold text-xl align-baseline self-center"
@@ -73,7 +73,7 @@
       >
       <HamburgerMenu class="w-14" />
     </div>
-    <div class="flex flex-col gap-6 mt-9">
+    <div v-if="$route.fullPath == '/'" class="flex flex-col gap-6 mt-9">
       <div class="flex flex-col gap-6">
         <h1 class="text-2xl font-bold">
           <i>Ритуальная служба в</i><i class="text-theme-1"> Кургане</i>
@@ -153,6 +153,7 @@ import HamburgerMenu from "~/shared/humburgerMenu.vue";
 })
 export default class Header extends Vue {
   @Prop({ type: Boolean, required: true }) enable;
+  @Prop({ type: Boolean, required: true }) hoverEnable;
   // @Prop({type: Number, default: 700}) clientHeight;
 
   clientHeight = 1000;
