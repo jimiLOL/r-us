@@ -73,8 +73,8 @@
         >Узнать больше о сотрудниках <font-awesome-icon
           icon="arrow-right"
           transform="shrink-6"
-          class="self-center hover:animate-ping"
-          :style="{ color: '#FFBB30', fontSize: '28px' }"
+          class="self-center hover:animate-ping w-8"
+          :style="{ color: '#FFBB30' }"
         />
       </NuxtLink>
     </div>

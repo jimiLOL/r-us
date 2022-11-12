@@ -46,9 +46,11 @@ module.exports = {
           10: '#FFAE09',
           11: '#F5F5F5'
         },
-        icon: {
-          1: "#3D5AB6",
-          2: "#F3DFDF",
+        social: {
+          wp: "#48C95F",
+          wp_contrast: '#76E489',
+          tg: "#27A6E5",
+          tg_contrast: '#5BC1F2',
           3: "#E1F4EA"
         },
         dark: {

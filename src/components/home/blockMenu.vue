@@ -23,8 +23,8 @@
         <font-awesome-icon
           icon="arrow-right"
           transform="shrink-6"
-          class="self-center hover:animate-ping"
-          :style="{ color: '#FFBB30', fontSize: '40px' }"
+          class="self-center hover:animate-ping w-14"
+          :style="{ color: '#FFBB30' }"
         />
       </h2>
     </NuxtLink>

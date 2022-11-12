@@ -83,12 +83,12 @@
               :key="index"
               class="flex justify-between text-base font-normal py-2 gap-4"
             >
-              <span>
+              <span class="inline-flex">
                 <font-awesome-icon
                   icon="circle-dot"
                   transform="shrink-6"
-                  class="self-center hover:animate-ping"
-                  :style="{ color: '#FFBB30', fontSize: '20px' }"
+                  class="self-center hover:animate-ping w-4 shrank-0"
+                  :style="{ color: '#FFBB30'}"
                 />
                 {{ listItem.title }}</span
               >
@@ -117,6 +117,7 @@
                   'hover:scale-95',
                   'hover:underline',
                   'hover:text-black',
+                  'max-h-12'
                 ]"
                 @click="closeList"
               >
@@ -151,6 +152,69 @@
                   >
                 </div>
                 <button
+                v-if="showButtonOrder"
+                  :class="[
+                    'py-2',
+                    'px-9',
+                    'border-2',
+                    'rounded-md',
+                    'text-theme-8',
+                    'text-bold',
+                    'bg-theme-1',
+                    'border-solid',
+                    'hover:bg-theme-10',
+                    'hover:transform',
+                    'hover:scale-95',
+                    'hover:underline',
+                    'focus:bg-theme-10', 'focus:transform', 'focus:scale-95', 'focus:underline',
+                    $device.isMobile ? 'w-full' : '',
+                  ]"
+                  @click="showListButton"
+                >
+                  Заказать комплекс
+                </button>
+                <div v-else class="flex flex-col">
+                  <button
+                  :class="[
+                    'py-2',
+                    'px-9',
+                    'border-2',
+                    'rounded-md',
+                    'text-theme-8',
+                    'text-bold',
+                    'bg-social-wp',
+                    'border-solid',
+                    'hover:bg-social-wp_contrast',
+                    'hover:transform',
+                    'hover:scale-95',
+                    'hover:underline',
+                    'focus:bg-social-wp_contrast', 'focus:transform', 'focus:scale-95', 'focus:underline',
+                    $device.isMobile ? 'w-full' : '',
+                  ]"
+                >
+                  Whatsapp
+                </button>
+                <button
+                  :class="[
+                    'py-2',
+                    'px-9',
+                    'border-2',
+                    'rounded-md',
+                    'text-theme-8',
+                    'text-bold',
+                    'bg-social-tg',
+                    'border-solid',
+                    'hover:bg-social-tg_contrast',
+                    'hover:transform',
+                    'hover:scale-95',
+                    'hover:underline',
+                    'focus:bg-social-tg_contrast', 'focus:transform', 'focus:scale-95', 'focus:underline',
+                    $device.isMobile ? 'w-full' : '',
+                  ]"
+                >
+                  Telegram
+                </button>
+                <button
                   :class="[
                     'py-2',
                     'px-9',
@@ -168,8 +232,10 @@
                     $device.isMobile ? 'w-full' : '',
                   ]"
                 >
-                  Заказать комплекс
+                  Обратный звонок
                 </button>
+                  
+                </div>
               </div>
             </div>
           </div>
@@ -327,6 +393,8 @@ export default defineComponent({
     const showAll = ref(null);
     const idVar = ref(null);
     const showList = ref(false);
+    const showButtonOrder = ref(true);
+    
     const setting_slider = {
       slidesToShow: 2,
       infinite: true,
@@ -338,6 +406,14 @@ export default defineComponent({
       swipeToSlide: true,
       touchMove: true
     };
+
+
+    const showListButton = () => {
+      setTimeout(() => {
+        showButtonOrder.value = false;
+        
+      }, 100);
+    }
 
     const closeList = () => {
       setTimeout(() => {
@@ -367,6 +443,8 @@ export default defineComponent({
       idVar: computed(() => idVar.value),
       showList,
       setting_slider,
+      showButtonOrder,
+      showListButton
     };
   },
 });
