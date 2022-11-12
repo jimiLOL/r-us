@@ -1,7 +1,11 @@
 <template>
   <div
     id="priceList"
-    :class="['flex', 'flex-col', $device.isMobile ? 'pt-20 px-2' : 'py-20 px-4']"
+    :class="[
+      'flex',
+      'flex-col',
+      $device.isMobile ? 'pt-20 px-2' : 'py-20 px-4',
+    ]"
   >
     <h3
       :class="[
@@ -12,18 +16,18 @@
       Цены на ритуальные услуги под ключ
     </h3>
     <div v-if="!$device.isMobile" class="flex gap-9 text-base pl-4 mt-9 mb-2">
-        <div class="hover:underline hover:text-theme-1 cursor-pointer">
-          Православные
-        </div>
-        <div class="hover:underline hover:text-theme-1 cursor-pointer">
-          Мусульманские
-        </div>
-        <div class="hover:underline hover:text-theme-1 cursor-pointer">
-          Кремация
-        </div>
+      <div class="hover:underline hover:text-theme-1 cursor-pointer">
+        Православные
+      </div>
+      <div class="hover:underline hover:text-theme-1 cursor-pointer">
+        Мусульманские
+      </div>
+      <div class="hover:underline hover:text-theme-1 cursor-pointer">
+        Кремация
+      </div>
     </div>
     <div v-else class="mt-9 mb-2 text-base">
-        <SlickSlider ref="forSlick" :settings="setting_slider">
+      <SlickSlider ref="forSlick" :settings="setting_slider">
         <div class="focus:underline focus:text-theme-1 cursor-pointer">
           Православные
         </div>
@@ -34,8 +38,6 @@
           Кремация
         </div>
       </SlickSlider>
-        
-        
     </div>
     <div
       :class="[
@@ -88,7 +90,7 @@
                   icon="circle-dot"
                   transform="shrink-6"
                   class="self-center hover:animate-ping w-4 shrank-0"
-                  :style="{ color: '#FFBB30'}"
+                  :style="{ color: '#FFBB30' }"
                 />
                 {{ listItem.title }}</span
               >
@@ -117,7 +119,7 @@
                   'hover:scale-95',
                   'hover:underline',
                   'hover:text-black',
-                  'max-h-12'
+                  'max-h-12',
                 ]"
                 @click="closeList"
               >
@@ -152,7 +154,7 @@
                   >
                 </div>
                 <button
-                v-if="showButtonOrder"
+                  v-if="showButtonOrder"
                   :class="[
                     'py-2',
                     'px-9',
@@ -166,75 +168,170 @@
                     'hover:transform',
                     'hover:scale-95',
                     'hover:underline',
-                    'focus:bg-theme-10', 'focus:transform', 'focus:scale-95', 'focus:underline',
+                    'focus:bg-theme-10',
+                    'focus:transform',
+                    'focus:scale-95',
+                    'focus:underline',
                     $device.isMobile ? 'w-full' : '',
                   ]"
                   @click="showListButton"
                 >
                   Заказать комплекс
                 </button>
-                <div v-else class="flex flex-col">
+                <div
+                  v-else-if="!showButtonOrder && !openForm"
+                  class="flex flex-col"
+                >
                   <button
-                  :class="[
-                    'py-2',
-                    'px-9',
-                    'border-2',
-                    'rounded-md',
-                    'text-theme-8',
-                    'text-bold',
-                    'bg-social-wp',
-                    'border-solid',
-                    'hover:bg-social-wp_contrast',
-                    'hover:transform',
-                    'hover:scale-95',
-                    'hover:underline',
-                    'focus:bg-social-wp_contrast', 'focus:transform', 'focus:scale-95', 'focus:underline',
-                    $device.isMobile ? 'w-full' : '',
-                  ]"
+                    :class="[
+                      'py-2',
+                      'px-9',
+                      'border-2',
+                      'rounded-md',
+                      'text-theme-8',
+                      'text-bold',
+                      'bg-social-wp',
+                      'border-solid',
+                      'hover:bg-social-wp_contrast',
+                      'hover:transform',
+                      'hover:scale-95',
+                      'hover:underline',
+                      'focus:bg-social-wp_contrast',
+                      'focus:transform',
+                      'focus:scale-95',
+                      'focus:underline',
+                      $device.isMobile ? 'w-full' : '',
+                    ]"
+                  >
+                    Whatsapp
+                  </button>
+                  <button
+                    :class="[
+                      'py-2',
+                      'px-9',
+                      'border-2',
+                      'rounded-md',
+                      'text-theme-8',
+                      'text-bold',
+                      'bg-social-tg',
+                      'border-solid',
+                      'hover:bg-social-tg_contrast',
+                      'hover:transform',
+                      'hover:scale-95',
+                      'hover:underline',
+                      'focus:bg-social-tg_contrast',
+                      'focus:transform',
+                      'focus:scale-95',
+                      'focus:underline',
+                      $device.isMobile ? 'w-full' : '',
+                    ]"
+                  >
+                    Telegram
+                  </button>
+                  <button
+                    :class="[
+                      'py-2',
+                      'px-9',
+                      'border-2',
+                      'rounded-md',
+                      'text-theme-8',
+                      'text-bold',
+                      'bg-theme-1',
+                      'border-solid',
+                      'hover:bg-theme-10',
+                      'hover:transform',
+                      'hover:scale-95',
+                      'hover:underline',
+                      'focus:bg-theme-10',
+                      'focus:transform',
+                      'focus:scale-95',
+                      'focus:underline',
+                      $device.isMobile ? 'w-full' : '',
+                    ]"
+                    @click="switchFormCall"
+                  >
+                    Обратный звонок
+                  </button>
+                </div>
+                <div
+                  v-if="!showButtonOrder && openForm"
+                  class="flex flex-col gap-4"
                 >
-                  Whatsapp
-                </button>
-                <button
-                  :class="[
-                    'py-2',
-                    'px-9',
-                    'border-2',
-                    'rounded-md',
-                    'text-theme-8',
-                    'text-bold',
-                    'bg-social-tg',
-                    'border-solid',
-                    'hover:bg-social-tg_contrast',
-                    'hover:transform',
-                    'hover:scale-95',
-                    'hover:underline',
-                    'focus:bg-social-tg_contrast', 'focus:transform', 'focus:scale-95', 'focus:underline',
-                    $device.isMobile ? 'w-full' : '',
-                  ]"
-                >
-                  Telegram
-                </button>
-                <button
-                  :class="[
-                    'py-2',
-                    'px-9',
-                    'border-2',
-                    'rounded-md',
-                    'text-theme-8',
-                    'text-bold',
-                    'bg-theme-1',
-                    'border-solid',
-                    'hover:bg-theme-10',
-                    'hover:transform',
-                    'hover:scale-95',
-                    'hover:underline',
-                    'focus:bg-theme-10', 'focus:transform', 'focus:scale-95', 'focus:underline',
-                    $device.isMobile ? 'w-full' : '',
-                  ]"
-                >
-                  Обратный звонок
-                </button>
-                  
+                  <span>Заказать обратный звонок</span>
+                  <div class="flex flex-col gap-2">
+                     <input
+                    class="px-4 py-2 rounded-md text-black"
+                    type="text"
+                    aria-required="true"
+                    placeholder="Вашe имя"
+                    v-model="userName"
+                  />
+                  <input
+                    class="px-4 py-2 rounded-md text-black"
+                    type="tel"
+                    aria-required="true"
+                    placeholder="+7(___)-___-__-__"
+                    v-model="userPhone"
+                  />
+                  </div>
+                  <span v-if="!validPhone" class="text-theme-7 phone_view"
+                    >Проверьте правильность номера телефона</span
+                  >
+                  <div class="flex flex-col gap-1">
+                     
+                  <button
+                    :class="[
+                      'disabled:opacity-75',
+
+                      'py-2',
+                      'px-9',
+                      'border-2',
+                      'rounded-md',
+                      'text-theme-8',
+                      'text-bold',
+                      'bg-theme-1',
+                      'border-solid',
+                      validPhone
+                        ? 'hover:bg-theme-10 hover:transform hover:scale-95 hover:underline'
+                        : '',
+                      'enabled:focus:bg-theme-10',
+                      'enabled:focus:transform',
+                      'focus:scale-95',
+                      'focus:underline',
+                      $device.isMobile ? 'w-full' : '',
+                    ]"
+                    :disabled="!validPhone"
+                    @click="submiteForm"
+                  >
+                    Позвоните мне
+                  </button>
+                  <button
+                    :class="[
+                      'py-2',
+                      'px-9',
+                      'border-2',
+                      'rounded-md',
+                      'text-theme-8',
+                      'text-bold',
+                      'bg-theme-2',
+                      'border-solid',
+                      'hover:bg-theme-2',
+                      'hover:transform',
+                      'hover:scale-95',
+                      'hover:underline',
+                      'focus:bg-theme-2',
+                      'focus:transform',
+                      'focus:scale-95',
+                      'focus:underline',
+                      $device.isMobile ? 'w-full' : '',
+                    ]"
+                    @click="switchFormCall"
+                  >
+                    Отмена
+                  </button>
+                  </div>
+                 
+                 
                 </div>
               </div>
             </div>
@@ -252,6 +349,7 @@ import {
   computed,
   ref,
   onMounted,
+  watch,
 } from "@nuxtjs/composition-api";
 import SlickSlider from "~/components/slickSlider.vue";
 
@@ -394,27 +492,47 @@ export default defineComponent({
     const idVar = ref(null);
     const showList = ref(false);
     const showButtonOrder = ref(true);
-    
+    const openForm = ref(false);
+    const userName = ref();
+    const userPhone = ref();
+    const validPhone = ref(false);
+
     const setting_slider = {
       slidesToShow: 2,
       infinite: true,
       autoplay: true,
       dots: false,
       arrows: false,
-       swipe: true,
+      swipe: true,
       slidesToScroll: 1,
       swipeToSlide: true,
-      touchMove: true
+      touchMove: true,
     };
 
+    const switchFormCall = () => {
+      openForm.value = !openForm.value;
+    };
 
     const showListButton = () => {
       setTimeout(() => {
         showButtonOrder.value = false;
-        
       }, 100);
-    }
-
+    };
+    const validationPhone = () => {
+      validPhone.value =
+        /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/.test(
+          userPhone.value
+        );
+    };
+    const submiteForm = () => {
+      console.log("Send form");
+    };
+    watch(
+      () => userPhone.value,
+      () => {
+        validationPhone();
+      }
+    );
     const closeList = () => {
       setTimeout(() => {
         idVar.value = null;
@@ -444,13 +562,33 @@ export default defineComponent({
       showList,
       setting_slider,
       showButtonOrder,
-      showListButton
+      showListButton,
+      openForm,
+      userName,
+      userPhone,
+      switchFormCall,
+      validPhone,
+      submiteForm,
     };
   },
 });
 </script>
 
 <style lang="scss" scoped>
+.phone_view {
+  font-size: 11px;
+  margin-top: -8%;
+  margin-bottom: -8%;
+  animation: view 0.6s linear forwards;
+}
+@keyframes view {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .text-shadow_hover:hover {
   text-shadow: #fc0 0.7px 0 10px;
 }
