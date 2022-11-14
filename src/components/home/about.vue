@@ -69,7 +69,7 @@
         </div>
       </div>
 
-      <NuxtLink to="/" class="justify-self-end inline-flex items-center mt-4 flex-shrink-0 text-lg align-baseline text-theme-1 hover:underline"
+      <NuxtLink to="/employee" no-prefetch class="justify-self-end inline-flex items-center mt-4 flex-shrink-0 text-lg align-baseline text-theme-1 hover:underline"
         >Узнать больше о сотрудниках <font-awesome-icon
           icon="arrow-right"
           transform="shrink-6"

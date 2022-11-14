@@ -39,6 +39,10 @@ export default {
       src: "~/plugins/inject-ww.js",
       ssr: false
     },
+    {
+      src: "~/plugins/global-components.js",
+      ssr: false
+    },
     { src: "~/plugins/notifications.ts", ssr: false },
   ],
   tailwindcss: {
@@ -67,6 +71,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    ['nuxt-gmaps', { key: 'AIzaSyBRBa5vySluLKd3LwQvusS9w8nVV4UrmeQ' }],
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -68,7 +68,7 @@
       <div class="img-position max-w-full"></div>
       <!-- <img src="/line.svg" class="w-max-96 line" alt="" /> -->
     </div>
-    <a href="#main"><SVGMouse class="mouse"/></a>
+    <a v-if="load" href="#main"><SVGMouse class="mouse"/></a>
     
     <component :is="'style'"> :root {--clientHeight: {{clientHeight}}px; } </component>
 
@@ -86,9 +86,15 @@ import SVGMouse from "~/components/svg/Mouse.vue"
 export default class Hover extends Vue {
   @Prop({type: Number, default: 700}) clientHeight;
   // clientHeight = null;
+  load = false;
+
+  
   mounted() {
     // this.clientHeight = this.$refs.block.clientHeight;
+    this.load = true;
+    
    console.log(this.$refs.block.clientHeight); 
+   this.$nuxt.$emit('resize')
   }
 }
 </script>

@@ -87,7 +87,7 @@ const dataMenuLeft = [
   {
     type: 'link',
     title: 'Статьи',
-    url: '/shop/catalog',
+    url: '/blog',
     children: [
       {
         type: 'link',
@@ -113,7 +113,7 @@ const dataMenuLeft = [
   {
     type: 'link',
     title: 'Контакты',
-    url: '/shop/catalog',
+    url: '/contact',
     children: []
   },
   

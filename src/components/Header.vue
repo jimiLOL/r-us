@@ -55,7 +55,10 @@
     <div>
       <NavMenu :dataMenu="dataMenuLeft" />
     </div>
-    <Hover v-if="hoverEnable" :clientHeight="clientHeight - clientHeight * 0.27" />
+    <Hover
+      v-if="hoverEnable"
+      :clientHeight="clientHeight - clientHeight * 0.27"
+    />
   </div>
   <div class="pb-4" v-else>
     <div class="flex flex-nowrap justify-between content-center gap-2">
@@ -142,7 +145,7 @@
 </template>
 
 <script>
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import NavMenu from "./nav-menu.vue";
 import dataMenuLeft from "~/data/MenuLeft";
 import Hover from "./Hover.vue";
@@ -154,6 +157,11 @@ import HamburgerMenu from "~/shared/humburgerMenu.vue";
 export default class Header extends Vue {
   @Prop({ type: Boolean, required: true }) enable;
   @Prop({ type: Boolean, required: true }) hoverEnable;
+
+  @Watch("this.$route.fullPath")
+  newclientHeight() {
+    console.log("efef");
+  }
   // @Prop({type: Number, default: 700}) clientHeight;
 
   clientHeight = 1000;
@@ -165,6 +173,11 @@ export default class Header extends Vue {
   mounted() {
     if (!this.$device.isMobile) {
       this.clientHeight = this.$refs.clientHeight.clientHeight;
+
+      this.$nuxt.$on("resize", () => {
+        this.clientHeight = this.$refs.clientHeight.clientHeight;
+
+      });
     }
   }
 }
