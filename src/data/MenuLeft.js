@@ -9,25 +9,19 @@ const dataMenuLeft = [
   {
     type: 'link',
     title: 'Услуги',
-    url: '/',
+    url: '/services',
     children: [
       {
         type: 'link',
         title: 'Кремация',
-        url: '/shop/catalog/cosmitika',
-        children: [
-          { type: 'link', title: 'Корейские', url: '/shop/catalog/cosmitika?filter_brand=seagate' },
-
-        ]
+        url: '/services/kremaciya',
+    
       },
       {
         type: 'link',
         title: 'Что-то еще',
-        url: '/shop/catalog/cosmitika',
-        children: [
-          { type: 'link', title: 'Тайвайнские', url: '/shop/catalog/cosmitika?filter_brand=seagate' },
-
-        ]
+        url: '/services/gruz_200',
+        
       },
 
     ]
@@ -35,7 +29,7 @@ const dataMenuLeft = [
   {
     type: 'link',
     title: 'Расчитать стоимость похорон',
-    url: '/shop/catalog',
+    url: '/',
     children: [
       {
         type: 'link',

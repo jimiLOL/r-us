@@ -11,13 +11,10 @@
     <div :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10']">
       <nav>
         <ul class="text-bold text-center whitespace-nowrap">
-          <li class="py-4">Категория статей</li>
-          <li class="py-4">Закон и право</li>
-          <li class="py-4">Знаменитые кладбища</li>
-          <li class="py-4">Ритуальный бизнес</li>
-          <li class="py-4">Религия</li>
-          <li class="py-4">Традиции</li>
-          <li class="py-4">Наука</li>
+          <li class="py-4">Захоронение</li>
+          <li class="py-4">Место на кладбище</li>
+          <li class="py-4">Груз 200</li>
+          <li class="py-4">Кремация</li>
         </ul>
       </nav>
     </div>
@@ -65,44 +62,27 @@
             'px-1',
             'my-4',
             'hover:text-black',
-            'hover:bg-theme-11',
+            'hover:bg-theme-1',
             'hover:border-black',
             'focus:text-black',
-            'focus:bg-theme-11',
+            'focus:bg-theme-1',
             'focus:border-black',
           ]"
         >
-          Читать
+          Выбрать
         </button>
       </div>
 
-      <div class="w-full items-center">
-        <Pagination
-          :current="1"
-          :siblings="2"
-          :total="10"
-          @page-change="handlePageChange"
-        />
-      </div>
+       
     </div>
   </div>
 </template>
 
 
+
 <script>
 import { Vue, Component } from "vue-property-decorator";
-import Pagination from '~/shared/pagination.vue';
 
-@Component({
-    components: {Pagination}
-})
-export default class Blog extends Vue {
-     handlePageChange(page) {
-      console.log(page);
-    // this.$store.dispatch("shop/setOptionValue", {
-    //   option: "page",
-    //   value: page,
-    // });
-  }
-}
+@Component({})
+export default class Services extends Vue {}
 </script>
