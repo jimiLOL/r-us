@@ -64,43 +64,339 @@
         </button>
       </div>
     </div>
-    <div class="row-span-2 flex justify-center h-screen img-cross">
-      <div class="img-position max-w-full"></div>
+    <div
+      id="container"
+      class="row-span-2 flex justify-center h-screen img-cross"
+    >
+      <!-- <div class="img-position max-w-full"></div> -->
+
       <!-- <img src="/line.svg" class="w-max-96 line" alt="" /> -->
     </div>
-    <a v-if="load" href="#main"><SVGMouse class="mouse"/></a>
-    
-    <component :is="'style'"> :root {--clientHeight: {{clientHeight}}px; } </component>
+    <a v-if="load" href="#main"><SVGMouse class="mouse" /></a>
 
-   
+    <component :is="'style'">
+      :root {--clientHeight: {{ clientHeight }}px; }
+    </component>
   </div>
 </template>
 
 <script>
 import { Vue, Component, Prop } from "vue-property-decorator";
-import SVGMouse from "~/components/svg/Mouse.vue"
+import SVGMouse from "~/components/svg/Mouse.vue";
+
+import * as THREE from "three";
+// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+import particleFs from '../3d_script/fs.glsl';
+import particleVs from '../3d_script/Ver.glsl';
+
+import { TimelineMax } from "gsap";
+const OrbitControls = require("three-orbit-controls")(THREE);
 
 @Component({
-  components: {SVGMouse}
+  components: { SVGMouse },
+  head() {
+    return {
+      // script: [
+      //   {
+      //     id: "particle-vs",
+      //     type: "x-shader/x-fragment",
+      //     src: "../3d_script/particle-vs.js",
+      //   },
+      //   {
+      //     id: "particle-fs",
+      //     type: "x-shader/x-fragment",
+      //     src: "../3d_script/particle-fs.js",
+      //   },
+      // ],
+    };
+  },
 })
 export default class Hover extends Vue {
-  @Prop({type: Number, default: 700}) clientHeight;
+  @Prop({ type: Number, default: 700 }) clientHeight;
   // clientHeight = null;
-  load = false;
+  data() {
+    return {
+      load: false,
+      loaded: false,
+      currentSlide: 0,
+      material: {},
+      isActive: true,
+      hasError: false,
+      slickOptions: {
+        dots: false,
+        arrows: false,
+        slidesToShow: 1,
+        infinite: true,
+        autoplay: false,
+        autoplaySpeed: 10000,
+        responsive: [
+          {
+            breakpoint: 800,
+            settings: {
+              dots: true,
+            },
+          },
+        ],
+      },
+    };
+  }
 
-  
   mounted() {
     // this.clientHeight = this.$refs.block.clientHeight;
+
     this.load = true;
-    
-   console.log(this.$refs.block.clientHeight); 
-   this.$nuxt.$emit('resize')
+
+    console.log(this.$refs.block.clientHeight);
+    this.$nuxt.$emit("resize");
+
+    // let js = document.createElement("script");
+    // js.type = "text/javascript";
+    // js.text = ''
+
+    this.loaded = true;
+    let camera, pos, controls, scene, renderer, geometry, geometry1, material;
+    let vm = this;
+
+    // let loaderGLTF = new GLTFLoader();
+
+    function init() {
+      scene = new THREE.Scene();
+
+      // loaderGLTF.load("/imgs/bd8de77dac75915d76bc6f6fb0f629da.gltf", (mesh) => {
+      //   console.log(mesh);
+      //   const root = mesh.scene;
+      //   scene.add(root);
+      // });
+      // scene.destination = { x: 0, y: 0 };
+      // scene.background = new THREE.Color(0x000000); // уберется
+
+      renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        transparent: true,
+        premultipliedAlpha: true,
+      });
+
+      renderer.setClearColor(0x000000, 0);
+
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(600, 600);
+ renderer.context.getExtension('OES_standard_derivatives');
+
+      // let container = document.getElementById('container')
+      let container = document.getElementById("container");
+
+      container.appendChild(renderer.domElement);
+
+      camera = new THREE.PerspectiveCamera(70, 600 / 600, 0.001, 100);
+      camera.position.set(0, 0, 1);
+
+      controls = new OrbitControls(camera, renderer.domElement);
+
+      let canvas = document.createElement("canvas");
+      let ctx = canvas.getContext("2d");
+
+      // document.body.appendChild(canvas);
+
+      let imgArray = [
+        "/imgs/5443999f833ce70ed0853ed91982b49c-removebg-preview.png",
+        "/imgs/bd8de77dac75915d76bc6f6fb0f629da-removebg-preview.png",
+      ];
+
+      let obj = [];
+      imgArray.forEach((img) => {
+        obj.push({ file: img });
+      });
+      // console.log(obj);
+
+      loadImages(imgArray, (loadedImages) => {
+        obj.forEach((image, index) => {
+          let img = loadedImages[index];
+          console.log(img);
+          canvas.width = 600;
+          canvas.height = 600;
+          ctx.drawImage(img, 0, 0);
+
+          // document.body.appendChild(canvas);
+          let data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          let buffer = data.data;
+          // console.log(buffer);
+
+          let rgb = [];
+          let c = new THREE.Color();
+
+          for (var i = 0; i < buffer.length; i = i + 4) {
+            // if (
+            //   index != 1 &&
+            //   buffer[i] != 255 &&
+            //   buffer[i + 1] != 255 &&
+            //   buffer[i + 2] != 255
+            // ) {
+
+            // }
+            c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
+            rgb.push({ c: c.clone(), id: i / 4 });
+          }
+          let result = new Float32Array(img.width * img.height * 2);
+          let j = 0;
+          // console.log("Init");
+
+          rgb.sort(function (a, b) {
+            // console.log(a.c.getHSL(a.c).s);
+            // process.exit(1)
+
+            // if (index == 1 && a.c.getHexString() == "000000") {
+            //   a.c.setStyle("#222222");
+            //   // console.log(a.c.getHexString());
+            // }
+            return a.c.getHSL(a.c).s - b.c.getHSL(a.c).s;
+          });
+
+          rgb.forEach((e) => {
+            result[j] = e.id % img.width;
+            result[j + 1] = Math.floor(e.id / img.height);
+            j = j + 2;
+          });
+          console.log(result, "result");
+
+          obj[index].image = img;
+          // obj[index].texture = new THREE.Texture(img);
+          obj[index].texture = THREE.ImageUtils.loadTexture(image.file);
+          //  obj[index].texture = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture(image.file), transparent: true, opacity: 0.5, color: 0xFF0000 })
+          obj[index].buffer = result;
+          obj[index].texture.transparent = true;
+          obj[index].texture.premultiplyAlpha = true;
+
+          console.log(obj[index].texture);
+
+          obj[index].texture.needsUpdate = true;
+          obj[index].texture.flipY = false;
+        });
+
+        var w = loadedImages[0].width;
+        var h = loadedImages[0].height;
+
+        let positions = new Float32Array(w * h * 3);
+        let index = 0;
+        for (var i = 0; i < w; i++) {
+          for (var j = 0; j < h; j++) {
+            positions[index * 3] = j;
+            positions[index * 3 + 1] = i;
+            positions[index * 3 + 2] = 0;
+            index++;
+          }
+        }
+
+
+        let uvs = new Float32Array(positions.length/3 * 2); // необходимые вершины для отресовк
+
+        // let uvs = new Float32Array([0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0]);
+
+        let geometry = new THREE.BufferGeometry();
+
+        // geometry.setIndex([0,1,2, 2,3,0]);
+
+        geometry.setAttribute(
+          "position",
+          new THREE.BufferAttribute(positions, 3)
+        );
+
+        geometry.setAttribute(
+          "source",
+          new THREE.BufferAttribute(obj[0].buffer, 2)
+        );
+        geometry.setAttribute(
+          "target",
+          new THREE.BufferAttribute(obj[1].buffer, 2)
+        );
+        geometry.setAttribute("uv", new THREE.BufferAttribute(uvs, 2));
+
+        material = new THREE.RawShaderMaterial({
+          uniforms: {
+            sourceTex: { type: "t", value: obj[0].texture },
+            targetTex: { type: "t", value: obj[1].texture },
+            blend: { type: "f", value: 0 },
+            size: { type: "f", value: 2.1 }, //window.devicePixelRatio },
+            dimensions: { type: "v2", value: new THREE.Vector2(w, h) },
+            alpha: {value: 0.0625}
+          },
+          transparent: true,
+          premultiplyAlpha: true,
+          depthWrite: false,
+          // opacity: 0.5,
+          premultipliedAlpha: true,
+          vertexShader: particleVs,
+          fragmentShader: particleFs,
+          // glslVersion: THREE.GLSL3
+        });
+        material.transparent = true;
+
+        let points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        let tl = new TimelineMax({ paused: true });
+        console.log(material);
+        tl.to(material.uniforms.blend, 3, { value: 1 }, 0);
+        cash("body").on("click", () => {
+          if (cash("body").hasClass("done")) {
+            tl.reverse();
+            cash("body").removeClass("done");
+          } else {
+            tl.play();
+            cash("body").addClass("done");
+          }
+        });
+      });
+    }
+    function loadImages(paths, whenLoaded) {
+      var imgs = [];
+      paths.forEach(function (path) {
+        var img = new Image();
+        img.onload = function () {
+          imgs.push(img);
+          console.log("Imgs loaded!");
+          if (imgs.length === paths.length) whenLoaded(imgs);
+        };
+        img.src = path;
+      });
+    }
+    window.addEventListener("resize", resize);
+    function resize() {
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+
+    let time = 0;
+    function animate() {
+      time++;
+      // vm.material.uniforms.time.value = time;
+
+      requestAnimationFrame(animate);
+      render();
+    }
+
+    function render() {
+      // scene.rotation.x += (scene.destination.x - scene.rotation.x) * 0.05;
+      // scene.rotation.y += (scene.destination.y - scene.rotation.y) * 0.05;
+      renderer.render(scene, camera);
+    }
+
+    init();
+    animate();
   }
 }
 </script>
 
 
 <style scoped>
+/* canvas {
+  position: absolute;
+  z-index: 100;
+  opacity: 1;
+} */
 .img-position {
   /* position: absolute; */
   /* top: 75%; */
@@ -143,8 +439,7 @@ export default class Hover extends Vue {
   height: 5%;
   top: var(--clientHeight);
   right: 50%;
-   /* background: url("/mouse.svg") 50% 95%/1.3%
+  /* background: url("/mouse.svg") 50% 95%/1.3%
       no-repeat; */
-
 }
 </style>

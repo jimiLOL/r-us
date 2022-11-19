@@ -106,10 +106,14 @@ export default {
 
       svgRule.test = /\.(png|jpe?g|gif|webp)$/;
 
+
+      config.module.rules.push({test: /\.(glsl|vs|fs|vert|frag)$/, use: ['raw-loader','glslify-loader']})
+
       config.module.rules.push({
         test: /\.svg$/,
         use: ['babel-loader', 'vue-svg-loader'],
       });
+      
     },
   },
   server: {
