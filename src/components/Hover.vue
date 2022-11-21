@@ -87,8 +87,8 @@ import SVGMouse from "~/components/svg/Mouse.vue";
 import * as THREE from "three";
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-import particleFs from '../3d_script/fs.glsl';
-import particleVs from '../3d_script/Ver.glsl';
+import particleFs from "../3d_script/fs.glsl";
+import particleVs from "../3d_script/Ver.glsl";
 
 import { TimelineMax } from "gsap";
 const OrbitControls = require("three-orbit-controls")(THREE);
@@ -180,15 +180,15 @@ export default class Hover extends Vue {
       renderer.setClearColor(0x000000, 0);
 
       renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(600, 600);
- renderer.context.getExtension('OES_standard_derivatives');
+      renderer.setSize(800, 800);
+      renderer.context.getExtension("OES_standard_derivatives");
 
       // let container = document.getElementById('container')
       let container = document.getElementById("container");
 
       container.appendChild(renderer.domElement);
 
-      camera = new THREE.PerspectiveCamera(70, 600 / 600, 0.001, 100);
+      camera = new THREE.PerspectiveCamera(70, 800 / 800, 0.001, 100);
       camera.position.set(0, 0, 1);
 
       controls = new OrbitControls(camera, renderer.domElement);
@@ -199,8 +199,9 @@ export default class Hover extends Vue {
       // document.body.appendChild(canvas);
 
       let imgArray = [
-        "/imgs/5443999f833ce70ed0853ed91982b49c-removebg-preview.png",
-        "/imgs/bd8de77dac75915d76bc6f6fb0f629da-removebg-preview.png",
+        "/imgs/8491cdc37604857fc9872dbc4cd25f731.png",
+        "/imgs/bd8de77dac75915d76bc6f6fb0f629da1.png",
+        "/imgs/5443999f833ce70ed0853ed91982b49c1.png",
       ];
 
       let obj = [];
@@ -213,8 +214,8 @@ export default class Hover extends Vue {
         obj.forEach((image, index) => {
           let img = loadedImages[index];
           console.log(img);
-          canvas.width = 600;
-          canvas.height = 600;
+          canvas.width = 800;
+          canvas.height = 800;
           ctx.drawImage(img, 0, 0);
 
           // document.body.appendChild(canvas);
@@ -234,30 +235,50 @@ export default class Hover extends Vue {
             // ) {
 
             // }
-            c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
-            rgb.push({ c: c.clone(), id: i / 4 });
+           
+              c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
+
+              rgb.push({ c: c.clone(), id: i / 4 });
+          
           }
           let result = new Float32Array(img.width * img.height * 2);
           let j = 0;
           // console.log("Init");
 
+          // rgb = rgb.filter((x) => {
+          //   if (x.c.getHexString() != "000000") {
+          //     return x;
+          //   }
+          //   // else {
+          //   //   x.c.setStyle("#222222");
+          //   //   return x
+
+          //   // }
+          // });
           rgb.sort(function (a, b) {
             // console.log(a.c.getHSL(a.c).s);
             // process.exit(1)
-
-            // if (index == 1 && a.c.getHexString() == "000000") {
-            //   a.c.setStyle("#222222");
-            //   // console.log(a.c.getHexString());
-            // }
             return a.c.getHSL(a.c).s - b.c.getHSL(a.c).s;
+
+            if (a.c.getHexString() != "000000") {
+              // a.c.setStyle("#222222");
+              // console.log(a.c.getHexString());
+            }
           });
 
           rgb.forEach((e) => {
-            result[j] = e.id % img.width;
-            result[j + 1] = Math.floor(e.id / img.height);
-            j = j + 2;
+            if (e.c.getHexString() != "000000") {
+              result[j] = e.id % img.width;
+              result[j + 1] = Math.floor(e.id / img.height);
+              j = j + 2;
+            } else {
+                result[j] = result[j-2] || e.id  % img.width;
+              result[j + 1] = Math.floor(result[j-3] || e.id / img.height);
+              j = j + 2;
+
+            }
           });
-          console.log(result, "result");
+          // console.log(result, "result");
 
           obj[index].image = img;
           // obj[index].texture = new THREE.Texture(img);
@@ -271,6 +292,8 @@ export default class Hover extends Vue {
 
           obj[index].texture.needsUpdate = true;
           obj[index].texture.flipY = false;
+
+
         });
 
         var w = loadedImages[0].width;
@@ -287,8 +310,7 @@ export default class Hover extends Vue {
           }
         }
 
-
-        let uvs = new Float32Array(positions.length/3 * 2); // необходимые вершины для отресовк
+        let uvs = new Float32Array((positions.length / 3) * 2); // необходимые вершины для отресовк
 
         // let uvs = new Float32Array([0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0]);
 
@@ -318,7 +340,7 @@ export default class Hover extends Vue {
             blend: { type: "f", value: 0 },
             size: { type: "f", value: 2.1 }, //window.devicePixelRatio },
             dimensions: { type: "v2", value: new THREE.Vector2(w, h) },
-            alpha: {value: 0.0625}
+            alpha: { value: 0.0625 },
           },
           transparent: true,
           premultiplyAlpha: true,
@@ -337,8 +359,10 @@ export default class Hover extends Vue {
         let tl = new TimelineMax({ paused: true });
         console.log(material);
         tl.to(material.uniforms.blend, 3, { value: 1 }, 0);
+        // tl.to(material.uniforms.sourceTex, 3, { value: obj[2] }, 0);
         cash("body").on("click", () => {
           if (cash("body").hasClass("done")) {
+            // material.uniforms.sourceTex.value = obj[2];
             tl.reverse();
             cash("body").removeClass("done");
           } else {

@@ -39,7 +39,7 @@ void main() {
     vColor = vec3(1.0, 0., 0.);
 
     vec2 uvSource = source / dimensions.x;
-    vec2 uvTarget = target / dimensions.x;
+    vec2 uvTarget = target / dimensions.y;
 
     vColor = mix(texture2D(sourceTex, uvSource).rgb, texture2D(targetTex, uvTarget).rgb, blend);
 

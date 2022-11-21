@@ -7,13 +7,13 @@ void main() {
     gl_FragColor = vec4(vColor, 0);
 
         
-    } else if (vColor.x < 0.2) {
-    gl_FragColor = vec4(vColor, 0);
-
-    } 
-    else {
+    }else {
     gl_FragColor = vec4(vColor, 1.1);
 
 
     }
+    //  else if (vColor.x < 0.2) {
+    // gl_FragColor = vec4(vColor, 0);
+
+    // } 
 }
