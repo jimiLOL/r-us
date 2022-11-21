@@ -200,8 +200,8 @@ export default class Hover extends Vue {
 
       let imgArray = [
         "/imgs/8491cdc37604857fc9872dbc4cd25f731.png",
-        "/imgs/bd8de77dac75915d76bc6f6fb0f629da1.png",
         "/imgs/5443999f833ce70ed0853ed91982b49c1.png",
+        // "/imgs/5443999f833ce70ed0853ed91982b49c1.png",
       ];
 
       let obj = [];
@@ -235,11 +235,10 @@ export default class Hover extends Vue {
             // ) {
 
             // }
-           
-              c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
 
-              rgb.push({ c: c.clone(), id: i / 4 });
-          
+            c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
+
+            rgb.push({ c: c.clone(), id: i / 4 });
           }
           let result = new Float32Array(img.width * img.height * 2);
           let j = 0;
@@ -267,17 +266,17 @@ export default class Hover extends Vue {
           });
 
           rgb.forEach((e) => {
-            if (e.c.getHexString() != "000000") {
-              result[j] = e.id % img.width;
-              result[j + 1] = Math.floor(e.id / img.height);
-              j = j + 2;
-            } else {
-                result[j] = result[j-2] || e.id  % img.width;
-              result[j + 1] = Math.floor(result[j-3] || e.id / img.height);
-              j = j + 2;
+              if (e.c.getHexString() != "000000") {
+                result[j] = e.id % img.width;
+                result[j + 1] = Math.floor(e.id / img.height);
+                j = j + 2;
+              } else {
+                result[j] = result[j - 2] || e.id % img.width;
+                result[j + 1] = Math.floor(result[j - 3] || e.id / img.height);
+                j = j + 2;
+              }
+            });
 
-            }
-          });
           // console.log(result, "result");
 
           obj[index].image = img;
@@ -292,8 +291,6 @@ export default class Hover extends Vue {
 
           obj[index].texture.needsUpdate = true;
           obj[index].texture.flipY = false;
-
-
         });
 
         var w = loadedImages[0].width;
