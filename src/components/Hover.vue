@@ -1,8 +1,8 @@
 <template>
-  <div ref="block" class="grid grid-cols-2 grid-rows-1 gap-4 w-full">
-    <div class="row-span-1 flex flex-col gap-6 w-full pt-20 pb-24">
+  <div ref="block" class="flex gap-4 w-full flex-nowrap items-center">
+    <div class="flex flex-col gap-6 w-full pt-14">
       <div class="flex flex-col gap-8">
-        <h1 class="text-6xl font-bold">
+        <h1 class="text-5xl font-bold">
           <i>Ритуальная служба в</i><i class="text-theme-1"> Кургане</i>
         </h1>
         <p>
@@ -15,6 +15,7 @@
       <div
         class="
           inline-flex
+          mt-11
           flex-col
           justify-center
           flex-nowrap
@@ -66,16 +67,23 @@
     </div>
     <div
       id="container"
-      class="row-span-2 flex justify-center h-screen img-cross"
+      class="h-full self-end pt-44 img-cross"
+      ref="canavs_wraper"
     >
-      <!-- <div class="img-position max-w-full"></div> -->
+      <div class="img-position"></div>
 
       <!-- <img src="/line.svg" class="w-max-96 line" alt="" /> -->
     </div>
     <a v-if="load" href="#main"><SVGMouse class="mouse" /></a>
+    <div class="wrapper_b">
+      
+    </div>
 
     <component :is="'style'">
-      :root {--clientHeight: {{ clientHeight }}px; }
+      :root {--clientHeight: {{ Math.ceil(clientHeight * 1.3) }}px;
+      --backgroundWraper: {{ backgroundWraper }}px; --clientH:
+      {{ Math.ceil(clientHeight * 0.4) }}px; --wrapperTop: {{Math.ceil(clientHeight * 1.57)}}px;
+      }
     </component>
   </div>
 </template>
@@ -89,7 +97,11 @@ import * as THREE from "three";
 
 import particleFs from "../3d_script/fs.glsl";
 import particleVs from "../3d_script/Ver.glsl";
+// const rustModule = import("@/pkg/worker_bg.wasm").then((module) => {
+//   console.log("ok import wasm");
 
+//   return module;
+// });
 import { TimelineMax } from "gsap";
 const OrbitControls = require("three-orbit-controls")(THREE);
 
@@ -141,8 +153,14 @@ export default class Hover extends Vue {
       },
     };
   }
+  backgroundWraper = 350;
 
-  mounted() {
+  async mounted() {
+    // const rs = await rustModule;
+    // console.log(rs);
+    // let result = rs.test();
+    // console.log(result);
+    // console.log(result instanceof Uint32Array);
     // this.clientHeight = this.$refs.block.clientHeight;
 
     this.load = true;
@@ -159,6 +177,7 @@ export default class Hover extends Vue {
     let vm = this;
 
     // let loaderGLTF = new GLTFLoader();
+    let startTime = new Date().getTime();
 
     function init() {
       scene = new THREE.Scene();
@@ -180,7 +199,7 @@ export default class Hover extends Vue {
       renderer.setClearColor(0x000000, 0);
 
       renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(800, 800);
+      renderer.setSize(vm.clientHeight * 0.61, vm.clientHeight * 0.61);
       renderer.context.getExtension("OES_standard_derivatives");
 
       // let container = document.getElementById('container')
@@ -188,20 +207,19 @@ export default class Hover extends Vue {
 
       container.appendChild(renderer.domElement);
 
-      camera = new THREE.PerspectiveCamera(70, 800 / 800, 0.001, 100);
-      camera.position.set(0, 0, 1);
+      camera = new THREE.PerspectiveCamera(70, 600 / 600, 0.001, 100);
+      camera.position.set(0, 0, 0.7);
 
-      controls = new OrbitControls(camera, renderer.domElement);
+      // controls = new OrbitControls(camera, renderer.domElement);
 
       let canvas = document.createElement("canvas");
+      // console.log(canvas.style);
       let ctx = canvas.getContext("2d");
-
-      // document.body.appendChild(canvas);
 
       let imgArray = [
         "/imgs/8491cdc37604857fc9872dbc4cd25f731.png",
+        "/imgs/bd8de77dac75915d76bc6f6fb0f629da1.png",
         "/imgs/5443999f833ce70ed0853ed91982b49c1.png",
-        // "/imgs/5443999f833ce70ed0853ed91982b49c1.png",
       ];
 
       let obj = [];
@@ -213,7 +231,6 @@ export default class Hover extends Vue {
       loadImages(imgArray, (loadedImages) => {
         obj.forEach((image, index) => {
           let img = loadedImages[index];
-          console.log(img);
           canvas.width = 800;
           canvas.height = 800;
           ctx.drawImage(img, 0, 0);
@@ -227,62 +244,33 @@ export default class Hover extends Vue {
           let c = new THREE.Color();
 
           for (var i = 0; i < buffer.length; i = i + 4) {
-            // if (
-            //   index != 1 &&
-            //   buffer[i] != 255 &&
-            //   buffer[i + 1] != 255 &&
-            //   buffer[i + 2] != 255
-            // ) {
-
-            // }
-
             c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
 
             rgb.push({ c: c.clone(), id: i / 4 });
           }
           let result = new Float32Array(img.width * img.height * 2);
           let j = 0;
-          // console.log("Init");
 
-          // rgb = rgb.filter((x) => {
-          //   if (x.c.getHexString() != "000000") {
-          //     return x;
-          //   }
-          //   // else {
-          //   //   x.c.setStyle("#222222");
-          //   //   return x
-
-          //   // }
-          // });
           rgb.sort(function (a, b) {
-            // console.log(a.c.getHSL(a.c).s);
-            // process.exit(1)
             return a.c.getHSL(a.c).s - b.c.getHSL(a.c).s;
-
-            if (a.c.getHexString() != "000000") {
-              // a.c.setStyle("#222222");
-              // console.log(a.c.getHexString());
-            }
           });
 
           rgb.forEach((e) => {
-              if (e.c.getHexString() != "000000") {
-                result[j] = e.id % img.width;
-                result[j + 1] = Math.floor(e.id / img.height);
-                j = j + 2;
-              } else {
-                result[j] = result[j - 2] || e.id % img.width;
-                result[j + 1] = Math.floor(result[j - 3] || e.id / img.height);
-                j = j + 2;
-              }
-            });
+            if (e.c.getHexString() != "000000") {
+              result[j] = e.id % img.width;
+              result[j + 1] = Math.floor(e.id / img.height);
+              j = j + 2;
+            } else {
+              result[j] = result[j - 2] || e.id % img.width;
+              result[j + 1] = Math.floor(result[j - 3] || e.id / img.height);
+              j = j + 2;
+            }
+          });
 
           // console.log(result, "result");
 
           obj[index].image = img;
-          // obj[index].texture = new THREE.Texture(img);
           obj[index].texture = THREE.ImageUtils.loadTexture(image.file);
-          //  obj[index].texture = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture(image.file), transparent: true, opacity: 0.5, color: 0xFF0000 })
           obj[index].buffer = result;
           obj[index].texture.transparent = true;
           obj[index].texture.premultiplyAlpha = true;
@@ -295,6 +283,8 @@ export default class Hover extends Vue {
 
         var w = loadedImages[0].width;
         var h = loadedImages[0].height;
+
+        vm.backgroundWraper = vm.$refs.canavs_wraper.clientWidth;
 
         let positions = new Float32Array(w * h * 3);
         let index = 0;
@@ -309,11 +299,7 @@ export default class Hover extends Vue {
 
         let uvs = new Float32Array((positions.length / 3) * 2); // необходимые вершины для отресовк
 
-        // let uvs = new Float32Array([0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0]);
-
         let geometry = new THREE.BufferGeometry();
-
-        // geometry.setIndex([0,1,2, 2,3,0]);
 
         geometry.setAttribute(
           "position",
@@ -342,11 +328,9 @@ export default class Hover extends Vue {
           transparent: true,
           premultiplyAlpha: true,
           depthWrite: false,
-          // opacity: 0.5,
           premultipliedAlpha: true,
           vertexShader: particleVs,
           fragmentShader: particleFs,
-          // glslVersion: THREE.GLSL3
         });
         material.transparent = true;
 
@@ -356,17 +340,27 @@ export default class Hover extends Vue {
         let tl = new TimelineMax({ paused: true });
         console.log(material);
         tl.to(material.uniforms.blend, 3, { value: 1 }, 0);
-        // tl.to(material.uniforms.sourceTex, 3, { value: obj[2] }, 0);
         cash("body").on("click", () => {
           if (cash("body").hasClass("done")) {
-            // material.uniforms.sourceTex.value = obj[2];
             tl.reverse();
             cash("body").removeClass("done");
           } else {
             tl.play();
+            setTimeout(() => {
+              geometry.setAttribute(
+                "source",
+                new THREE.BufferAttribute(obj[2].buffer, 2)
+              );
+              material.uniforms.sourceTex.value = obj[2].texture;
+              // мы можем просто загрузить необходимые вершины и текстуры в gpu
+            }, 6000);
+
             cash("body").addClass("done");
           }
         });
+
+        let endTime = new Date().getTime();
+        console.log(`Process time ${endTime - startTime} ms`);
       });
     }
     function loadImages(paths, whenLoaded) {
@@ -381,14 +375,14 @@ export default class Hover extends Vue {
         img.src = path;
       });
     }
-    window.addEventListener("resize", resize);
-    function resize() {
-      var w = window.innerWidth;
-      var h = window.innerHeight;
-      renderer.setSize(w, h);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-    }
+    // window.addEventListener("resize", resize);
+    // function resize() {
+    //   var w = window.innerWidth;
+    //   var h = window.innerHeight;
+    //   renderer.setSize(w, h);
+    //   camera.aspect = w / h;
+    //   camera.updateProjectionMatrix();
+    // }
 
     let time = 0;
     function animate() {
@@ -413,40 +407,39 @@ export default class Hover extends Vue {
 
 
 <style scoped>
-/* canvas {
-  position: absolute;
-  z-index: 100;
-  opacity: 1;
-} */
-.img-position {
-  /* position: absolute; */
-  /* top: 75%; */
-  /* height: 300px; */
-  width: 100%;
-  /* background-position: center 200px center 200px; */
-  /* rotate: 10deg; */
-  /* background-size: 100%; */
-  /* background-repeat: no-repeat; */
-  /* background-position: bottom; */
-  background: url("@/assets/imgs/dfeb34bf463d75ac4852b0cfbc3f8069.png") -50% 70%/80%
-      no-repeat,
-    url("@/assets/imgs/86098fe20e6936fa3330334defb88880.png") 70% 70%/ 80% no-repeat;
-  /* background-position: center center;
-  
-  background-repeat: no-repeat; */
-  /* background-size: cover; */
+/* ::v-deep canvas {
+  top: 100px;
+  position: relative;
 
-  /* border-radius: 25% 75% / 50%; */
+} */
+
+.wrapper_b {
+  position: absolute;
+  top: var(--wrapperTop);
+  width: 98%;
+  height: 50px;
+  -webkit-box-shadow: 0px -12px 20px 2px #222222;
+  box-shadow: 0px -50px 50px 50px #222222;
+}
+
+.img-position {
+  position: absolute;
+  top: var(--clientH);
+  height: 100%;
+  width: var(--backgroundWraper);
+
+  background: url("@/assets/imgs/dfeb34bf463d75ac4852b0cfbc3f8069.webp") -35% 70%/80%
+      no-repeat,
+    url("@/assets/imgs/86098fe20e6936fa3330334defb88880.webp") 140% 70%/80%
+      no-repeat;
 }
 .img-cross {
-  /* background-size: 40%; */
-  /* background-repeat: no-repeat; */
-  /* background-position: top; */
-
-  /* background-image: radial-gradient(#d6bc2038, 20%, #0d080505); */
-  background: url("@/assets/imgs/8491cdc37604857fc9872dbc4cd25f73.png") 30% 0%/40%
-      no-repeat,
-    radial-gradient(farthest-corner at 40% 40%, #d6bc2000, 20%, #0a161e00);
+  background: radial-gradient(
+    farthest-corner at 50% 30%,
+    #d6bc2008,
+    10%,
+    #0a161e12
+  );
 }
 .line {
   position: absolute;

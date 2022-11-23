@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!mobile" ref="clientHeight" class="pt-4">
+  <div v-if="!$device.isMobile" ref="clientHeight" class="pt-4">
     <div
       v-if="enable"
       class="flex justify-around gap-x-14 font-raleway flex-nowrap"
@@ -168,7 +168,6 @@ export default class Header extends Vue {
 
   dataMenuLeft = dataMenuLeft;
 
-  mobile = this.$device.isMobile;
 
   mounted() {
     if (!this.$device.isMobile) {

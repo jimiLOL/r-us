@@ -1,15 +1,15 @@
 <template>
-  <div class="font-raleway bg-theme-8 text-white">
+  <main class="font-raleway bg-theme-8 text-white">
     <div class="site__container">
       <div :class="[!$device.isMobile && hoverEnable?'img-position h-screen':'']">
         <header :class="[$device.isMobile?'px-2':'px-6']">
-          <Header :hoverEnable="$route.fullPath == '/'?true:false" :enable="true" />
+          <Header :hoverEnable="$route.name == 'index'?true:false" :enable="true" />
         </header>
       </div>
 
-      <main id="content" :class="['site__body', 'xl:py-4', $device.isMobile?'px-2':'px-6']">
+      <section id="content" :class="['site__body', 'xl:py-4', $device.isMobile?'px-2':'px-6']">
         <slot />
-      </main>
+      </section>
 
       <footer :class="['site__footer', 'xl:pt-14', $device.isMobile?'px-2':'px-6']">
         <Footer />
@@ -17,14 +17,20 @@
     </div>
 
     <!-- <Backtotop /> -->
-  </div>
+  </main>
 </template>
 
 <script>
 import { Vue, Component } from "vue-property-decorator";
+import { Getter } from "vuex-class";  
 
-@Component({})
+
+@Component({
+
+})
 export default class Layout extends Vue {
+  @Getter("hover/getHoverStatus") hoverEnable;
+
   // head() {
   //   return {
   //     bodyAttrs: {
@@ -32,13 +38,13 @@ export default class Layout extends Vue {
   //     },
   //   };
   // }
-  hoverEnable = false;
+  // hoverEnable = true;
 
   bodyClasses = ["disable-transitions"];
  
 
   async mounted() {
-console.log(this.$route.fullPath);
+// console.log(this.$route);
     await this.$nextTick();
 
     this.bodyClasses = [];
@@ -52,7 +58,7 @@ console.log(this.$route.fullPath);
   
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("@/assets/imgs/background-hover.png"), url("@/assets/imgs/image_5.png"), radial-gradient(closest-side, transparent 10%, #00000061 75%);;
+  background-image: url("@/assets/imgs/background-hover.webp"), url("@/assets/imgs/image_5.png"), radial-gradient(closest-side, transparent 10%, #00000061 75%);;
    background-blend-mode: multiply;
 }
 .img {
