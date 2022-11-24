@@ -1,34 +1,67 @@
 
+import * as THREE from "three";
 
 
 onmessage = async (event) => {
     console.log(event.data);
+    if (event.data.hasOwnProperty('buffer')) {
+        let index = event.data.index;
+        let buffer = event.data.buffer;
+        let obj = event.data.obj;
+        let {width, height} = event.data.img;
+       
+        let rgb = [];
+        let c = new THREE.Color();
 
 
-    let imgArray = [
-        "/imgs/8491cdc37604857fc9872dbc4cd25f731.png",
-        "/imgs/bd8de77dac75915d76bc6f6fb0f629da1.png",
-        "/imgs/5443999f833ce70ed0853ed91982b49c1.png",
-      ];
+        for (var i = 0; i < buffer.length; i = i + 4) {
+            c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
 
-      let obj = [];
-      imgArray.forEach((img) => {
-        obj.push({ file: img });
-      });
+            rgb.push({ c: c.clone(), id: i / 4 });
+          }
+          let result = new Float32Array(width * height * 2);
+          let j = 0;
+
+
+          rgb.sort(function (a, b) {
+            return a.c.getHSL(a.c).s - b.c.getHSL(a.c).s;
+          });
+
+          rgb.forEach((e) => {
+            if (e.c.getHexString() != "000000") {
+              result[j] = e.id % width;
+              result[j + 1] = Math.floor(e.id / height);
+              j = j + 2;
+            } else {
+              result[j] = result[j - 2] || e.id % width;
+              result[j + 1] = Math.floor(result[j - 3] || e.id / height);
+              j = j + 2;
+            }
+          });
+
+          // console.log(result, "result");
+
+      
+        
+
+    
+    
+        
+    
+       
+          postMessage({ type: "response_worker_3d", payload: {index: index, obj: obj, result: result} });
+
+    }
+ 
+
+
+        
+    
+
+
+
 }
 
 
 
-
-function loadImages(paths, whenLoaded) {
-    var imgs = [];
-    paths.forEach(function (path) {
-      var img = new Image();
-      img.onload = function () {
-        imgs.push(img);
-        console.log("Imgs loaded!");
-        if (imgs.length === paths.length) whenLoaded(imgs);
-      };
-      img.src = path;
-    });
-  }
+ 

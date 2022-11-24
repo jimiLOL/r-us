@@ -75,15 +75,13 @@
       <!-- <img src="/line.svg" class="w-max-96 line" alt="" /> -->
     </div>
     <a v-if="load" href="#main"><SVGMouse class="mouse" /></a>
-    <div class="wrapper_b">
-      
-    </div>
+    <div class="wrapper_b"></div>
 
     <component :is="'style'">
       :root {--clientHeight: {{ Math.ceil(clientHeight * 1.3) }}px;
       --backgroundWraper: {{ backgroundWraper }}px; --clientH:
-      {{ Math.ceil(clientHeight * 0.4) }}px; --wrapperTop: {{Math.ceil(clientHeight * 1.57)}}px;
-      }
+      {{ Math.ceil(clientHeight * 0.4) }}px; --wrapperTop:
+      {{ Math.ceil(clientHeight * 1.57) }}px; }
     </component>
   </div>
 </template>
@@ -164,8 +162,6 @@ export default class Hover extends Vue {
     // this.clientHeight = this.$refs.block.clientHeight;
 
     const worker = this.$worker.createWorker();
-    worker.postMessage('post worker');
-
 
     this.load = true;
 
@@ -232,7 +228,119 @@ export default class Hover extends Vue {
       });
       // console.log(obj);
 
+      // loadImages(imgArray, (loadedImages) => {
+      //   console.log(loadedImages);
+      //   worker.postMessage({
+      //     loadedImages: JSON.stringify(loadedImages),
+      //     canvas: JSON.stringify(canvas),
+      //     ctx: JSON.stringify(ctx),
+      //   });
+      // });
+
       loadImages(imgArray, (loadedImages) => {
+        worker.onmessage = (e) => {
+          console.log(e.data);
+          // obj = e.data.payload.obj;
+          let index = e.data.payload.index;
+
+          let img = loadedImages[index];
+
+          let result = e.data.payload.result;
+
+          obj[index].texture = THREE.ImageUtils.loadTexture(obj[index].file);
+
+          obj[index].texture.transparent = true;
+          obj[index].texture.premultiplyAlpha = true;
+
+          obj[index].texture.needsUpdate = true;
+          obj[index].texture.flipY = false;
+
+          obj[index].image = img;
+          obj[index].buffer = result;
+          console.log(obj);
+
+          if (index == 2) {
+            console.log("Start render..");
+            var w = loadedImages[0].width;
+            var h = loadedImages[0].height;
+
+            vm.backgroundWraper = vm.$refs.canavs_wraper.clientWidth;
+
+            let positions = new Float32Array(w * h * 3);
+            let indexIterator = 0;
+            for (var i = 0; i < w; i++) {
+              for (var j = 0; j < h; j++) {
+                positions[indexIterator * 3] = j;
+                positions[indexIterator * 3 + 1] = i;
+                positions[indexIterator * 3 + 2] = 0;
+                indexIterator++;
+              }
+            }
+
+            let uvs = new Float32Array((positions.length / 3) * 2); // необходимые вершины для отресовк
+
+            let geometry = new THREE.BufferGeometry();
+
+            geometry.setAttribute(
+              "position",
+              new THREE.BufferAttribute(positions, 3)
+            );
+
+            geometry.setAttribute(
+              "source",
+              new THREE.BufferAttribute(obj[0].buffer, 2)
+            );
+            geometry.setAttribute(
+              "target",
+              new THREE.BufferAttribute(obj[1].buffer, 2)
+            );
+            geometry.setAttribute("uv", new THREE.BufferAttribute(uvs, 2));
+
+            material = new THREE.RawShaderMaterial({
+              uniforms: {
+                sourceTex: { type: "t", value: obj[0].texture },
+                targetTex: { type: "t", value: obj[1].texture },
+                blend: { type: "f", value: 0 },
+                size: { type: "f", value: 2.1 }, //window.devicePixelRatio },
+                dimensions: { type: "v2", value: new THREE.Vector2(w, h) },
+                alpha: { value: 0.0625 },
+              },
+              transparent: true,
+              premultiplyAlpha: true,
+              depthWrite: false,
+              // premultipliedAlpha: true,
+              vertexShader: particleVs,
+              fragmentShader: particleFs,
+            });
+            console.log(material);
+            material.transparent = true;
+
+            let points = new THREE.Points(geometry, material);
+            scene.add(points);
+
+            let tl = new TimelineMax({ paused: true });
+            tl.to(material.uniforms.blend, 3, { value: 1 }, 0);
+            cash("body").on("click", () => {
+              if (cash("body").hasClass("done")) {
+                tl.reverse();
+                cash("body").removeClass("done");
+              } else {
+                tl.play();
+                setTimeout(() => {
+                  geometry.setAttribute(
+                    "source",
+                    new THREE.BufferAttribute(obj[2].buffer, 2)
+                  );
+                  material.uniforms.sourceTex.value = obj[2].texture;
+                  // мы можем просто загрузить необходимые вершины и текстуры в gpu
+                }, 6000);
+
+                cash("body").addClass("done");
+              }
+            });
+          }
+        };
+
         obj.forEach((image, index) => {
           let img = loadedImages[index];
           canvas.width = 800;
@@ -243,125 +351,75 @@ export default class Hover extends Vue {
           let data = ctx.getImageData(0, 0, canvas.width, canvas.height);
           let buffer = data.data;
           // console.log(buffer);
-
-          let rgb = [];
-          let c = new THREE.Color();
-
-          for (var i = 0; i < buffer.length; i = i + 4) {
-            c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
-
-            rgb.push({ c: c.clone(), id: i / 4 });
-          }
-          let result = new Float32Array(img.width * img.height * 2);
-          let j = 0;
-
-          rgb.sort(function (a, b) {
-            return a.c.getHSL(a.c).s - b.c.getHSL(a.c).s;
+          worker.postMessage({
+            buffer: buffer,
+            obj: obj,
+            index: index,
+            img: { width: img.width, height: img.height },
           });
 
-          rgb.forEach((e) => {
-            if (e.c.getHexString() != "000000") {
-              result[j] = e.id % img.width;
-              result[j + 1] = Math.floor(e.id / img.height);
-              j = j + 2;
-            } else {
-              result[j] = result[j - 2] || e.id % img.width;
-              result[j + 1] = Math.floor(result[j - 3] || e.id / img.height);
-              j = j + 2;
-            }
-          });
+          // let rgb = [];
+          // let c = new THREE.Color();
 
-          // console.log(result, "result");
+          // for (var i = 0; i < buffer.length; i = i + 4) {
+          //   c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
 
-          obj[index].image = img;
-          obj[index].texture = THREE.ImageUtils.loadTexture(image.file);
-          obj[index].buffer = result;
-          obj[index].texture.transparent = true;
-          obj[index].texture.premultiplyAlpha = true;
+          //   rgb.push({ c: c.clone(), id: i / 4 });
+          // }
+          // let result = new Float32Array(img.width * img.height * 2);
+          // let j = 0;
 
-          // console.log(obj[index].texture);
+          // rgb.sort(function (a, b) {
+          //   return a.c.getHSL(a.c).s - b.c.getHSL(a.c).s;
+          // });
 
-          obj[index].texture.needsUpdate = true;
-          obj[index].texture.flipY = false;
+          // rgb.forEach((e) => {
+          //   if (e.c.getHexString() != "000000") {
+          //     result[j] = e.id % img.width;
+          //     result[j + 1] = Math.floor(e.id / img.height);
+          //     j = j + 2;
+          //   } else {
+          //     result[j] = result[j - 2] || e.id % img.width;
+          //     result[j + 1] = Math.floor(result[j - 3] || e.id / img.height);
+          //     j = j + 2;
+          //   }
+          // });
+
+          // // console.log(result, "result");
+
+          // obj[index].image = img;
+          // obj[index].texture = THREE.ImageUtils.loadTexture(image.file);
+          // obj[index].buffer = result;
+          // obj[index].texture.transparent = true;
+          // obj[index].texture.premultiplyAlpha = true;
+
+          // // console.log(obj[index].texture);
+
+          // obj[index].texture.needsUpdate = true;
+          // obj[index].texture.flipY = false;
         });
 
-        var w = loadedImages[0].width;
-        var h = loadedImages[0].height;
+        // let tl = new TimelineMax({ paused: true });
+        // console.log(material);
+        // tl.to(material.uniforms.blend, 3, { value: 1 }, 0);
+        // cash("body").on("click", () => {
+        //   if (cash("body").hasClass("done")) {
+        //     tl.reverse();
+        //     cash("body").removeClass("done");
+        //   } else {
+        //     tl.play();
+        //     setTimeout(() => {
+        //       geometry.setAttribute(
+        //         "source",
+        //         new THREE.BufferAttribute(obj[2].buffer, 2)
+        //       );
+        //       material.uniforms.sourceTex.value = obj[2].texture;
+        //       // мы можем просто загрузить необходимые вершины и текстуры в gpu
+        //     }, 6000);
 
-        vm.backgroundWraper = vm.$refs.canavs_wraper.clientWidth;
-
-        let positions = new Float32Array(w * h * 3);
-        let index = 0;
-        for (var i = 0; i < w; i++) {
-          for (var j = 0; j < h; j++) {
-            positions[index * 3] = j;
-            positions[index * 3 + 1] = i;
-            positions[index * 3 + 2] = 0;
-            index++;
-          }
-        }
-
-        let uvs = new Float32Array((positions.length / 3) * 2); // необходимые вершины для отресовк
-
-        let geometry = new THREE.BufferGeometry();
-
-        geometry.setAttribute(
-          "position",
-          new THREE.BufferAttribute(positions, 3)
-        );
-
-        geometry.setAttribute(
-          "source",
-          new THREE.BufferAttribute(obj[0].buffer, 2)
-        );
-        geometry.setAttribute(
-          "target",
-          new THREE.BufferAttribute(obj[1].buffer, 2)
-        );
-        geometry.setAttribute("uv", new THREE.BufferAttribute(uvs, 2));
-
-        material = new THREE.RawShaderMaterial({
-          uniforms: {
-            sourceTex: { type: "t", value: obj[0].texture },
-            targetTex: { type: "t", value: obj[1].texture },
-            blend: { type: "f", value: 0 },
-            size: { type: "f", value: 2.1 }, //window.devicePixelRatio },
-            dimensions: { type: "v2", value: new THREE.Vector2(w, h) },
-            alpha: { value: 0.0625 },
-          },
-          transparent: true,
-          premultiplyAlpha: true,
-          depthWrite: false,
-          premultipliedAlpha: true,
-          vertexShader: particleVs,
-          fragmentShader: particleFs,
-        });
-        material.transparent = true;
-
-        let points = new THREE.Points(geometry, material);
-        scene.add(points);
-
-        let tl = new TimelineMax({ paused: true });
-        console.log(material);
-        tl.to(material.uniforms.blend, 3, { value: 1 }, 0);
-        cash("body").on("click", () => {
-          if (cash("body").hasClass("done")) {
-            tl.reverse();
-            cash("body").removeClass("done");
-          } else {
-            tl.play();
-            setTimeout(() => {
-              geometry.setAttribute(
-                "source",
-                new THREE.BufferAttribute(obj[2].buffer, 2)
-              );
-              material.uniforms.sourceTex.value = obj[2].texture;
-              // мы можем просто загрузить необходимые вершины и текстуры в gpu
-            }, 6000);
-
-            cash("body").addClass("done");
-          }
-        });
+        //     cash("body").addClass("done");
+        //   }
+        // });
 
         let endTime = new Date().getTime();
         console.log(`Process time ${endTime - startTime} ms`);
@@ -411,8 +469,7 @@ export default class Hover extends Vue {
 
 
 <style scoped>
- 
- #container {
+#container {
   z-index: 10;
 }
 
@@ -432,10 +489,9 @@ export default class Hover extends Vue {
   height: 100%;
   width: var(--backgroundWraper);
 
-  background: url("@/assets/imgs/dfeb34bf463d75ac4852b0cfbc3f8069.webp") 130% 71%/110%
-      no-repeat,
-    url("@/assets/imgs/86098fe20e6936fa3330334defb88880.webp") -42% 71%/110%
-      no-repeat;
+  background: url("@/assets/imgs/dfeb34bf463d75ac4852b0cfbc3f8069.webp") 130%
+      71%/110% no-repeat,
+    url("@/assets/imgs/86098fe20e6936fa3330334defb88880.webp") -42% 71%/110% no-repeat;
 }
 .img-cross {
   border-radius: 400px;

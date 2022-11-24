@@ -68,11 +68,14 @@ export default class Layout extends Vue {
     await this.$nextTick();
     setTimeout(() => {
       svgAnimate();
-    }, 5500);
-    let vm = this;
+
+    }, 200);
+
+    let allSvg = cash(this.$refs.header).find("svg");
+
 
     function svgAnimate() {
-      let allSvg = cash(vm.$refs.header).find("svg");
+      // let allSvg = cash(vm.$refs.header).find("svg");
       Object.values(allSvg).forEach((e,i) => {
         if (typeof e == "object") {
           setTimeout(() => {
