@@ -64,7 +64,7 @@
     <div class="flex flex-nowrap justify-between content-center gap-2">
       <NuxtLink to="/" class="flex items-center">
         <img
-          src="https://s3-alpha-sig.figma.com/img/96b7/f68a/9d4964aea26fde815a6d55c29d22041d?Expires=1668988800&Signature=FdeVl5A67-NC0HZXyDgOieDZYTR-vonAEEswv8AXckI5ghz4JhbCTC4UQd-zSYOS5Sz0LpCK2xTdXvVQ3N9y21irrOAYMuP3y79vHXNxFfciOCxYIBmOdEqxeKaSe4U~RcaHAgipqxHFeN9YmaC1CNKPA6P~Az8MV-4SL47QYNUGne~7OJ83WbSyDEmRk8eTgHbMthxMuzVKyNvH8skhF04Kw3nq4hEIbYpKoT0PlFSWE~LgW-dlZ8~7RBYztkZbzSdDM333M0o5E~RD7ZZnwvWrXKYWsO9BtaBa2dhyNg5O2Z90Xcv0SGgOb9yyVAhGpgwzYxO3rrhYLmsPRtMfag__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="https://s3-alpha-sig.figma.com/img/96b7/f68a/9d4964aea26fde815a6d55c29d22041d?Expires=1670198400&Signature=UsBhBSQkY5Wd8C-SNTG4mi8Ew57saGxrA8akQk2TXd3Q~zvF5R6Vkqer31yBAjb1r~xUlIHe7wJDYEQ9mFOOdkOtNfvls6f01FhONLznIzdkZ0OoxoM8xS3NIZeXbIJ4BDzAkE3HkwILAB-WMZo2XLnvpGh5Ms0U2c4XtZ2pcNGoL3HGCjwMHTDvA5ob5Tmww7r7plLjaKhBNsPHh4MlbFg-ea~41SMdR1-xOS8GroDfy0f3NVxXOvT5x55MylDHHFeAtP473E6Olv4nkLf9MbRpVigd554pMS8fE0ev93x3BMiBkK9qNS5sCej~v5W0TnApIVDLj1XAMFhA~fYJYg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
           class="w-14"
           alt="Flowbite Logo"
         />
@@ -172,6 +172,12 @@ export default class Header extends Vue {
   mounted() {
     if (!this.$device.isMobile) {
       this.clientHeight = this.$refs.clientHeight.clientHeight;
+
+      setTimeout(() => {
+      this.clientHeight = this.$refs.clientHeight.clientHeight;
+
+        
+      }, 200);
 
       this.$nuxt.$on("resize", () => {
         this.clientHeight = this.$refs.clientHeight.clientHeight;

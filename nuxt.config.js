@@ -27,7 +27,11 @@ export default {
       //     "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
       // }
     ],
-    script: []
+    script: [ {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js",
+      type: "text/javascript",
+      defer: true
+    }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -108,6 +112,11 @@ export default {
 
 
       config.module.rules.push({test: /\.(glsl|vs|fs|vert|frag)$/, use: ['raw-loader','glslify-loader']})
+      // config.module.rules.push({
+      //   test: require.resolve('snapsvg/dist/snap.svg.js'),
+      //   use: 'imports-loader?this=>window,fix=>module.exports=0',
+      // });
+      // config.resolve.alias['snapsvg'] = 'snapsvg/dist/snap.svg.js';
 
       config.module.rules.push({
         test: /\.svg$/,

@@ -67,7 +67,7 @@
     </div>
     <div
       id="container"
-      class="h-full self-end pt-44 img-cross"
+      class="h-full self-end pt-28 img-cross"
       ref="canavs_wraper"
     >
       <div class="img-position"></div>
@@ -163,9 +163,13 @@ export default class Hover extends Vue {
     // console.log(result instanceof Uint32Array);
     // this.clientHeight = this.$refs.block.clientHeight;
 
+    const worker = this.$worker.createWorker();
+    worker.postMessage('post worker');
+
+
     this.load = true;
 
-    console.log(this.$refs.block.clientHeight);
+    // console.log(this.$refs.block.clientHeight);
     this.$nuxt.$emit("resize");
 
     // let js = document.createElement("script");
@@ -275,7 +279,7 @@ export default class Hover extends Vue {
           obj[index].texture.transparent = true;
           obj[index].texture.premultiplyAlpha = true;
 
-          console.log(obj[index].texture);
+          // console.log(obj[index].texture);
 
           obj[index].texture.needsUpdate = true;
           obj[index].texture.flipY = false;
@@ -407,17 +411,17 @@ export default class Hover extends Vue {
 
 
 <style scoped>
-/* ::v-deep canvas {
-  top: 100px;
-  position: relative;
-
-} */
+ 
+ #container {
+  z-index: 10;
+}
 
 .wrapper_b {
   position: absolute;
   top: var(--wrapperTop);
   width: 98%;
-  height: 50px;
+  height: 60px;
+  z-index: 11;
   -webkit-box-shadow: 0px -12px 20px 2px #222222;
   box-shadow: 0px -50px 50px 50px #222222;
 }
@@ -428,17 +432,20 @@ export default class Hover extends Vue {
   height: 100%;
   width: var(--backgroundWraper);
 
-  background: url("@/assets/imgs/dfeb34bf463d75ac4852b0cfbc3f8069.webp") -35% 70%/80%
+  background: url("@/assets/imgs/dfeb34bf463d75ac4852b0cfbc3f8069.webp") 130% 71%/110%
       no-repeat,
-    url("@/assets/imgs/86098fe20e6936fa3330334defb88880.webp") 140% 70%/80%
+    url("@/assets/imgs/86098fe20e6936fa3330334defb88880.webp") -42% 71%/110%
       no-repeat;
 }
 .img-cross {
+  border-radius: 400px;
+  /* box-shadow: inset 0px -10px 50px 3px #d6bb201c; */
+
   background: radial-gradient(
-    farthest-corner at 50% 30%,
-    #d6bc2008,
-    10%,
-    #0a161e12
+    farthest-corner at 50% 50%,
+    #d6bb201c,
+    40%,
+    #0a161e15
   );
 }
 .line {
