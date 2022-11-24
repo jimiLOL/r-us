@@ -208,7 +208,7 @@ export default class Hover extends Vue {
       container.appendChild(renderer.domElement);
 
       camera = new THREE.PerspectiveCamera(70, 600 / 600, 0.001, 100);
-      camera.position.set(0, 0, 0.7);
+      camera.position.set(0, 0.1, 0.6);
 
       // controls = new OrbitControls(camera, renderer.domElement);
 
@@ -303,12 +303,12 @@ export default class Hover extends Vue {
                 blend: { type: "f", value: 0 },
                 size: { type: "f", value: 2.1 }, //window.devicePixelRatio },
                 dimensions: { type: "v2", value: new THREE.Vector2(w, h) },
-                alpha: { value: 0.0625 },
+                // alpha: { value: 0.0625 },
               },
               transparent: true,
               premultiplyAlpha: true,
               depthWrite: false,
-              // premultipliedAlpha: true,
+              premultipliedAlpha: true,
               vertexShader: particleVs,
               fragmentShader: particleFs,
             });
@@ -498,7 +498,7 @@ export default class Hover extends Vue {
   /* box-shadow: inset 0px -10px 50px 3px #d6bb201c; */
 
   background: radial-gradient(
-    farthest-corner at 50% 50%,
+    farthest-corner at 50% 40%,
     #d6bb201c,
     40%,
     #0a161e15
