@@ -57,7 +57,7 @@
     </div>
     <Hover
       v-if="hoverEnable"
-      :clientHeight="clientHeight - clientHeight * 0.27"
+      :clientHeight="clientHeight - clientHeight * 0.22"
     />
   </div>
   <div class="pb-4" v-else>
@@ -162,9 +162,9 @@ export default class Header extends Vue {
   newclientHeight() {
     console.log(this.$route.fullPath);
   }
-  // @Prop({type: Number, default: 700}) clientHeight;
+  
 
-  clientHeight = 1000;
+  clientHeight = window.innerHeight;
 
   dataMenuLeft = dataMenuLeft;
 
@@ -177,7 +177,7 @@ export default class Header extends Vue {
       this.clientHeight = this.$refs.clientHeight.clientHeight;
 
         
-      }, 800);
+      }, 1500);
 
       this.$nuxt.$on("resize", () => {
         this.clientHeight = this.$refs.clientHeight.clientHeight;

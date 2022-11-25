@@ -69,7 +69,7 @@ export default class Layout extends Vue {
     setTimeout(() => {
       svgAnimate();
 
-    }, 200);
+    }, 500);
 
     let allSvg = cash(this.$refs.header).find("svg");
 

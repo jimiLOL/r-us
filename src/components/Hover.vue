@@ -81,7 +81,7 @@
       :root {--clientHeight: {{ Math.ceil(clientHeight * 1.3) }}px;
       --backgroundWraper: {{ backgroundWraper }}px; --clientH:
       {{ Math.ceil(clientHeight * 0.4) }}px; --wrapperTop:
-      {{ Math.ceil(clientHeight * 1.57) }}px; }
+      {{ Math.ceil(clientHeight * 1.58) }}px; }
     </component>
   </div>
 </template>
@@ -123,7 +123,7 @@ const OrbitControls = require("three-orbit-controls")(THREE);
   },
 })
 export default class Hover extends Vue {
-  @Prop({ type: Number, default: 700 }) clientHeight;
+  @Prop({ type: Number, default: 1200 }) clientHeight;
 
   @Watch('clientHeight')
   resize() {
@@ -466,7 +466,7 @@ export default class Hover extends Vue {
   position: absolute;
   top: var(--wrapperTop);
   width: 98%;
-  height: 60px;
+  height: 10px;
   z-index: 11;
   -webkit-box-shadow: 0px -12px 20px 2px #222222;
   box-shadow: 0px -50px 50px 50px #222222;
