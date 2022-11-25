@@ -160,7 +160,7 @@ export default class Header extends Vue {
 
   @Watch("this.$route.fullPath")
   newclientHeight() {
-    console.log("efef");
+    console.log(this.$route.fullPath);
   }
   // @Prop({type: Number, default: 700}) clientHeight;
 
@@ -177,7 +177,7 @@ export default class Header extends Vue {
       this.clientHeight = this.$refs.clientHeight.clientHeight;
 
         
-      }, 200);
+      }, 800);
 
       this.$nuxt.$on("resize", () => {
         this.clientHeight = this.$refs.clientHeight.clientHeight;

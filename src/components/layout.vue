@@ -9,10 +9,10 @@
         <header :class="[$device.isMobile ? 'px-2' : 'px-6']">
           <div ref="header">
             <svg
-              v-for="(item, index) in 50"
+              v-for="(item, index) in 40"
               :key="index"
               :id="`svg_${index}`"
-              :style="`top: ${55 + index * 10}px; `"
+              :style="`top: ${155 + index * 10}px; height: ${700 - index*10}px;`"
             ></svg>
           </div>
 
@@ -101,10 +101,23 @@ export default class Layout extends Vue {
               {
                 strokeDashoffset: 0,
               },
-              2000,
+              3000,
               mina.easein
             );
-          }, 100*i);
+            let i = 0;
+            setInterval(() => {
+              if (i == 0) {
+                i = 1;
+                lineDraw.animate({ d: "M 801.232 1.088 C 828.135 85.6037 589 71 471 142 C 257.157 306.557 504 546 349 661 C 237.188 725.711 110.431 771.421 1.3131 818.891" }, 2500);
+              } else {
+                i = 0;
+                lineDraw.animate({ d: "M801.232 1.08801C828.135 85.6037 826.119 305.992 573.247 306.243C257.157 306.557 290.875 391.985 264.032 558.848C237.188 725.711 110.431 771.421 1.31311 818.891" }, 2500);
+
+
+              }
+              
+            }, 4000);
+          }, 30*i);
         }
       });
       //

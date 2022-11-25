@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import SVGMouse from "~/components/svg/Mouse.vue";
 
 import * as THREE from "three";
@@ -124,6 +124,12 @@ const OrbitControls = require("three-orbit-controls")(THREE);
 })
 export default class Hover extends Vue {
   @Prop({ type: Number, default: 700 }) clientHeight;
+
+  @Watch('clientHeight')
+  resize() {
+    console.log('Resize..');
+    console.log(this.clientHeight);
+  }
   // clientHeight = null;
   data() {
     return {
@@ -202,18 +208,16 @@ export default class Hover extends Vue {
       renderer.setSize(vm.clientHeight * 0.61, vm.clientHeight * 0.61);
       renderer.context.getExtension("OES_standard_derivatives");
 
-      // let container = document.getElementById('container')
       let container = document.getElementById("container");
 
       container.appendChild(renderer.domElement);
 
       camera = new THREE.PerspectiveCamera(70, 600 / 600, 0.001, 100);
-      camera.position.set(0, 0.1, 0.6);
+      camera.position.set(0, 0, 0.7);
 
       // controls = new OrbitControls(camera, renderer.domElement);
 
       let canvas = document.createElement("canvas");
-      // console.log(canvas.style);
       let ctx = canvas.getContext("2d");
 
       let imgArray = [
@@ -226,26 +230,19 @@ export default class Hover extends Vue {
       imgArray.forEach((img) => {
         obj.push({ file: img });
       });
-      // console.log(obj);
-
-      // loadImages(imgArray, (loadedImages) => {
-      //   console.log(loadedImages);
-      //   worker.postMessage({
-      //     loadedImages: JSON.stringify(loadedImages),
-      //     canvas: JSON.stringify(canvas),
-      //     ctx: JSON.stringify(ctx),
-      //   });
-      // });
+     
 
       loadImages(imgArray, (loadedImages) => {
         worker.onmessage = (e) => {
-          console.log(e.data);
+          // console.log(e.data);
           // obj = e.data.payload.obj;
           let index = e.data.payload.index;
 
           let img = loadedImages[index];
 
           let result = e.data.payload.result;
+
+          let positions = e.data.payload.positions;
 
           obj[index].texture = THREE.ImageUtils.loadTexture(obj[index].file);
 
@@ -257,25 +254,16 @@ export default class Hover extends Vue {
 
           obj[index].image = img;
           obj[index].buffer = result;
-          console.log(obj);
+          // console.log(obj);
 
           if (index == 2) {
             console.log("Start render..");
-            var w = loadedImages[0].width;
-            var h = loadedImages[0].height;
+            let w = loadedImages[0].width;
+            let h = loadedImages[0].height;
 
             vm.backgroundWraper = vm.$refs.canavs_wraper.clientWidth;
 
-            let positions = new Float32Array(w * h * 3);
-            let indexIterator = 0;
-            for (var i = 0; i < w; i++) {
-              for (var j = 0; j < h; j++) {
-                positions[indexIterator * 3] = j;
-                positions[indexIterator * 3 + 1] = i;
-                positions[indexIterator * 3 + 2] = 0;
-                indexIterator++;
-              }
-            }
+            
 
             let uvs = new Float32Array((positions.length / 3) * 2); // необходимые вершины для отресовк
 
@@ -312,7 +300,7 @@ export default class Hover extends Vue {
               vertexShader: particleVs,
               fragmentShader: particleFs,
             });
-            console.log(material);
+            // console.log(material);
             material.transparent = true;
 
             let points = new THREE.Points(geometry, material);
@@ -460,9 +448,10 @@ export default class Hover extends Vue {
       // scene.rotation.y += (scene.destination.y - scene.rotation.y) * 0.05;
       renderer.render(scene, camera);
     }
-
-    init();
+   init();
     animate();
+
+ 
   }
 }
 </script>

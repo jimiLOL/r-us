@@ -3,7 +3,7 @@ import * as THREE from "three";
 
 
 onmessage = async (event) => {
-    console.log(event.data);
+    // console.log(event.data);
     if (event.data.hasOwnProperty('buffer')) {
         let index = event.data.index;
         let buffer = event.data.buffer;
@@ -39,6 +39,22 @@ onmessage = async (event) => {
             }
           });
 
+          let positions;
+
+
+          if (index == 2) {
+            positions = new Float32Array(width * height * 3);
+            let indexIterator = 0;
+            for (let i = 0; i < width; i++) {
+              for (let j = 0; j < height; j++) {
+                positions[indexIterator * 3] = j;
+                positions[indexIterator * 3 + 1] = i;
+                positions[indexIterator * 3 + 2] = 0;
+                indexIterator++;
+              }
+            }
+          }
+
           // console.log(result, "result");
 
       
@@ -49,7 +65,7 @@ onmessage = async (event) => {
         
     
        
-          postMessage({ type: "response_worker_3d", payload: {index: index, obj: obj, result: result} });
+          postMessage({ type: "response_worker_3d", payload: {index: index, obj: obj, result: result, positions:positions} });
 
     }
  
