@@ -5,14 +5,17 @@
         :class="[
           !$device.isMobile && hoverEnable ? 'img-position h-screen' : '',
         ]"
+        ref="header"
       >
         <header :class="[$device.isMobile ? 'px-2' : 'px-6']">
-          <div ref="header">
+          <div v-if="observerInit" ref="header_svg">
             <svg
-              v-for="(item, index) in 40"
+              v-for="(item, index) in 30"
               :key="index"
               :id="`svg_${index}`"
-              :style="`top: ${155 + index * 10}px; height: ${700 - index*10}px;`"
+              :style="`top: ${155 + index * 10}px; height: ${
+                700 - index * 10
+              }px;`"
             ></svg>
           </div>
 
@@ -62,21 +65,39 @@ export default class Layout extends Vue {
   // hoverEnable = true;
 
   bodyClasses = ["disable-transitions"];
+  observer = null;
+  observerInit = false;
 
   async mounted() {
     // console.log(this.$route);
     await this.$nextTick();
-    setTimeout(() => {
-      svgAnimate();
+   
 
-    }, 500);
+    let vm = this;
 
-    let allSvg = cash(this.$refs.header).find("svg");
+    function callback(entries, observer) {
+      vm.observerInit = entries[0].isIntersecting;
+      console.log("observer " + entries[0].isIntersecting);
+      setTimeout(() => {
+        if (entries[0].isIntersecting) {
+          let allSvg = cash(vm.$refs.header_svg).find("svg");
 
+          svgAnimate(allSvg);
+        } 
+      }, 500);
 
-    function svgAnimate() {
+      console.log(observer);
+      console.log("callback");
+    }
+
+    // let allSvg = cash(this.$refs.header).find("svg");
+
+    this.observer = new IntersectionObserver(callback);
+    this.observer.observe(this.$refs.header);
+
+    function svgAnimate(allSvg) {
       // let allSvg = cash(vm.$refs.header).find("svg");
-      Object.values(allSvg).forEach((e,i) => {
+      Object.values(allSvg).forEach((e, i) => {
         if (typeof e == "object") {
           setTimeout(() => {
             let s = Snap(`#${cash(e).attr("id")}`);
@@ -108,16 +129,23 @@ export default class Layout extends Vue {
             setInterval(() => {
               if (i == 0) {
                 i = 1;
-                lineDraw.animate({ d: "M 801.232 1.088 C 828.135 85.6037 589 71 471 142 C 257.157 306.557 401 516 187 681 C 119 748 110.431 771.421 1.3131 818.891" }, 2500);
+                lineDraw.animate(
+                  {
+                    d: "M 801.232 1.088 C 828.135 85.6037 589 71 471 142 C 257.157 306.557 401 516 187 681 C 119 748 110.431 771.421 1.3131 818.891",
+                  },
+                  2500
+                );
               } else {
                 i = 0;
-                lineDraw.animate({ d: "M801.232 1.08801C828.135 85.6037 826.119 305.992 573.247 306.243C257.157 306.557 290.875 391.985 264.032 558.848C237.188 725.711 110.431 771.421 1.31311 818.891" }, 2500);
-
-
+                lineDraw.animate(
+                  {
+                    d: "M801.232 1.08801C828.135 85.6037 826.119 305.992 573.247 306.243C257.157 306.557 290.875 391.985 264.032 558.848C237.188 725.711 110.431 771.421 1.31311 818.891",
+                  },
+                  2500
+                );
               }
-              
             }, 3000);
-          }, 30*i);
+          }, 30 * i);
         }
       });
       //
