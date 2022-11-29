@@ -1,5 +1,12 @@
 <template>
-  <main class="font-raleway bg-theme-8 text-white">
+  <main
+    :class="[
+      'font-raleway',
+      'bg-theme-8',
+      'text-white',
+      !$device.isMobile ? 'img_bck' : '',
+    ]"
+  >
     <div class="site__container">
       <div
         :class="[
@@ -71,7 +78,6 @@ export default class Layout extends Vue {
   async mounted() {
     // console.log(this.$route);
     await this.$nextTick();
-   
 
     let vm = this;
 
@@ -83,7 +89,7 @@ export default class Layout extends Vue {
           let allSvg = cash(vm.$refs.header_svg).find("svg");
 
           svgAnimate(allSvg);
-        } 
+        }
       }, 500);
 
       console.log(observer);
@@ -92,8 +98,12 @@ export default class Layout extends Vue {
 
     // let allSvg = cash(this.$refs.header).find("svg");
 
-    this.observer = new IntersectionObserver(callback);
-    this.observer.observe(this.$refs.header);
+    console.log(!this.$device.isMobile);
+
+    if (!this.$device.isMobile) {
+      this.observer = new IntersectionObserver(callback);
+      this.observer.observe(this.$refs.header);
+    }
 
     function svgAnimate(allSvg) {
       // let allSvg = cash(vm.$refs.header).find("svg");
@@ -182,5 +192,11 @@ svg {
   width: 780px;
   height: 800px;
   right: 1px;
+}
+.img_bck {
+  background: url("@/assets/imgs/d12cbf69172f03803703e7e4bc12823e.webp") -60% 46%/80%
+      no-repeat,
+    radial-gradient(closest-side, transparent 10%, #0000001b 55%);
+  background-blend-mode: multiply;
 }
 </style>

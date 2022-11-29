@@ -13,7 +13,12 @@
       ]"
     >
       <div v-if="observerInit" class="w-11 h-11" ref="svg_price_block">
-        <svg v-for="index in 30" :key="index" :id="`svg_bottom_${index}`" :style="`top: ${svgElementY+(10*index)}px`"></svg>
+        <svg
+          v-for="index in 30"
+          :key="index"
+          :id="`svg_bottom_${index}`"
+          :style="`top: ${svgElementY + 10 * index}px`"
+        ></svg>
       </div>
       <PriceBlock :class="[$device.isMobile ? 'w-full' : 'w-2/3']" />
       <div
@@ -122,18 +127,20 @@ export default class Home extends Vue {
       console.log("observer " + entries[0].isIntersecting);
       setTimeout(() => {
         if (entries[0].isIntersecting) {
-        let allSvg = cash(vm.$refs.svg_price_block).find("svg");
+          let allSvg = cash(vm.$refs.svg_price_block).find("svg");
 
-        svgAnimate(allSvg);
-      }
+          svgAnimate(allSvg);
+        }
       }, 100);
-      
 
       console.log(observer);
       console.log("callback");
     }
-    this.observer = new IntersectionObserver(callback);
-    this.observer.observe(this.$refs.block_price);
+    if (!this.$device.isMobile) {
+      this.observer = new IntersectionObserver(callback);
+      this.observer.observe(this.$refs.block_price);
+    }
+
     // this.observer.unobserve(this.$refs.block_price);
 
     function svgAnimate(allSvg) {
@@ -146,9 +153,9 @@ export default class Home extends Vue {
               "M1.22453 157.589C24.7438 91.5367 131.484 -46.1672 290.711 74.6921C489.746 225.766 509.414 155.878 606.16 63.7344C702.905 -28.4092 804.537 3.49177 895.911 25.8446";
             let lineLength = Snap.path.getTotalLength(linePath);
             let lineDraw = s.path(linePath);
-            // lineDraw.gradient("l(0, 0, 0, 1)#FF0000:25-#00FF00:75-#0000FF:50"); 
+            // lineDraw.gradient("l(0, 0, 0, 1)#FF0000:25-#00FF00:75-#0000FF:50");
             // let shadow = s.filter(Snap.filter.shadow(0, 2, 3));
-            var f = s.filter(Snap.filter.blur(0.05, 1.));
+            var f = s.filter(Snap.filter.blur(0.05, 1));
             lineDraw.attr({
               fill: "none",
               filter: f,
@@ -175,14 +182,22 @@ export default class Home extends Vue {
             setInterval(() => {
               if (i == 0) {
                 i = 1;
-                lineDraw.animate({ d: "m 1.2 157.6 c 127.8 -8.6 128.8 -128.6 247.8 -151.6 c 234 -37 330.4 144.9 427.2 52.7 c 96.7 -92.1 198.3 -60.2 289.7 -37.9" }, 2500);
+                lineDraw.animate(
+                  {
+                    d: "m 1.2 157.6 c 127.8 -8.6 128.8 -128.6 247.8 -151.6 c 234 -37 330.4 144.9 427.2 52.7 c 96.7 -92.1 198.3 -60.2 289.7 -37.9",
+                  },
+                  2500
+                );
               } else {
                 i = 0;
-                lineDraw.animate({ d: "M1.22453 157.589C24.7438 91.5367 131.484 -46.1672 290.711 74.6921C489.746 225.766 509.414 155.878 606.16 63.7344C702.905 -28.4092 804.537 3.49177 895.911 25.8446" }, 2500);
-
+                lineDraw.animate(
+                  {
+                    d: "M1.22453 157.589C24.7438 91.5367 131.484 -46.1672 290.711 74.6921C489.746 225.766 509.414 155.878 606.16 63.7344C702.905 -28.4092 804.537 3.49177 895.911 25.8446",
+                  },
+                  2500
+                );
               }
-
-            }, 6000);  
+            }, 6000);
           }, 30 * i);
         }
       });
