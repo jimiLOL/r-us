@@ -45,7 +45,7 @@ export default {
     },
     {
       src: "~/plugins/global-components.js",
-      ssr: false
+      ssr: true
     },
     { src: "~/plugins/notifications.ts", ssr: false },
   ],

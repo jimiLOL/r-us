@@ -65,6 +65,7 @@
               focus:underline
               focus:text-black
             "
+            @click="modalOpen = true"
           >
             Воспользоваться калькулятором
           </button>
@@ -93,6 +94,8 @@
     <AboutForHomePage />
     <InformationForHome />
     <CtaGeneral />
+    <ModalDialog v-if="modalOpen" />
+    
   </div>
 </template>
 
@@ -103,6 +106,7 @@ import CtaGeneral from "~/shared/ctaGeneral.vue";
 import PriceBlock from "~/components/home/priceBlock.vue";
 import AboutForHomePage from "~/components/home/about.vue";
 import InformationForHome from "~/components/home/informationBlock.vue";
+import ModalDialog from "~/shared/modalDialog.vue";
 
 @Component({
   components: {
@@ -111,13 +115,19 @@ import InformationForHome from "~/components/home/informationBlock.vue";
     PriceBlock,
     AboutForHomePage,
     InformationForHome,
+    ModalDialog
   },
 })
 export default class Home extends Vue {
   observer = null;
   observerInit = false;
   svgElementY = null;
+  modalOpen = false;
   mounted() {
+    window.$nuxt.$on("switchModal", (data) => {
+      console.log('switchModal ' + data);
+      this.modalOpen = data;
+    });
     // let allSvg = cash(this.$refs.svg_price_block).find("svg");
     let vm = this;
 

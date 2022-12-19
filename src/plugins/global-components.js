@@ -12,13 +12,17 @@ import Vue from 'vue'
 // import SealSVGOnMouse from '@/components/svg/SealOneMouse.vue';
 // import AppLink from '../shared/app-link.vue'
 import * as featherIcons from "vue-feather-icons";
+import Pagination from "~/shared/pagination.vue";
+
 
 // import Tippy from "~/components/tippy/Main.vue";
 
 
+Vue.component("Pagination", Pagination);
+
+
 
 // import "../libs/index";
-// Vue.component("Tippy", Tippy);
 // Vue.component("CardSVGOnMouse", CardSVGOnMouse);
 // Vue.component("CartSVGOnMouse", CartSVGOnMouse);
 // Vue.component("FilterSVGOnClick", FilterSVGOnClick);

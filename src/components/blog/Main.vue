@@ -78,6 +78,9 @@
 
       <div class="w-full items-center">
         <Pagination
+          :top="2"
+          :margin="4"
+          :bottom="11"
           :current="1"
           :siblings="2"
           :total="10"
@@ -91,14 +94,13 @@
 
 <script>
 import { Vue, Component } from "vue-property-decorator";
-import Pagination from '~/shared/pagination.vue';
 
 @Component({
-    components: {Pagination}
+  components: {},
 })
 export default class Blog extends Vue {
-     handlePageChange(page) {
-      console.log(page);
+  handlePageChange(page) {
+    console.log(page);
     // this.$store.dispatch("shop/setOptionValue", {
     //   option: "page",
     //   value: page,

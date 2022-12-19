@@ -88,7 +88,7 @@ export default class Layout extends Vue {
         if (entries[0].isIntersecting) {
           let allSvg = cash(vm.$refs.header_svg).find("svg");
 
-          svgAnimate(allSvg);
+          // svgAnimate(allSvg);
         }
       }, 500);
 
@@ -154,7 +154,7 @@ export default class Layout extends Vue {
                   2500
                 );
               }
-            }, 3000);
+            }, 15000);
           }, 30 * i);
         }
       });
