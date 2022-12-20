@@ -14,6 +14,7 @@
               border-2
               rounded-l-lg
               border-theme-11 border-solid
+              hover:bg-theme-2
             "
             aria-label="Previous"
              :disabled="current <= 0"
@@ -38,7 +39,7 @@
               'align-items-center',
               'border-2',
               'border-theme-11 border-solid',
-              page === current ? 'bg-theme-6' : '']
+              page === current ? 'bg-theme-2' : '']
             "
             @click="setPage(page)"
           >
@@ -58,6 +59,7 @@
               border-2
               rounded-r-lg
               border-theme-11 border-solid
+              hover:bg-theme-2
             "
             aria-label="Next"
             :disabled="current*(siblings+2) >= total"

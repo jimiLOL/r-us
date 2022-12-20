@@ -6,8 +6,10 @@
 
   <!-- Main modal -->
   <div
-    :class="['fixed top-0 left-0 right-0 z-50 w-full md:inset-0 md:h-full tran overflow-x-hidden', $device.isMobile ? 'h-full overflow-y-scroll' : 'p-4 overflow-y-hidden']"
-    
+    :class="[
+      'fixed top-0 left-0 right-0 z-50 w-full md:inset-0 md:h-full tran overflow-x-hidden',
+      $device.isMobile ? 'h-full overflow-y-scroll' : 'p-4 overflow-y-hidden',
+    ]"
   >
     <div class="relative w-full h-full md:h-auto">
       <!-- Modal content -->
@@ -18,61 +20,71 @@
         <div class="flex flex-col p-6 w-full gap-2">
           <div
             v-if="!filterOpen"
-            class="
-              grid grid-rows-1 grid-cols-10
-              justify-items-start
-              flex-nowrap
-              text-black
-              gap-4
-              w-full
-              font-semibold
-              pl-3
-              tran
+            :class="[
+              'grid', $device.isMobile ? 'grid-rows-2':'grid-rows-1', 'grid-cols-10',
+              'justify-items-start',
+              'flex-nowrap',
+              'text-black',
+              'gap-4',
+              'w-full',
+              'font-semibold',
+              'pl-3',
+              'tran']
             "
           >
+           
+              <div
+                :class="[
+                  'cursor-pointer',
+                  'hover:underline',
+                  'underline-offset-8',
+                  'hover:text-theme-1',
+                   'min-w-24',
+                  'textShadow',
+                  $device.isMobile ? 'col-start-1 col-end-5':'',
+                  stateModal.tab == 'provaslavny' ? 'text-theme-1' : '',
+                ]"
+              >
+                Православные
+              </div>
+              <div
+                :class="[
+                  'cursor-pointer',
+                  'hover:underline',
+                  'underline-offset-8',
+                  'hover:text-theme-1',
+                  'min-w-24',
+                  'textShadow',
+                  $device.isMobile ? 'col-start-6 col-end-10':'',
+                  stateModal.tab == 'mysulman' ? 'text-theme-1' : '',
+                ]"
+              >
+                Мусульманские
+              </div>
+              <div
+                :class="[
+                  'cursor-pointer',
+                  'hover:underline',
+                  'underline-offset-8',
+                  'hover:text-theme-1',
+                  'min-w-24',
+                  'textShadow',
+                  $device.isMobile ? 'col-start-1 col-end-5':'',
+                  stateModal.tab == 'kremacia' ? 'text-theme-1' : '',
+                ]"
+              >
+                Кремация
+              </div>
+        
+       
             <div
               :class="[
+              $device.isMobile? 'row-start-2':'',
+                'col-start-9 col-end-10',
+                'inline-flex',
+                'gap-2',
                 'cursor-pointer',
-                'hover:underline',
-                'underline-offset-8',
-                'hover:text-theme-1',
-                'textShadow',
-                stateModal.tab == 'provaslavny' ? 'text-theme-1' : '',
-              ]"
-            >
-              Православные
-            </div>
-            <div
-              :class="[
-                'cursor-pointer',
-                'hover:underline',
-                'underline-offset-8',
-                'hover:text-theme-1',
-                'textShadow',
-                stateModal.tab == 'mysulman' ? 'text-theme-1' : '',
-              ]"
-            >
-              Мусульманские
-            </div>
-            <div
-              :class="[
-                'cursor-pointer',
-                'hover:underline',
-                'underline-offset-8',
-                'hover:text-theme-1',
-                'textShadow',
-                stateModal.tab == 'kremacia' ? 'text-theme-1' : '',
-              ]"
-            >
-              Кремация
-            </div>
-            <div
-              class="
-                col-start-9 col-end-10
-                inline-flex
-                gap-2
-                cursor-pointer
-                justify-self-end
+                'justify-self-end']
               "
               @click="filterOpen = true"
             >
@@ -115,23 +127,30 @@
               </svg>
             </button>
           </div>
-          <div v-if="!filterOpen" class="flex gap-4 mt-2">
-            <div
-              v-for="(item, index) in tabMenu"
-              :key="index"
-              :class="[
-                'cursor-pointer',
-                'text-theme-4',
-                'hover:underline',
-                'underline-offset-8',
-                'focus:text-theme-8',
-                'tran',
-                translit(item.name) ? 'text-theme-8' : '',
-              ]"
-              @click="setCategory(item.name)"
+          <div v-if="!filterOpen" class="flex gap-2 mt-2">
+            <SlickSlider
+              class="w-full"
+              ref="navSlick"
+              :settings="setting_slider"
             >
-              {{ item.name }}
-            </div>
+              <div
+                v-for="(item, index) in tabMenu"
+                :key="index"
+                :class="[
+                  'cursor-pointer',
+                  'text-theme-4',
+                  'hover:underline',
+                  'underline-offset-8',
+                  'focus:text-theme-8',
+                  'tran',
+                  'max-w-9',
+                  translit(item.name) ? 'text-theme-8' : '',
+                ]"
+                @click="setCategory(item.name, index)"
+              >
+                {{ item.name }}
+              </div>
+            </SlickSlider>
           </div>
           <div v-else class="flex gap-4 tran">
             <label
@@ -205,16 +224,32 @@
               <span class="sr-only">Close modal</span>
             </button>
           </div>
-          <div :class="['grid', $device.isMobile ? 'grid-cols-1 gap-4':'grid-cols-2 gap-6']">
+          <div
+            :class="[
+              'grid',
+              $device.isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-2 gap-6',
+            ]"
+          >
             <div
               v-for="(item, index) in itemList"
               :key="index"
-              :class="['flex', $device.isMobile ?'flex-col gap-2':'flex-row gap-4']"
+              :class="[
+                'flex',
+                $device.isMobile ? 'flex-col gap-2' : 'flex-row gap-4',
+              ]"
             >
-              <div :class="['flex', 'flex-col', 'gap-6',  $device.isMobile ?'w-full':'w-96', 'h-full']">
+              <div
+                :class="[
+                  'flex',
+                  'flex-col',
+                  'gap-6',
+                  $device.isMobile ? 'w-full' : 'w-96',
+                  'h-full',
+                ]"
+              >
                 <div
                   :class="[
-                    'h-36',
+                    'h-48',
                     'cursor-pointer',
                     loadImg && !loadStatus
                       ? ''
@@ -239,22 +274,20 @@
                       rounded-2xl
                       border-2 border-solid border-black
                       hover:border-theme-1
-                      lazyload
-                      mediabox-img
                     "
-                    data-srcset="https://drive.google.com/uc?export=view&id=1c78SG5SKA7m-rexDp7F4ylVcuuus0jnk"
-                    :src="require(`~/assets/imgs/product/test.jpg`)"
-                    data-sizes="auto"
+                    :src="`https://drive.google.com/uc?export=view&id=${
+                      item.imgs[imgSwitcher[`img${index}`]]
+                    }`"
                     alt=""
-                    @load="onImgLoad"
+                    @load="onImgLoad(index)"
                   />
                 </div>
                 <SlickSlider
-                  :class="[$device.isMobile ?'w-full':'w-96']"
+                  :class="[$device.isMobile ? 'w-full' : 'w-96']"
                   ref="navSlick"
                   :settings="setting_nav"
                 >
-                  <div v-for="(img, index) in item.imgs" :key="index">
+                  <div v-for="(img, i) in item.imgs" :key="i">
                     <div
                       :class="[
                         'cursor-pointer',
@@ -264,7 +297,7 @@
                           ? ''
                           : 'animate-pulse bg-gray-500 rounded-2xl border-2 border-solid border-black',
                       ]"
-                      @click="goto(index)"
+                      @click="goto(index, i)"
                     >
                       <img
                         v-show="loadImg && !loadStatus"
@@ -277,44 +310,67 @@
                           lazyload
                           tran
                         "
-                        data-src="https://drive.google.com/uc?export=view&id=1c78SG5SKA7m-rexDp7F4ylVcuuus0jnk"
+                        :data-src="`https://drive.google.com/uc?export=view&id=${img}`"
                         :src="require(`~/assets/imgs/product/test.jpg`)"
                         alt="product gallery"
                       />
                     </div>
                   </div>
                 </SlickSlider>
-             
               </div>
               <div
                 :class="[
-                  'flex', $device.isMobile ? 'flex-row': 'flex-col items-start justify-between w-64 h-max py-4']
-                "
+                  'flex',
+                  $device.isMobile
+                    ? 'flex-row'
+                    : 'flex-col items-start justify-between w-64 h-max py-4',
+                ]"
               >
-              <div :class="['flex', 'gap-2', $device.isMobile ? 'flex-col':'flex-col']">
+                <div
+                  :class="[
+                    'flex',
+                    'gap-2',
+                    $device.isMobile ? 'flex-col' : 'flex-col',
+                  ]"
+                >
                   <div>
-                  <h2 :class="[$device.isMobile ? 'text-xl':'text-2xl', 'font-bold']">{{ item.title }}</h2>
+                    <h2
+                      :class="[
+                        $device.isMobile ? 'text-xl' : 'text-2xl',
+                        'font-bold',
+                      ]"
+                    >
+                      {{ item.title }}
+                    </h2>
+                  </div>
+                  <div class="self-start justify-self-start">
+                    {{ item.about }}
+                  </div>
                 </div>
-                <div class="self-start justify-self-start">
-                  {{ item.about }}
+
+                <div
+                  :class="[
+                    $device.isMobile ? 'text-lg' : 'text-2xl',
+                    'font-bold',
+                  ]"
+                >
+                  {{ item.price }} руб.
                 </div>
-              </div>
-              
-                <div :class="[$device.isMobile ? 'text-lg':'text-2xl', 'font-bold']">{{ item.price }} руб.</div>
               </div>
             </div>
           </div>
           <div
-            class="
-              grid grid-cols-4
-              items-end
-              justify-items-end
-              gap-4
-              w-full
-              h-20
-            "
+            :class="[
+              'grid',
+              $device.isMobile ? 'grid-cols-4' : 'grid-cols-2',
+              'items-end',
+              'justify-items-end',
+              'gap-4',
+              'w-full',
+              'h-20',
+            ]"
           >
-            <div :class="[$device.isMobile? 'w-full col-span-3':'']">
+            <div :class="[$device.isMobile ? 'w-full col-span-3' : '']">
               <Pagination
                 :current="page"
                 :siblings="stateModal.limit"
@@ -374,8 +430,7 @@ export default class ModalDialog extends Vue {
 
   filterOpen = false;
   selectPrice = "all";
-
-  
+  imgSwitcher = { img0: 0, img1: 1, img2: 2, img3: 2, img4: 2 };
 
   page = 0;
 
@@ -388,9 +443,10 @@ export default class ModalDialog extends Vue {
   closeModalWindow() {
     window.$nuxt.$emit("switchModal", false);
   }
-  setCategory(name) {
+  setCategory(name, index) {
     let translit_name = translit.transform(name, "_");
     console.log(translit_name);
+    this.setting_slider.goTo = index;
 
     this.$store.commit("product/setCategory", translit_name);
     this.$store.dispatch("product/init");
@@ -409,7 +465,7 @@ export default class ModalDialog extends Vue {
     }
   }
 
-  onImgLoad() {
+  onImgLoad(index) {
     setTimeout(() => {
       this.loadImg = true;
     }, 200);
@@ -433,8 +489,18 @@ export default class ModalDialog extends Vue {
     this.picked = id;
   }
 
+  general_navigation = {
+    slidesToShow: this.$device.isMobile ? 1 : 3,
+    autoplay: false,
+    dots: false,
+    asNavFor: this.$refs.forSlick,
+    arrows: false,
+    focusOnSelect: true,
+    goTo: 0,
+  };
+
   setting_slider = {
-    slidesToShow: 1,
+    slidesToShow: this.$device.isMobile ? 3 : this.tabMenu.length,
     infinite: true,
     autoplay: false,
     dots: false,
@@ -451,12 +517,14 @@ export default class ModalDialog extends Vue {
   };
   count = 1;
 
-  goto(index) {
-    this.setting_slider.goTo = index;
+  goto(index, i) {
+    this.imgSwitcher[`img${index}`] = i;
+
+    // this.setting_slider.goTo = index;
   }
   handlePageChange(page) {
     // page++
-    this.page = page;  
+    this.page = page;
     console.log(page);
   }
   mounted() {
@@ -501,10 +569,10 @@ input[type="radio"]:not(:checked) + label:before {
   border: 0.77px solid #222;
   background-color: #ffffff;
   @media (max-width: 980px) {
-    left: -10px;
-    top: -5px;
-    width: 32.24px;
-    height: 32.24px;
+    left: 5px;
+    top: 10px;
+    width: 22.24px;
+    height: 22.24px;
   }
 }
 
@@ -532,7 +600,7 @@ input[type="radio"]:not(:checked) + label:after {
   border-radius: 100%;
   background-color: #ffbb30;
   @media (max-width: 980px) {
-    left: 0px;
+    left: 9.8px;
   }
 }
 
