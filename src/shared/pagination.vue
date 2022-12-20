@@ -25,11 +25,12 @@
         </li>
 
         <li
-          v-for="page in pages"
+          v-for="(page, index) in pages"
           :key="page"
           :class="['flex', 'items-center', { active: page === current }]"
         >
           <button
+          v-if="index < 3 || !$device.isMobile"
             type="button"
             :class="[
             'w-7',
@@ -43,9 +44,10 @@
             "
             @click="setPage(page)"
           >
-            {{ page }}
+            {{ current+index }}
             <span v-if="page === current" class="sr-only">(current)</span>
           </button>
+
         </li>
         <li :class="['d-none', 'd-sm-block']">
           <button
@@ -95,10 +97,10 @@ export default class Pagination extends Vue {
     );
     // const max = Math.min(this.total, min + this.siblings * 2);
     const max = Math.ceil(this.total/this.siblings);
-    console.log(min, max-1);
+    // console.log(min, max-1);
     
 
-    for (let i = min; i <= max; i += 1) {
+    for (let i = min; i < max; i += 1) {
       pages.push(i);
     }
 

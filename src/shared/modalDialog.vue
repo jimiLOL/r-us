@@ -21,7 +21,9 @@
           <div
             v-if="!filterOpen"
             :class="[
-              'grid', $device.isMobile ? 'grid-rows-2':'grid-rows-1', 'grid-cols-10',
+              'grid',
+              $device.isMobile ? 'grid-rows-2' : 'grid-rows-1',
+              'grid-cols-10',
               'justify-items-start',
               'flex-nowrap',
               'text-black',
@@ -29,63 +31,64 @@
               'w-full',
               'font-semibold',
               'pl-3',
-              'tran']
-            "
+              'tran',
+            ]"
           >
-           
-              <div
-                :class="[
-                  'cursor-pointer',
-                  'hover:underline',
-                  'underline-offset-8',
-                  'hover:text-theme-1',
-                   'min-w-24',
-                  'textShadow',
-                  $device.isMobile ? 'col-start-1 col-end-5':'',
-                  stateModal.tab == 'provaslavny' ? 'text-theme-1' : '',
-                ]"
-              >
-                Православные
-              </div>
-              <div
-                :class="[
-                  'cursor-pointer',
-                  'hover:underline',
-                  'underline-offset-8',
-                  'hover:text-theme-1',
-                  'min-w-24',
-                  'textShadow',
-                  $device.isMobile ? 'col-start-6 col-end-10':'',
-                  stateModal.tab == 'mysulman' ? 'text-theme-1' : '',
-                ]"
-              >
-                Мусульманские
-              </div>
-              <div
-                :class="[
-                  'cursor-pointer',
-                  'hover:underline',
-                  'underline-offset-8',
-                  'hover:text-theme-1',
-                  'min-w-24',
-                  'textShadow',
-                  $device.isMobile ? 'col-start-1 col-end-5':'',
-                  stateModal.tab == 'kremacia' ? 'text-theme-1' : '',
-                ]"
-              >
-                Кремация
-              </div>
-        
-       
             <div
               :class="[
-              $device.isMobile? 'row-start-2':'',
+                'cursor-pointer',
+                'hover:underline',
+                'underline-offset-8',
+                'hover:text-theme-1',
+                'min-w-24',
+                'textShadow',
+                $device.isMobile ? 'col-start-1 col-end-5' : '',
+                stateModal.tab == 'provaslavny' ? 'text-theme-1' : '',
+              ]"
+              @click="setTypeShop('provaslavny')"
+            >
+              Православные
+            </div>
+            <div
+              :class="[
+                'cursor-pointer',
+                'hover:underline',
+                'underline-offset-8',
+                'hover:text-theme-1',
+                'min-w-24',
+                'textShadow',
+                $device.isMobile ? 'col-start-6 col-end-10' : '',
+                stateModal.tab == 'mysulman' ? 'text-theme-1' : '',
+              ]"
+              @click="setTypeShop('mysulman')"
+            >
+              Мусульманские
+            </div>
+            <div
+              :class="[
+                'cursor-pointer',
+                'hover:underline',
+                'underline-offset-8',
+                'hover:text-theme-1',
+                'min-w-24',
+                'textShadow',
+                $device.isMobile ? 'col-start-1 col-end-5' : '',
+                stateModal.tab == 'kremacia' ? 'text-theme-1' : '',
+              ]"
+              @click="setTypeShop('kremacia')"
+            >
+              Кремация
+            </div>
+
+            <div
+              :class="[
+                $device.isMobile ? 'row-start-2' : '',
                 'col-start-9 col-end-10',
                 'inline-flex',
                 'gap-2',
                 'cursor-pointer',
-                'justify-self-end']
-              "
+                'justify-self-end',
+              ]"
               @click="filterOpen = true"
             >
               Фильтр <SvgFilter />
@@ -144,7 +147,7 @@
                   'focus:text-theme-8',
                   'tran',
                   'max-w-9',
-                  translit(item.name) ? 'text-theme-8' : '',
+                  translit(item.name) ? 'text-theme-8 underline' : '',
                 ]"
                 @click="setCategory(item.name, index)"
               >
@@ -253,7 +256,7 @@
                     'cursor-pointer',
                     loadImg && !loadStatus
                       ? ''
-                      : 'animate-pulse bg-gray-500 rounded-2xl border-2 border-solid border-black',
+                      : 'animate-pulse bg-gray-500 rounded-2xl border-2 border-solid border-black loading',
                   ]"
                   @click="setPicked(`rb${index}`)"
                 >
@@ -274,11 +277,13 @@
                       rounded-2xl
                       border-2 border-solid border-black
                       hover:border-theme-1
+                      lazyload
                     "
                     :src="`https://drive.google.com/uc?export=view&id=${
-                      item.imgs[imgSwitcher[`img${index}`]]
+                      item.imgs[imgSwitcher[`img${index}`]] ||
+                      '1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC'
                     }`"
-                    alt=""
+                    :alt="`${item.title} в Кургане`"
                     @load="onImgLoad(index)"
                   />
                 </div>
@@ -292,10 +297,11 @@
                       :class="[
                         'cursor-pointer',
                         'min-w-24',
+                        'px-1',
                         'min-h-max',
                         loadImg && !loadStatus
                           ? ''
-                          : 'animate-pulse bg-gray-500 rounded-2xl border-2 border-solid border-black',
+                          : 'animate-pulse bg-gray-500 rounded-2xl border-2 border-solid border-black loading',
                       ]"
                       @click="goto(index, i)"
                     >
@@ -307,12 +313,10 @@
                           w-max
                           h-20
                           rounded-lg
-                          lazyload
                           tran
                         "
-                        :data-src="`https://drive.google.com/uc?export=view&id=${img}`"
-                        :src="require(`~/assets/imgs/product/test.jpg`)"
-                        alt="product gallery"
+                        :src="`https://drive.google.com/uc?export=view&id=${img}`"
+                        :alt="`${item.title} в Кургане`"
                       />
                     </div>
                   </div>
@@ -362,24 +366,15 @@
           <div
             :class="[
               'grid',
-              $device.isMobile ? 'grid-cols-4' : 'grid-cols-2',
+              $device.isMobile ? 'grid-cols-4' : 'grid-cols-3',
               'items-end',
-              'justify-items-end',
+              'justify-items-center',
               'gap-4',
               'w-full',
               'h-20',
             ]"
           >
-            <div :class="[$device.isMobile ? 'w-full col-span-3' : '']">
-              <Pagination
-                :current="page"
-                :siblings="stateModal.limit"
-                :total="stateModal.total"
-                @page-change="handlePageChange"
-              />
-            </div>
-
-            <div class="">
+            <div v-show="viewingPage > 0" class="col-span-1">
               <button
                 class="
                   bg-theme-5
@@ -389,9 +384,55 @@
                   rounded-lg
                   hover:bg-theme-12 hover:transform hover:scale-95
                 "
+                @click="backButton()"
+              >
+                Назад
+              </button>
+            </div>
+            <div
+              :class="[$device.isMobile ? 'w-full col-span-2' : 'col-start-2']"
+            >
+              <Pagination
+                :current="page"
+                :siblings="stateModal.limit"
+                :total="stateModal.total"
+                @page-change="handlePageChange"
+              />
+            </div>
+
+            <div
+              :class="[
+                viewingPage > 0 && !$device.isMobile
+                  ? 'col-span-1 col-start-3'
+                  : '',
+              ]"
+            >
+              <button
+              v-if="viewingPage < tabMenu.length-1"
+                class="
+                  bg-theme-5
+                  px-6
+                  py-2
+                  text-white
+                  rounded-lg
+                  hover:bg-theme-12 hover:transform hover:scale-95
+                "
+                @click="nextButton()"
               >
                 Далее
               </button>
+              <button
+              v-else
+                class="
+                  bg-theme-1
+                  px-6
+                  py-2
+                  text-white
+                  rounded-lg
+                  hover:bg-theme-3 hover:transform hover:scale-120
+                  hover:text-black
+                "
+              >Перейти к оформлению</button>
             </div>
           </div>
         </div>
@@ -430,7 +471,7 @@ export default class ModalDialog extends Vue {
 
   filterOpen = false;
   selectPrice = "all";
-  imgSwitcher = { img0: 0, img1: 1, img2: 2, img3: 2, img4: 2 };
+  imgSwitcher = { img0: 0, img1: 0, img2: 0, img3: 0, img4: 0 };
 
   page = 0;
 
@@ -440,15 +481,75 @@ export default class ModalDialog extends Vue {
     this.$store.dispatch("product/init");
   }
 
+  productUser = {
+    [translit.transform("Вывоз тела", "_")]: { price: 99, title: "Вывоз тела" },
+    [translit.transform("Омовение", "_")]: { price: 99, title: "Омовение" },
+  };
+
+  viewingPage = 0;
+
+  nextButton() {
+    this.page = 0;
+    // console.log(translit.transform(this.tabMenu[0].name, "_"), this.stateModal.sub_tab);
+    this.viewingPage = this.tabMenu.findIndex(
+      (x, i) => translit.transform(x.name, "_") == this.stateModal.sub_tab
+    );
+    this.viewingPage++;
+
+    let translit_name = translit.transform(
+      this.tabMenu[this.viewingPage].name,
+      "_"
+    );
+    console.log(translit_name);
+    this.$store.commit("product/setCategory", translit_name);
+
+    this.$store.commit("product/setPage", this.page);
+    this.$store.dispatch("product/init");
+  }
+
+  backButton() {
+    this.page = 0;
+    this.viewingPage = this.tabMenu.findIndex(x => translit.transform(x.name, "_") == this.stateModal.sub_tab);
+    if (this.viewingPage > 0) {
+      this.viewingPage--;
+    }
+
+    let translit_name = translit.transform(
+      this.tabMenu[this.viewingPage].name,
+      "_"
+    );
+    console.log(translit_name);
+    this.$store.commit("product/setCategory", translit_name);
+
+    this.$store.commit("product/setPage", this.page);
+    this.$store.dispatch("product/init");
+  }
+
   closeModalWindow() {
     window.$nuxt.$emit("switchModal", false);
   }
   setCategory(name, index) {
+
+    this.page = 0;
+    this.$store.commit("product/setPage", this.page);
+
     let translit_name = translit.transform(name, "_");
     console.log(translit_name);
     this.setting_slider.goTo = index;
 
     this.$store.commit("product/setCategory", translit_name);
+    setTimeout(() => {
+    this.viewingPage = this.tabMenu.findIndex(x => translit.transform(x.name, "_") == this.stateModal.sub_tab);
+      
+    }, 200);
+
+    this.$store.dispatch("product/init");
+  }
+  setTypeShop(name) {
+    this.page = 0;
+    this.$store.commit("product/setPage", this.page);
+
+    this.$store.commit("product/setTypeShop", name);
     this.$store.dispatch("product/init");
   }
 
@@ -457,7 +558,7 @@ export default class ModalDialog extends Vue {
   translit(name) {
     // const translit = new CyrillicToTranslit();
     let translit_name = translit.transform(name, "_");
-    console.log(translit_name);
+    // console.log(translit_name);
     if (translit_name == this.stateModal.sub_tab) {
       return true;
     } else {
@@ -525,7 +626,7 @@ export default class ModalDialog extends Vue {
   handlePageChange(page) {
     // page++
     this.page = page;
-    console.log(page);
+    // console.log(page);
   }
   mounted() {
     // console.log(this.stateModal.tab);
@@ -651,5 +752,13 @@ input[type="radio"]:checked + label:after {
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.loading {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("@/assets/imgs/product/image-not-found.png");
+  height: 10vh;
 }
 </style>

@@ -27,7 +27,7 @@ const itemList = [
       price: 1,
       about: "Описание товара",
       imgs: [
-       'name', 'name'
+       '1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC', '1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC'
       ],
       id: 1,
     },
@@ -36,7 +36,7 @@ const itemList = [
       price: 1,
       about: "Описание товара",
       imgs: [
-        'name', 'name'
+        '1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC', '1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC'
       ],
       id: 2,
     },
@@ -44,14 +44,14 @@ const itemList = [
       title: "Товар",
       price: 1,
       about: "Описание товара",
-      imgs: ['name', 'name'],
+      imgs: ['1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC', '1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC'],
       id: 3,
     },
     {
       title: "Товар",
       price: 1,
       about: "Описание товара",
-      imgs: ['name', 'name'],
+      imgs: ['1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC', '1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC'],
       id: 4,
     },
   ];
