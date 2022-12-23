@@ -68,7 +68,8 @@ export default {
 
   fontawesome: {
     icons:{
-      solid: ['faHome', 'faTruckFast', 'faBox', 'faEye', 'faClock', 'faArrowRight', 'faCircleDot'],
+      solid: ['faHome', 'faTruckFast', 'faBox', 'faEye', 'faClock', 'faArrowRight', 'faCircleDot', 'faPhone'],
+      brands: ['faVk', 'faFacebook', 'faInstagram', 'faWhatsapp', 'faTelegramPlane', 'faTelegram']
       // regular: ['faAdjust']
     }
   },

@@ -11,13 +11,11 @@
       $device.isMobile ? 'h-full overflow-y-scroll' : 'p-4 overflow-y-hidden',
     ]"
   >
-    <div class="relative w-full h-full md:h-auto">
+    <div :class="['relative', 'w-full', 'h-full', checkProduct ? 'overflow-y-scroll':'']">
       <!-- Modal content -->
-      <div
-        class="relative text-black bg-white rounded-lg shadow dark:bg-gray-700"
-      >
+      <div class="relative text-black bg-white rounded-lg">
         <!-- Modal header -->
-        <div class="flex flex-col p-6 w-full gap-2">
+        <div v-if="!checkProduct" class="flex flex-col p-6 w-full gap-2">
           <div
             v-if="!filterOpen"
             :class="[
@@ -41,9 +39,11 @@
                 'underline-offset-8',
                 'hover:text-theme-1',
                 'min-w-24',
-                'textShadow',
+
                 $device.isMobile ? 'col-start-1 col-end-5' : '',
-                stateModal.tab == 'provaslavny' ? 'text-theme-1' : '',
+                stateModal.tab == 'provaslavny'
+                  ? 'text-theme-1 textShadow'
+                  : '',
               ]"
               @click="setTypeShop('provaslavny')"
             >
@@ -56,9 +56,9 @@
                 'underline-offset-8',
                 'hover:text-theme-1',
                 'min-w-24',
-                'textShadow',
+
                 $device.isMobile ? 'col-start-6 col-end-10' : '',
-                stateModal.tab == 'mysulman' ? 'text-theme-1' : '',
+                stateModal.tab == 'mysulman' ? 'text-theme-1 textShadow' : '',
               ]"
               @click="setTypeShop('mysulman')"
             >
@@ -71,9 +71,8 @@
                 'underline-offset-8',
                 'hover:text-theme-1',
                 'min-w-24',
-                'textShadow',
                 $device.isMobile ? 'col-start-1 col-end-5' : '',
-                stateModal.tab == 'kremacia' ? 'text-theme-1' : '',
+                stateModal.tab == 'kremacia' ? 'text-theme-1 textShadow' : '',
               ]"
               @click="setTypeShop('kremacia')"
             >
@@ -285,6 +284,7 @@
                     }`"
                     :alt="`${item.title} в Кургане`"
                     @load="onImgLoad(index)"
+                    @click="setUserProduct(item)"
                   />
                 </div>
                 <SlickSlider
@@ -342,7 +342,10 @@
                       :class="[
                         $device.isMobile ? 'text-xl' : 'text-2xl',
                         'font-bold',
+                        'cursor-pointer',
+                        'hover:underline',
                       ]"
+                      @click="setUserProduct(item), (picked = `rb${index}`)"
                     >
                       {{ item.title }}
                     </h2>
@@ -374,7 +377,10 @@
               'h-20',
             ]"
           >
-            <div v-show="viewingPage > 0" class="col-span-1">
+            <div
+              v-show="viewingPage > 0 && viewingPage != tabMenu.length - 1"
+              class="col-span-1"
+            >
               <button
                 class="
                   bg-theme-5
@@ -390,7 +396,15 @@
               </button>
             </div>
             <div
-              :class="[$device.isMobile ? 'w-full col-span-2' : 'col-start-2']"
+              :class="[
+                $device.isMobile ? 'w-full col-span-2' : 'col-start-2',
+                !$device.isMobile && viewingPage == tabMenu.length - 1
+                  ? 'lg:col-span-2 xl:col-span-2 xxl:col-span-2'
+                  : '',
+                $device.isMobile && viewingPage == tabMenu.length - 1
+                  ? 'col-span-4'
+                  : '',
+              ]"
             >
               <Pagination
                 :current="page"
@@ -405,10 +419,16 @@
                 viewingPage > 0 && !$device.isMobile
                   ? 'col-span-1 col-start-3'
                   : '',
+                $device.isMobile && viewingPage == tabMenu.length - 1
+                  ? 'col-span-4'
+                  : '',
+                !$device.isMobile && viewingPage == tabMenu.length - 1
+                  ? 'col-span-1'
+                  : '',
               ]"
             >
               <button
-              v-if="viewingPage < tabMenu.length-1"
+                v-if="viewingPage < tabMenu.length - 1"
                 class="
                   bg-theme-5
                   px-6
@@ -422,18 +442,183 @@
                 Далее
               </button>
               <button
-              v-else
+                v-else
                 class="
                   bg-theme-1
                   px-6
                   py-2
                   text-white
                   rounded-lg
-                  hover:bg-theme-3 hover:transform hover:scale-120
+                  hover:bg-theme-3
+                  hover:transform
+                  hover:scale-120
                   hover:text-black
                 "
-              >Перейти к оформлению</button>
+                @click="checkProduct = true"
+              >
+                Перейти к оформлению
+              </button>
             </div>
+          </div>
+        </div>
+        <div
+          v-else
+          class="flex flex-col p-6 gap-4 overflow-y-scroll "
+        >
+          <div
+            :class="[
+              'grid',
+              $device.isMobile ? 'grid-cols-1 h-screen' : 'grid-cols-4',
+              'gap-6',
+            ]"
+          >
+            <div
+              :class="[
+                $device.isMobile ? 'justify-self-center' : 'col-span-3',
+                'flex',
+                'flex-col',
+                'gap-4',
+                'w-max',
+                'snap-x'
+              ]"
+            >
+              <div
+                v-for="(item, index) in productUser.user_choice"
+                :key="index"
+                :class="[
+                  'flex',
+                  'snap-center tran',
+                  $device.isMobile ? 'flex-col gap-2' : 'flex-row gap-4 h-max',
+                ]"
+              >
+                <div
+                  v-if="item.hasOwnProperty('img')"
+                  :class="[
+                    'flex',
+                    'flex-col',
+                    'gap-4',
+                    'h-full',
+                    $device.isMobile ? 'w-full' : 'w-2/5',
+                  ]"
+                >
+                  <div
+                    :class="[
+                      'flex',
+                      'flex-col',
+                      'justify-center',
+                      'h-40',
+                      'cursor-pointer',
+                      loadImg && !loadStatus
+                        ? ''
+                        : 'animate-pulse bg-gray-500 rounded-2xl border-2 border-solid border-black loading',
+                    ]"
+                  >
+                    <div class="h-fit self-center">
+                      <h2
+                        :class="[
+                          'text-lg',
+                          'font-bold',
+                          'cursor-pointer',
+                          'hover:underline',
+                          'text-center',
+                          $device.isMobile ? 'w-80' : '',
+                        ]"
+                      >
+                        {{ item.title }}
+                      </h2>
+                    </div>
+
+                    <img
+                      v-show="loadImg && !loadStatus"
+                      ref="mainImg"
+                      :class="[
+                        'self-center',
+                        'justify-self-center',
+                        'object-cover',
+                        $device.isMobile ? 'w-80' : 'w-6/12',
+                        'h-28',
+                        'rounded-2xl',
+                        'border-2',
+                        'border-solid',
+                        'border-black',
+                        'hover:border-theme-1',
+                        'lazyload',
+                      ]"
+                      :src="`https://drive.google.com/uc?export=view&id=${item.img}`"
+                      :alt="`${item.title} в Кургане`"
+                      @load="onImgLoad(index)"
+                    />
+                  </div>
+                </div>
+                <div
+                  v-if="item.hasOwnProperty('img')"
+                  :class="[
+                    'flex',
+                    'flex-col',
+                    $device.isMobile
+                      ? 'items-center justify-center w-full gap-2'
+                      : 'items-start justify-between w-64 h-max pb-5 pt-4',
+                  ]"
+                >
+                  <div :class="['flex', 'gap-2', 'flex-col']">
+                    <div class="self-start justify-self-start">
+                      {{ item.about }}
+                    </div>
+                  </div>
+
+                  <div :class="['text-lg', 'font-bold']">
+                    {{ item.price }} руб.
+                  </div>
+                </div>
+                <div
+                  :class="[
+                    'justify-self-end',
+                    'pl-9',
+                    'inline-flex',
+                    'gap-4',
+                    'font-semibold',
+                    'h-12',
+                    $device.isMobile ? 'self-center' : 'self-start']
+                  "
+                >
+                  <div type="button" class="text-theme-5 hover:underline cursor-pointer" @click="changeProduct(item.sheet_title)">Изменить</div>
+                  <div type="button" class="text-theme-7 hover:underline cursor-pointer" @click="deleteItems(item)">Удалить</div>
+                </div>
+              </div>
+            </div>
+            <CtaButton :price="priceSum" />
+            <div v-if="$device.isMobile" class="justify-self-center flex h-max w-48 my-6 py-2 self-center">
+                <button
+                  class="
+                    bg-theme-5
+                    px-9
+                    py-2
+                    w-full
+                    text-white
+                    rounded-lg
+                    hover:bg-theme-12 hover:transform hover:scale-95
+                  "
+                  @click="checkProduct = false"
+                >
+                  Назад
+                </button>
+            </div>
+          </div>
+
+          <div v-if="!$device.isMobile" class="flex h-max mt-2">
+              <button
+                class="
+                  bg-theme-5
+                  px-6
+                  py-2
+                  text-white
+                  rounded-lg
+                  hover:bg-theme-12 hover:transform hover:scale-95
+                "
+                @click="checkProduct = false"
+              >
+                Назад
+              </button>
           </div>
         </div>
       </div>
@@ -450,12 +635,14 @@ import lazysizes from "lazysizes";
 import CyrillicToTranslit from "cyrillic-to-translit-js";
 import { Getter } from "vuex-class";
 import SvgFilter from "~/assets/imgs/shared/filter.svg";
+
+import CtaButton from "~/shared/cta.vue";
 const translit = new CyrillicToTranslit();
 
 // lazysizes.cfg.blurupMode = "always";
 
 @Component({
-  components: { SlickSlider, SvgFilter },
+  components: { SlickSlider, SvgFilter, CtaButton },
 })
 export default class ModalDialog extends Vue {
   // @Prop({type: Object, default: () => ({ tab: "provaslavny", sub_tab: "Grob" })}) stateModal;
@@ -480,21 +667,31 @@ export default class ModalDialog extends Vue {
     this.$store.commit("product/setPage", this.page);
     this.$store.dispatch("product/init");
   }
+  checkProduct = false;
 
   productUser = {
-    [translit.transform("Вывоз тела", "_")]: { price: 99, title: "Вывоз тела" },
-    [translit.transform("Омовение", "_")]: { price: 99, title: "Омовение" },
+    sub: {
+      [translit.transform("Вывоз тела", "_")]: {
+        price: 99,
+        title: "Вывоз тела",
+      },
+      [translit.transform("Омовение", "_")]: { price: 99, title: "Омовение" },
+    },
+    user_choice: {},
   };
 
   viewingPage = 0;
 
   nextButton() {
+    this.picked = null;
     this.page = 0;
     // console.log(translit.transform(this.tabMenu[0].name, "_"), this.stateModal.sub_tab);
     this.viewingPage = this.tabMenu.findIndex(
       (x, i) => translit.transform(x.name, "_") == this.stateModal.sub_tab
     );
-    this.viewingPage++;
+    if (this.viewingPage < this.tabMenu.length - 1) {
+      this.viewingPage++;
+    }
 
     let translit_name = translit.transform(
       this.tabMenu[this.viewingPage].name,
@@ -507,9 +704,28 @@ export default class ModalDialog extends Vue {
     this.$store.dispatch("product/init");
   }
 
+  priceSum = 0;
+
+  deleteItems(item) {
+
+    // Object.keys(this.productUser.user_choice).forEach((key) => {
+    //   if (this.productUser.user_choice[key].title == item.sheet_title) {
+    //     delete this.productUser.user_choice[key];
+    //   }
+    // });
+    const productUser_user_choice = {...this.productUser.user_choice}
+    // console.log(this.productUser.user_choice[item.sheet_title]);
+    delete productUser_user_choice[item.sheet_title];
+    this.priceSum -= item.price;
+    this.productUser.user_choice = productUser_user_choice;
+
+  }
+
   backButton() {
     this.page = 0;
-    this.viewingPage = this.tabMenu.findIndex(x => translit.transform(x.name, "_") == this.stateModal.sub_tab);
+    this.viewingPage = this.tabMenu.findIndex(
+      (x) => translit.transform(x.name, "_") == this.stateModal.sub_tab
+    );
     if (this.viewingPage > 0) {
       this.viewingPage--;
     }
@@ -528,7 +744,21 @@ export default class ModalDialog extends Vue {
   closeModalWindow() {
     window.$nuxt.$emit("switchModal", false);
   }
+  changeProduct(name) {
+      this.$store.commit("product/setCategory", name);
+    setTimeout(() => {
+      this.viewingPage = this.tabMenu.findIndex(
+        (x) => name == this.stateModal.sub_tab
+      );
+       this.setting_slider.goTo = this.viewingPage;
+    }, 200);
+
+    this.checkProduct = false;
+
+    this.$store.dispatch("product/init");
+  }
   setCategory(name, index) {
+    this.picked = null;
 
     this.page = 0;
     this.$store.commit("product/setPage", this.page);
@@ -539,8 +769,9 @@ export default class ModalDialog extends Vue {
 
     this.$store.commit("product/setCategory", translit_name);
     setTimeout(() => {
-    this.viewingPage = this.tabMenu.findIndex(x => translit.transform(x.name, "_") == this.stateModal.sub_tab);
-      
+      this.viewingPage = this.tabMenu.findIndex(
+        (x) => translit.transform(x.name, "_") == this.stateModal.sub_tab
+      );
     }, 200);
 
     this.$store.dispatch("product/init");
@@ -589,6 +820,22 @@ export default class ModalDialog extends Vue {
   setPicked(id) {
     this.picked = id;
   }
+  setUserProduct(item) {
+    this.productUser.user_choice[item.sheet_title] = {
+      id: item.id_product,
+      title: item.title,
+      price: item.price,
+      img: item.imgs[0],
+      about: item.about,
+      sheet_title: item.sheet_title,
+    };
+    this.priceSum = 0;
+    Object.values(this.productUser.user_choice).forEach((item) => {
+      this.priceSum = this.priceSum + item.price;
+    });
+    // this.priceSum = this.priceSum + item.price;
+    console.log(this.productUser);
+  }
 
   general_navigation = {
     slidesToShow: this.$device.isMobile ? 1 : 3,
@@ -629,6 +876,7 @@ export default class ModalDialog extends Vue {
     // console.log(page);
   }
   mounted() {
+    this.viewingPage = 0;
     // console.log(this.stateModal.tab);
     this.$store.commit("product/setLimit", this.$device.isMobile ? 2 : 4);
     this.$store.dispatch("product/init");
