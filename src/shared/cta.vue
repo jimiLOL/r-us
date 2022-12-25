@@ -34,7 +34,7 @@
       <span>Итоговая стоимость</span>
       <span class="font-bold text-lg">{{ price }} руб</span>
     </div>
-    <div v-if="!callFrom">
+    <div v-if="!callFrom && !statusService">
       <button
         v-if="!buttonActive"
         class="
@@ -125,12 +125,13 @@
         </button>
       </div>
     </div>
-    <div v-else class="flex flex-col gap-4">
+    <div v-if="callFrom && !statusService" class="flex flex-col gap-4">
       <span>Заказать обратный звонок</span>
       <input
         type="text"
         placeholder="Ваше имя"
         class="border-2 border-theme-1 rounded-lg p-2"
+        v-model="name"
       />
       <input
         type="text"
@@ -138,8 +139,21 @@
         placeholder="+7 (___) ___-__-__"
         class="border-2 border-theme-1 rounded-lg p-2"
         v-model="phone"
-      /><label v-if="phone.length > 9 && !validation" class="text-theme-7" for="phone">Проверьте правильность номера телефона</label>
-      <button class="py-4 bg-theme-1 rounded-md w-full" @click="sendData">Позвонить мне</button>
+      /><label v-if="phone.length >= 12 && !validation" class="text-theme-7" for="phone">Проверьте правильность номера телефона</label>
+      <button :class="['inline-flex', 'justify-center', 'gap-2', 'py-4', 'rounded-md', 'w-full', validation?'bg-theme-1':'cursor-not-allowed bg-theme-4']" @click="sendData">
+         <LoadingIcon
+         v-if="viewAnimation"
+            icon="puff"
+            color="black"
+            :class="`${$device.isMobile ? 'w-4 h-4' : 'w-4 h-4'}`"
+          />
+        Позвонить мне</button>
+    </div>
+    <div v-if="statusService" class="inline-flex flex-col gap-2">
+      <span>Спасибо за вашу заявку!</span>
+      <i>Номер вашей заявки: <span class="font-bold">{{numberBind}}</span></i>
+      <span>Мы свяжемся с вами в ближайшее время</span>
+      
     </div>
   </div>
 </template>
@@ -156,6 +170,8 @@ import {
 @Component({})
 export default class CtaButton extends Vue {
   @Prop({ type: Number, default: 0 }) price;
+  @Prop({ type: Boolean, default: false }) statusService;
+  @Prop({ type: String, default: '' }) numberBind;
 
   get faTelegram() {
     return faTelegramPlane;
@@ -166,6 +182,7 @@ export default class CtaButton extends Vue {
   phone = "";
   name = "";
   validation = true;
+  viewAnimation = false;
 
   @Watch("phone")
   validatePhone() {
@@ -178,6 +195,8 @@ export default class CtaButton extends Vue {
 
   sendData() {
     console.log(this.phone);
+    this.viewAnimation = true;
+    window.$nuxt.$emit("sendData", {phone: this.phone, name: this.name, price: this.price});
   }
 
   buttonActive = false;

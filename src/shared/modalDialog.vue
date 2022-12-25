@@ -463,15 +463,50 @@
         </div>
         <div
           v-else
-          class="flex flex-col p-6 gap-4 overflow-y-scroll "
+          class="flex flex-col p-6 w-full gap-2 overflow-y-scroll "
         >
           <div
             :class="[
               'grid',
               $device.isMobile ? 'grid-cols-1 h-screen' : 'grid-cols-4',
-              'gap-6',
+              'gap-3',
             ]"
-          >
+          > <button
+              type="button"
+              class="
+                absolute
+                top-2
+                right-2
+                text-gray-400
+                bg-transparent
+                hover:bg-gray-200 hover:text-gray-900
+                rounded-lg
+                text-sm
+                p-1.5
+                ml-auto
+                inline-flex
+                items-start
+                self-start
+                justify-self-start
+                dark:hover:bg-gray-600 dark:hover:text-white
+              "
+              data-modal-toggle="defaultModal"
+              @click="closeModalWindow"
+            >
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
             <div
               :class="[
                 $device.isMobile ? 'justify-self-center' : 'col-span-3',
@@ -586,7 +621,7 @@
                 </div>
               </div>
             </div>
-            <CtaButton :price="priceSum" />
+            <CtaButton :price="priceSum" :statusService="statusService" :numberBind="numberBind"/>
             <div v-if="$device.isMobile" class="justify-self-center flex h-max w-48 my-6 py-2 self-center">
                 <button
                   class="
@@ -638,6 +673,7 @@ import SvgFilter from "~/assets/imgs/shared/filter.svg";
 
 import CtaButton from "~/shared/cta.vue";
 const translit = new CyrillicToTranslit();
+import shopApi from "~/api/shop";
 
 // lazysizes.cfg.blurupMode = "always";
 
@@ -659,6 +695,7 @@ export default class ModalDialog extends Vue {
   filterOpen = false;
   selectPrice = "all";
   imgSwitcher = { img0: 0, img1: 0, img2: 0, img3: 0, img4: 0 };
+  numberBind = '';
 
   page = 0;
 
@@ -864,6 +901,7 @@ export default class ModalDialog extends Vue {
     focusOnSelect: true,
   };
   count = 1;
+  statusService = false;
 
   goto(index, i) {
     this.imgSwitcher[`img${index}`] = i;
@@ -880,6 +918,20 @@ export default class ModalDialog extends Vue {
     // console.log(this.stateModal.tab);
     this.$store.commit("product/setLimit", this.$device.isMobile ? 2 : 4);
     this.$store.dispatch("product/init");
+
+    window.$nuxt.$on('sendData', (data)=> {
+      console.log(data);
+      let newData = Object.assign({}, this.productUser, data)
+      shopApi.newBidForСalculator(newData).then((res) => {
+        console.log(res);
+        if (res.code == 200) {
+          this.statusService = true;
+          this.numberBind = res.number_bin;
+        
+        }
+      });
+
+    })
   }
 }
 </script>

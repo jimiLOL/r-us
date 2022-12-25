@@ -9,6 +9,7 @@ return res.json()
 }).catch(e=> {
 console.log(e)
 }),
+newBidForСalculator: async (UserProduct: any) => await fetch(`${url}/newrequest`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(UserProduct) }).then((res)=> {  if (res.ok) {return res.json()} }).catch(e=> {console.log(e)}), 
 }
 
 export default shopApi

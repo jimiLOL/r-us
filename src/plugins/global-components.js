@@ -14,11 +14,14 @@ import Vue from 'vue'
 import * as featherIcons from "vue-feather-icons";
 import Pagination from "~/shared/pagination.vue";
 
+import LoadingIcon from "~/global-component/loading-icon/Main.vue";
 
 // import Tippy from "~/components/tippy/Main.vue";
 
 
 Vue.component("Pagination", Pagination);
+Vue.component("LoadingIcon", LoadingIcon);
+
 
 
 
