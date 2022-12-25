@@ -21,6 +21,11 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'apple-touch-icon', type: 'image/png', href: '/apple-touch-icon.png' },
+      { rel: 'icon', type: 'image/png', href: '/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', href: '/favicon-16x16.png' },
+      { rel: 'manifest', type: 'image/png', href: '/site.webmanifest' },
+      { rel: 'mask-icon', type: 'image/png', href: '/safari-pinned-tab.svg' },
       // {
       //   rel: "stylesheet",
       //   href:

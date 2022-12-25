@@ -13,7 +13,7 @@
     >
       <NuxtLink to="/" class="flex items-center">
         <img
-          src="https://s3-alpha-sig.figma.com/img/96b7/f68a/9d4964aea26fde815a6d55c29d22041d?Expires=1670198400&Signature=UsBhBSQkY5Wd8C-SNTG4mi8Ew57saGxrA8akQk2TXd3Q~zvF5R6Vkqer31yBAjb1r~xUlIHe7wJDYEQ9mFOOdkOtNfvls6f01FhONLznIzdkZ0OoxoM8xS3NIZeXbIJ4BDzAkE3HkwILAB-WMZo2XLnvpGh5Ms0U2c4XtZ2pcNGoL3HGCjwMHTDvA5ob5Tmww7r7plLjaKhBNsPHh4MlbFg-ea~41SMdR1-xOS8GroDfy0f3NVxXOvT5x55MylDHHFeAtP473E6Olv4nkLf9MbRpVigd554pMS8fE0ev93x3BMiBkK9qNS5sCej~v5W0TnApIVDLj1XAMFhA~fYJYg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          :src="require('@/assets/imgs/9d4964aea26fde815a6d55c29d22041d.png')"
           class="w-24"
           alt="Flowbite Logo"
         />
