@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require("path");
 
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -8,7 +9,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Ритуальные услуги',
+    titleTemplate: '%s - Ритуальная служба Кургана',
+    title: 'Ритуальные услуги Курган',
     htmlAttrs: {
       lang: 'ru'
     },
@@ -90,6 +92,7 @@ export default {
       new webpack.ProvidePlugin({
         cash: "cash-dom",
       }),
+    
     ],
     postcss: {
       // Add plugin names as key and arguments as value
@@ -128,6 +131,10 @@ export default {
         test: /\.svg$/,
         use: ['babel-loader', 'vue-svg-loader'],
       });
+
+      
+
+      
       
     },
   },

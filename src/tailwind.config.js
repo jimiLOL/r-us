@@ -77,7 +77,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        raleway: ['Raleway', 'sans-serif'],
+        raleway: ['Raleway', 'sans-serif',],
       },
     }
   },

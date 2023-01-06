@@ -7,15 +7,19 @@
       !$device.isMobile ? 'img_bck' : '',
     ]"
   >
+  <div>
+   <notifications class="rounded-xl text-theme-8 font-semibold" />
+    
+  </div>
     <div class="site__container">
       <div
         :class="[
-          !$device.isMobile && hoverEnable ? 'img-position h-screen' : '',
+          !$device.isMobile && computedProp ? 'img-position h-screen' : '',
         ]"
         ref="header"
       >
         <header :class="[$device.isMobile ? 'px-2' : 'px-6']">
-          <div v-if="observerInit" ref="header_svg">
+          <div v-if="observerInit && $route.name == 'index'" ref="header_svg">
             <svg
               v-for="(item, index) in 30"
               :key="index"
@@ -35,7 +39,7 @@
 
       <section
         id="content"
-        :class="['site__body', 'xl:py-4', $device.isMobile ? 'px-2' : 'px-6']"
+        :class="['site__body', 'xl:py-4', $device.isMobile ? 'px-2' : 'px-6', 'h-full']"
       >
         <slot />
       </section>
@@ -71,6 +75,10 @@ export default class Layout extends Vue {
   // }
   // hoverEnable = true;
 
+  get computedProp() {
+    return this.$route.name == 'index' ? true : false
+  }
+
   bodyClasses = ["disable-transitions"];
   observer = null;
   observerInit = false;
@@ -88,7 +96,7 @@ export default class Layout extends Vue {
         if (entries[0].isIntersecting) {
           let allSvg = cash(vm.$refs.header_svg).find("svg");
 
-          // svgAnimate(allSvg);
+          svgAnimate(allSvg);
         }
       }, 500);
 

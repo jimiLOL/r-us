@@ -80,7 +80,7 @@ const dataMenuLeft = [
   },
   {
     type: 'link',
-    title: 'Статьи',
+    title: 'Полезная информация',
     url: '/blog',
     children: [
       {

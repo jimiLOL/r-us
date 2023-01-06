@@ -1,6 +1,10 @@
 // import {HandySvg} from 'handy-svg';
+
 import Worker from "worker-loader!~/worker_dir/worker_3d.js";
+
 import cash from 'cash-dom'
+
+
 
 
 export default (_, inject) => {
@@ -11,7 +15,7 @@ export default (_, inject) => {
     createWorker () {
       return new Worker()
     }
-  })
+  });
 
 
 }

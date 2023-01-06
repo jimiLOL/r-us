@@ -12,6 +12,7 @@
     "node": "14.16.0"
   },
   "dependencies": {
+    "@blowstack/ckeditor-nuxt": "^0.6.0",
     "@nuxtjs/composition-api": "^0.33.1",
     "@nuxtjs/device": "^2.1.0",
     "cash-dom": "^8.1.1",

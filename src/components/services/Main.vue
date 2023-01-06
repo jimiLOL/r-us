@@ -8,18 +8,54 @@
       'px-4',
     ]"
   >
-    <div :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10']">
+    <div
+      v-if="!load && !Object.keys($route.params).length"
+      :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10']"
+    >
       <nav>
         <ul class="text-bold text-center whitespace-nowrap">
-          <li class="py-4">Захоронение</li>
-          <li class="py-4">Место на кладбище</li>
-          <li class="py-4">Груз 200</li>
-          <li class="py-4">Кремация</li>
+          <li
+            v-for="item in categories"
+            :key="item._id"
+            class="py-4 cursor-pointer hover:underline"
+            @click="$router.push(`${$route.path}/${item.category_en}`)"
+          >
+            {{ item.category }}
+          </li>
         </ul>
       </nav>
     </div>
-    <div class="flex flex-col gap-4 pt-20">
+    <div
+      v-else-if="load"
+      :class="[
+        $device.isMobile ? '' : 'w-3/10 pt-20',
+        'basis-3/10',
+        'animate-pulse',
+      ]"
+    >
       <div
+        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+      ></div>
+      <div
+        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+      ></div>
+      <div
+        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+      ></div>
+      <div
+        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+      ></div>
+    </div>
+    <div v-else class="mt-4 mx-4">
+      <nuxt-link to="/services" class="inline-flex gap-1 hover:underline"
+        ><ChevronsLeftIcon aria-hidden="true" />Назад</nuxt-link
+      >
+    </div>
+    
+      <TransitionGroup name="slide-in" tag="div" class="flex flex-col gap-4 pt-20 w-full">
+      <div
+        v-for="post in posts"
+        :key="post._id"
         :class="[
           'flex',
           $device.isMobile ? 'flex-col max-h-96' : 'flex-row max-h-36',
@@ -30,28 +66,51 @@
           'rounded-lg',
           'border-theme-11',
           'border-solid',
+          load ? 'animate-pulse' : '',
+          'an_hov'
         ]"
+        :disabled="load"
+         @click="
+            $router.push(`/services/${post.category_en}?post=${post.title_en}`)
+          "
       >
         <img
-          :class="[$device.isMobile ? 'w-full' : 'w-1/3', 'rounded-md']"
-          src="https://s3-alpha-sig.figma.com/img/2572/0f77/0a1518dc67a52b047586e1a35870f8c9?Expires=1668988800&Signature=Di4upzz7kPUYrbyJO07BCMaxauFQSUAoVlPrwCNWgUh7DE3JP2fYkKxkX71sRM2unbLA2k390Hre9jxLrOxQheYdC9~4F2oId9Ij4Pk73wFY9Jd1XEuCn-~qLby2z-fHJNHM27jVh75BliJF3i5X3mcrgcyfgL-PidUwsYwulOf0Pazgn4JqMtxnnEko1nr-htCc7lNVu3XMuzbxwabbhAxsZns1AjPwKt8Jo6RPicL40Hn9Rs8rleBwrelw4~N-fgKlqnZLGn5TX6CBL61Y5EaSRyCizrOgGa61lvxHg3ybDNTrcsQh4~sAoWwdxwPS~OBzOgRNMcFKGuBevhndoQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-          alt=""
+          :class="[$device.isMobile ? 'w-full' : 'w-48', 'rounded-md']"
+          :src="`https://drive.google.com/uc?export=view&id=${post.picterUrl}`"
+          :alt="`Услуги ${post.title}`"
         />
         <div
           :class="[
             'flex',
             'flex-col',
             'w-full',
-            $device.isMobile ? 'text-center' : '',
+            'cursor-pointer',
+            $device.isMobile ? 'text-center px-2' : '',
+            load ? 'animate-pulse' : '',
           ]"
         >
-          <h3 class="text-bold text-2xl">Надписи на православном кресте</h3>
-          <p>
-            Если рассмотреть православный крестик, то можно заметить
-            многочисленные надписи.
+          <h3
+            :class="[
+              load
+                ? 'h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mt-2'
+                : 'text-bold text-2xl hover:underline',
+            ]"
+          >
+            {{ load ? "" : post.h1 }}
+          </h3>
+          <p
+            :class="[
+              load
+                ? 'h-2 w-96 mt-4 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5'
+                : '', 
+                $device.isMobile ? 'truncate' : '',
+            ]"
+          >
+            {{ load ? "" : kitcut(post.description, 150) }}
           </p>
         </div>
         <button
+        v-if="!$device.isMobile"
           :class="[
             'rounded-lg',
             'border-2',
@@ -61,28 +120,237 @@
             'py-4',
             'px-1',
             'my-4',
+            'cursor-pointer',
             'hover:text-black',
             'hover:bg-theme-1',
             'hover:border-black',
             'focus:text-black',
             'focus:bg-theme-1',
             'focus:border-black',
+            load ? 'animate-pulse bg-gray-200 w-96' : '',
           ]"
+          :disabled="load"
+          @click="
+            $router.push(`/services/${post.category_en}?post=${post.title_en}`)
+          "
         >
-          Выбрать
+          {{ load ? "" : "Выбрать" }}
         </button>
       </div>
-
-       
-    </div>
+      </TransitionGroup>
+ 
   </div>
 </template>
 
 
 
 <script>
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
+import shopApi from "~/api/shop";
 
 @Component({})
-export default class Services extends Vue {}
+export default class Services extends Vue {
+  @Prop({ type: String, required: true }) category_en;
+  load = false;
+  categories = [
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+  ];
+  posts = [
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+    {
+      description: "",
+      direction: "services",
+      h1: "",
+      title_en: "",
+      category: "",
+      category_en: "",
+    },
+  ];
+
+  kitcut(text, limit) {
+    text = text.trim();
+    if (text.length <= limit) return text;
+
+    text = text.slice(0, limit);
+
+    return text.trim() + "...";
+  }
+
+  async fetchData(data) {
+    await shopApi
+      .getCategory(data)
+      .then((res) => {
+        console.log(res);
+        this.categories.length = 0;
+        this.posts.length = 0;
+
+        this.posts = res;
+        res.forEach((ele) => {
+          const filter = this.categories.filter(
+            (x) => x.category_en === ele.category_en
+          );
+          if (!filter.length) {
+            this.categories.push(ele);
+          }
+        });
+        this.load = false;
+      })
+      .catch((err) => {
+        this.load = false;
+        Vue.notify({
+          group: "app",
+          type: "error",
+          title: "Ошибка",
+          text: "Ошибка при загрузке данных",
+        });
+      });
+  }
+
+  async mounted() {
+    console.log(this.$route);
+    this.load = true;
+    const data = {
+      direction: "services",
+      category_en: this.category_en,
+      offset: 0,
+    };
+    this.fetchData(data);
+  }
+}
 </script>
+
+
+
+<style lang="scss" scoped>
+.slide-in {
+  &-move {
+    transition: opacity 0.5s linear, transform 0.5s ease-in-out;
+  }
+
+  &-leave-active {
+    transition: opacity 0.4s linear,
+      transform 0.4s cubic-bezier(0.5, 0, 0.7, 0.4); //cubic-bezier(.7,0,.7,1);
+    transition-delay: calc(0.1s * (var(--total) - var(--i)));
+  }
+
+  &-enter-active {
+    transition: opacity 0.5s linear,
+      transform 0.5s cubic-bezier(0.2, 0.5, 0.1, 0.5);
+    transition-delay: calc(0.1s * var(--i));
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+
+  &-enter {
+    transform: translateX(-1em);
+  }
+  &-leave-to {
+    transform: translateX(1em);
+  }
+}
+</style>

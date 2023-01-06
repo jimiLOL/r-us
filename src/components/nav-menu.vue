@@ -63,6 +63,7 @@
                 hover:underline
                 md:hover:text-theme-1 md:p-0
                 dark:border-gray-700
+                text-center
               "
             >
               {{ item.title }}

@@ -27,7 +27,7 @@
             <ul>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/services"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1
@@ -49,7 +49,7 @@
               </li>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/price"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1
@@ -60,13 +60,13 @@
               </li>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/blog"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1
                   "
                   no-prefetch
-                  >Статьи</NuxtLink
+                  >Полезная информация</NuxtLink
                 >
               </li>
             </ul>
@@ -84,7 +84,7 @@
               </li>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/gerbovoe_svidetel_stvo_o_smerti"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1
@@ -95,13 +95,13 @@
               </li>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/chto_poluchit_spravku_11"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1
                   "
                   no-prefetch
-                  >Справка о смерти по форие 11</NuxtLink
+                  >Справка о смерти по форме 11</NuxtLink
                 >
               </li>
               <li class="my-0.5">
@@ -145,7 +145,7 @@
               </li>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/gruz_200"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1
@@ -261,7 +261,7 @@
     </div>
     <div :class="['flex', $device.isMobile?'flex-col items-center content-center mt-8 text-center gap-9':'gap-44 mt-4 pb-4', 'justify-start']">
       <div>
-        <span>Все права защищены © 2022 </span>
+        <span>Все права защищены © 2001 - {{date}} </span>
       </div>
       <div :class="['flex', $device.isMobile?'flex-col gap-2':'gap-4']">
         <a href="/">Правила использования</a>
@@ -276,5 +276,7 @@
 import { Vue, Component } from "vue-property-decorator";
 
 @Component({})
-export default class Footer extends Vue {}
+export default class Footer extends Vue {
+  date = new Date().getFullYear();
+}
 </script>
