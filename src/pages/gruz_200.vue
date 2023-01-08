@@ -134,7 +134,7 @@ export default class MestoNaKladbishche extends Vue {
   post = {
     title: 'Груз 200',
     picterUrl: '1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU',
-    category: 'Закоронения',
+    category: 'Захоронения',
     category_en: 'zakoronenia',
     items: [{title: 'Омовение'}, {title: 'Транспортировка тела'},{title: 'Гроб'}]
 

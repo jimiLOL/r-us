@@ -95,7 +95,7 @@
         О том, как получить место на кладбище для погребения человека, вы
         узнаете в городской ритуальной службе
         <a class="text-theme-1" href="https://zpd45.ru">zpd45.ru</a> по номеру
-        круглосуточной информационной линии +7 (3522) 610‒630. Специалисты
+        круглосуточной информационной линии <a href="tel:+7 (3522) 610‒630">+7 (3522) 610‒630</a>. Специалисты
         <a class="text-theme-1" href="https://zpd45.ru">zpd45.ru</a>
         гарантированно помогут вам получить место на кладбище в подходящем
         варианте.
@@ -162,7 +162,7 @@ export default class MestoNaKladbishche extends Vue {
   post = {
     title: 'Место на кладбище в Кургане и Курганской области',
     picterUrl: '1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU',
-    category: 'Закоронения',
+    category: 'Захоронения',
     category_en: 'zakoronenia',
     items: [{title: 'Омовение'}, {title: 'Транспортировка тела'},{title: 'Гроб'}]
 

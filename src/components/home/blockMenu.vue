@@ -50,6 +50,7 @@
             border-2
             rounded-lg
             border-theme-1 border-solid
+            hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
             gap-4
             p-8
@@ -78,6 +79,7 @@
             border-2
             rounded-lg
             border-theme-1 border-solid
+            hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
             gap-4
             p-8
@@ -105,6 +107,7 @@
             border-2
             rounded-lg
             border-theme-1 border-solid
+            hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
             gap-4
             p-8
@@ -121,7 +124,7 @@
           </p>
         </div>
       </NuxtLink>
-      <NuxtLink to="/">
+      <NuxtLink to="/kremaciya">
         <div
           class="
             flex flex-col
@@ -130,7 +133,8 @@
             border-2
             rounded-lg
             border-theme-1 border-solid
-            hover:transform hover:scale-95 hover:underline
+            hover:border-theme-2 hover:rounded-md
+            hover:transform hover:scale-115 hover:underline
             gap-4
             p-8
             h-80
@@ -155,12 +159,14 @@
             border-2
             rounded-lg
             border-theme-1 border-solid
+            hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
             gap-4
             p-8
             h-80
             cursor-pointer
           "
+          @click="openModal"
         >
           <img src="/calculation/Vector.svg" alt="" />
 
@@ -180,6 +186,7 @@
             border-2
             rounded-lg
             border-theme-1 border-solid
+            hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
             gap-4
             p-8
@@ -206,7 +213,11 @@
 import { Vue, Component } from "vue-property-decorator";
 
 @Component({})
-export default class BlockMenu extends Vue {}
+export default class BlockMenu extends Vue {
+  openModal() {
+    window.$nuxt.$emit("switchModal", true);
+  }
+}
 </script>
 
 <style scoped>

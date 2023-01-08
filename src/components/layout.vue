@@ -7,10 +7,9 @@
       !$device.isMobile ? 'img_bck' : '',
     ]"
   >
-  <div>
-   <notifications class="rounded-xl text-theme-8 font-semibold" />
-    
-  </div>
+    <div>
+      <notifications class="rounded-xl text-theme-8 font-semibold" />
+    </div>
     <div class="site__container">
       <div
         :class="[
@@ -39,7 +38,12 @@
 
       <section
         id="content"
-        :class="['site__body', 'xl:py-4', $device.isMobile ? 'px-2' : 'px-6', 'h-full']"
+        :class="[
+          'site__body',
+          'xl:py-4',
+          $device.isMobile ? 'px-2' : 'px-6',
+          'h-full',
+        ]"
       >
         <slot />
       </section>
@@ -76,7 +80,7 @@ export default class Layout extends Vue {
   // hoverEnable = true;
 
   get computedProp() {
-    return this.$route.name == 'index' ? true : false
+    return this.$route.name == "index" ? true : false;
   }
 
   bodyClasses = ["disable-transitions"];
@@ -89,14 +93,13 @@ export default class Layout extends Vue {
     this.$nextTick(() => {
       this.bodyClasses = [];
     });
-    this.init()
+    this.init();
   }
 
   init() {
     let vm = this;
-    
 
-      function callback(entries, observer) {
+    function callback(entries, observer) {
       vm.observerInit = entries[0].isIntersecting;
       console.log("observer " + entries[0].isIntersecting);
       setTimeout(() => {
@@ -110,7 +113,7 @@ export default class Layout extends Vue {
       console.log(observer);
       console.log("callback");
     }
-     function svgAnimate(allSvg) {
+    function svgAnimate(allSvg) {
       // let allSvg = cash(vm.$refs.header).find("svg");
       Object.values(allSvg).forEach((e, i) => {
         if (typeof e == "object") {
@@ -167,7 +170,7 @@ export default class Layout extends Vue {
 
       // console.log(lineLength);
     }
-      if (!this.$device.isMobile) {
+    if (!this.$device.isMobile) {
       this.observer = new IntersectionObserver(callback);
       this.observer.observe(this.$refs.header);
     }
@@ -178,16 +181,9 @@ export default class Layout extends Vue {
     await this.$nextTick();
     this.init();
 
-
-  
-
     // let allSvg = cash(this.$refs.header).find("svg");
 
     // console.log(!this.$device.isMobile);
-
-  
-
-   
 
     this.bodyClasses = [];
   }

@@ -233,7 +233,7 @@ export default class MestoNaKladbishche extends Vue {
   post = {
     title: "Кремация или захоронение на кладбище?",
     picterUrl: "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU",
-    category: "Закоронения",
+    category: "Захоронения",
     category_en: "zakoronenia",
     items: [
       { title: "Омовение" },

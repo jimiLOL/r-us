@@ -189,7 +189,7 @@ export default class MestoNaKladbishche extends Vue {
    post = {
     title: 'Как получить гербовое свидетельство о смерти?',
     picterUrl: '1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU',
-    category: 'Закоронения',
+    category: 'Захоронения',
     category_en: 'zakoronenia',
     items: [{title: 'Омовение'}, {title: 'Транспортировка тела'},{title: 'Гроб'}]
 

@@ -128,7 +128,7 @@ export default class MestoNaKladbishche extends Vue {
   post = {
     title: "Для чего нужна справка о смерти?",
     picterUrl: "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU",
-    category: "Закоронения",
+    category: "Захоронения",
     category_en: "zakoronenia",
     items: [
       { title: "Омовение" },
