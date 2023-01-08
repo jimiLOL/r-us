@@ -125,9 +125,9 @@ const OrbitControls = require("three-orbit-controls")(THREE);
 export default class Hover extends Vue {
   @Prop({ type: Number, default: 1200 }) clientHeight;
 
-  @Watch('clientHeight')
+  @Watch("clientHeight")
   resize() {
-    console.log('Resize..');
+    console.log("Resize..");
     console.log(this.clientHeight);
   }
   // clientHeight = null;
@@ -230,7 +230,6 @@ export default class Hover extends Vue {
       imgArray.forEach((img) => {
         obj.push({ file: img });
       });
-     
 
       loadImages(imgArray, (loadedImages) => {
         worker.onmessage = (e) => {
@@ -262,8 +261,6 @@ export default class Hover extends Vue {
             let h = loadedImages[0].height;
 
             vm.backgroundWraper = vm.$refs.canavs_wraper.clientWidth;
-
-            
 
             let uvs = new Float32Array((positions.length / 3) * 2); // необходимые вершины для отресовк
 
@@ -448,10 +445,8 @@ export default class Hover extends Vue {
       // scene.rotation.y += (scene.destination.y - scene.rotation.y) * 0.05;
       renderer.render(scene, camera);
     }
-   init();
+    init();
     animate();
-
- 
   }
 }
 </script>

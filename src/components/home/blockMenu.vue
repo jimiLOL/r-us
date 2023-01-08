@@ -41,131 +41,161 @@
         'h-max',
       ]"
     >
-      <div
-        class="
-          flex flex-col
-          items-center
-          align-baseline
-          border-2
-          rounded-lg
-          border-theme-1 border-solid
-          gap-4
-          p-8
-        "
-      >
-        <!-- <div class="cross w-full h-36">
+      <NuxtLink to="/">
+        <div
+          class="
+            flex flex-col
+            items-center
+            align-baseline
+            border-2
+            rounded-lg
+            border-theme-1 border-solid
+            hover:transform hover:scale-95 hover:underline
+            gap-4
+            p-8
+            h-80
+            cursor-pointer
+          "
+        >
+          <!-- <div class="cross w-full h-36">
             
         </div> -->
-        <img src="/cross/Group.svg" alt="" />
+          <img src="/cross/Group.svg" alt="" />
 
-        <span>Захоронение</span>
-        <p>
-          И нет сомнений, что многие известные личности преданы
-          социально-демократической анафеме.
-        </p>
-      </div>
-      <div
-        class="
-          flex flex-col
-          items-center
-          align-baseline
-          border-2
-          rounded-lg
-          border-theme-1 border-solid
-          gap-4
-          p-8
-        "
-      >
-        <!-- <div class="cross w-full h-36">
+          <span>Захоронение</span>
+          <p>
+            И нет сомнений, что многие известные личности преданы
+            социально-демократической анафеме.
+          </p>
+        </div>
+      </NuxtLink>
+      <NuxtLink to="/mesto_na_kladbishche">
+        <div
+          class="
+            flex flex-col
+            items-center
+            align-baseline
+            border-2
+            rounded-lg
+            border-theme-1 border-solid
+            hover:transform hover:scale-95 hover:underline
+            gap-4
+            p-8
+            h-80
+            cursor-pointer
+          "
+        >
+          <!-- <div class="cross w-full h-36">
             
         </div> -->
-        <img src="/plate/Union.svg" alt="" />
-        <span>Место на кладбище</span>
-        <p>
-          И нет сомнений, что многие известные личности преданы
-          социально-демократической анафеме.
-        </p>
-      </div>
-      <div
-        class="
-          flex flex-col
-          items-center
-          align-baseline
-          border-2
-          rounded-lg
-          border-theme-1 border-solid
-          gap-4
-          p-8
-        "
-      >
-        <img src="/grob/grob.svg" alt="" />
+          <img src="/plate/Union.svg" alt="" />
+          <span>Место на кладбище</span>
+          <p>
+            И нет сомнений, что многие известные личности преданы
+            социально-демократической анафеме.
+          </p>
+        </div>
+      </NuxtLink>
+      <NuxtLink to="/gruz_200">
+        <div
+          class="
+            flex flex-col
+            items-center
+            align-baseline
+            border-2
+            rounded-lg
+            border-theme-1 border-solid
+            hover:transform hover:scale-95 hover:underline
+            gap-4
+            p-8
+            h-80
+            cursor-pointer
+          "
+        >
+          <img src="/grob/grob.svg" alt="" />
 
-        <span>Груз 200</span>
-        <p>
-          И нет сомнений, что многие известные личности преданы
-          социально-демократической анафеме.
-        </p>
-      </div>
-      <div
-        class="
-          flex flex-col
-          items-center
-          align-baseline
-          border-2
-          rounded-lg
-          border-theme-1 border-solid
-          gap-4
-          p-8
-        "
-      >
-        <img src="/creamation/Vector.svg" alt="" />
+          <span>Груз 200</span>
+          <p>
+            И нет сомнений, что многие известные личности преданы
+            социально-демократической анафеме.
+          </p>
+        </div>
+      </NuxtLink>
+      <NuxtLink to="/">
+        <div
+          class="
+            flex flex-col
+            items-center
+            align-baseline
+            border-2
+            rounded-lg
+            border-theme-1 border-solid
+            hover:transform hover:scale-95 hover:underline
+            gap-4
+            p-8
+            h-80
+            cursor-pointer
+          "
+        >
+          <img src="/creamation/Vector.svg" alt="" />
 
-        <span>Кремация</span>
-        <p>
-          И нет сомнений, что многие известные личности преданы
-          социально-демократической анафеме.
-        </p>
-      </div>
-      <div
-        class="
-          flex flex-col
-          items-center
-          align-baseline
-          border-2
-          rounded-lg
-          border-theme-1 border-solid
-          gap-4
-          p-8
-        "
-      >
-        <img src="/calculation/Vector.svg" alt="" />
+          <span>Кремация</span>
+          <p>
+            И нет сомнений, что многие известные личности преданы
+            социально-демократической анафеме.
+          </p>
+        </div>
+      </NuxtLink>
+      <NuxtLink to="/">
+        <div
+          class="
+            flex flex-col
+            items-center
+            align-baseline
+            border-2
+            rounded-lg
+            border-theme-1 border-solid
+            hover:transform hover:scale-95 hover:underline
+            gap-4
+            p-8
+            h-80
+            cursor-pointer
+          "
+        >
+          <img src="/calculation/Vector.svg" alt="" />
 
-        <span>Посчитать стоимость похорон</span>
-        <p>
-          И нет сомнений, что многие известные личности преданы
-          социально-демократической анафеме.
-        </p>
-      </div>
-      <div
-        class="
-          flex flex-col
-          items-center
-          align-baseline
-          border-2
-          rounded-lg
-          border-theme-1 border-solid
-          gap-4
-          p-8
-        "
-      >
-        <img src="/proof/proof.svg" alt="" />
+          <span>Посчитать стоимость похорон</span>
+          <p>
+            И нет сомнений, что многие известные личности преданы
+            социально-демократической анафеме.
+          </p>
+        </div>
+      </NuxtLink>
+      <NuxtLink to="/">
+        <div
+          class="
+             flex flex-col
+            items-center
+            align-baseline
+            border-2
+            rounded-lg
+            border-theme-1 border-solid
+            hover:transform hover:scale-95 hover:underline
+            gap-4
+            p-8
+            cursor-pointer
+            h-80
+          "
+        >
+          <img src="/proof/proof.svg" alt="" />
 
-        <span>Ритуальные услуги под ключ</span>
-        <p>
-          И нет сомнений, что многие известные личности преданы
-          социально-демократической анафеме.
-        </p>
-      </div>
+          <span>Ритуальные услуги под ключ</span>
+          <p>
+            И нет сомнений, что многие известные личности преданы
+            социально-демократической анафеме.
+          </p>
+        </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

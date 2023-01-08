@@ -19,7 +19,9 @@
     >
       <div class="flex flex-col items-center">
         <img
-          src="https://s3-alpha-sig.figma.com/img/3f8d/80d5/602911a9c7259bcac02d76df8af549d8?Expires=1668988800&Signature=g9cdfJlt69GHm3NvVchLJT7Mi-s9t9~SbCCJD4i3ZDcsHVo4hwl32Ean3j87HK8NCY7GDn2lpYnL2zpiffBvVsq3jaB-FiYHcFDzmWH~dWEukhSiIWvqbyOFV6cyNwexrnYyNwuxSbYKnx2dVqaxdTrfnDtQd3eY3jvsgTblO7fZwkHblpSvgzXdBYXmQAhivtRBB8EDQD~DflWqF84P2ceG4ZP5wBcDN2Ve4U~oa3tKMxQ~R6a1JabVg9RWjJrUJg-J~-ozfnW44NGYK5GdT7yjOWgzlMLhKb0mxcAllKAZaq7B3jUhyHjE1R7tP5f8nnu2f3C~jyUTB2nnjAVDwg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        class="h-74"
+        :src="require('@/assets/imgs/employee/602911a9c7259bcac02d76df8af549d8.jpg')"
+        
           alt=""
         />
         <span class="text-lg text-bold">Григорий</span>
@@ -27,39 +29,44 @@
       </div>
       <div class="flex flex-col items-center">
         <img
-          src="https://s3-alpha-sig.figma.com/img/3f8d/80d5/602911a9c7259bcac02d76df8af549d8?Expires=1668988800&Signature=g9cdfJlt69GHm3NvVchLJT7Mi-s9t9~SbCCJD4i3ZDcsHVo4hwl32Ean3j87HK8NCY7GDn2lpYnL2zpiffBvVsq3jaB-FiYHcFDzmWH~dWEukhSiIWvqbyOFV6cyNwexrnYyNwuxSbYKnx2dVqaxdTrfnDtQd3eY3jvsgTblO7fZwkHblpSvgzXdBYXmQAhivtRBB8EDQD~DflWqF84P2ceG4ZP5wBcDN2Ve4U~oa3tKMxQ~R6a1JabVg9RWjJrUJg-J~-ozfnW44NGYK5GdT7yjOWgzlMLhKb0mxcAllKAZaq7B3jUhyHjE1R7tP5f8nnu2f3C~jyUTB2nnjAVDwg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        class="h-74"
+          :src="require('@/assets/imgs/employee/602911a9c7259bcac02d76df8af549d8.jpg')"
           alt=""
         />
-        <span class="text-lg text-bold">Григорий</span>
-        <span class="text-normal">Директор</span>
+        <span class="text-lg text-bold">Светлана</span>
+        <span class="text-normal">Бухгалтер</span>
       </div>
       <div class="flex flex-col items-center">
         <img
-          src="https://s3-alpha-sig.figma.com/img/3f8d/80d5/602911a9c7259bcac02d76df8af549d8?Expires=1668988800&Signature=g9cdfJlt69GHm3NvVchLJT7Mi-s9t9~SbCCJD4i3ZDcsHVo4hwl32Ean3j87HK8NCY7GDn2lpYnL2zpiffBvVsq3jaB-FiYHcFDzmWH~dWEukhSiIWvqbyOFV6cyNwexrnYyNwuxSbYKnx2dVqaxdTrfnDtQd3eY3jvsgTblO7fZwkHblpSvgzXdBYXmQAhivtRBB8EDQD~DflWqF84P2ceG4ZP5wBcDN2Ve4U~oa3tKMxQ~R6a1JabVg9RWjJrUJg-J~-ozfnW44NGYK5GdT7yjOWgzlMLhKb0mxcAllKAZaq7B3jUhyHjE1R7tP5f8nnu2f3C~jyUTB2nnjAVDwg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        class="h-74"
+          :src="require('@/assets/imgs/employee/602911a9c7259bcac02d76df8af549d8.jpg')"
           alt=""
         />
-        <span class="text-lg text-bold">Григорий</span>
-        <span class="text-normal">Директор</span>
+        <span class="text-lg text-bold">Максим</span>
+        <span class="text-normal">Менеджер</span>
       </div>
       <div class="flex flex-col items-center">
         <img
-          src="https://s3-alpha-sig.figma.com/img/3f8d/80d5/602911a9c7259bcac02d76df8af549d8?Expires=1668988800&Signature=g9cdfJlt69GHm3NvVchLJT7Mi-s9t9~SbCCJD4i3ZDcsHVo4hwl32Ean3j87HK8NCY7GDn2lpYnL2zpiffBvVsq3jaB-FiYHcFDzmWH~dWEukhSiIWvqbyOFV6cyNwexrnYyNwuxSbYKnx2dVqaxdTrfnDtQd3eY3jvsgTblO7fZwkHblpSvgzXdBYXmQAhivtRBB8EDQD~DflWqF84P2ceG4ZP5wBcDN2Ve4U~oa3tKMxQ~R6a1JabVg9RWjJrUJg-J~-ozfnW44NGYK5GdT7yjOWgzlMLhKb0mxcAllKAZaq7B3jUhyHjE1R7tP5f8nnu2f3C~jyUTB2nnjAVDwg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        class="h-74"
+          :src="require('@/assets/imgs/employee/602911a9c7259bcac02d76df8af549d8.jpg')"
           alt=""
         />
-        <span class="text-lg text-bold">Григорий</span>
-        <span class="text-normal">Директор</span>
+        <span class="text-lg text-bold">Евгений</span>
+        <span class="text-normal">Оператор</span>
       </div>
       <div class="flex flex-col items-center">
         <img
-          src="https://s3-alpha-sig.figma.com/img/3f8d/80d5/602911a9c7259bcac02d76df8af549d8?Expires=1668988800&Signature=g9cdfJlt69GHm3NvVchLJT7Mi-s9t9~SbCCJD4i3ZDcsHVo4hwl32Ean3j87HK8NCY7GDn2lpYnL2zpiffBvVsq3jaB-FiYHcFDzmWH~dWEukhSiIWvqbyOFV6cyNwexrnYyNwuxSbYKnx2dVqaxdTrfnDtQd3eY3jvsgTblO7fZwkHblpSvgzXdBYXmQAhivtRBB8EDQD~DflWqF84P2ceG4ZP5wBcDN2Ve4U~oa3tKMxQ~R6a1JabVg9RWjJrUJg-J~-ozfnW44NGYK5GdT7yjOWgzlMLhKb0mxcAllKAZaq7B3jUhyHjE1R7tP5f8nnu2f3C~jyUTB2nnjAVDwg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        class="h-74"
+          :src="require('@/assets/imgs/employee/602911a9c7259bcac02d76df8af549d8.jpg')"
           alt=""
         />
         <span class="text-lg text-bold">Григорий</span>
-        <span class="text-normal">Директор</span>
+        <span class="text-normal">Бригадир насильщиков</span>
       </div>
       <div class="flex flex-col items-center">
         <img
-          src="https://s3-alpha-sig.figma.com/img/3f8d/80d5/602911a9c7259bcac02d76df8af549d8?Expires=1668988800&Signature=g9cdfJlt69GHm3NvVchLJT7Mi-s9t9~SbCCJD4i3ZDcsHVo4hwl32Ean3j87HK8NCY7GDn2lpYnL2zpiffBvVsq3jaB-FiYHcFDzmWH~dWEukhSiIWvqbyOFV6cyNwexrnYyNwuxSbYKnx2dVqaxdTrfnDtQd3eY3jvsgTblO7fZwkHblpSvgzXdBYXmQAhivtRBB8EDQD~DflWqF84P2ceG4ZP5wBcDN2Ve4U~oa3tKMxQ~R6a1JabVg9RWjJrUJg-J~-ozfnW44NGYK5GdT7yjOWgzlMLhKb0mxcAllKAZaq7B3jUhyHjE1R7tP5f8nnu2f3C~jyUTB2nnjAVDwg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        class="h-74"
+          :src="require('@/assets/imgs/employee/602911a9c7259bcac02d76df8af549d8.jpg')"
           alt=""
         />
         <span class="text-lg text-bold">Григорий</span>
