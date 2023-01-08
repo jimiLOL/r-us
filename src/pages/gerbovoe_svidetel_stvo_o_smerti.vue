@@ -1,5 +1,20 @@
 <template>
-  <div class="px-9 font-normal text-base">
+<div
+    :class="[
+      'flex',
+      $device.isMobile ? 'flex-col mb-6' : 'flex-row',
+      'justify-center',
+      'gap-6',
+      'px-4',
+    ]"
+  >
+    <MenuForPost category_en="all"/>
+
+    <div class="flex flex-col gap-4 pt-20 w-full px-9 font-normal text-base">
+    <HoverForPost :post="post"/>
+    <Pagination :category_en="post.category_en" :category="post.category" :title="post.title"/>
+
+
     <p>
       Смерть человека должна быть юридически признана государством с выдачей
       свидетельства о смерти. Этот документ включает такие детали, как
@@ -13,6 +28,8 @@
       личности умершего и является обязательным документом при организации
       похорон.
     </p>
+    <TablePriceforpost :post="post"/>
+
     <h1 class="text-theme-1 text-2xl my-4 ml-2">
       Новое гербовое свидетельство о смерти в {{date}} году
     </h1>
@@ -131,6 +148,8 @@
     <CtaGeneral class="my-4" />
     <InformationForHome direction="services" />
   </div>
+</div>
+
 </template> 
 
 
@@ -138,15 +157,23 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import CtaGeneral from "~/shared/ctaGeneral.vue";
 import InformationForHome from "~/components/home/informationBlock.vue";
+import MenuForPost from "~/components/menu_for_post/Main.vue";
+import Pagination from "~/components/pagination/Main.vue";
+import HoverForPost from "~/components/hover_for_post/Main.vue";
+import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
 
 @Component({
   components: {
     CtaGeneral,
     InformationForHome,
+      MenuForPost,
+    Pagination,
+    HoverForPost,
+    TablePriceforpost
   },
-  head() {
+  head(this: any) {
     return {
-      title: "Как получить гербовое свидетельство о смерти?",
+      title: this.post.title,
       meta: [
         {
           hid: "description_post",
@@ -159,5 +186,14 @@ import InformationForHome from "~/components/home/informationBlock.vue";
 })
 export default class MestoNaKladbishche extends Vue {
   date = new Date().getFullYear();
+   post = {
+    title: 'Как получить гербовое свидетельство о смерти?',
+    picterUrl: '1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU',
+    category: 'Закоронения',
+    category_en: 'zakoronenia',
+    items: [{title: 'Омовение'}, {title: 'Транспортировка тела'},{title: 'Гроб'}]
+
+
+  }
 }
 </script>

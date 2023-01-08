@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import { Getter } from "vuex-class";
 @Component({})
 export default class Layout extends Vue {
@@ -83,13 +83,20 @@ export default class Layout extends Vue {
   observer = null;
   observerInit = false;
 
-  async mounted() {
-    // console.log(this.$route);
-    await this.$nextTick();
+  @Watch("computedProp")
+  onRouteChange() {
+    this.bodyClasses = ["disable-transitions"];
+    this.$nextTick(() => {
+      this.bodyClasses = [];
+    });
+    this.init()
+  }
 
+  init() {
     let vm = this;
+    
 
-    function callback(entries, observer) {
+      function callback(entries, observer) {
       vm.observerInit = entries[0].isIntersecting;
       console.log("observer " + entries[0].isIntersecting);
       setTimeout(() => {
@@ -103,17 +110,7 @@ export default class Layout extends Vue {
       console.log(observer);
       console.log("callback");
     }
-
-    // let allSvg = cash(this.$refs.header).find("svg");
-
-    console.log(!this.$device.isMobile);
-
-    if (!this.$device.isMobile) {
-      this.observer = new IntersectionObserver(callback);
-      this.observer.observe(this.$refs.header);
-    }
-
-    function svgAnimate(allSvg) {
+     function svgAnimate(allSvg) {
       // let allSvg = cash(vm.$refs.header).find("svg");
       Object.values(allSvg).forEach((e, i) => {
         if (typeof e == "object") {
@@ -170,6 +167,27 @@ export default class Layout extends Vue {
 
       // console.log(lineLength);
     }
+      if (!this.$device.isMobile) {
+      this.observer = new IntersectionObserver(callback);
+      this.observer.observe(this.$refs.header);
+    }
+  }
+
+  async mounted() {
+    // console.log(this.$route);
+    await this.$nextTick();
+    this.init();
+
+
+  
+
+    // let allSvg = cash(this.$refs.header).find("svg");
+
+    // console.log(!this.$device.isMobile);
+
+  
+
+   
 
     this.bodyClasses = [];
   }

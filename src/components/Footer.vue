@@ -123,18 +123,18 @@
             <ul>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/posobie_na_pogrebenie"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1
                   "
                   no-prefetch
-                  >Захоронение</NuxtLink
+                  >Льготы и Пособия</NuxtLink
                 >
               </li>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/mesto_na_kladbishche"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1
@@ -156,7 +156,7 @@
               </li>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/kremaciya"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1

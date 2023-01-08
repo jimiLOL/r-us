@@ -161,28 +161,41 @@ export default class Header extends Vue {
   @Watch("this.$route.fullPath")
   newclientHeight() {
     console.log(this.$route.fullPath);
+    setTimeout(() => {
+      if (this.$refs.clientHeight.clientHeight) {
+        console.log(this.$refs.clientHeight.clientHeight);
+        this.clientHeight = this.$refs.clientHeight.clientHeight;
+        // this.clientHeight = window.innerHeight;
+
+      } else {
+        console.log(window.innerHeight);
+        this.clientHeight = window.innerHeight;
+      }
+    }, 2000);
   }
-  
 
   clientHeight = window.innerHeight;
 
   dataMenuLeft = dataMenuLeft;
 
-
   mounted() {
     if (!this.$device.isMobile) {
       this.clientHeight = this.$refs.clientHeight.clientHeight;
 
-      setTimeout(() => {
-      this.clientHeight = this.$refs.clientHeight.clientHeight;
+      // setTimeout(() => {
+      //   this.clientHeight = this.$refs.clientHeight.clientHeight;
+      // }, 1500);
 
-        
-      }, 1500);
-
-      this.$nuxt.$on("resize", () => {
-        this.clientHeight = this.$refs.clientHeight.clientHeight;
-
-      });
+      // this.$nuxt.$on("resize", () => {
+      //   if (this.$refs.clientHeight.clientHeight) {
+      //     setTimeout(() => {
+      //       console.log(this.$refs.clientHeight.clientHeight);
+      //     this.clientHeight = this.$refs.clientHeight.clientHeight;
+            
+      //     }, 1500);
+      //   }
+      //   // this.clientHeight = this.$refs.clientHeight.clientHeight;
+      // });
     }
   }
 }

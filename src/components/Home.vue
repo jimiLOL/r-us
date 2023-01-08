@@ -14,7 +14,7 @@
     >
       <div v-if="observerInit" class="w-11 h-11" ref="svg_price_block">
         <svg
-          v-for="index in 30"
+          v-for="index in 20"
           :key="index"
           :id="`svg_bottom_${index}`"
           :style="`top: ${svgElementY + 10 * index}px`"
@@ -207,7 +207,7 @@ export default class Home extends Vue {
                   2500
                 );
               }
-            }, 6000);
+            }, 15000);
           }, 30 * i);
         }
       });
