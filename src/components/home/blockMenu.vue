@@ -193,6 +193,7 @@
             cursor-pointer
             h-80
           "
+          @click="scrollToElement"
         >
           <img src="/proof/proof.svg" alt="" />
 
@@ -216,6 +217,13 @@ import { Vue, Component } from "vue-property-decorator";
 export default class BlockMenu extends Vue {
   openModal() {
     window.$nuxt.$emit("switchModal", true);
+  }
+  scrollToElement() {
+     window.scrollTo({
+          top: document.getElementById("priceList").offsetTop,
+          left: 0,
+          behavior: "smooth",
+        });
   }
 }
 </script>
