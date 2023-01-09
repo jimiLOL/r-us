@@ -60,7 +60,7 @@
       :clientHeight="clientHeight - clientHeight * 0.22"
     />
   </div>
-  <div class="pb-4" v-else>
+  <div class="pb-4 flex flex-col" v-else>
     <div class="flex flex-nowrap justify-between content-center gap-2">
       <NuxtLink to="/" class="flex items-center">
         <img
@@ -75,6 +75,9 @@
         >+7 (3522) 610‒630</a
       >
       <HamburgerMenu class="w-14" />
+    </div>
+    <div>
+      <NavMenu v-if="mobileMenuOpen" :dataMenu="dataMenuLeft" />
     </div>
     <div v-if="$route.fullPath == '/'" class="flex flex-col gap-6 mt-9">
       <div class="flex flex-col gap-6">
@@ -174,6 +177,8 @@ export default class Header extends Vue {
     }, 2000);
   }
 
+  mobileMenuOpen = false;
+
   clientHeight = window.innerHeight;
 
   dataMenuLeft = dataMenuLeft;
@@ -182,6 +187,9 @@ export default class Header extends Vue {
   }
 
   mounted() {
+    window.$nuxt.$on("switchMobileMenu", (data) => {
+      this.mobileMenuOpen = data;
+    }); 
     if (!this.$device.isMobile) {
       this.clientHeight = this.$refs.clientHeight.clientHeight;
 

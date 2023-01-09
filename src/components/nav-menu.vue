@@ -11,7 +11,7 @@
         py-2.5
       "
     >
-      <NuxtLink to="/" class="flex items-center">
+      <NuxtLink v-if="!$device.isMobile" to="/" class="flex items-center">
         <img
           :src="require('@/assets/imgs/9d4964aea26fde815a6d55c29d22041d.png')"
           class="w-24"
@@ -21,14 +21,16 @@
 
       <div
         id="mega-menu-full"
-        class="
-          ml-24
-          justify-between
-          items-center
-          w-full
-          text-base
-          md:flex md:w-auto md:order-1
-        "
+        :class="[
+          $device.isMobile ? '' : 'ml-24',
+          'justify-between',
+          'items-center',
+          'w-full',
+          'text-base',
+          'md:flex',
+          'md:w-auto',
+          'md:order-1',
+        ]"
       >
         <ul
           class="
@@ -38,37 +40,33 @@
             mt-4
             rounded-lg
             border border-gray-100
-            md:flex-row
-            md:space-x-8
-            md:mt-0
-            md:font-medium
-            md:border-0
+            md:flex-row md:space-x-8 md:mt-0 md:font-medium md:border-0
             dark:border-gray-700
           "
         >
-          <NuxtLink
-            v-for="(item, index) in dataMenu"
-            :key="index"
-            :to="item.url"
-            :exact="true"
-          >
-            <li
-              aria-haspopup="true"
-              aria-expanded="false"
-              class="
-                block
-                py-2
-                px-2
-                rounded
-                hover:underline
-                md:hover:text-theme-1 md:p-0
-                dark:border-gray-700
-                text-center
-              "
+            <NuxtLink
+              v-for="(item, index) in dataMenu"
+              :key="index"
+              :to="item.url"
+              :exact="true"
             >
-              {{ item.title }}
-            </li>
-          </NuxtLink>
+              <li
+                aria-haspopup="true"
+                aria-expanded="false"
+                class="
+                  block
+                  py-2
+                  px-2
+                  rounded
+                  hover:underline
+                  md:hover:text-theme-1 md:p-0
+                  dark:border-gray-700
+                  text-center
+                "
+              >
+                {{ item.title }}
+              </li>
+            </NuxtLink>
         </ul>
       </div>
     </div>
@@ -226,3 +224,4 @@ export default class NavMenu extends Vue {
   mounted() {}
 }
 </script>
+ 

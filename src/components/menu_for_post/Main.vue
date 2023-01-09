@@ -35,6 +35,7 @@ interface data {
 export default class MenuForPost extends Vue {
   @Prop({ type: String, required: true }) category_en!: string;
   @Prop({ type: String, default: 'services' }) direction!: string;
+  
   date = new Date().getFullYear();
   categories = [
     {
