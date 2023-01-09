@@ -66,7 +66,7 @@
         <img
           :src="require('@/assets/imgs/9d4964aea26fde815a6d55c29d22041d.png')"
           class="w-14"
-          alt="Flowbite Logo"
+          alt="Ритуальная служба Кургана"
         />
       </NuxtLink>
       <a
@@ -123,6 +123,7 @@
             font-bold
             focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
           "
+          @click="callMe"
         >
           Заказать звонок
         </button>
@@ -184,7 +185,10 @@ export default class Header extends Vue {
   dataMenuLeft = dataMenuLeft;
   openModal() {
     window.$nuxt.$emit("switchModal", true);
-  }
+  };
+  callMe() {
+    window.$nuxt.$emit("callMe", true);
+  };
 
   mounted() {
     window.$nuxt.$on("switchMobileMenu", (data) => {

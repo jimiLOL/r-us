@@ -23,6 +23,7 @@
           hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
           focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
         "
+        @click="callMe"
       >Заказать звонок</button>
       <button
         class="
@@ -52,6 +53,9 @@ import { Vue, Component } from "vue-property-decorator";
 export default class CtaGeneral extends Vue {
   openModal() {
     window.$nuxt.$emit("switchModal", true);
-  }
+  };
+  callMe() {
+    window.$nuxt.$emit("callMe", true);
+  };
 }
 </script>

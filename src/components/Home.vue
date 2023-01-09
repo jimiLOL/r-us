@@ -85,6 +85,7 @@
               hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
               focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
             "
+            @click="callMe"
           >
             Связаться с нами
           </button>
@@ -123,6 +124,10 @@ export default class Home extends Vue {
   observerInit = false;
   svgElementY = null;
   modalOpen = false;
+
+  callMe() {
+    window.$nuxt.$emit("callMe", true);
+  };
   mounted() {
     window.$nuxt.$on("switchModal", (data) => {
       console.log('switchModal ' + data);

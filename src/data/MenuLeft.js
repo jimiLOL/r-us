@@ -27,7 +27,7 @@ const dataMenuLeft = [
     ]
   },
   {
-    type: 'link',
+    type: 'js',
     title: 'Расчитать стоимость похорон',
     url: '/',
     children: [

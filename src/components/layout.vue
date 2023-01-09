@@ -45,6 +45,7 @@
           'h-full',
         ]"
       >
+      <PopUpCall v-if="openCallMe" />
         <slot />
       </section>
 
@@ -86,6 +87,7 @@ export default class Layout extends Vue {
   bodyClasses = ["disable-transitions"];
   observer = null;
   observerInit = false;
+  openCallMe = false;
 
   @Watch("computedProp")
   onRouteChange() {
@@ -180,6 +182,10 @@ export default class Layout extends Vue {
     // console.log(this.$route);
     await this.$nextTick();
     this.init();
+
+    window.$nuxt.$on("callMe", (data) => {
+      this.openCallMe = data;
+    });
 
     // let allSvg = cash(this.$refs.header).find("svg");
 

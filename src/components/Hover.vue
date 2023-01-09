@@ -44,6 +44,7 @@
             font-bold
             hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
           "
+          @click="callMe"
         >
           Заказать звонок
         </button>
@@ -161,7 +162,10 @@ export default class Hover extends Vue {
   backgroundWraper = 350;
   openModal() {
     window.$nuxt.$emit("switchModal", true);
-  }
+  };
+  callMe() {
+    window.$nuxt.$emit("callMe", true);
+  };
 
   async mounted() {
     // const rs = await rustModule;

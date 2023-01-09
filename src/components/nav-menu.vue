@@ -15,7 +15,7 @@
         <img
           :src="require('@/assets/imgs/9d4964aea26fde815a6d55c29d22041d.png')"
           class="w-24"
-          alt="Flowbite Logo"
+          alt="Ритуальная служба Кургана"
         />
       </NuxtLink>
 

@@ -13,7 +13,7 @@ import Vue from 'vue'
 // import AppLink from '../shared/app-link.vue'
 import * as featherIcons from "vue-feather-icons";
 import Pagination from "~/shared/pagination.vue";
-
+import PopUpCall from "~/global-component/popUpCall.vue";
 import LoadingIcon from "~/global-component/loading-icon/Main.vue";
 
 import CKEditor from '@ckeditor/ckeditor5-vue2';
@@ -27,6 +27,7 @@ import CKEditor from '@ckeditor/ckeditor5-vue2';
 Vue.component("Pagination", Pagination);
 Vue.component("LoadingIcon", LoadingIcon);
 Vue.component("CKEditor", CKEditor);
+Vue.component("PopUpCall", PopUpCall);
 
 
 

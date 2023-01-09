@@ -182,6 +182,7 @@
                   'focus:underline',
                   $device.isMobile ? 'w-full' : '',
                 ]"
+                @click="callMe"
               >
                 Заказать звонок
               </button>
@@ -320,7 +321,10 @@ export default class Post extends Vue {
   // }
   openModal() {
     window.$nuxt.$emit("switchModal", true);
-  }
+  };
+   callMe() {
+    window.$nuxt.$emit("callMe", true);
+  };
 
   async fetchPost() {
     this.load = true;

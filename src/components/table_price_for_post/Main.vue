@@ -75,6 +75,7 @@
                 'focus:underline',
                 $device.isMobile ? 'w-full' : '',
               ]"
+              @click="callMe"
             >
               Заказать звонок
             </button>
@@ -128,6 +129,9 @@ export default class TablePriceforpost extends Vue {
   @Prop({ type: Object, default: () => ({ category: "Тайтл", items: [] }) }) post!: any;
    openModal() {
     window.$nuxt.$emit("switchModal", true);
-  }
+  };
+   callMe() {
+    window.$nuxt.$emit("callMe", true);
+  };
 }
 </script>
