@@ -36,16 +36,9 @@
                   >Услуги</NuxtLink
                 >
               </li>
-              <li class="my-0.5">
-                <NuxtLink
-                  to="/"
-                  class="
-                    hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
-                  "
-                  no-prefetch
-                  >Расчитать стоимость похорон</NuxtLink
-                >
+              <li class="my-0.5 hover:underline md:hover:bg-transparent md:hover:text-theme-1 hover:cursor-pointer" @click="openModal">
+                Расчитать стоимость похорон
+                
               </li>
               <li class="my-0.5">
                 <NuxtLink
@@ -278,5 +271,8 @@ import { Vue, Component } from "vue-property-decorator";
 @Component({})
 export default class Footer extends Vue {
   date = new Date().getFullYear();
+  openModal() {
+    window.$nuxt.$emit("switchModal", true);
+  }
 }
 </script>

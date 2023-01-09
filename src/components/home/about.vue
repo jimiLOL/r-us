@@ -88,8 +88,12 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 export default class AboutForHomePage extends Vue {
   dataImgSlider = [
     { title: "Молитвенный дом", img: "cc5cdec7d436aff2ddf4298b0f1163dc.jpg" },
-    { title: "Молитвенный дом", img: "cc5cdec7d436aff2ddf4298b0f1163dc.jpg" },
-    { title: "Молитвенный дом", img: "cc5cdec7d436aff2ddf4298b0f1163dc.jpg" }
+    { title: "Молитвенный дом", img: "img_slider_for_1.jpg" },
+    { title: "Траурный зал", img: "img_slider_for_2.jpg" },
+    { title: "Траурный зал", img: "img_slider_for_3.jpg" },
+    { title: "Траурный зал", img: "img_slider_for_4.jpg" },
+    { title: "Траурный зал", img: "img_slider_for_6.jpg" },
+    { title: "Траурный зал", img: "img_slider_for_6.jpg" },
   ];
 
   setting_slider = {

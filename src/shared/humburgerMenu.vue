@@ -17,6 +17,11 @@ export default class HamburgerMenu extends Vue {
     active = false;
     activeOn() {
         this.active = !this.active;
+        setTimeout(() => {
+        window.$nuxt.$emit("switchMobileMenu", this.active);
+          
+        }, 200);
+       
     }
    
 }

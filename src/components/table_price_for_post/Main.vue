@@ -98,6 +98,7 @@
                 'focus:underline',
                 $device.isMobile ? 'w-full' : '',
               ]"
+              @click="openModal"
             >
               Расчитать стоимость похорон
             </button>
@@ -125,5 +126,8 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 @Component({})
 export default class TablePriceforpost extends Vue {
   @Prop({ type: Object, default: () => ({ category: "Тайтл", items: [] }) }) post!: any;
+   openModal() {
+    window.$nuxt.$emit("switchModal", true);
+  }
 }
 </script>

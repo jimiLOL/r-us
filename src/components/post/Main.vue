@@ -205,6 +205,7 @@
                   'focus:underline',
                   $device.isMobile ? 'w-full' : '',
                 ]"
+                @click="openModal"
               >
                 Расчитать стоимость похорон
               </button>
@@ -317,6 +318,9 @@ export default class Post extends Vue {
   //   // $router.push(`${$route.path}/${item.category_en}`)
   //   if ()
   // }
+  openModal() {
+    window.$nuxt.$emit("switchModal", true);
+  }
 
   async fetchPost() {
     this.load = true;

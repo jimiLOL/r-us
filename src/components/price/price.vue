@@ -8,18 +8,8 @@
       'px-4',
     ]"
   >
-    <div :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10']">
-      <nav>
-        <ul class="text-bold text-center whitespace-nowrap">
-          <li class="py-4">Захоронение</li>
-          <li class="py-4">Место на кладбище</li>
-          <li class="py-4">Груз 200</li>
-          <li class="py-4">Кремация</li>
-        </ul>
-      </nav>
-    </div>
-
-    <PriceBlock class="w-full mb-14" />
+  <MenuForPost v-if="!$device.isMobile || mobileMenuOpen" category_en="all" direction="services" />
+  <PriceBlock class="w-full mb-14" />
   </div>
 </template>
 
@@ -28,9 +18,20 @@
 <script>
 import { Vue, Component } from "vue-property-decorator";
 import PriceBlock from "~/components/home/priceBlock.vue";
+import MenuForPost from "~/components/menu_for_post/Main.vue";
 
 @Component({
-  components: { PriceBlock },
+  components: { PriceBlock, MenuForPost },
 })
-export default class Price extends Vue {}
+export default class Price extends Vue {
+  mobileMenuOpen = false;
+
+  mounted() {
+   window.$nuxt.$on("switchMobileMenu", (data) => {
+    console.log(data);
+      this.mobileMenuOpen = data;
+    }); 
+  }
+
+}
 </script>

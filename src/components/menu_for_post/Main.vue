@@ -2,6 +2,7 @@
   <div :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10']">
     <nav>
       <ul class="text-bold text-center whitespace-nowrap">
+        <TransitionGroup name="slide-in">
         <li
           v-for="item in categories"
           :key="item._id"
@@ -10,6 +11,7 @@
         >
           {{ item.category }}
         </li>
+        </TransitionGroup>
       </ul>
     </nav>
   </div>
@@ -32,6 +34,7 @@ interface data {
 })
 export default class MenuForPost extends Vue {
   @Prop({ type: String, required: true }) category_en!: string;
+  @Prop({ type: String, default: 'services' }) direction!: string;
   date = new Date().getFullYear();
   categories = [
     {
@@ -120,7 +123,7 @@ export default class MenuForPost extends Vue {
   }
   mounted() {
     const data: data = {
-      direction: "services",
+      direction: this.direction,
       category_en: this.category_en,
       offset: 0,
     };
@@ -128,3 +131,35 @@ export default class MenuForPost extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+.slide-in {
+  &-move {
+    transition: opacity 0.5s linear, transform 0.5s ease-in-out;
+  }
+
+  &-leave-active {
+    transition: opacity 0.4s linear,
+      transform 0.4s cubic-bezier(0.5, 0, 0.7, 0.4); //cubic-bezier(.7,0,.7,1);
+    transition-delay: calc(0.1s * (var(--total) - var(--i)));
+  }
+
+  &-enter-active {
+    transition: opacity 0.5s linear,
+      transform 0.5s cubic-bezier(0.2, 0.5, 0.1, 0.5);
+    transition-delay: calc(0.1s * var(--i));
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+
+  &-enter {
+    transform: translateX(-1em);
+  }
+  &-leave-to {
+    transform: translateX(1em);
+  }
+}
+</style>

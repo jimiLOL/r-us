@@ -82,9 +82,9 @@
           <i>Ритуальная служба в</i><i class="text-theme-1"> Кургане</i>
         </h1>
         <p>
-          Значимость этих проблем настолько очевидна, что семантический разбор
-          внешних противодействий предоставляет широкие возможности для вывода
-          текущих активов.
+          Опытный и надежный агент похоронных услуг в Кургане.
+          Мы специализируемся на предоставлении качественных услуг
+          по организации похорон, кремации, перевозке тел и груза 200.
         </p>
       </div>
 
@@ -136,6 +136,7 @@
             font-bold
             focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
           "
+          @click="openModal"
         >
           Расчитать стоимость похорон
         </button>
@@ -166,7 +167,6 @@ export default class Header extends Vue {
         console.log(this.$refs.clientHeight.clientHeight);
         this.clientHeight = this.$refs.clientHeight.clientHeight;
         // this.clientHeight = window.innerHeight;
-
       } else {
         console.log(window.innerHeight);
         this.clientHeight = window.innerHeight;
@@ -177,6 +177,9 @@ export default class Header extends Vue {
   clientHeight = window.innerHeight;
 
   dataMenuLeft = dataMenuLeft;
+  openModal() {
+    window.$nuxt.$emit("switchModal", true);
+  }
 
   mounted() {
     if (!this.$device.isMobile) {
@@ -191,7 +194,7 @@ export default class Header extends Vue {
       //     setTimeout(() => {
       //       console.log(this.$refs.clientHeight.clientHeight);
       //     this.clientHeight = this.$refs.clientHeight.clientHeight;
-            
+
       //     }, 1500);
       //   }
       //   // this.clientHeight = this.$refs.clientHeight.clientHeight;

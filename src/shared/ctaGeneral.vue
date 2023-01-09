@@ -38,6 +38,7 @@
           hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
           focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
         "
+        @click="openModal"
       >Расчитать стоимость похорон</button>
     </div>
   </div>
@@ -48,5 +49,9 @@
 import { Vue, Component } from "vue-property-decorator";
 
 @Component({})
-export default class CtaGeneral extends Vue {}
+export default class CtaGeneral extends Vue {
+  openModal() {
+    window.$nuxt.$emit("switchModal", true);
+  }
+}
 </script>

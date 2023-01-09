@@ -6,9 +6,9 @@
           <i>Ритуальная служба в</i><i class="text-theme-1"> Кургане</i>
         </h1>
         <p>
-          Значимость этих проблем настолько очевидна, что семантический разбор
-          внешних противодействий предоставляет широкие возможности для вывода
-          текущих активов.
+          Опытный и надежный агент похоронных услуг в Кургане.
+          Мы специализируемся на предоставлении качественных услуг
+          по организации похорон, кремации, перевозке тел и груза 200.
         </p>
       </div>
 
@@ -60,6 +60,7 @@
             font-bold
             hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
           "
+          @click="openModal"
         >
           Расчитать стоимость похорон
         </button>
@@ -158,6 +159,9 @@ export default class Hover extends Vue {
     };
   }
   backgroundWraper = 350;
+  openModal() {
+    window.$nuxt.$emit("switchModal", true);
+  }
 
   async mounted() {
     // const rs = await rustModule;
