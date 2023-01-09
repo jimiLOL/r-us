@@ -14,11 +14,10 @@
         'my-auto',
         'bg-theme-2',
         'rounded-xl',
-        'w-full',
-        $device.isMobile ? 'h-screen' : 'h-96',
+        $device.isMobile ? 'h-screen w-full' : 'h-96 w-max',
         'flex',
         'flex-col',
-        'gap-9',
+        $device.isMobile ? 'gap-9':'gap-4',
         'items-center',
         'justify-center',
       ]"
@@ -61,7 +60,7 @@
       </button>
       <img
         :src="require('@/assets/imgs/9d4964aea26fde815a6d55c29d22041d.png')"
-        class="w-48"
+        :class="['w-48', $device.isMobile ? '':'fixed top-36']"
         alt="Ритуальная служба Кургана"
       />
       <div
