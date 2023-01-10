@@ -33,7 +33,7 @@
           :key="post._id"
           :class="[
             'flex',
-            $device.isMobile ? 'flex-col max-h-96' : 'flex-row max-h-36',
+            $device.isMobile ? 'flex-col h-full' : 'flex-row max-h-36',
             'w-full',
             'gap-4',
             'overflow-hidden',
