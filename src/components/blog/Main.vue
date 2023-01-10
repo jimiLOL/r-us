@@ -35,7 +35,7 @@
             'flex',
             $device.isMobile ? 'flex-col h-full' : 'flex-row max-h-36',
             'w-full',
-            'gap-4',
+             'gap-4',
             'overflow-hidden',
             'border-2',
             'rounded-lg',
