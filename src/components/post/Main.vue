@@ -19,7 +19,7 @@
             :key="item._id"
             class="py-4 cursor-pointer hover:underline"
           >
-            <nuxt-link :to="`/services/${item.category_en}`">
+            <nuxt-link :to="`/${direction}/${item.category_en}`">
               {{ item.category }}
             </nuxt-link>
           </li>
