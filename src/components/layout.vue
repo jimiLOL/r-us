@@ -45,8 +45,9 @@
           'h-full',
         ]"
       >
-      <PopUpCall v-if="openCallMe" />
+        <PopUpCall v-if="openCallMe" />
         <slot />
+        <ModalDialog v-if="modalOpen" />
       </section>
 
       <footer
@@ -67,7 +68,9 @@
 <script>
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { Getter } from "vuex-class";
-@Component({})
+import ModalDialog from "~/shared/modalDialog.vue";
+
+@Component({ components: { ModalDialog } })
 export default class Layout extends Vue {
   @Getter("hover/getHoverStatus") hoverEnable;
 
@@ -88,6 +91,7 @@ export default class Layout extends Vue {
   observer = null;
   observerInit = false;
   openCallMe = false;
+  modalOpen = false;
 
   @Watch("computedProp")
   onRouteChange() {
@@ -182,6 +186,10 @@ export default class Layout extends Vue {
     // console.log(this.$route);
     await this.$nextTick();
     this.init();
+    window.$nuxt.$on("switchModal", (data) => {
+      console.log("switchModal " + data);
+      this.modalOpen = data;
+    });
 
     window.$nuxt.$on("callMe", (data) => {
       this.openCallMe = data;

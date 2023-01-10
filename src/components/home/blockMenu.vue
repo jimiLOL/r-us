@@ -9,7 +9,7 @@
       $device.isMobile ? 'pt-9' : 'pt-6',
     ]"
   >
-    <NuxtLink to="/"
+    <NuxtLink to="/chto_delat_posle_smerti_cheloveka"
       ><h2
         :class="[
           'inline-flex',
