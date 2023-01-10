@@ -26,32 +26,32 @@ const dataMenuLeft = [
 
     ]
   },
-  {
-    type: 'js',
-    title: 'Расчитать стоимость похорон',
-    url: '/',
-    children: [
-      {
-        type: 'link',
-        title: 'Хрестинские',
-        url: '/shop/catalog/cosmitika',
-        children: [
-          { type: 'link', title: 'Корейские', url: '/shop/catalog/cosmitika?filter_brand=seagate' },
+  // {
+  //   type: 'js',
+  //   title: 'Расчитать стоимость похорон',
+  //   url: '/',
+  //   children: [
+  //     {
+  //       type: 'link',
+  //       title: 'Хрестинские',
+  //       url: '/shop/catalog/cosmitika',
+  //       children: [
+  //         { type: 'link', title: 'Корейские', url: '/shop/catalog/cosmitika?filter_brand=seagate' },
 
-        ]
-      },
-      {
-        type: 'link',
-        title: 'Мусульманские',
-        url: '/shop/catalog/cosmitika',
-        children: [
-          { type: 'link', title: 'Тайвайнские', url: '/shop/catalog/cosmitika?filter_brand=seagate' },
+  //       ]
+  //     },
+  //     {
+  //       type: 'link',
+  //       title: 'Мусульманские',
+  //       url: '/shop/catalog/cosmitika',
+  //       children: [
+  //         { type: 'link', title: 'Тайвайнские', url: '/shop/catalog/cosmitika?filter_brand=seagate' },
 
-        ]
-      },
+  //       ]
+  //     },
 
-    ]
-  },
+  //   ]
+  // },
   {
     type: 'link',
     title: 'Комплексные услуги',
