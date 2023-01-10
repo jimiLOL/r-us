@@ -6,6 +6,7 @@
       'justify-center',
       'gap-6',
       'px-4',
+      'h-screen'
     ]"
   >
     <div

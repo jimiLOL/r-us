@@ -28,12 +28,13 @@ export default class HoverForPost extends Vue {
 <style>
 .img_cover {
   background: var(--url) 50% 100% / cover no-repeat;
-  filter: brightness(50%);
+  /* filter: brightness(50%); */
 
-  background-blend-mode: multiply;
+  /* background-blend-mode: multiply; */
 }
 .text-wraper {
-  text-shadow: 0 0 0.6px #000000, 0 0 0.5px #d1dc0d;
+  text-shadow: #FC0 1px 0 10px;
+
 }
 h1 {
   filter: none;

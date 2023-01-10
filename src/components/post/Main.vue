@@ -54,7 +54,7 @@
           :class="[
             load
               ? 'animate-pulse h-2.5 bg-gray-200 rounded-full w-98'
-              : 'text-wraper text-bold text-3xl self-end text-theme-2 p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8 backdrop-opacity-60 backdrop-invert',
+              : 'text-wraper text-bold text-3xl self-end text-theme-2 p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8',
           ]"
         >
           {{ load ? "" : post?.title }}
@@ -111,8 +111,8 @@
           <span class="text-bold text-3xl text-theme-1">{{
             post?.category
           }}</span>
-          <ul class="leading-snug">
-            <li>
+          <ul :class="['leading-snug', 'flex', 'flex-col', $device.isMobile ? 'items-center':'items-start' ]">
+            <li class="inline-flex gap-2">
               <font-awesome-icon
                 icon="circle-dot"
                 transform="shrink-6"
@@ -120,7 +120,7 @@
                 :style="{ color: '#FFBB30' }"
               />Омовение
             </li>
-            <li>
+            <li class="inline-flex gap-2">
               <font-awesome-icon
                 icon="circle-dot"
                 transform="shrink-6"
@@ -128,7 +128,7 @@
                 :style="{ color: '#FFBB30' }"
               />Транспортировка тела
             </li>
-            <li>
+            <li class="inline-flex gap-2">
               <font-awesome-icon
                 icon="circle-dot"
                 transform="shrink-6"
@@ -388,12 +388,11 @@ export default class Post extends Vue {
 <style scoped>
 .img_cover {
   background: var(--url) 50% 100% / cover no-repeat;
-  filter: brightness(50%);
 
-  background-blend-mode: multiply;
 }
 .text-wraper {
-  text-shadow: 0 0 0.6px #000000, 0 0 0.5px #d1dc0d;
+  /* text-shadow: 0 0 0.6px #000000, 0 0 0.5px #d1dc0d; */
+  text-shadow: #FC0 1px 0 10px;
 }
 h1 {
   filter: none;

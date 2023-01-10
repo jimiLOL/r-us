@@ -41,7 +41,7 @@
         'h-max',
       ]"
     >
-      <NuxtLink to="/">
+      <NuxtLink to="/services">
         <div
           class="
             flex flex-col
