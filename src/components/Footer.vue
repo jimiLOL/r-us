@@ -66,7 +66,7 @@
             <ul>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/zahoronenie"
                   class="
                     hover:underline
                     md:hover:bg-transparent md:hover:text-theme-1

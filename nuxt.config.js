@@ -10,16 +10,15 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - Ритуальная служба Кургана',
-    title: 'Ритуальные услуги Курган',
+    title: 'Ритуальное агентство, организация похорон в Кургане',
     htmlAttrs: {
       lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Организация ритуальных услуг В Кургане. Мы предлагаем помощь в проведении похорон и других ритуальных мероприятий с максимально высоким уровнем обслуживания. Закажите услуги по телефону или онлайн.' },
       { name: 'format-detection', content: 'telephone=no' },
-      { name: 'robots', content: 'noindex' } // только для разработки !
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

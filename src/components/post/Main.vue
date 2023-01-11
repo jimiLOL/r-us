@@ -249,10 +249,28 @@ import shopApi from "~/api/shop";
 
 @Component({
   components: { CtaGeneral },
+  //  head(this) {
+  //   return {
+  //     title: 'asdasd',
+  //     meta: [
+  //       {
+  //         hid: "description_post",
+  //         name: "description",
+  //         content: `Как приобрести захоронение на кладбище в ритуальном агентстве zpd45.ru? Служба похоронных услуг Кургане - самая старая и надежная. Гарантируем высокое качество и безотказную работу.`,
+  //       },
+  //     ],
+  //   };
+  // },
 })
 export default class Post extends Vue {
   @Prop({ type: String, required: true }) postSlug;
   @Prop({ type: String, required: true }) direction;
+
+  head() {
+    return {
+      title: this.post?.title
+    }
+  }
 
   categories = [
     {
