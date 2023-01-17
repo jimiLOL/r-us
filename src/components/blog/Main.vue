@@ -44,7 +44,7 @@
           ]"
         >
           <img
-            :class="[$device.isMobile ? 'w-full' : 'w-1/3', 'rounded-md']"
+            :class="[$device.isMobile ? 'w-full' : 'w-1/4', 'rounded-md']"
              :src="`https://drive.google.com/uc?export=view&id=${post.picterUrl}`"
           :alt="`${post.title}`"
           />
