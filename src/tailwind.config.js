@@ -43,7 +43,7 @@ module.exports = {
           7: "#DC2B2B",
           8: "#FCFCFC",
           9: "#FFCC46",
-          10: '#FFAE09',
+          10: '#FDB04B',
           11: '#F5F5F5',
           12: '#0058C3',
           13: '#577E6B',

@@ -5,12 +5,12 @@
       <path d="M19,24 L45,24 C61.2371586,24 57,49 41,33 L32,24"></path>
       <path d="M45,33 L19,33 C-8,33 6,-2 22,14 L45,37"></path>
     </svg>
-    <component :is="'style'"> :root {--colorSvgHamburger: #fff; } </component>
+    <component :is="'style'"> :root {--colorSvgHamburger: #222; } </component>
   </button>
 </template>
 
 <script>
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 
 @Component({})
 export default class HamburgerMenu extends Vue {
@@ -22,6 +22,16 @@ export default class HamburgerMenu extends Vue {
           
         }, 200);
        
+    }
+    @Watch("$route.path")
+    switchPath () {
+        this.active = false;
+        setTimeout(() => {
+          
+        window.$nuxt.$emit("switchMobileMenu", this.active);
+
+        }, 200);
+
     }
    
 }

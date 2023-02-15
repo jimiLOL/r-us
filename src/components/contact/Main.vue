@@ -97,21 +97,21 @@
             пр-кт Машиностроителей, 34
           </address>
           <a class="font-thin" href="tel:+73522256075">+7 (3522) 25‒60‒75</a>
-          <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+          <span class="font-thin">с 08:00 до 17:00</span>
         </div>
         <div class="inline-flex flex-col justify-center whitespace-nowrap">
           <address class="text-lg font-semibold md:text-base">
             ул. Коли Мяготина 102а
           </address>
           <a class="font-thin" href="tel:+73522256075">+7 (3522) 622‒000</a>
-          <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+          <span class="font-thin">с 08:00 до 17:00</span>
         </div>
         <div class="inline-flex flex-col justify-center whitespace-nowrap">
           <address class="text-lg font-semibold md:text-base">
             ул. Томина, 67
           </address>
           <a class="font-thin" href="tel:+79128355992">+7‒912‒835‒59‒92</a>
-          <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+          <span class="font-thin">с 08:00 до 17:00</span>
         </div>
         <div class="inline-flex flex-col justify-center whitespace-nowrap">
           <address class="text-lg font-semibold md:text-base">
@@ -119,7 +119,7 @@
           </address>
           <a class="font-thin" href="tel:+73522554400">+7 (3522) 554‒400 </a>
           <!-- <span> +7 (3522) 555‒332</span> -->
-          <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+          <span class="font-thin">с 08:00 до 17:00</span>
         </div>
       </div>
     </div>

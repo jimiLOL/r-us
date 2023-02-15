@@ -17,7 +17,7 @@
           <li
             v-for="item in categories"
             :key="item._id"
-            class="py-4 cursor-pointer hover:underline"
+            class="py-4 cursor-pointer hover"
           >
             <nuxt-link :to="`/${direction}/${item.category_en}`">
               {{ item.category }}
@@ -406,6 +406,8 @@ export default class Post extends Vue {
 <style scoped>
 .img_cover {
   background: var(--url) 50% 100% / cover no-repeat;
+  /* background-image: var(--url); */
+  backdrop-filter: blur(7px);
 
 }
 .text-wraper {

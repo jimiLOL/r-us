@@ -7,13 +7,13 @@
   <!-- Main modal -->
   <div
     :class="[
-      'fixed top-0 left-0 right-0 z-50 w-full md:inset-0 md:h-full tran overflow-x-hidden',
+      'fixed top-0 left-0 right-0 z-50 w-full md:inset-0 md:h-full tran overflow-x-hidden text-black',
       $device.isMobile ? 'h-full overflow-y-scroll' : 'p-4 overflow-y-hidden',
     ]"
   >
     <div :class="['relative', 'w-full', 'h-full', checkProduct ? 'overflow-y-scroll':'']">
       <!-- Modal content -->
-      <div class="relative text-black bg-theme-14 rounded-lg">
+      <div class="relative text-black bg-white rounded-lg">
         <!-- Modal header -->
         <div v-if="!checkProduct" class="flex flex-col p-6 w-full gap-2">
           <div
@@ -37,12 +37,12 @@
                 'cursor-pointer',
                 'hover:underline',
                 'underline-offset-8',
-                'hover:text-theme-1',
+                'hover:text-theme-10',
                 'min-w-24',
 
                 $device.isMobile ? 'col-start-1 col-end-5' : '',
                 stateModal.tab == 'provaslavny'
-                  ? 'text-theme-1 textShadow'
+                  ? 'text-theme-10 textShadow'
                   : '',
               ]"
               @click="setTypeShop('provaslavny')"
@@ -54,11 +54,11 @@
                 'cursor-pointer',
                 'hover:underline',
                 'underline-offset-8',
-                'hover:text-theme-1',
+                'hover:text-theme-10',
                 'min-w-24',
 
                 $device.isMobile ? 'col-start-6 col-end-10' : '',
-                stateModal.tab == 'mysulman' ? 'text-theme-1 textShadow' : '',
+                stateModal.tab == 'mysulman' ? 'text-theme-10 textShadow' : '',
               ]"
               @click="setTypeShop('mysulman')"
             >
@@ -69,10 +69,10 @@
                 'cursor-pointer',
                 'hover:underline',
                 'underline-offset-8',
-                'hover:text-theme-1',
+                'hover:text-theme-10',
                 'min-w-24',
                 $device.isMobile ? 'col-start-1 col-end-5' : '',
-                stateModal.tab == 'kremacia' ? 'text-theme-1 textShadow' : '',
+                stateModal.tab == 'kremacia' ? 'text-theme-10 textShadow' : '',
               ]"
               @click="setTypeShop('kremacia')"
             >
@@ -143,10 +143,10 @@
                   'text-theme-4',
                   'hover:underline',
                   'underline-offset-8',
-                  'focus:text-theme-8',
+                  'focus:text-theme-10',
                   'tran',
                   'max-w-9',
-                  translit(item.name) ? 'text-theme-8 underline' : '',
+                  translit(item.name) ? 'text-theme-10 underline' : '',
                 ]"
                 @click="setCategory(item.name, index)"
               >
@@ -444,7 +444,7 @@
               <button
                 v-else
                 class="
-                  bg-theme-1
+                  bg-theme-12
                   px-6
                   py-2
                   text-white

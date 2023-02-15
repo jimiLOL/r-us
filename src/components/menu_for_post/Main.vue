@@ -6,7 +6,7 @@
         <li
           v-for="item in categories"
           :key="item._id"
-          class="py-4 cursor-pointer hover:underline"
+          class="py-4 cursor-pointer hover"
           @click="$router.push(`services/${item.category_en}`)"
         >
           {{ item.category }}

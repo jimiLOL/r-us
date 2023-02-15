@@ -13,7 +13,7 @@
     >
       <NuxtLink v-if="!$device.isMobile" to="/" class="flex items-center">
         <img
-          :src="require('@/assets/imgs/9d4964aea26fde815a6d55c29d22041d.png')"
+          :src="require('@/assets/imgs/logo.png')"
           class="w-24"
           alt="Ритуальная служба Кургана"
         />
@@ -58,9 +58,9 @@
                   py-2
                   px-2
                   rounded
-                  hover:underline
                   text-shadow
-                  md:hover:text-theme-10 md:p-0
+                  hover
+                   md:p-0
                   dark:border-gray-700
                   text-center
                 "

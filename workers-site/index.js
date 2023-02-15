@@ -1,4 +1,4 @@
-import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
+import { getAssetFromKV, mapRequestToAsset, serveSinglePageApp } from '@cloudflare/kv-asset-handler'
 
 /**
  * The DEBUG flag will do two things that help during development:
@@ -26,7 +26,16 @@ addEventListener('fetch', event => {
 
 async function handleEvent(event) {
   const url = new URL(event.request.url)
-  let options = {}
+   const options = {
+    cacheControl: {
+      bypassCache: true,
+    },
+    mapRequestToAsset: serveSinglePageApp
+  }
+
+ 
+ 
+  
 
   /**
    * You can add custom logic to how we fetch your assets
@@ -37,10 +46,19 @@ async function handleEvent(event) {
   try {
     if (DEBUG) {
       // customize caching
-      options.cacheControl = {
-        bypassCache: true,
-      };
+      // options.cacheControl = {
+      //   bypassCache: true,
+      // };
     }
+    // spring-pond-5de1
+
+
+    // const exampleComResponse = await getAssetFromKV('__spring-pond-5de1-workers_sites_assets', 'index.1dfc620872.html', options);
+    // // const responseS = new Response(exampleComResponse.body, exampleComResponse);
+
+    // return exampleComResponse
+
+
     const page = await getAssetFromKV(event, options);
 
     // allow headers to be altered

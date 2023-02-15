@@ -17,7 +17,7 @@
         <div :class="['flex', $device.isMobile ? 'flex-col' : '', 'gap-4']">
           <NuxtLink to="/" :class="['flex', $device.isMobile ? 'self-center' :'self-start mr-6']">
             <img
-              :src="require('@/assets/imgs/9d4964aea26fde815a6d55c29d22041d.png')"
+              :src="require('@/assets/imgs/logo.png')"
               class="w-40"
               alt="Ритуальная служба Кургана"
             />

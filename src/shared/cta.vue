@@ -43,6 +43,7 @@
           font-semibold
           py-4
           w-full
+          h-max
           rounded-lg
           shadow-lg shadow-theme-8
           transform-gpu
@@ -56,6 +57,7 @@
         <button
           class="
             inline-flex
+            h-max
             gpa-4
             justify-center
             bg-social-wp
@@ -79,6 +81,7 @@
         <button
           class="
             inline-flex
+            h-max
             gpa-1
             justify-center
             bg-social-tg
@@ -102,6 +105,7 @@
         <button
           class="
             inline-flex
+            h-max
             gpa-1
             justify-center
             bg-theme-1
@@ -140,7 +144,7 @@
         class="border-2 border-theme-1 rounded-lg p-2"
         v-model="phone"
       /><label v-if="phone.length >= 12 && !validation" class="text-theme-7" for="phone">Проверьте правильность номера телефона</label>
-      <button :class="['inline-flex', 'justify-center', 'gap-2', 'py-4', 'rounded-md', 'w-full', validation?'bg-theme-1':'cursor-not-allowed bg-theme-4']" @click="sendData">
+      <button :class="['inline-flex', 'justify-center', 'gap-2', 'py-4', 'rounded-md', 'w-full', validation?'bg-theme-1 hover:bg-theme-10':'cursor-not-allowed bg-theme-4']" @click="sendData">
          <LoadingIcon
          v-if="viewAnimation"
             icon="puff"

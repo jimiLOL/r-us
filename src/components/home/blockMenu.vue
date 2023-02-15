@@ -16,7 +16,7 @@
           'inline-flex',
           $device.isMobile ? 'text-2xl' : 'text-5xl',
           'font-bold',
-          'hover:underline focus:underline',
+          'hover_top',
         ]"
       >
         Что делать после смерти человека

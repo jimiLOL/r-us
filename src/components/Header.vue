@@ -26,21 +26,21 @@
          пр-кт Машиностроителей, 34
         </address>
         <a class="font-thin" href="tel:+73522256075">+7 (3522) 25‒60‒75</a>
-        <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+        <span class="font-thin">с 08:00 до 17:00</span>
       </div>
       <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
         <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
          ул.Коли Мяготина 102а
         </address>
         <a class="font-thin" href="tel:+73522256075">+7 (3522) 622‒000</a>
-        <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+        <span class="font-thin">с 08:00 до 17:00</span>
       </div>
       <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
         <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
          ул.Томина, 67
         </address>
         <a class="font-thin" href="tel:+79128355992">+7 (912) 835‒59‒92</a>
-        <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+        <span class="font-thin">с 08:00 до 17:00</span>
       </div>
       <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
         <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
@@ -48,7 +48,7 @@
         </address>
         <a class="font-thin" href="tel:+73522554400">+7 (3522) 554‒400 </a>
         <!-- <span> +7 (3522) 555‒332</span> -->
-        <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+        <span class="font-thin">с 08:00 до 17:00</span>
       </div>
       <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
         <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
@@ -56,7 +56,7 @@
         </address>
         <a class="font-thin" href="tel:+79129730848">+7 (912) 973-08-48 </a>
         <!-- <span> +7 (3522) 555‒332</span> -->
-        <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+        <span class="font-thin">с 08:00 до 17:00</span>
       </div>
     </div>
     <div class="line mt-2 justify-self-center"></div>
@@ -68,11 +68,11 @@
       :clientHeight="{ clientHeightWindow: 700, clientHeight: 600 }"
     />
   </div>
-  <div class="pb-4 flex flex-col" v-else>
+  <div class="pb-4 flex flex-col text-black" v-else>
     <div class="flex flex-nowrap justify-between content-center gap-2">
-      <NuxtLink to="/" class="flex items-center">
+      <NuxtLink to="/" class="flex items-center mt-2">
         <img
-          :src="require('@/assets/imgs/9d4964aea26fde815a6d55c29d22041d.png')"
+          :src="require('@/assets/imgs/logo.png')"
           class="w-14"
           alt="Ритуальная служба Кургана"
         />
@@ -90,7 +90,7 @@
     <div v-if="$route.fullPath == '/'" class="flex flex-col gap-6 mt-9">
       <div class="flex flex-col gap-6">
         <h1 class="text-2xl font-bold">
-          <i>Ритуальная служба в</i><i class="text-theme-1"> Кургане</i>
+          <i>Ритуальная служба в</i><i class="text-theme-10"> Кургане</i>
         </h1>
         <p>
           Опытный и надежный агент похоронных услуг в Кургане.

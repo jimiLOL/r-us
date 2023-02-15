@@ -14,7 +14,7 @@
        <HoverForPost :post="post"/>
 
     <Pagination :category_en="post.category_en" :category="post.category" :title="post.title"/>
-      <h1 class="text-theme-1 text-2xl mb-4 ml-2">
+      <h1 class="text-theme-10 text-shadow text-2xl mb-4 ml-2">
         На каком кладбище хоронить человека в Кургане?
       </h1>
       <p>
@@ -47,7 +47,7 @@
     <TablePriceforpost :post="post"/>
 
 
-      <h2 class="text-theme-1 text-xl my-3 ml-2">
+      <h2 class="text-theme-10 text-shadow text-xl my-3 ml-2">
         Цена мест на кладбище или сколько стоит место на кладбище в Кургане
         {{ date }} году?
       </h2>
@@ -86,7 +86,7 @@
         </li>
         <li>Родственники первой и второй очереди, супруги;</li>
       </ul>
-      <h2 class="text-theme-1 text-xl my-3 ml-2">
+      <h2 class="text-theme-10 text-shadow text-xl my-3 ml-2">
         Где купить место на кладбище в Кургане и Курганской области ? К кому
         обращаться?
       </h2>
@@ -94,9 +94,9 @@
       <p>
         О том, как получить место на кладбище для погребения человека, вы
         узнаете в городской ритуальной службе
-        <a class="text-theme-1" href="https://zpd45.ru">zpd45.ru</a> по номеру
+        <a class="text-theme-1 underline" href="https://zpd45.ru">zpd45.ru</a> по номеру
         круглосуточной информационной линии <a href="tel:+7 (3522) 610‒630">+7 (3522) 610‒630</a>. Специалисты
-        <a class="text-theme-1" href="https://zpd45.ru">zpd45.ru</a>
+        <a class="text-theme-1 underline" href="https://zpd45.ru">zpd45.ru</a>
         гарантированно помогут вам получить место на кладбище в подходящем
         варианте.
       </p>
@@ -113,7 +113,7 @@
       </p>
       <p>
         Если вы решили купить место на кладбище под семейное захоронение, служба
-        <a class="text-theme-1" href="https://zpd45.ru">zpd45.ru</a> бесплатно
+        <a class="text-theme-1 underline" href="https://zpd45.ru">zpd45.ru</a> бесплатно
         проконсультирует вас о нюансах приобретения прав на участок через единую
         информационную систему похоронной отрасли Ритуал и поможет не допустить
         досадных ошибок.
