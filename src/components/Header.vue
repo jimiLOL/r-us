@@ -2,7 +2,7 @@
   <div v-if="!$device.isMobile" ref="clientHeight" class="pt-4">
     <div
       v-if="enable"
-      class="flex justify-around gap-x-14 font-raleway flex-nowrap"
+      class="flex justify-around gap-x-2 font-raleway flex-nowrap"
     >
       <div
         class="
@@ -15,38 +15,46 @@
       >
         <span
           >Горячая линия -
-          <strong class="text-theme-1">Круглосуточно</strong></span
+          <strong class="text-theme-10 text-shadow">Круглосуточно</strong></span
         >
         <a href="tel:+73522610630" class="font-bold text-2xl"
           >+7 (3522) 610‒630</a
         >
       </div>
-      <div class="inline-flex flex-col justify-center whitespace-nowrap">
-        <address class="text-lg font-semibold md:text-base">
-          пр-кт Машиностроителей, 34
+      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
+        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+         пр-кт Машиностроителей, 34
         </address>
         <a class="font-thin" href="tel:+73522256075">+7 (3522) 25‒60‒75</a>
         <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
       </div>
-      <div class="inline-flex flex-col justify-center whitespace-nowrap">
-        <address class="text-lg font-semibold md:text-base">
-          ул. Коли Мяготина 102а
+      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
+        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+         ул.Коли Мяготина 102а
         </address>
         <a class="font-thin" href="tel:+73522256075">+7 (3522) 622‒000</a>
         <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
       </div>
-      <div class="inline-flex flex-col justify-center whitespace-nowrap">
-        <address class="text-lg font-semibold md:text-base">
-          ул. Томина, 67
+      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
+        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+         ул.Томина, 67
         </address>
-        <a class="font-thin" href="tel:+79128355992">+7‒912‒835‒59‒92</a>
+        <a class="font-thin" href="tel:+79128355992">+7 (912) 835‒59‒92</a>
         <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
       </div>
-      <div class="inline-flex flex-col justify-center whitespace-nowrap">
-        <address class="text-lg font-semibold md:text-base">
-          ул. Карбышева 35к5
+      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
+        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+         ул.Карбышева 35к5
         </address>
         <a class="font-thin" href="tel:+73522554400">+7 (3522) 554‒400 </a>
+        <!-- <span> +7 (3522) 555‒332</span> -->
+        <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
+      </div>
+      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
+        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+          с.Кетово, ул.Космонавтов, 36 оф 9
+        </address>
+        <a class="font-thin" href="tel:+79129730848">+7 (912) 973-08-48 </a>
         <!-- <span> +7 (3522) 555‒332</span> -->
         <span class="font-thin">Ежедневно с 08:00 до 17:00</span>
       </div>
@@ -57,7 +65,7 @@
     </div>
     <Hover
       v-if="hoverEnable"
-      :clientHeight="clientHeight - clientHeight * 0.22"
+      :clientHeight="{ clientHeightWindow: 700, clientHeight: 600 }"
     />
   </div>
   <div class="pb-4 flex flex-col" v-else>
@@ -102,7 +110,7 @@
       >
         <span
           >Горячая линия -
-          <strong class="text-theme-1">Круглосуточно</strong></span
+          <strong class="text-theme-10 text-shadow">Круглосуточно</strong></span
         >
         <a href="tel:+73522610630" class="font-bold text-2xl"
           >+7 (3522) 610‒630</a
@@ -116,7 +124,9 @@
             ease-in
             duration-1500
             transform
-            bg-theme-9
+            bg-gradient-to-t
+          from-bt-2
+          to-bt-1
             px-12
             py-4
             rounded-sm
@@ -133,7 +143,9 @@
             ease-in
             duration-1500
             transform
-            bg-theme-9
+            bg-gradient-to-t
+          from-bt-2
+          to-bt-1
             px-12
             py-4
             rounded-sm
@@ -163,13 +175,13 @@ export default class Header extends Vue {
   @Prop({ type: Boolean, required: true }) enable;
   @Prop({ type: Boolean, required: true }) hoverEnable;
 
-  @Watch("this.$route.fullPath")
+  @Watch("$route.fullPath")
   newclientHeight() {
     console.log(this.$route.fullPath);
     setTimeout(() => {
       if (this.$refs.clientHeight.clientHeight) {
         console.log(this.$refs.clientHeight.clientHeight);
-        this.clientHeight = this.$refs.clientHeight.clientHeight;
+        this.clientHeight = this.$refs.clientHeight.clientHeight - this.$refs.clientHeight.clientHeight * 0.14;
         // this.clientHeight = window.innerHeight;
       } else {
         console.log(window.innerHeight);
@@ -194,8 +206,9 @@ export default class Header extends Vue {
     window.$nuxt.$on("switchMobileMenu", (data) => {
       this.mobileMenuOpen = data;
     }); 
+    console.log(this.clientHeight);
     if (!this.$device.isMobile) {
-      this.clientHeight = this.$refs.clientHeight.clientHeight;
+      this.clientHeight = this.$refs.clientHeight.clientHeight - this.$refs.clientHeight.clientHeight * 0.34;
 
       // setTimeout(() => {
       //   this.clientHeight = this.$refs.clientHeight.clientHeight;

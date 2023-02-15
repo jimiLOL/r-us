@@ -59,7 +59,8 @@
                   px-2
                   rounded
                   hover:underline
-                  md:hover:text-theme-1 md:p-0
+                  text-shadow
+                  md:hover:text-theme-10 md:p-0
                   dark:border-gray-700
                   text-center
                 "

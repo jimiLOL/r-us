@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4 px-4 my-20">
+  <div class="flex flex-col gap-4 px-4 my-20 text-black">
     <span
       :class="['text-2xl', 'text-bold', $device.isMobile ? 'text-center' : '']"
       >Полезная информация</span
@@ -12,9 +12,9 @@
             'flex-col',
             'gap-2',
             $device.isMobile ? '' : 'px-4',
-            'hover:text-theme-1',
+            'hover:underline',
             'cursor-pointer',
-            'hover:shadow-lg',
+            'hover:shadow-xl',
             'hover:shadow-theme-1',
           ]"
           v-for="(item, index) in posts"

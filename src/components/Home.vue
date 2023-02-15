@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow-2xl shadow-gray-700">
+  <div>
     <BlockMenu />
     <CtaGeneral />
     <div
@@ -37,6 +37,7 @@
             'border-b-2',
             'border-theme-1',
             'border-solid',
+            'text-black',
             'text-center',
           ]"
           >Или расчитайте стоимость похорон под любой бюджет</span
@@ -49,12 +50,19 @@
               ease-in
               duration-1500
               transform
-              bg-theme-6
               px-12
               py-4
               rounded-sm
               font-bold
               hover:bg-theme-10
+               bg-gradient-to-t
+         from-theme-6 to-bt-1
+           shadow-lg
+              shadow-black
+              shadow-opacity-50
+              shadow-offset-2
+              shadow-radius-2
+              shadow-inset
               hover:transform
               hover:scale-95
               hover:underline
@@ -77,6 +85,12 @@
               duration-1500
               transform
               bg-theme-9
+              shadow-lg
+              shadow-black
+              shadow-opacity-50
+              shadow-offset-2
+              shadow-radius-2
+              shadow-inset              
               px-12
               py-4
               rounded-sm
@@ -94,7 +108,7 @@
     </div>
     <AboutForHomePage />
     <InformationForHome />
-    <CtaGeneral />
+    <CtaGeneral class="my-4"/>
   </div>
 </template>
 
@@ -223,4 +237,5 @@ svg {
   height: 200px;
   right: 1px;
 }
+
 </style>

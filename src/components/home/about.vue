@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4 px-4">
+  <div class="flex flex-col gap-4 px-4 text-black">
     <span class="text-3xl text-bold">О нас</span>
     <p class="text-lg">
       Люди полагаются на нас, чтобы обеспечить достойные проводы их погибшего, и мы заботимся о том, чтобы создать похороны, отражающие привязанность к ним. Мы обязуемся провести похороны таким образом, чтобы они стали подтверждением вашей любви.
@@ -68,12 +68,12 @@
         </div>
       </div>
 
-      <NuxtLink to="/employee" no-prefetch class="justify-self-end inline-flex items-center mt-4 flex-shrink-0 text-lg align-baseline text-theme-1 hover:underline"
+      <NuxtLink to="/employee" no-prefetch class="justify-self-end inline-flex items-center mt-4 flex-shrink-0 text-lg align-baseline text-black hover:underline"
         >Узнать больше о сотрудниках <font-awesome-icon
           icon="arrow-right"
           transform="shrink-6"
           class="self-center hover:animate-ping w-8"
-          :style="{ color: '#FFBB30' }"
+          :style="{ color: '#222' }"
         />
       </NuxtLink>
     </div>

@@ -4,6 +4,7 @@
     :class="[
       'flex',
       'flex-col',
+      'text-black',
       'items-center',
       'mb-20',
       $device.isMobile ? 'pt-9' : 'pt-6',
@@ -15,8 +16,7 @@
           'inline-flex',
           $device.isMobile ? 'text-2xl' : 'text-5xl',
           'font-bold',
-          'hover:underline hover:text-theme-10',
-          'focus:text-theme-10 focus:underline',
+          'hover:underline focus:underline',
         ]"
       >
         Что делать после смерти человека
@@ -24,7 +24,8 @@
           icon="arrow-right"
           transform="shrink-6"
           class="self-center hover:animate-ping w-14"
-          :style="{ color: '#FFBB30' }"
+          :style="{ color: '#010101' }"
+
         />
       </h2>
     </NuxtLink>
@@ -49,9 +50,11 @@
             align-baseline
             border-2
             rounded-lg
-            border-theme-1 border-solid
+            shadow-lg
+            shadow-theme-1/50
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
+            hover:shadow-theme-2/50 hover:shadow-2xl
             gap-4
             p-8
             h-80
@@ -78,9 +81,11 @@
             align-baseline
             border-2
             rounded-lg
-            border-theme-1 border-solid
+            shadow-lg
+            shadow-theme-1/50
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
+            hover:shadow-theme-2/50 hover:shadow-2xl
             gap-4
             p-8
             h-80
@@ -106,9 +111,11 @@
             align-baseline
             border-2
             rounded-lg
-            border-theme-1 border-solid
+            shadow-lg
+            shadow-theme-1/50
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
+            hover:shadow-theme-2/50 hover:shadow-2xl
             gap-4
             p-8
             h-80
@@ -127,14 +134,16 @@
       <NuxtLink to="/kremaciya">
         <div
           class="
-            flex flex-col
+             flex flex-col
             items-center
             align-baseline
             border-2
             rounded-lg
-            border-theme-1 border-solid
+            shadow-lg
+            shadow-theme-1/50
             hover:border-theme-2 hover:rounded-md
-            hover:transform hover:scale-115 hover:underline
+            hover:transform hover:scale-95 hover:underline
+            hover:shadow-theme-2/50 hover:shadow-2xl
             gap-4
             p-8
             h-80
@@ -153,14 +162,16 @@
       <NuxtLink to="/">
         <div
           class="
-            flex flex-col
+             flex flex-col
             items-center
             align-baseline
             border-2
             rounded-lg
-            border-theme-1 border-solid
+            shadow-lg
+            shadow-theme-1/50
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
+            hover:shadow-theme-2/50 hover:shadow-2xl
             gap-4
             p-8
             h-80
@@ -180,18 +191,20 @@
       <NuxtLink to="/">
         <div
           class="
-             flex flex-col
+            flex flex-col
             items-center
             align-baseline
             border-2
             rounded-lg
-            border-theme-1 border-solid
+            shadow-lg
+            shadow-theme-1/50
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
+            hover:shadow-theme-2/50 hover:shadow-2xl
             gap-4
             p-8
-            cursor-pointer
             h-80
+            cursor-pointer
             text-center
           "
           @click="scrollToElement"

@@ -3,8 +3,8 @@
     :class="[
       'font-raleway',
       'bg-theme-8',
-      'text-white',
-      !$device.isMobile ? 'img_bck' : '',
+      $route.name == 'index' ? 'text-white' : 'text-black',
+      !$device.isMobile && $route.name == 'index'? 'img_bck' : '',
     ]"
   >
     <div>
@@ -40,6 +40,7 @@
         id="content"
         :class="[
           'site__body',
+          !modalOpen && !openCallMe  ? 'back_wraper' : '',
           'xl:py-4',
           $device.isMobile ? 'px-2' : 'px-6',
           'h-full',
@@ -62,6 +63,7 @@
     </div>
 
     <!-- <Backtotop /> -->
+    
   </main>
 </template>
 
@@ -168,7 +170,7 @@ export default class Layout extends Vue {
                   2500
                 );
               }
-            }, 15000);
+            }, 7000);
           }, 30 * i);
         }
       });
@@ -206,6 +208,9 @@ export default class Layout extends Vue {
 
 
 <style scoped>
+.back_wraper {
+    backdrop-filter: blur(5px);
+}
 .img-position {
   /* overflow: hidden; */
 
@@ -232,7 +237,9 @@ svg {
 .img_bck {
   background: url("@/assets/imgs/d12cbf69172f03803703e7e4bc12823e.webp") -60% 46%/80%
       no-repeat,
-    radial-gradient(closest-side, transparent 10%, #0000001b 55%);
+    radial-gradient(closest-side, transparent 10%, #ffffff1b 55%);
+   /* backdrop-filter: blur(9px); */
+
   background-blend-mode: multiply;
 }
 </style>

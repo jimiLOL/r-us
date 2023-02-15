@@ -7,6 +7,7 @@
         'font-raleway',
         'flex-nowrap',
         'w-full',
+        'text-black'
       ]"
     >
       <div class="flex flex-col justify-center content-center basis-1/2">
@@ -30,13 +31,13 @@
                   to="/services"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Услуги</NuxtLink
                 >
               </li>
-              <li class="my-0.5 hover:underline md:hover:bg-transparent md:hover:text-theme-1 hover:cursor-pointer" @click="openModal">
+              <li class="my-0.5 hover:underline md:hover:bg-transparent  hover:cursor-pointer" @click="openModal">
                 Расчитать стоимость похорон
                 
               </li>
@@ -45,7 +46,7 @@
                   to="/price"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Комплексные услуги</NuxtLink
@@ -56,7 +57,7 @@
                   to="/blog"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Полезная информация</NuxtLink
@@ -69,7 +70,7 @@
                   to="/zahoronenie"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Договор на оказание ритуальных услуг</NuxtLink
@@ -80,7 +81,7 @@
                   to="/gerbovoe_svidetel_stvo_o_smerti"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Свидетельство о смерти</NuxtLink
@@ -91,7 +92,7 @@
                   to="/chto_poluchit_spravku_11"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Справка о смерти по форме 11</NuxtLink
@@ -102,7 +103,7 @@
                   to="/"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Льготы</NuxtLink
@@ -119,7 +120,7 @@
                   to="/posobie_na_pogrebenie"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Льготы и Пособия</NuxtLink
@@ -130,7 +131,7 @@
                   to="/mesto_na_kladbishche"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Место на кладбище</NuxtLink
@@ -141,7 +142,7 @@
                   to="/gruz_200"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Груз 200</NuxtLink
@@ -152,7 +153,7 @@
                   to="/kremaciya"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Кремация</NuxtLink
@@ -165,7 +166,7 @@
                   to="/"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Сотрудничество</NuxtLink
@@ -176,7 +177,7 @@
                   to="/"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Оферты</NuxtLink
@@ -187,7 +188,7 @@
                   to="/"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >О службе</NuxtLink
@@ -198,7 +199,7 @@
                   to="/"
                   class="
                     hover:underline
-                    md:hover:bg-transparent md:hover:text-theme-1
+                    md:hover:bg-transparent 
                   "
                   no-prefetch
                   >Отзывы</NuxtLink
@@ -221,7 +222,7 @@
         >
           <span
             >Горячая линия -
-            <strong class="text-theme-1">Круглосуточно</strong></span
+            <strong class="text-theme-10 text-shadow">Круглосуточно</strong></span
           >
           <a href="tel:+73522610630" class="font-bold text-2xl"
             >+7 (3522) 610‒630</a
@@ -230,29 +231,35 @@
         <h4 class="text-2xl font-bold">Наши адреса:</h4>
         <div class="inline-flex flex-col justify-center whitespace-nowrap mb-4">
           <span class="text-lg font-semibold md:text-base"
-            >пр-кт Машиностроителей, 34</span
+            >г.Курган, пр-кт Машиностроителей, 34</span
           >
           <a href="tel:+73522256075">+7 (3522) 25‒60‒75</a>
         </div>
         <div class="inline-flex flex-col justify-center whitespace-nowrap mb-4">
           <span class="text-lg font-semibold md:text-base"
-            >ул. Коли Мяготина 102а</span
+            >г.Курган, ул. Коли Мяготина 102а</span
           >
           <a href="tel:+73522256075">+7 (3522) 622‒000</a>
         </div>
         <div class="inline-flex flex-col justify-center whitespace-nowrap mb-4">
-          <span class="text-lg font-semibold md:text-base">ул. Томина, 67</span>
-          <a href="tel:+79128355992">+7‒912‒835‒59‒92</a>
+          <span class="text-lg font-semibold md:text-base">г.Курган, ул. Томина, 67</span>
+          <a href="tel:+79128355992">+7 (912) 835‒59‒92</a>
         </div>
-        <div class="inline-flex flex-col justify-center whitespace-nowrap">
+        <div class="inline-flex flex-col justify-center whitespace-nowrap mb-4">
           <span class="text-lg font-semibold md:text-base"
-            >ул. Карбышева 35к5</span
+            >г.Курган, ул. Карбышева 35к5</span
           >
           <a href="tel:+73522554400">+7 (3522) 554‒400 </a>
         </div>
+          <div class="inline-flex flex-col justify-center whitespace-nowrap">
+          <span class="text-lg font-semibold md:text-base"
+            >с.Кетово, ул. Космонавтов, 36 оф 9</span
+          >
+          <a href="tel:+79129730848">+7 (912) 973-08-48 </a>
+        </div>
       </div>
     </div>
-    <div :class="['flex', $device.isMobile?'flex-col items-center content-center mt-8 text-center gap-9':'gap-44 mt-4 pb-4', 'justify-start']">
+    <div :class="['flex text-black', $device.isMobile?'flex-col items-center content-center mt-8 text-center gap-9':'gap-44 mt-4 pb-4', 'justify-start']">
       <div>
         <span>Все права защищены © 2001 - {{date}} </span>
       </div>

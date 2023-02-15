@@ -54,7 +54,7 @@
           :class="[
             load
               ? 'animate-pulse h-2.5 bg-gray-200 rounded-full w-98'
-              : 'text-wraper text-bold text-3xl self-end text-theme-2 p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8',
+              : 'text-wraper text-bold text-3xl self-end text-black p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8',
           ]"
         >
           {{ load ? "" : post?.title }}
@@ -102,13 +102,13 @@
           'gap-2',
           'border-2',
           'rounded-lg',
-          'border-theme-1',
+          'border-theme-10',
           'border-solid',
           'p-4',
         ]"
       >
         <div :class="['flex', 'flex-col', 'gap-2', 'w-full']">
-          <span class="text-bold text-3xl text-theme-1">{{
+          <span class="text-bold text-3xl text-theme-10 text-shadow">{{
             post?.category
           }}</span>
           <ul :class="['leading-snug', 'flex', 'flex-col', $device.isMobile ? 'items-center':'items-start' ]">
@@ -155,7 +155,7 @@
             >
               <span
                 >Горячая линия -
-                <strong class="text-theme-1">Круглосуточно</strong></span
+                <strong class="text-theme-10 text-shadow">Круглосуточно</strong></span
               >
               <a href="tel:+73522610630" class="font-bold">+7 (3522) 610‒630</a>
             </div>
@@ -215,12 +215,12 @@
         </div>
         <span
           class="
-            text-bold text-xl text-theme-11
+            text-bold text-xl text-theme-10
             justify-self-end
             self-start
             whitespace-nowrap
           "
-          :class="[$device.isMobile ? 'self-center' : '']"
+          :class="[$device.isMobile ? 'self-center' : '', 'text-shadow']"
           >от 10 000 ₽</span
         >
       </div>
@@ -410,7 +410,7 @@ export default class Post extends Vue {
 }
 .text-wraper {
   /* text-shadow: 0 0 0.6px #000000, 0 0 0.5px #d1dc0d; */
-  text-shadow: #FC0 1px 0 10px;
+  text-shadow: #FC0 1px 0 0.1px;
 }
 h1 {
   filter: none;

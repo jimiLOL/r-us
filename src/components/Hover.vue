@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-6 w-full pt-14">
       <div class="flex flex-col gap-8">
         <h1 class="text-5xl font-bold">
-          <i>Ритуальная служба в</i><i class="text-theme-1"> Кургане</i>
+          <i>Ритуальная служба в</i><i class="text-theme-10"> Кургане</i>
         </h1>
         <p>
           Опытный и надежный агент похоронных услуг в Кургане.
@@ -24,7 +24,7 @@
       >
         <span
           >Горячая линия -
-          <strong class="text-theme-1">Круглосуточно</strong></span
+          <strong class="text-theme-10">Круглосуточно</strong></span
         >
         <a href="tel:+73522610630" class="font-bold text-2xl"
           >+7 (3522) 610‒630</a
@@ -37,7 +37,9 @@
             ease-in
             duration-1500
             transform
-            bg-theme-9
+             bg-gradient-to-t
+          from-bt-2
+          to-bt-1
             px-12
             py-4
             rounded-sm
@@ -54,7 +56,9 @@
             ease-in
             duration-1500
             transform
-            bg-theme-9
+             bg-gradient-to-t
+          from-bt-2
+          to-bt-1
             px-12
             py-4
             rounded-sm
@@ -80,10 +84,10 @@
     <div class="wrapper_b"></div>
 
     <component :is="'style'">
-      :root {--clientHeight: {{ Math.ceil(clientHeight * 1.3) }}px;
+      :root {--clientHeight: {{ Math.ceil(clientHeight.clientHeight * 1.35) }}px;
       --backgroundWraper: {{ backgroundWraper }}px; --clientH:
-      {{ Math.ceil(clientHeight * 0.4) }}px; --wrapperTop:
-      {{ Math.ceil(clientHeight * 1.68) }}px; }
+      {{ Math.ceil(clientHeight.clientHeight * 0.4) }}px; --wrapperTop:
+      {{ Math.ceil(clientHeight.clientHeight * 1.68) }}px; }
     </component>
   </div>
 </template>
@@ -125,7 +129,7 @@ const OrbitControls = require("three-orbit-controls")(THREE);
   },
 })
 export default class Hover extends Vue {
-  @Prop({ type: Number, default: 1200 }) clientHeight;
+  @Prop({ type: Object, default: ()=> ({clientHeight: 500, clientHeightWindow: 600}) }) clientHeight;
 
   @Watch("clientHeight")
   resize() {
@@ -168,6 +172,7 @@ export default class Hover extends Vue {
   };
 
   async mounted() {
+    console.log(this.clientHeight);
     // const rs = await rustModule;
     // console.log(rs);
     // let result = rs.test();
@@ -213,7 +218,7 @@ export default class Hover extends Vue {
       renderer.setClearColor(0x000000, 0);
 
       renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(vm.clientHeight * 0.61, vm.clientHeight * 0.61);
+      renderer.setSize(vm.clientHeight.clientHeight * 0.71, vm.clientHeight.clientHeight * 0.71);
       renderer.context.getExtension("OES_standard_derivatives");
 
       let container = document.getElementById("container");
@@ -453,8 +458,12 @@ export default class Hover extends Vue {
       // scene.rotation.y += (scene.destination.y - scene.rotation.y) * 0.05;
       renderer.render(scene, camera);
     }
-    init();
+
+    if (this.clientHeight.clientHeightWindow  > 300) {
+ init();
     animate();
+    }
+   
   }
 }
 </script>
@@ -467,17 +476,18 @@ export default class Hover extends Vue {
 
 .wrapper_b {
   position: absolute;
-  top: var(--wrapperTop);
+  top: 99%;
   width: 98%;
-  height: 20px;
+  height: 0.1px;
+  background: #22222200;
   z-index: 11;
-  -webkit-box-shadow: 0px -12px 20px 2px #222222;
-  box-shadow: 0px -50px 50px 50px #222222;
+  -webkit-box-shadow: 0px -20px 40px 60px #222222;
+  box-shadow: 0px -30px 40px 60px #222222;
 }
 
 .img-position {
   position: absolute;
-  top: var(--clientH);
+  top: 22%;
   height: 100%;
   width: var(--backgroundWraper);
 
@@ -506,7 +516,7 @@ export default class Hover extends Vue {
   position: absolute;
   width: 5%;
   height: 5%;
-  top: var(--clientHeight);
+  top: 80%;
   right: 50%;
   /* background: url("/mouse.svg") 50% 95%/1.3%
       no-repeat; */

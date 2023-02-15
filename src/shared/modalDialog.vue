@@ -13,7 +13,7 @@
   >
     <div :class="['relative', 'w-full', 'h-full', checkProduct ? 'overflow-y-scroll':'']">
       <!-- Modal content -->
-      <div class="relative text-black bg-white rounded-lg">
+      <div class="relative text-black bg-theme-14 rounded-lg">
         <!-- Modal header -->
         <div v-if="!checkProduct" class="flex flex-col p-6 w-full gap-2">
           <div

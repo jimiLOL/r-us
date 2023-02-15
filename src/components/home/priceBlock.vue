@@ -3,7 +3,7 @@
     id="priceList"
     :class="[
       'flex',
-      'flex-col',
+      'flex-col text-black',
       $device.isMobile ? 'pt-20 px-2' : 'py-20 px-4',
     ]"
   >
@@ -15,18 +15,18 @@
     >
       Цены на ритуальные услуги под ключ
     </h3>
-    <div v-if="!$device.isMobile" class="flex gap-9 text-base pl-4 mt-9 mb-2">
-      <div class="hover:underline hover:text-theme-1 cursor-pointer">
+    <div v-if="!$device.isMobile" class="flex gap-9 text-base mt-9">
+      <div :class="['hover:underline text-shadow_hover cursor-pointer', categories.chose == 'provaslavny' ? 'pt-2 bg-white w-max px-4 rounded-t-lg border-l-2 border-t-2 border-r-2 border-theme-1 border-solid': '']" @click="setNewChose('provaslavny')">
         Православные
       </div>
-      <div class="hover:underline hover:text-theme-1 cursor-pointer">
+      <div :class="['hover:underline text-shadow_hover cursor-pointer', categories.chose == 'mysulman' ? 'pt-2 bg-white w-max px-4 rounded-t-lg border-l-2 border-t-2 border-r-2 border-theme-1 border-solid': '']" @click="setNewChose('mysulman')">
         Мусульманские
       </div>
-      <div class="hover:underline hover:text-theme-1 cursor-pointer">
+      <div :class="['hover:underline text-shadow_hover cursor-pointer', categories.chose == 'kremacia' ? 'pt-2 bg-white w-max px-4 rounded-t-lg border-l-2 border-t-2 border-r-2 border-theme-1 border-solid': '']" @click="setNewChose('kremacia')">
         Кремация
       </div>
     </div>
-    <div v-else class="mt-9 mb-2 text-base">
+    <div v-else class="mt-9 mb-2 text-base bg-white px-4 rounded-t-lg">
       <SlickSlider ref="forSlick" :settings="setting_slider">
         <div class="focus:underline focus:text-theme-1 cursor-pointer">
           Православные
@@ -43,9 +43,13 @@
       :class="[
         'flex',
         'flex-col',
-        'border-2',
-        'rounded-lg',
+        'border-b-2',
+        'border-r-2',
+        'border-l-2',
+        'rounded-b-lg',
+        'rounded-tr-lg',
         'border-theme-1',
+        'bg-white',
         'border-solid',
         'text-lg',
         'font-bold',
@@ -71,7 +75,7 @@
                 : 'border-b-2 text-shadow_hover',
               'border-solid',
               'cursor-pointer',
-              'hover:text-theme-1',
+              'hover:underline',
             ]"
             @click="idVar === index ? closeList() : ''"
           >
@@ -147,7 +151,7 @@
                 >
                   <span
                     >Горячая линия -
-                    <strong class="text-theme-1">Круглосуточно</strong></span
+                    <strong class="text-theme-10 text-shadow">Круглосуточно</strong></span
                   >
                   <a href="tel:+73522610630" class="font-bold"
                     >+7 (3522) 610‒630</a
@@ -359,6 +363,10 @@ export default defineComponent({
   },
   data() {
     return {
+      categories: {
+        chose: 'provaslavny',
+        
+      },
       data: [
         {
           title: "Социальный",
@@ -509,6 +517,10 @@ export default defineComponent({
       touchMove: true,
     };
 
+    const setNewChose = (chose) => {
+      categories.chose = chose;
+    }
+
     const switchFormCall = () => {
       openForm.value = !openForm.value;
     };
@@ -569,6 +581,7 @@ export default defineComponent({
       switchFormCall,
       validPhone,
       submiteForm,
+      setNewChose
     };
   },
 });
@@ -590,7 +603,7 @@ export default defineComponent({
   }
 }
 .text-shadow_hover:hover {
-  text-shadow: #fc0 0.7px 0 10px;
+  text-shadow: #497FE7 0.1px 0 0.7px;
 }
 
 .list-enter-active,
@@ -639,4 +652,6 @@ export default defineComponent({
     transform: translateX(1em);
   }
 }
+
+
 </style>

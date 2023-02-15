@@ -34,18 +34,20 @@ module.exports = {
     extend: {
       colors: {
         theme: {
-          1: "#FFBB30",
+          1: "#A8CFFF",
           2: "#E5E5E5",
           3: "#fec024",
           4: "#6F727A",
           5: "#458BE0",
           6: "#8AADCD",
           7: "#DC2B2B",
-          8: "#222222",
+          8: "#FCFCFC",
           9: "#FFCC46",
           10: '#FFAE09',
           11: '#F5F5F5',
-          12: '#0058C3'
+          12: '#0058C3',
+          13: '#577E6B',
+          14: '#B3B6BD'
         },
         social: {
           wp: "#48C95F",
@@ -75,6 +77,10 @@ module.exports = {
           900: "#1a202c",
           901: "#7fff00"
         },
+        bt: {
+          1: '#A8CFFF',
+          2: '#497FE7'
+        }
       },
       fontFamily: {
         raleway: ['Raleway', 'sans-serif',],

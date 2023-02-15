@@ -2,7 +2,7 @@
      <div class="flex img_cover h-96 rounded-lg">
         <h1
           style="color: #fff"
-          class="text-wraper text-bold text-3xl self-end text-theme-2 p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8 backdrop-opacity-60 backdrop-invert"
+          class="text-wraper text-bold text-3xl self-end text-black p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8 backdrop-opacity-60 backdrop-invert"
         >
           {{ post?.title }}
         </h1>
@@ -33,7 +33,7 @@ export default class HoverForPost extends Vue {
   /* background-blend-mode: multiply; */
 }
 .text-wraper {
-  text-shadow: #FC0 1px 0 10px;
+  text-shadow: rgb(214, 233, 13) 1px 0 0.5px;
 
 }
 h1 {
