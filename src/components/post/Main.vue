@@ -105,6 +105,8 @@
           'border-theme-10',
           'border-solid',
           'p-4',
+          'img-hover-zoom--brightness',
+          'text-white'
         ]"
       >
         <div :class="['flex', 'flex-col', 'gap-2', 'w-full']">
@@ -165,22 +167,22 @@
               <button
                 :class="[
                   'py-2',
-                  'px-9',
-                  'border-2',
-                  'rounded-md',
-                  'text-theme-8',
-                  'text-bold',
-                  'bg-theme-1',
-                  'border-solid',
-                  'hover:bg-theme-10',
-                  'hover:transform',
-                  'hover:scale-95',
-                  'hover:underline',
-                  'focus:bg-theme-10',
-                  'focus:transform',
-                  'focus:scale-95',
-                  'focus:underline',
-                  $device.isMobile ? 'w-full' : '',
+                'px-9',
+                'rounded-md',
+                'text-theme-8',
+                'text-bold',
+                'bg-gradient-to-t',
+                'from-bt-2',
+                'to-bt-1',
+                'transform transition ease-in duration-1500',
+                'hover:bg-theme-10',
+                'hover:transform',
+                'hover:scale-95',
+                'hover:underline',
+                'focus:bg-theme-10',
+                'focus:scale-95',
+                'focus:underline',
+                $device.isMobile ? 'w-full' : '',
                 ]"
                 @click="callMe"
               >
@@ -188,23 +190,19 @@
               </button>
               <button
                 :class="[
-                  'py-2',
-                  'px-9',
-                  'border-2',
-                  'rounded-md',
-                  'text-theme-8',
-                  'text-bold',
-                  'bg-theme-1',
-                  'border-solid',
-                  'hover:bg-theme-10',
-                  'hover:transform',
-                  'hover:scale-95',
-                  'hover:underline',
-                  'focus:bg-theme-10',
-                  'focus:transform',
-                  'focus:scale-95',
-                  'focus:underline',
-                  $device.isMobile ? 'w-full' : '',
+                   'py-2',
+                'px-9',
+                'rounded-md',
+                'text-theme-8',
+                'text-bold',
+                'bg-gradient-to-t',
+                'from-bt-2',
+                'to-bt-1',
+                'transform transition ease-in duration-1500',
+                'hover:bg-theme-10',
+                'hover:scale-95',
+                'hover:underline',
+                $device.isMobile ? 'w-full' : '',
                 ]"
                 @click="openModal"
               >
@@ -412,9 +410,25 @@ export default class Post extends Vue {
 }
 .text-wraper {
   /* text-shadow: 0 0 0.6px #000000, 0 0 0.5px #d1dc0d; */
-  text-shadow: #FC0 1px 0 0.1px;
+  text-shadow: #FC0 0.5px 0 0.1px;
 }
 h1 {
   filter: none;
+}
+.img-hover-zoom--brightness {
+  background-size: cover;
+  /* background-repeat: no-repeat;
+  background-position: center center; */
+  background: url("/imgs/lp02bi_94766ea5f97792e4672f66037d2c8269841b788f.jpg")
+      20% 38%/100% no-repeat,
+    radial-gradient(closest-side, transparent 10%, #00000061 75%);
+  background-blend-mode: multiply;
+  /* background-filter: blur(15px); */
+  /* 
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px); */
 }
 </style>
