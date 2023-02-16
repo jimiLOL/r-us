@@ -15,35 +15,35 @@
       >
         <span
           >Горячая линия -
-          <strong class="text-theme-10 text-shadow">Круглосуточно</strong></span
+          <strong class="text-theme-10">Круглосуточно</strong></span
         >
         <a href="tel:+73522610630" class="font-bold text-2xl"
           >+7 (3522) 610‒630</a
         >
       </div>
       <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
          пр-кт Машиностроителей, 34
         </address>
         <a class="font-thin" href="tel:+73522256075">+7 (3522) 25‒60‒75</a>
         <span class="font-thin">с 08:00 до 17:00</span>
       </div>
       <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
          ул.Коли Мяготина 102а
         </address>
         <a class="font-thin" href="tel:+73522256075">+7 (3522) 622‒000</a>
         <span class="font-thin">с 08:00 до 17:00</span>
       </div>
       <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
          ул.Томина, 67
         </address>
         <a class="font-thin" href="tel:+79128355992">+7 (912) 835‒59‒92</a>
         <span class="font-thin">с 08:00 до 17:00</span>
       </div>
       <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
          ул.Карбышева 35к5
         </address>
         <a class="font-thin" href="tel:+73522554400">+7 (3522) 554‒400 </a>
@@ -51,7 +51,7 @@
         <span class="font-thin">с 08:00 до 17:00</span>
       </div>
       <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-3 text-shadow">
+        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
           с.Кетово, ул.Космонавтов, 36 оф 9
         </address>
         <a class="font-thin" href="tel:+79129730848">+7 (912) 973-08-48 </a>
@@ -110,7 +110,7 @@
       >
         <span
           >Горячая линия -
-          <strong class="text-theme-10 text-shadow">Круглосуточно</strong></span
+          <strong class="text-theme-10">Круглосуточно</strong></span
         >
         <a href="tel:+73522610630" class="font-bold text-2xl"
           >+7 (3522) 610‒630</a

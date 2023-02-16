@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10']">
+  <div :class="[$device.isMobile ? '' : 'w-48 pt-20', 'basis-3/10', 'text-black']">
     <nav>
       <ul class="text-bold text-center whitespace-nowrap">
         <TransitionGroup name="slide-in">

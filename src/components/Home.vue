@@ -17,10 +17,10 @@
           v-for="index in 20"
           :key="index"
           :id="`svg_bottom_${index}`"
-          :style="`top: ${svgElementY + 10 * index}px`"
+          :style="`top: ${svgElementY + 10 * index}px; right: 3%`"
         ></svg>
       </div>
-      <PriceBlock :class="[$device.isMobile ? 'w-full' : 'w-2/3']" />
+      <PriceBlock :class="[$device.isMobile ? 'w-full' : 'w-2/3']" page="home"/>
       <div
         :class="[
           'flex',
@@ -55,18 +55,16 @@
               rounded-sm
               font-bold
               hover:bg-theme-10
-               bg-gradient-to-t
-         from-theme-6 to-bt-1
-           shadow-lg
+              bg-gradient-to-t
+              from-bt-2
+              to-bt-1
+              shadow-lg
               shadow-black
               shadow-opacity-50
               shadow-offset-2
               shadow-radius-2
               shadow-inset
-              hover:transform
-              hover:scale-95
-              hover:underline
-              hover:text-black
+              hover:transform hover:scale-95 hover:underline hover:text-black
               focus:bg-theme-10
               focus:transform
               focus:scale-95
@@ -84,18 +82,20 @@
               ease-in
               duration-1500
               transform
-              bg-theme-9
+              bg-gradient-to-t
+              from-bt-4
+              to-bt-3
               shadow-lg
               shadow-black
               shadow-opacity-50
               shadow-offset-2
               shadow-radius-2
-              shadow-inset              
+              shadow-inset
               px-12
               py-4
               rounded-sm
               font-bold
-              text-black
+              text-white
               hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
               focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
             "
@@ -108,7 +108,7 @@
     </div>
     <AboutForHomePage />
     <InformationForHome />
-    <CtaGeneral class="my-4"/>
+    <CtaGeneral class="my-4" />
   </div>
 </template>
 
@@ -136,17 +136,16 @@ export default class Home extends Vue {
 
   callMe() {
     window.$nuxt.$emit("callMe", true);
-  };
+  }
   openModal() {
     window.$nuxt.$emit("switchModal", true);
-  };
+  }
   mounted() {
-    // let allSvg = cash(this.$refs.svg_price_block).find("svg");
     let vm = this;
 
     function callback(entries, observer) {
       vm.observerInit = entries[0].isIntersecting;
-      vm.svgElementY = entries[0].rootBounds.width + 600;
+      vm.svgElementY = entries[0].rootBounds.width-200;
       console.log("observer " + entries[0].isIntersecting);
       setTimeout(() => {
         if (entries[0].isIntersecting) {
@@ -202,7 +201,6 @@ export default class Home extends Vue {
             // setTimeout(() => {
             //   s.remove()
             // }, 10000);
-            setInterval(() => {
               if (i == 0) {
                 i = 1;
                 lineDraw.animate(
@@ -220,7 +218,6 @@ export default class Home extends Vue {
                   2500
                 );
               }
-            }, 15000);
           }, 30 * i);
         }
       });
@@ -237,5 +234,4 @@ svg {
   height: 200px;
   right: 1px;
 }
-
 </style>

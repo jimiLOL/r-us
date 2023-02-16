@@ -19,7 +19,7 @@
         >+7 (3522) 610‒630</a
       >
     </div>
-    <div :class="['flex', $device.isMobile ? 'flex-col' : 'flex-row', 'gap-4']">
+    <div :class="['flex', $device.isMobile ? 'flex-col gap-2' : 'flex-row gap-4']">
       <button
         class="
           transition
@@ -30,7 +30,6 @@
           from-bt-2
           to-bt-1
           px-12
-          py-4
           rounded-sm
           shadow-lg
           shadow-black
@@ -42,6 +41,7 @@
           hover:bg-gradient-to-b hover:transform hover:scale-95 hover:underline
           focus:bg-gradient-to-b focus:transform focus:scale-95 focus:underline
         "
+        :class="[!$device.isMobile ? 'py-2' : 'py-4']"
         @click="callMe"
       >
         Заказать звонок
@@ -56,7 +56,7 @@
           from-bt-2
           to-bt-1
           px-12
-          py-4
+          py-2
           rounded-sm
           shadow-lg
           shadow-black

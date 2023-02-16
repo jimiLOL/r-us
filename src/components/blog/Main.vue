@@ -8,7 +8,7 @@
       'px-4',
     ]"
   >
-    <div :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10']">
+    <div :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10 w-48']">
       <nav>
         <ul class="text-bold text-center whitespace-nowrap">
           <li
@@ -39,7 +39,12 @@
             'overflow-hidden',
             'border-2',
             'rounded-lg',
-            'border-theme-11',
+           'border-2',
+          'rounded-lg',
+          'border-theme-11',
+          'bg-theme-15',
+          'shadow-sm shadow-black shadow-opacity-50 shadow-offset-2 shadow-radius-2 shadow-inset hover:shadow-lg',
+          'border-solid',
             'border-solid',
           ]"
         >
@@ -64,18 +69,18 @@
           <button
             :class="[
               'rounded-lg',
-              'border-2',
-              'border-social-3',
+             'bg-gradient-to-t',
+            'from-bt-2',
+            'to-bt-1',
+            'cursor-pointer transform transition ease-in duration-1500 hover:scale-95',
               $device.isMobile ? 'w-5/6 mx-4 self-center' : 'w-1/3 mr-2',
               'self-end',
               'py-4',
               'px-1',
               'my-4',
               'hover:text-black',
-              'hover:bg-theme-11',
               'hover:border-black',
               'focus:text-black',
-              'focus:bg-theme-11',
               'focus:border-black',
             ]"
             :disabled="load"

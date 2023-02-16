@@ -15,13 +15,14 @@
     >
       Цены на ритуальные услуги под ключ
     </h3>
-    <div v-if="!$device.isMobile" class="flex gap-9 text-base mt-9">
+    <div v-if="!$device.isMobile" class="flex gap-9 text-base mt-9 font-bold">
       <div
         :class="[
           'hover:underline text-shadow_hover cursor-pointer',
-          categoriesTab.chose == 'provaslavny' || categoriesTab.chose == 'provaslavny'
-            ? 'pt-2 bg-white w-max px-4 rounded-t-lg border-l-2 border-t-2 border-r-2 border-theme-1 border-solid'
-            : '',
+          categoriesTab.chose == 'provaslavny'
+            ? 'bg-white w-max rounded-t-lg text-theme-10 underline'
+            : '', 'py-2 px-4', 
+            pageSetting == 'home' && categoriesTab.chose == 'provaslavny'? 'border-l-2 border-t-2 border-r-2 border-theme-1 border-solid' : ''
         ]"
         @click="setNewChose('provaslavny')"
       >
@@ -30,9 +31,9 @@
       <div
         :class="[
           'hover:underline text-shadow_hover cursor-pointer',
-          categoriesTab.chose == 'mysulman' || categoriesTab.chose == 'mysulman'
-            ? 'pt-2 bg-white w-max px-4 rounded-t-lg border-l-2 border-t-2 border-r-2 border-theme-1 border-solid'
-            : '',
+          categoriesTab.chose == 'mysulman'
+            ? 'bg-white w-max rounded-t-lg text-theme-10 underline'
+            : '', 'py-2 px-4', pageSetting == 'home' && categoriesTab.chose == 'mysulman' ? 'border-l-2 border-t-2 border-r-2 border-theme-1 border-solid' : ''
         ]"
         @click="setNewChose('mysulman')"
       >
@@ -41,9 +42,9 @@
       <div
         :class="[
           'hover:underline text-shadow_hover cursor-pointer',
-          categoriesTab.chose == 'kremacia' || categoriesTab.chose == 'kremacia'
-            ? 'pt-2 bg-white w-max px-4 rounded-t-lg border-l-2 border-t-2 border-r-2 border-theme-1 border-solid'
-            : '',
+          categoriesTab.chose == 'kremacia'
+            ? 'bg-white w-max rounded-t-lg text-theme-10 underline'
+            : '', 'px-4 py-2', pageSetting == 'home' && categoriesTab.chose == 'kremacia' ? 'border-l-2 border-t-2 border-r-2 border-theme-1 border-solid' : ''
         ]"
         @click="setNewChose('kremacia')"
       >
@@ -67,17 +68,14 @@
       :class="[
         'flex',
         'flex-col',
-        'border-b-2',
-        'border-r-2',
-        'border-l-2',
         'rounded-b-lg',
         'rounded-tr-lg',
-        'border-theme-1',
+        pageSetting == 'home' ? 'border-theme-1 border-b-2 border-r-2 border-l-2 border-solid':'',
         'bg-white',
-        'border-solid',
         'text-lg',
         'font-bold',
-        $device.isMobile ? 'px-2' : 'px-9',
+        $device.isMobile ? 'px-2' : 'px-9', 
+        'shadow-md',
         'gap-2',
       ]"
     >
@@ -98,6 +96,7 @@
                 ? ''
                 : 'border-b-2 text-shadow_hover',
               'border-solid',
+              'border-theme-5',
               'cursor-pointer',
             ]"
             @click="idVar === index ? closeList() : ''"
@@ -387,11 +386,14 @@ export default defineComponent({
   components: {
     SlickSlider,
   },
+  props: {
+    page: {
+      type: String,
+      default: "home",
+    },
+  },
   data() {
     return {
-      categories: {
-        chose: "provaslavny",
-      },
       data: [
         {
           title: "Социальный",
@@ -523,7 +525,7 @@ export default defineComponent({
       ].reverse(),
     };
   },
-  setup(categories) {
+  setup(props) {
     const showAll = ref(null);
     const idVar = ref(null);
     const showList = ref(false);
@@ -544,7 +546,13 @@ export default defineComponent({
       swipeToSlide: true,
       touchMove: true,
     };
-    const categoriesTab = ref(categories);
+
+    
+    const categoriesTab = ref({
+        chose: "provaslavny",
+      });
+
+      const pageSetting = ref(props.page)
 
     const setNewChose = (chose) => {
       categoriesTab.value.chose = chose;
@@ -612,7 +620,8 @@ export default defineComponent({
       validPhone,
       submiteForm,
       setNewChose,
-      categoriesTab
+      categoriesTab,
+      pageSetting
     };
   },
 });

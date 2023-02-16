@@ -6,12 +6,12 @@
       'justify-center',
       'gap-6',
       'px-4',
-      'h-screen'
+      'h-screen',
     ]"
   >
     <div
       v-if="!load && !Object.keys($route.params).length"
-      :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10']"
+      :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10 w-48']"
     >
       <nav>
         <ul class="text-bold text-center whitespace-nowrap">
@@ -35,16 +35,16 @@
       ]"
     >
       <div
-        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+        class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mb-4"
       ></div>
       <div
-        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+        class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mb-4"
       ></div>
       <div
-        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+        class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mb-4"
       ></div>
       <div
-        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+        class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mb-4"
       ></div>
     </div>
     <div v-else class="mt-4 mx-4">
@@ -52,8 +52,12 @@
         ><ChevronsLeftIcon aria-hidden="true" />Назад</nuxt-link
       >
     </div>
-    
-      <TransitionGroup name="slide-in" tag="div" class="flex flex-col gap-4 pt-20 w-full">
+
+    <TransitionGroup
+      name="slide-in"
+      tag="div"
+      class="flex flex-col gap-4 pt-20 w-full"
+    >
       <div
         v-for="post in posts"
         :key="post._id"
@@ -66,14 +70,16 @@
           'border-2',
           'rounded-lg',
           'border-theme-11',
+          'bg-theme-15',
+          'shadow-sm shadow-black shadow-opacity-50 shadow-offset-2 shadow-radius-2 shadow-inset hover:shadow-lg',
           'border-solid',
           load ? 'animate-pulse' : '',
-          'an_hov'
+          'an_hov',
         ]"
         :disabled="load"
-         @click="
-            $router.push(`/services/${post.category_en}?post=${post.title_en}`)
-          "
+        @click="
+          $router.push(`/services/${post.category_en}?post=${post.title_en}`)
+        "
       >
         <img
           :class="[$device.isMobile ? 'w-full' : 'w-48', 'rounded-md']"
@@ -93,7 +99,7 @@
           <h3
             :class="[
               load
-                ? 'h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mt-2'
+                ? 'h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mt-2'
                 : 'text-bold text-2xl hover:underline',
             ]"
           >
@@ -102,33 +108,32 @@
           <p
             :class="[
               load
-                ? 'h-2 w-96 mt-4 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5'
-                : '', 
-                $device.isMobile ? 'truncate' : '',
+                ? 'h-2 w-96 mt-4 bg-gray-500 rounded-full dark:bg-gray-700 mb-2.5'
+                : '',
+              $device.isMobile ? 'truncate' : '',
             ]"
           >
             {{ load ? "" : kitcut(post.description, 150) }}
           </p>
         </div>
         <button
-        v-if="!$device.isMobile"
+          v-if="!$device.isMobile"
           :class="[
-            'rounded-lg',
-            'border-2',
-            'border-social-3',
+            'rounded-sm',
             $device.isMobile ? 'w-5/6 mx-4 self-center' : 'w-1/3 mr-2',
             'self-end',
             'py-4',
             'px-1',
             'my-4',
-            'cursor-pointer',
+            'bg-gradient-to-t',
+            'from-bt-2',
+            'to-bt-1',
+            'cursor-pointer transform transition ease-in duration-1500 hover:scale-95',
             'hover:text-black',
-            'hover:bg-theme-1',
             'hover:border-black',
             'focus:text-black',
-            'focus:bg-theme-1',
             'focus:border-black',
-            load ? 'animate-pulse bg-gray-200 w-96' : '',
+            load ? 'animate-pulse bg-gray-500 w-96' : '',
           ]"
           :disabled="load"
           @click="
@@ -138,8 +143,7 @@
           {{ load ? "" : "Выбрать" }}
         </button>
       </div>
-      </TransitionGroup>
- 
+    </TransitionGroup>
   </div>
 </template>
 

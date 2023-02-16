@@ -50,11 +50,12 @@
             align-baseline
             border-2
             rounded-lg
-            shadow-lg
+            shadow-md
             shadow-theme-1/50
+            bg-white
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
-            hover:shadow-theme-2/50 hover:shadow-2xl
+            hover:shadow-theme-2/50 hover:shadow-xl
             gap-4
             p-8
             h-80
@@ -81,11 +82,12 @@
             align-baseline
             border-2
             rounded-lg
-            shadow-lg
+            shadow-md
             shadow-theme-1/50
+            bg-white
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
-            hover:shadow-theme-2/50 hover:shadow-2xl
+            hover:shadow-theme-2/50 hover:shadow-xl
             gap-4
             p-8
             h-80
@@ -111,11 +113,12 @@
             align-baseline
             border-2
             rounded-lg
-            shadow-lg
+            shadow-md
             shadow-theme-1/50
+            bg-white
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
-            hover:shadow-theme-2/50 hover:shadow-2xl
+            hover:shadow-theme-2/50 hover:shadow-xl
             gap-4
             p-8
             h-80
@@ -139,11 +142,12 @@
             align-baseline
             border-2
             rounded-lg
-            shadow-lg
+            shadow-md
             shadow-theme-1/50
+            bg-white
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
-            hover:shadow-theme-2/50 hover:shadow-2xl
+            hover:shadow-theme-2/50 hover:shadow-xl
             gap-4
             p-8
             h-80
@@ -167,11 +171,12 @@
             align-baseline
             border-2
             rounded-lg
-            shadow-lg
+            shadow-md
             shadow-theme-1/50
+            bg-white
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
-            hover:shadow-theme-2/50 hover:shadow-2xl
+            hover:shadow-theme-2/50 hover:shadow-xl
             gap-4
             p-8
             h-80
@@ -196,11 +201,12 @@
             align-baseline
             border-2
             rounded-lg
-            shadow-lg
+            shadow-md
             shadow-theme-1/50
+            bg-white
             hover:border-theme-2 hover:rounded-md
             hover:transform hover:scale-95 hover:underline
-            hover:shadow-theme-2/50 hover:shadow-2xl
+            hover:shadow-theme-2/50 hover:shadow-xl
             gap-4
             p-8
             h-80

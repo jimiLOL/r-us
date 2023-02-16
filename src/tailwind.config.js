@@ -47,7 +47,10 @@ module.exports = {
           11: '#F5F5F5',
           12: '#0058C3',
           13: '#577E6B',
-          14: '#B3B6BD'
+          14: '#B3B6BD',
+          15: '#ffffff',
+          16: '#F7F7F7',
+          17: '#79A7F3'
         },
         social: {
           wp: "#48C95F",
@@ -79,7 +82,9 @@ module.exports = {
         },
         bt: {
           1: '#A8CFFF',
-          2: '#497FE7'
+          2: '#497FE7',
+          3: '#FFEB80',
+          4: '#FFC223',
         }
       },
       fontFamily: {

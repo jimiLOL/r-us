@@ -105,7 +105,6 @@
                 'hover:bg-theme-10',
                 'hover:scale-95',
                 'hover:underline',
-
                 $device.isMobile ? 'w-full' : '',
               ]"
               @click="openModal"

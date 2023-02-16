@@ -6,10 +6,11 @@
       'justify-center',
       'gap-6',
       'px-4',
+      'text-black'
     ]"
   >
   <MenuForPost v-if="!$device.isMobile || mobileMenuOpen" category_en="all" direction="services" />
-  <PriceBlock class="w-full mb-14" />
+  <PriceBlock :page="`page`" class="w-full mb-14" />
   </div>
 </template>
 

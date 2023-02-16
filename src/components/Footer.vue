@@ -231,23 +231,23 @@
         <h4 class="text-2xl font-bold">Наши адреса:</h4>
         <div class="inline-flex flex-col justify-center whitespace-nowrap mb-4">
           <span class="text-lg font-semibold md:text-base"
-            >г.Курган, пр-кт Машиностроителей, 34</span
+            >г. Курган, пр-кт Машиностроителей, 34</span
           >
           <a href="tel:+73522256075">+7 (3522) 25‒60‒75</a>
         </div>
         <div class="inline-flex flex-col justify-center whitespace-nowrap mb-4">
           <span class="text-lg font-semibold md:text-base"
-            >г.Курган, ул. Коли Мяготина 102а</span
+            >г. Курган, ул. Коли Мяготина 102а</span
           >
           <a href="tel:+73522256075">+7 (3522) 622‒000</a>
         </div>
         <div class="inline-flex flex-col justify-center whitespace-nowrap mb-4">
-          <span class="text-lg font-semibold md:text-base">г.Курган, ул. Томина, 67</span>
+          <span class="text-lg font-semibold md:text-base">г. Курган, ул. Томина, 67</span>
           <a href="tel:+79128355992">+7 (912) 835‒59‒92</a>
         </div>
         <div class="inline-flex flex-col justify-center whitespace-nowrap mb-4">
           <span class="text-lg font-semibold md:text-base"
-            >г.Курган, ул. Карбышева 35к5</span
+            >г. Курган, ул. Карбышева 35к5</span
           >
           <a href="tel:+73522554400">+7 (3522) 554‒400 </a>
         </div>

@@ -10,7 +10,7 @@
   >
     <div
       v-if="!load"
-      :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10']"
+      :class="[$device.isMobile ? '' : 'w-48 pt-20', 'basis-3/10']"
     >
       <nav>
         <ul class="text-bold text-center whitespace-nowrap">
@@ -35,16 +35,16 @@
       ]"
     >
       <div
-        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+        class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mb-4"
       ></div>
       <div
-        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+        class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mb-4"
       ></div>
       <div
-        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+        class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mb-4"
       ></div>
       <div
-        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+        class="h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mb-4"
       ></div>
     </div>
     <div class="flex flex-col gap-4 pt-20 w-full">
@@ -53,42 +53,42 @@
           style="color: #fff"
           :class="[
             load
-              ? 'animate-pulse h-2.5 bg-gray-200 rounded-full w-98'
-              : 'text-wraper text-bold text-3xl self-end text-black p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8',
+              ? 'animate-pulse h-2.5 bg-gray-500 rounded-full w-98'
+              : 'text-wraper text-bold text-3xl self-end text-white p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8',
           ]"
         >
           {{ load ? "" : post?.title }}
         </h1>
       </div>
-      <div class="flex gap-3 text-normal text-theme-1">
+      <div class="flex gap-3 text-normal text-black font-bold">
         <component :is="'style'">
           :root { --url: url("https://drive.google.com/uc?export=view&id={{
             post?.picterUrl || "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU"
           }}")}
         </component>
-        <NuxtLink to="/" class="text-wraper">Главная</NuxtLink>
+        <NuxtLink to="/" class="hover:underline">Главная</NuxtLink>
         <ChevronRightIcon />
-        <NuxtLink to="/services" class="text-wraper">Услуги</NuxtLink>
+        <NuxtLink :to="`/${direction}`" class="hover:underline">{{post?.direction == 'blog'?'Блог': 'Услуги'}}</NuxtLink>
         <ChevronRightIcon />
-        <NuxtLink :to="`/services/${post?.category_en}`" class="text-wraper">{{
+        <NuxtLink :to="`/${direction}/${post?.category_en}`" class="hover:underline">{{
           post?.category
         }}</NuxtLink>
         <ChevronRightIcon />
         <NuxtLink
           :to="{
-            path: `/services/${post?.category_en}`,
+            path: `/${direction}/${post?.category_en}`,
             query: { post: post?.title_en },
           }"
-          class="text-wraper text-theme-4 truncate"
+          class="text-theme-17 truncate"
           >{{ post?.title }}</NuxtLink
         >
       </div>
       <div v-if="load" class="flex flex-col gap-2 animate-pulse mb-2">
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+        <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
+        <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
+        <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
+        <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
+        <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
       </div>
       <div v-else>
         <p>{{ load ? "" : post?.description }}</p>
@@ -105,15 +105,24 @@
           'border-theme-10',
           'border-solid',
           'p-4',
-          'img-hover-zoom--brightness',
-          'text-white'
+          $device.isMobile
+            ? 'img-hover-zoom--mobile'
+            : 'img-hover-zoom--desktop',
+          'text-white',
         ]"
       >
         <div :class="['flex', 'flex-col', 'gap-2', 'w-full']">
           <span class="text-bold text-3xl text-theme-10 text-shadow">{{
             post?.category
           }}</span>
-          <ul :class="['leading-snug', 'flex', 'flex-col', $device.isMobile ? 'items-center':'items-start' ]">
+          <ul
+            :class="[
+              'leading-snug',
+              'flex',
+              'flex-col',
+              $device.isMobile ? 'items-center' : 'items-start',
+            ]"
+          >
             <li class="inline-flex gap-2">
               <font-awesome-icon
                 icon="circle-dot"
@@ -157,32 +166,36 @@
             >
               <span
                 >Горячая линия -
-                <strong class="text-theme-10 text-shadow">Круглосуточно</strong></span
+                <strong class="text-theme-10 text-shadow"
+                  >Круглосуточно</strong
+                ></span
               >
               <a href="tel:+73522610630" class="font-bold">+7 (3522) 610‒630</a>
             </div>
             <div
-              :class="['flex', $device.isMobile ? 'flex-col gap-1' : 'gap-2']"
+              :class="[
+                'flex',
+                $device.isMobile ? 'flex-col mt-4' : '', 'gap-2'
+              ]"
             >
               <button
                 :class="[
-                  'py-2',
-                'px-9',
-                'rounded-md',
-                'text-theme-8',
-                'text-bold',
-                'bg-gradient-to-t',
-                'from-bt-2',
-                'to-bt-1',
-                'transform transition ease-in duration-1500',
-                'hover:bg-theme-10',
-                'hover:transform',
-                'hover:scale-95',
-                'hover:underline',
-                'focus:bg-theme-10',
-                'focus:scale-95',
-                'focus:underline',
-                $device.isMobile ? 'w-full' : '',
+                  'px-9',
+                  'rounded-sm',
+                  'text-theme-8',
+                  'text-bold',
+                  'bg-gradient-to-t',
+                  'from-bt-2',
+                  'to-bt-1',
+                  'transform transition ease-in duration-1500',
+                  'hover:bg-theme-10',
+                  'hover:transform',
+                  'hover:scale-95',
+                  'hover:underline',
+                  'focus:bg-theme-10',
+                  'focus:scale-95',
+                  'focus:underline',
+                  $device.isMobile ? 'w-full py-4' : 'py-2',
                 ]"
                 @click="callMe"
               >
@@ -190,19 +203,19 @@
               </button>
               <button
                 :class="[
-                   'py-2',
-                'px-9',
-                'rounded-md',
-                'text-theme-8',
-                'text-bold',
-                'bg-gradient-to-t',
-                'from-bt-2',
-                'to-bt-1',
-                'transform transition ease-in duration-1500',
-                'hover:bg-theme-10',
-                'hover:scale-95',
-                'hover:underline',
-                $device.isMobile ? 'w-full' : '',
+                  'py-2',
+                  'px-9',
+                  'rounded-sm',
+                  'text-theme-8',
+                  'text-bold',
+                  'bg-gradient-to-t',
+                  'from-bt-2',
+                  'to-bt-1',
+                  'transform transition ease-in duration-1500',
+                  'hover:bg-theme-10',
+                  'hover:scale-95',
+                  'hover:underline',
+                  $device.isMobile ? 'w-full' : '',
                 ]"
                 @click="openModal"
               >
@@ -218,7 +231,7 @@
             self-start
             whitespace-nowrap
           "
-          :class="[$device.isMobile ? 'self-center' : '', 'text-shadow']"
+          :class="[$device.isMobile ? 'self-center' : 'text-bold text-3xl text-theme-10 text-shadow',]"
           >от 10 000 ₽</span
         >
       </div>
@@ -229,7 +242,7 @@
         <div
           v-for="index in 20"
           :key="index"
-          class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"
+          class="h-2 bg-gray-500 rounded-full dark:bg-gray-700 animate-pulse"
         ></div>
       </div>
 
@@ -266,8 +279,8 @@ export default class Post extends Vue {
 
   head() {
     return {
-      title: this.post?.title
-    }
+      title: this.post?.title,
+    };
   }
 
   categories = [
@@ -337,10 +350,10 @@ export default class Post extends Vue {
   // }
   openModal() {
     window.$nuxt.$emit("switchModal", true);
-  };
-   callMe() {
+  }
+  callMe() {
     window.$nuxt.$emit("callMe", true);
-  };
+  }
 
   async fetchPost() {
     this.load = true;
@@ -405,30 +418,40 @@ export default class Post extends Vue {
 .img_cover {
   background: var(--url) 50% 100% / cover no-repeat;
   /* background-image: var(--url); */
-  backdrop-filter: blur(7px);
-
+  backdrop-filter: blur(7px); 
+  overflow: hidden
+}
+.img_cover::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out;
 }
 .text-wraper {
   /* text-shadow: 0 0 0.6px #000000, 0 0 0.5px #d1dc0d; */
-  text-shadow: #FC0 0.5px 0 0.1px;
+  text-shadow: #fc0 0.1px 0 0.1px;
 }
 h1 {
   filter: none;
 }
-.img-hover-zoom--brightness {
+.img-hover-zoom--desktop {
   background-size: cover;
-  /* background-repeat: no-repeat;
-  background-position: center center; */
   background: url("/imgs/lp02bi_94766ea5f97792e4672f66037d2c8269841b788f.jpg")
       20% 38%/100% no-repeat,
     radial-gradient(closest-side, transparent 10%, #00000061 75%);
   background-blend-mode: multiply;
-  /* background-filter: blur(15px); */
-  /* 
-  -webkit-filter: blur(1px);
-  -moz-filter: blur(1px);
-  -o-filter: blur(1px);
-  -ms-filter: blur(1px);
-  filter: blur(1px); */
+}
+
+.img-hover-zoom--mobile {
+  background-size: cover;
+  background: url("/imgs/lp02bi_94766ea5f97792e4672f66037d2c8269841b788f.jpg")
+      20% 38%/200% no-repeat,
+    radial-gradient(closest-side, transparent 10%, #00000061 75%);
+  background-blend-mode: multiply;
 }
 </style>

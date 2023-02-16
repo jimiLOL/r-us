@@ -137,7 +137,7 @@ input[type="radio"]:not(:checked) + label:before {
   top: 0px;
   width: 22.24px;
   height: 22.24px;
-  border: 0.77px solid #ffbb30;
+  border: 0.77px solid #79A7F3;
   background-color: #ffffff;
   @media (max-width: 980px) {
     left: -10px;
@@ -164,12 +164,12 @@ input[type="radio"]:not(:checked) + label:after {
 
 input[type="radio"]:checked + label:after,
 input[type="radio"]:not(:checked) + label:after {
-  left: 4.7px;
-  top: 4.7px;
+  left: 4.8px;
+  top: 4.8px;
   width: 12.51px;
   height: 12.51px;
   border-radius: 100%;
-  background-color: #222222;
+  background-color: #79A7F3;
   @media (max-width: 980px) {
     left: 0px;
   }

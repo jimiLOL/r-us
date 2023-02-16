@@ -2,7 +2,7 @@
   <main
     :class="[
       'font-raleway',
-      'bg-theme-8',
+      'bg-theme-16',
       $route.name == 'index' ? 'text-white' : 'text-black',
       !$device.isMobile && $route.name == 'index'? 'img_bck' : '',
     ]"
@@ -152,7 +152,6 @@ export default class Layout extends Vue {
               mina.easein
             );
             let i = 0;
-            setInterval(() => {
               if (i == 0) {
                 i = 1;
                 lineDraw.animate(
@@ -170,7 +169,6 @@ export default class Layout extends Vue {
                   2500
                 );
               }
-            }, 7000);
           }, 30 * i);
         }
       });
