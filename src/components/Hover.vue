@@ -20,11 +20,12 @@
           justify-center
           flex-nowrap
           xl:whitespace-nowrap
+          text-theme-10
         "
       >
         <span
           >Горячая линия -
-          <strong class="text-theme-10">Круглосуточно</strong></span
+          <strong>Круглосуточно</strong></span
         >
         <a href="tel:+73522610630" class="font-bold text-2xl"
           >+7 (3522) 610‒630</a
