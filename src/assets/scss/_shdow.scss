@@ -32,7 +32,7 @@
 
   .hover_top {
     --b: 0.1em;   /* the thickness of the line */
-    --c: #1095c1; /* the color */
+    --c: #79a7f3; /* the color */
     
     padding-block: var(--b);
     background: 
@@ -45,6 +45,6 @@
   .hover_top:hover {
     --_p: 100%;
     --_s: .3s;
-    color: #1095c1;
+    color: #79a7f3;
   }
   

@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-6 w-full pt-14">
       <div class="flex flex-col gap-8">
         <h1 class="text-5xl font-bold">
-          <i>Ритуальная служба в</i><i class="text-theme-10"> Кургане</i>
+          <i>Ритуальная служба в Кургане</i>
         </h1>
         <p>
           Опытный и надежный агент похоронных услуг в Кургане.
@@ -73,7 +73,7 @@
     </div>
     <div
       id="container"
-      class="h-full self-end pt-28 img-cross"
+      class="h-full self-end pt-28"
       ref="canavs_wraper"
     >
       <div class="img-position"></div>
@@ -467,7 +467,7 @@ export default class Hover extends Vue {
       renderer.render(scene, camera);
     }
 
-    if (this.clientHeight.clientHeightWindow > 300) {
+    if (this.clientHeight.clientHeightWindow > 300 && this.$route.path == "/") {
       init();
       animate();
     }

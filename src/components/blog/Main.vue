@@ -10,7 +10,7 @@
   >
     <div :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10 w-48']">
       <nav>
-        <ul class="text-bold text-center whitespace-nowrap">
+        <ul class="font-bold text-center whitespace-nowrap">
           <li
             v-for="item in categories"
             :key="item._id"
@@ -57,17 +57,18 @@
               'flex',
               'flex-col',
               'w-full',
+              'gap-2 py-2',
               $device.isMobile ? 'text-center' : '',
             ]"
           >
-            <h3 class="text-bold text-2xl">{{ post?.h1 }}</h3>
-            <p :class="[$device.isMobile ? 'truncate' : '']">
+            <h3 class="font-bold text-2xl">{{ post?.h1 }}</h3>
+            <p v-if="!$device.isMobile" :class="[$device.isMobile ? 'truncate' : '']">
               {{ kitcut(post?.description, 100) }}
             </p>
           </div>
           <button
             :class="[
-              'rounded-lg',
+              'rounded-sm',
               'bg-gradient-to-t',
               'from-bt-2',
               'to-bt-1',
@@ -81,6 +82,7 @@
               'hover:border-black',
               'focus:text-black',
               'focus:border-black',
+              'text-white'
             ]"
             :disabled="load"
             @click="

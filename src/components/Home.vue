@@ -33,7 +33,7 @@
         <span
           :class="[
             $device.isMobile ? 'mt-9 text-2xl' : 'mt-28 text-3xl',
-            'text-bold',
+            'font-bold',
             'border-b-2',
             'border-theme-1',
             'border-solid',
@@ -69,7 +69,7 @@
               focus:transform
               focus:scale-95
               focus:underline
-              focus:text-black
+              focus:text-white
             "
             @click="openModal"
           >
@@ -106,7 +106,7 @@
         </div>
       </div>
     </div>
-    <AboutForHomePage />
+    <AboutForHomePage :class="[$device.isMobile ? '' : 'px-16']"/>
     <InformationForHome />
     <CtaGeneral class="my-4" />
   </div>

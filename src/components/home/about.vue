@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col gap-4 px-4 text-black">
-    <span class="text-3xl text-bold">О нас</span>
+  <div class="flex flex-col gap-4 text-black">
+    <span class="text-3xl font-bold">О нас</span>
     <p class="text-lg">
       Люди полагаются на нас, чтобы обеспечить достойные проводы их погибшего, и мы заботимся о том, чтобы создать похороны, отражающие привязанность к ним. Мы обязуемся провести похороны таким образом, чтобы они стали подтверждением вашей любви.
     </p>
@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      <NuxtLink to="/employee" no-prefetch class="justify-self-end inline-flex items-center mt-4 flex-shrink-0 text-lg align-baseline text-black hover:underline"
+      <NuxtLink to="/employee" no-prefetch class="justify-self-end inline-flex items-center mt-4 flex-shrink-0 text-lg align-baseline text-black font-bold hover:underline hover:text-theme-10"
         >Узнать больше о сотрудниках <font-awesome-icon
           icon="arrow-right"
           transform="shrink-6"

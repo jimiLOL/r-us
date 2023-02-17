@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col gap-4 px-4 my-20 text-black">
+  <div class="flex flex-col gap-4 px-4 my-20 text-black font-bold">
     <span
-      :class="['text-2xl', 'text-bold', $device.isMobile ? 'text-center' : '']"
+      :class="['text-2xl', 'font-bold', $device.isMobile ? 'text-center' : '']"
       >Полезная информация</span
     >
     <div class="w-full">
@@ -11,9 +11,10 @@
             'flex',
             'flex-col',
             'gap-2',
-            $device.isMobile ? '' : 'px-4',
+            $device.isMobile ? '' : 'px-4 my-2',
             'hover:underline',
-            'cursor-pointer',
+            'cursor-pointer', 'rounded-lg',
+            'shadow-md',
             'hover:shadow-xl',
             'hover:shadow-theme-1',
           ]"
@@ -23,12 +24,15 @@
               $router.push(`/${direction}/${item.category_en}?post=${item.title_en}`)
             "
         >
-          <img
+        <div class="py-4 h-max">
+            <img
             :src="`https://drive.google.com/uc?export=view&id=${item.picterUrl}`"
             class="rounded-lg hover:shadow-lg hover:shadow-theme-1"
             :alt="item.h1"
           />
-          <span class="text-bold text-lg">{{ item.title }}</span>
+          <span class="font-bold text-lg">{{ item.title }}</span>
+          
+        </div>
         </div>
       </SlickSlider>
     </div>

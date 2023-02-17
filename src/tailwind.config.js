@@ -85,6 +85,12 @@ module.exports = {
           2: '#497FE7',
           3: '#FFEB80',
           4: '#FFC223',
+          wh_1: '#74FF8D',
+          wh_2: '#31C74C',
+          tg_1: '#62CBFF',
+          tg_2: '#278AE5',
+          call_1: '#FFE675',
+          call_2: '#FFC831',
         }
       },
       fontFamily: {

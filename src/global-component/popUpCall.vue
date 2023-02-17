@@ -70,7 +70,7 @@
           $device.isMobile ? 'whitespace-pre' : 'mx-5',
         ]"
       >
-        <span>Введите ваши данные и мы вам позвоним</span>
+        <span>Введите ваши данные, и мы вам позвоним</span>
       </div>
       <div class="flex flex-col w-full gap-4 px-4">
         <input
@@ -95,28 +95,26 @@
           >Проверьте правильность номера телефона</label
         >
       </div>
-      <div class="w-full4">
-        <button
-          class="
-            w-80
-            bg-gradient-to-t
-            from-bt-2
-            to-bt-1
-            px-9
-            py-2
-            rounded-md
-            hover:from-theme-6
-            hover:underline
-            focus:bg-theme-9
-            font-bold
-            disabled:bg-theme-2
-          "
-          :disabled="!validation"
-          @click="sendData"
-        >
-          Позвоните мне
-        </button>
-      </div>
+
+      <button
+        class="
+          w-max
+          bg-gradient-to-t
+          from-bt-2
+          to-bt-1
+          px-28
+          py-2
+          rounded-md
+          hover:from-theme-6 hover:underline
+          focus:bg-theme-9
+          font-bold
+          disabled:bg-theme-2
+        "
+        :disabled="!validation"
+        @click="sendData"
+      >
+        Позвоните мне
+      </button>
     </div>
     <div
       v-else

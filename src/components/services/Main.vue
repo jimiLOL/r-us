@@ -14,7 +14,7 @@
       :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10 w-48']"
     >
       <nav>
-        <ul class="text-bold text-center whitespace-nowrap">
+        <ul class="font-bold text-center whitespace-nowrap">
           <li
             v-for="item in categories"
             :key="item._id"
@@ -92,6 +92,7 @@
             'flex-col',
             'w-full',
             'cursor-pointer',
+              'gap-2 py-2',
             $device.isMobile ? 'text-center px-2' : '',
             load ? 'animate-pulse' : '',
           ]"
@@ -100,12 +101,13 @@
             :class="[
               load
                 ? 'h-2.5 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mt-2'
-                : 'text-bold text-2xl hover:underline',
+                : 'font-bold text-2xl hover:underline',
             ]"
           >
             {{ load ? "" : post.h1 }}
           </h3>
           <p
+          v-if="!$device.isMobile"
             :class="[
               load
                 ? 'h-2 w-96 mt-4 bg-gray-500 rounded-full dark:bg-gray-700 mb-2.5'
@@ -133,6 +135,7 @@
             'hover:border-black',
             'focus:text-black',
             'focus:border-black',
+            'text-white',
             load ? 'animate-pulse bg-gray-500 w-96' : '',
           ]"
           :disabled="load"

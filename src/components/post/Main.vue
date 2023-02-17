@@ -130,7 +130,7 @@
               'leading-snug',
               'flex',
               'flex-col',
-              $device.isMobile ? 'items-center' : 'items-start',
+              'items-start'
             ]"
           >
             <li class="inline-flex gap-2">

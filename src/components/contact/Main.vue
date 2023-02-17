@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col gap-4">
-    <div class="flex flex-col gap-4 px-20 text-lg my-4">
+  <div :class="['flex flex-col gap-4', $device.isMobile ? 'px-4':'px-20']">
+    <div class="flex flex-col gap-4 text-lg my-4">
       <p>
         Наша команда состоит из опытных профессионалов, которые стремятся
         предоставить уважительные услуги, превосходящие ожидания. Мы считаем,
@@ -44,7 +44,7 @@
     </div>
     <h1
       :class="[
-        'text-bold',
+        'font-bold',
         $device.isMobile ? 'text-2xl text-center' : 'text-4xl',
       ]"
     >
@@ -91,7 +91,7 @@
             >+7 (3522) 610‒630</a
           >
         </div>
-        <h2 class="text-bold text-2xl">Наши адреса:</h2>
+        <h2 class="font-bold text-2xl">Наши адреса:</h2>
         <div class="inline-flex flex-col justify-center whitespace-nowrap">
           <address class="text-lg font-semibold md:text-base">
             пр-кт Машиностроителей, 34

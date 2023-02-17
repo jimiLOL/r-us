@@ -1,7 +1,7 @@
 <template>
   <div :class="[$device.isMobile ? '' : 'w-48 pt-20', 'basis-3/10', 'text-black']">
     <nav>
-      <ul class="text-bold text-center whitespace-nowrap">
+      <ul class="font-bold text-center whitespace-nowrap">
         <TransitionGroup name="slide-in">
         <li
           v-for="item in categories"

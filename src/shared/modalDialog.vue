@@ -886,7 +886,7 @@ export default class ModalDialog extends Vue {
 
   setting_slider = {
     slidesToShow: this.$device.isMobile ? 3 : this.tabMenu.length,
-    infinite: true,
+    infinite: false,
     autoplay: false,
     dots: false,
     goTo: 0,
@@ -940,7 +940,7 @@ export default class ModalDialog extends Vue {
 <style scoped>
 .textShadow,
 .textShadow:hover {
-  text-shadow: 0.3px 0.3px 1.3px black;
+  text-shadow: 0.1px 0.1px 0.3px black;
 }
 
 input[type="radio"]:checked,

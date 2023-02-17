@@ -10,7 +10,7 @@
     <h3
       :class="[
         $device.isMobile ? 'text-center text-2xl' : 'text-4xl',
-        'text-bold',
+        'font-bold',
       ]"
     >
       Цены на ритуальные услуги под ключ
@@ -99,9 +99,9 @@
               'border-theme-5',
               'cursor-pointer',
             ]"
-            @click="idVar === index ? closeList() : ''"
+            @click="idVar === index ? closeList() : openMenu = true"
           >
-            <span class="hover">{{ item.title }}</span>
+            <span class="hover inline-flex gap-1">{{ item.title }} <ChevronUpIcon v-if="openMenu" aria-hidden="true" class="mt-1" /><ChevronDownIcon v-if="!openMenu" aria-hidden="true" class="mt-1"/></span>
             <span class="grow">от {{ item.price }} ₽</span>
           </div>
 
@@ -111,7 +111,7 @@
               :key="index"
               class="flex justify-between text-base font-normal py-2 gap-4"
             >
-              <span class="inline-flex">
+              <span class="inline-flex gap-1">
                 <font-awesome-icon
                   icon="circle-dot"
                   transform="shrink-6"
@@ -136,16 +136,17 @@
               <button
                 :class="[
                   $device.isMobile ? 'py-1 px-2 w-1/3' : 'py-2 px-9',
-                  'border-2',
-                  'rounded-md',
-                  'border-theme-11',
-                  'border-solid',
+                  'rounded-sm',
+                     'bg-gradient-to-t',
+                  'from-bt-4',
+                  'to-bt-3',
                   'hover:bg-theme-10',
                   'hover:transform',
                   'hover:scale-95',
                   'hover:underline',
                   'hover:text-black',
                   'max-h-12',
+                  'text-white'
                 ]"
                 @click="closeList"
               >
@@ -169,6 +170,7 @@
                     flex-nowrap
                     text-base
                     xl:whitespace-nowrap
+                    font-normal
                   "
                 >
                   <span
@@ -186,9 +188,9 @@
                   :class="[
                     'py-2',
                     'px-9',
-                    'rounded-md',
+                    'rounded-sm',
                     'text-theme-8',
-                    'text-bold',
+                    'font-bold',
                     'bg-gradient-to-t',
                     'from-bt-2',
                     'to-bt-1',
@@ -217,10 +219,10 @@
                       'border-1',
                       'rounded-md',
                       'text-theme-8',
-                      'text-bold',
+                      'font-bold',
                        'bg-gradient-to-t',
-                      'from-social-wp',
-                      'to-bt-1',
+                      'from-bt-wh_2',
+                      'to-bt-wh_1',
                       'border-solid',
                       'hover:bg-social-wp_contrast',
                       'hover:transform',
@@ -241,10 +243,10 @@
                       'px-9',
                       'rounded-md',
                       'text-theme-8',
-                      'text-bold',
+                      'font-bold',
                       'bg-gradient-to-t',
-                      'from-social-tg',
-                      'to-bt-1',
+                      'from-bt-tg_2',
+                      'to-bt-tg_1',
                       'hover:bg-social-tg_contrast',
                       'hover:transform',
                       'hover:scale-95',
@@ -264,10 +266,10 @@
                       'px-9',
                       'rounded-md',
                       'text-theme-8',
-                      'text-bold',
+                      'font-bold',
                       'bg-gradient-to-t',
-                      'from-theme-1',
-                      'to-bt-1',
+                      'from-bt-call_2',
+                      'to-bt-call_1',
                       'hover:bg-theme-10',
                       'hover:transform',
                       'hover:scale-95',
@@ -317,7 +319,7 @@
                         'border-1',
                         'rounded-md',
                         'text-theme-8',
-                        'text-bold',
+                        'font-bold',
                         'bg-gradient-to-t',
                       'from-bt-2',
                       'to-bt-1',
@@ -343,7 +345,7 @@
                         'border-1',
                         'rounded-md',
                         'text-theme-8',
-                        'text-bold',
+                        'font-bold',
                         'bg-theme-2',
                         'border-solid',
                         'hover:bg-theme-2',
@@ -552,6 +554,8 @@ export default defineComponent({
         chose: "provaslavny",
       });
 
+      const openMenu = ref(false);
+
       const pageSetting = ref(props.page)
 
     const setNewChose = (chose) => {
@@ -584,12 +588,13 @@ export default defineComponent({
       }
     );
     const closeList = () => {
+      openMenu.value = false;
       setTimeout(() => {
         idVar.value = null;
         showAll.value = true;
         showList.value = false;
         window.scrollTo({
-          top: document.getElementById("priceList").offsetTop,
+          top: document.getElementById("priceList").offsetTop+700,
           left: 0,
           behavior: "smooth",
         });
@@ -621,7 +626,8 @@ export default defineComponent({
       submiteForm,
       setNewChose,
       categoriesTab,
-      pageSetting
+      pageSetting,
+      openMenu
     };
   },
 });
