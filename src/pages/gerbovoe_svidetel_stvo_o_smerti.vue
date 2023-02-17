@@ -12,7 +12,7 @@
 
     <div class="flex flex-col gap-4 pt-20 w-full px-9 font-normal text-base">
     <HoverForPost :post="post"/>
-    <Pagination :category_en="post.category_en" :category="post.category" :title="post.title"/>
+    <Pagination :category_en="post.category_en" :category="post.category" :title="post.title" :post="post" :direction="post.direction"/>
 
 
     <p>
@@ -191,7 +191,8 @@ export default class MestoNaKladbishche extends Vue {
     picterUrl: '1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU',
     category: 'Захоронения',
     category_en: 'zakoronenia',
-    items: [{title: 'Омовение'}, {title: 'Транспортировка тела'},{title: 'Гроб'}]
+    items: [{title: 'Омовение'}, {title: 'Транспортировка тела'},{title: 'Гроб'}],
+    direction: 'services'
 
 
   }

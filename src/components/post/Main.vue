@@ -48,7 +48,9 @@
       ></div>
     </div>
     <div class="flex flex-col gap-4 pt-20 w-full">
-      <div class="flex img_cover h-96 rounded-lg">
+    <HoverForPost :post="post" :load="load" />
+
+      <!-- <div class="flex img_cover h-96 rounded-lg">
         <h1
           style="color: #fff"
           :class="[
@@ -59,13 +61,14 @@
         >
           {{ load ? "" : post?.title }}
         </h1>
-      </div>
-      <div class="flex gap-3 text-normal text-black font-bold">
-        <component :is="'style'">
+      </div> -->
+        <!-- <component :is="'style'">
           :root { --url: url("https://drive.google.com/uc?export=view&id={{
             post?.picterUrl || "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU"
           }}")}
-        </component>
+        </component> -->
+      <!-- <div class="flex gap-3 text-normal text-black font-bold">
+      
         <NuxtLink to="/" class="hover:underline">Главная</NuxtLink>
         <ChevronRightIcon />
         <NuxtLink :to="`/${direction}`" class="hover:underline">{{post?.direction == 'blog'?'Блог': 'Услуги'}}</NuxtLink>
@@ -82,7 +85,14 @@
           class="text-theme-17 truncate"
           >{{ post?.title }}</NuxtLink
         >
-      </div>
+      </div> -->
+      <Pagination
+        :category_en="post?.category_en"
+        :category="post?.category"
+        :title="post?.title"
+            :post="post"
+        :direction="post?.direction"
+      />
       <div v-if="load" class="flex flex-col gap-2 animate-pulse mb-2">
         <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
         <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
@@ -257,9 +267,11 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import CtaGeneral from "~/shared/ctaGeneral.vue";
 import shopApi from "~/api/shop";
+import HoverForPost from "~/components/hover_for_post/Main.vue";
+import Pagination from "~/components/pagination/Main.vue";
 
 @Component({
-  components: { CtaGeneral },
+  components: { CtaGeneral, HoverForPost, Pagination },
   //  head(this) {
   //   return {
   //     title: 'asdasd',

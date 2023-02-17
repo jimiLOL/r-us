@@ -37,9 +37,9 @@
             ease-in
             duration-1500
             transform
-             bg-gradient-to-t
-          from-bt-2
-          to-bt-1
+            bg-gradient-to-t
+            from-bt-2
+            to-bt-1
             px-12
             py-4
             rounded-sm
@@ -56,9 +56,9 @@
             ease-in
             duration-1500
             transform
-             bg-gradient-to-t
-          from-bt-2
-          to-bt-1
+            bg-gradient-to-t
+            from-bt-2
+            to-bt-1
             px-12
             py-4
             rounded-sm
@@ -81,11 +81,12 @@
       <!-- <img src="/line.svg" class="w-max-96 line" alt="" /> -->
     </div>
     <a v-if="load" href="#main"><SVGMouse class="mouse" /></a>
-    <div class="wrapper_b"></div>
+    <!-- <div class="wrapper_b"></div> -->
 
     <component :is="'style'">
-      :root {--clientHeight: {{ Math.ceil(clientHeight.clientHeight * 1.35) }}px;
-      --backgroundWraper: {{ backgroundWraper }}px; --clientH:
+      :root {--clientHeight:
+      {{ Math.ceil(clientHeight.clientHeight * 1.35) }}px; --backgroundWraper:
+      {{ backgroundWraper }}px; --clientH:
       {{ Math.ceil(clientHeight.clientHeight * 0.4) }}px; --wrapperTop:
       {{ Math.ceil(clientHeight.clientHeight * 1.68) }}px; }
     </component>
@@ -129,7 +130,11 @@ const OrbitControls = require("three-orbit-controls")(THREE);
   },
 })
 export default class Hover extends Vue {
-  @Prop({ type: Object, default: ()=> ({clientHeight: 500, clientHeightWindow: 600}) }) clientHeight;
+  @Prop({
+    type: Object,
+    default: () => ({ clientHeight: 500, clientHeightWindow: 600 }),
+  })
+  clientHeight;
 
   @Watch("clientHeight")
   resize() {
@@ -166,10 +171,10 @@ export default class Hover extends Vue {
   backgroundWraper = 350;
   openModal() {
     window.$nuxt.$emit("switchModal", true);
-  };
+  }
   callMe() {
     window.$nuxt.$emit("callMe", true);
-  };
+  }
 
   async mounted() {
     console.log(this.clientHeight);
@@ -218,7 +223,10 @@ export default class Hover extends Vue {
       renderer.setClearColor(0x000000, 0);
 
       renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(vm.clientHeight.clientHeight * 0.71, vm.clientHeight.clientHeight * 0.71);
+      renderer.setSize(
+        vm.clientHeight.clientHeight * 0.81,
+        vm.clientHeight.clientHeight * 0.81
+      );
       renderer.context.getExtension("OES_standard_derivatives");
 
       let container = document.getElementById("container");
@@ -459,11 +467,10 @@ export default class Hover extends Vue {
       renderer.render(scene, camera);
     }
 
-    if (this.clientHeight.clientHeightWindow  > 300) {
- init();
-    animate();
+    if (this.clientHeight.clientHeightWindow > 300) {
+      init();
+      animate();
     }
-   
   }
 }
 </script>
@@ -475,25 +482,27 @@ export default class Hover extends Vue {
 }
 
 .wrapper_b {
-  position: absolute;
+  position: fixed;
   top: 99%;
   width: 98%;
   height: 0.1px;
   background: #22222200;
   z-index: 11;
   -webkit-box-shadow: 0px -20px 40px 60px #222222;
-  box-shadow: 0px -30px 40px 60px #222222;
+  box-shadow: 0px -10px 15px 25px #222222;
 }
 
 .img-position {
   position: absolute;
-  top: 22%;
+  top: 21.5%;
   height: 100%;
-  width: var(--backgroundWraper);
+  width: 44%;
+  right: 0;
 
-  background: url("@/assets/imgs/dfeb34bf463d75ac4852b0cfbc3f8069.webp") 130%
-      71%/110% no-repeat,
-    url("@/assets/imgs/86098fe20e6936fa3330334defb88880.webp") -42% 71%/110% no-repeat;
+  background: url("@/assets/imgs/dfeb34bf463d75ac4852b0cfbc3f8069.png") 28%
+      72.5%/100% no-repeat,
+    url("@/assets/imgs/86098fe20e6936fa3330334defb88880.png") 118% 74%/70%
+      no-repeat;
 }
 .img-cross {
   border-radius: 400px;

@@ -7,7 +7,7 @@
   <!-- Main modal -->
   <div
     :class="[
-      'fixed top-0 left-0 right-0 z-50 w-full md:inset-0 md:h-full tran overflow-x-hidden text-black',
+      'fixed top-0 left-0 right-0 z-50 w-full md:inset-0 h-screen tran overflow-x-hidden text-black',
       $device.isMobile ? 'h-full overflow-y-scroll' : 'p-4 overflow-y-hidden',
     ]"
   >

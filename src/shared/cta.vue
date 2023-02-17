@@ -73,7 +73,7 @@
           <font-awesome-icon
             :icon="faWhatsapp"
             transform="shrink-6"
-            class="self-center hover:animate-ping shrank-0"
+            class="self-center hover:animate-ping shrank-0 h-5 w-5"
             :style="{ color: '#FFBB30', fontSize: '1.3rem' }"
           />
           Whatsapp
@@ -97,7 +97,7 @@
           <font-awesome-icon
             :icon="faTelegram"
             transform="shrink-6"
-            class="self-center hover:animate-ping"
+            class="self-center hover:animate-ping h-5 w-5"
             :style="{ color: '#FFBB30', fontSize: '1.3rem' }"
           />
           Telegram
@@ -122,7 +122,7 @@
           <font-awesome-icon
             icon="phone"
             transform="shrink-6"
-            class="self-center hover:animate-ping"
+            class="self-center hover:animate-ping h-5 w-5"
             :style="{ color: '#FFBB30', fontSize: '1.3rem' }"
           />
           Обратный звонок

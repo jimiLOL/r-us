@@ -17,7 +17,7 @@
         $device.isMobile ? 'h-screen w-full' : 'h-96 w-max',
         'flex',
         'flex-col',
-        $device.isMobile ? 'gap-9':'gap-4',
+        $device.isMobile ? 'gap-9' : 'gap-4',
         'items-center',
         'justify-center',
       ]"
@@ -60,7 +60,7 @@
       </button>
       <img
         :src="require('@/assets/imgs/logo.png')"
-        :class="['w-48', $device.isMobile ? '':'fixed top-36']"
+        :class="['w-36', $device.isMobile ? '' : 'fixed top-36']"
         alt="Ритуальная служба Кургана"
       />
       <div
@@ -95,14 +95,18 @@
           >Проверьте правильность номера телефона</label
         >
       </div>
-      <div>
+      <div class="w-full4">
         <button
           class="
-            bg-theme-1
+            w-80
+            bg-gradient-to-t
+            from-bt-2
+            to-bt-1
             px-9
             py-2
-            rounded-xl
-            hover:bg-theme-9
+            rounded-md
+            hover:from-theme-6
+            hover:underline
             focus:bg-theme-9
             font-bold
             disabled:bg-theme-2
@@ -114,22 +118,25 @@
         </button>
       </div>
     </div>
-    <div v-else :class="[
+    <div
+      v-else
+      :class="[
         'fixed',
         $device.isMobile ? '' : 'inset-96',
         'mx-auto',
         'my-auto',
         'bg-theme-2',
         'rounded-xl',
-      $device.isMobile ? 'h-screen w-full' : 'h-96 w-max',
+        $device.isMobile ? 'h-screen w-full' : 'h-96 w-max',
         'flex',
         'flex-col',
         'gap-9',
         'items-center',
         'justify-center',
-      ]">
+      ]"
+    >
       <span>Спасибо. Скоро мы Вам позвоним.</span>
-      <span>Это окно закроется через {{timer}}</span>
+      <span>Это окно закроется через {{ timer }}</span>
     </div>
   </div>
 </template>
@@ -167,20 +174,14 @@ export default class PopUpCall extends Vue {
           console.log(r);
           if (r.code === 200) {
             this.sendStatus = true;
-             for (let index = 1; index < 10; index++) {
+            for (let index = 1; index < 10; index++) {
               this.timer--;
               await new Promise((resolve) => setTimeout(resolve, 1000));
               if (index >= 9) {
-          
-              this.closeModal();
-
+                this.closeModal();
               }
-                
-              }
-            setTimeout(() => {
-             
-              
-            }, 8000);
+            }
+            setTimeout(() => {}, 8000);
           }
         });
     }

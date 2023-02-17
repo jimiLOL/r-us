@@ -17,6 +17,8 @@
         :category_en="post.category_en"
         :category="post.category"
         :title="post.title"
+            :post="post"
+        :direction="post.direction"
       />
 
       <p class="italic text-right">
@@ -150,6 +152,7 @@ export default class MestoNaKladbishche extends Vue {
       { title: "Транспортировка тела" },
       { title: "Гроб" },
     ],
+    direction: 'services'
   };
 }
 </script>

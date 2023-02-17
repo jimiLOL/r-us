@@ -16,6 +16,7 @@
         :category_en="post.category_en"
         :category="post.category"
         :title="post.title"
+        :post="post" :direction="post.direction"
       />
       <p>
         Пособие на погребение по линии социального обеспечения — это финансовое
@@ -235,6 +236,7 @@ export default class MestoNaKladbishche extends Vue {
     picterUrl: "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU",
     category: "Захоронения",
     category_en: "zakoronenia",
+    direction: 'services',
     items: [
       { title: "Омовение" },
       { title: "Транспортировка тела" },

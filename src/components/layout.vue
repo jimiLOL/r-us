@@ -2,9 +2,9 @@
   <main
     :class="[
       'font-raleway',
-      'bg-theme-16',
+      'bg-theme-16 w-full',
       $route.name == 'index' ? 'text-white' : 'text-black',
-      !$device.isMobile && $route.name == 'index'? 'img_bck' : '',
+      !$device.isMobile && $route.name == 'index' ? 'img_bck' : '',
     ]"
   >
     <div>
@@ -13,7 +13,7 @@
     <div class="site__container">
       <div
         :class="[
-          !$device.isMobile && computedProp ? 'img-position h-screen' : '',
+          !$device.isMobile && computedProp ? 'img-position h-screen back_wraper' : '',
         ]"
         ref="header"
       >
@@ -40,7 +40,7 @@
         id="content"
         :class="[
           'site__body',
-          !modalOpen && !openCallMe  ? 'back_wraper' : '',
+          !modalOpen && !openCallMe ? 'back_wraper' : '',
           'xl:py-4',
           $device.isMobile ? 'px-2' : 'px-6',
           'h-full',
@@ -63,7 +63,6 @@
     </div>
 
     <!-- <Backtotop /> -->
-    
   </main>
 </template>
 
@@ -109,7 +108,7 @@ export default class Layout extends Vue {
 
     function callback(entries, observer) {
       vm.observerInit = entries[0].isIntersecting;
-      console.log("observer " + entries[0].isIntersecting);
+      // console.log("observer " + entries[0].isIntersecting);
       setTimeout(() => {
         if (entries[0].isIntersecting) {
           let allSvg = cash(vm.$refs.header_svg).find("svg");
@@ -152,23 +151,23 @@ export default class Layout extends Vue {
               mina.easein
             );
             let i = 0;
-              if (i == 0) {
-                i = 1;
-                lineDraw.animate(
-                  {
-                    d: "M 801.232 1.088 C 828.135 85.6037 589 71 471 142 C 257.157 306.557 401 516 187 681 C 119 748 110.431 771.421 1.3131 818.891",
-                  },
-                  2500
-                );
-              } else {
-                i = 0;
-                lineDraw.animate(
-                  {
-                    d: "M801.232 1.08801C828.135 85.6037 826.119 305.992 573.247 306.243C257.157 306.557 290.875 391.985 264.032 558.848C237.188 725.711 110.431 771.421 1.31311 818.891",
-                  },
-                  2500
-                );
-              }
+            if (i == 0) {
+              i = 1;
+              lineDraw.animate(
+                {
+                  d: "M 801.232 1.088 C 828.135 85.6037 589 71 471 142 C 257.157 306.557 401 516 187 681 C 119 748 110.431 771.421 1.3131 818.891",
+                },
+                2500
+              );
+            } else {
+              i = 0;
+              lineDraw.animate(
+                {
+                  d: "M801.232 1.08801C828.135 85.6037 826.119 305.992 573.247 306.243C257.157 306.557 290.875 391.985 264.032 558.848C237.188 725.711 110.431 771.421 1.31311 818.891",
+                },
+                2500
+              );
+            }
           }, 30 * i);
         }
       });
@@ -187,7 +186,7 @@ export default class Layout extends Vue {
     await this.$nextTick();
     this.init();
     window.$nuxt.$on("switchModal", (data) => {
-      console.log("switchModal " + data);
+      // console.log("switchModal " + data);
       this.modalOpen = data;
     });
 
@@ -207,17 +206,26 @@ export default class Layout extends Vue {
 
 <style scoped>
 .back_wraper {
-    backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 .img-position {
   /* overflow: hidden; */
 
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("@/assets/imgs/background-hover.webp"),
-    url("@/assets/imgs/image_5.png"),
-    radial-gradient(closest-side, transparent 10%, #00000061 75%);
-  background-blend-mode: multiply;
+  background-image: url("@/assets/imgs/background-hover.webp");
+  backdrop-filter: blur(9px);
+}
+.img-position::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.567);
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out;
 }
 .img {
   position: absolute;
@@ -233,10 +241,10 @@ svg {
   right: 1px;
 }
 .img_bck {
-  background: url("@/assets/imgs/d12cbf69172f03803703e7e4bc12823e.webp") -60% 46%/80%
+  background: url("@/assets/imgs/d12cbf69172f03803703e7e4bc12823e.png") -60% 46%/80%
       no-repeat,
     radial-gradient(closest-side, transparent 10%, #ffffff1b 55%);
-   /* backdrop-filter: blur(9px); */
+  /* backdrop-filter: blur(9px); */
 
   background-blend-mode: multiply;
 }

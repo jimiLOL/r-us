@@ -35,23 +35,22 @@
             'flex',
             $device.isMobile ? 'flex-col h-full' : 'flex-row max-h-36',
             'w-full',
-             'gap-4',
+            'gap-4',
             'overflow-hidden',
             'border-2',
             'rounded-lg',
-           'border-2',
-          'rounded-lg',
-          'border-theme-11',
-          'bg-theme-15',
-          'shadow-sm shadow-black shadow-opacity-50 shadow-offset-2 shadow-radius-2 shadow-inset hover:shadow-lg',
-          'border-solid',
+            'border-2',
+            'rounded-lg',
+            'border-theme-11',
+            'bg-theme-15',
+            'shadow-sm shadow-black shadow-opacity-50 shadow-offset-2 shadow-radius-2 shadow-inset hover:shadow-lg',
             'border-solid',
           ]"
         >
           <img
-            :class="[$device.isMobile ? 'w-full' : 'w-1/4', 'rounded-md']"
-             :src="`https://drive.google.com/uc?export=view&id=${post.picterUrl}`"
-          :alt="`${post.title}`"
+            :class="[$device.isMobile ? 'w-full' : 'w-48', 'rounded-md']"
+            :src="`https://drive.google.com/uc?export=view&id=${post.picterUrl}`"
+            :alt="`${post.title}`"
           />
           <div
             :class="[
@@ -69,10 +68,10 @@
           <button
             :class="[
               'rounded-lg',
-             'bg-gradient-to-t',
-            'from-bt-2',
-            'to-bt-1',
-            'cursor-pointer transform transition ease-in duration-1500 hover:scale-95',
+              'bg-gradient-to-t',
+              'from-bt-2',
+              'to-bt-1',
+              'cursor-pointer transform transition ease-in duration-1500 hover:scale-95',
               $device.isMobile ? 'w-5/6 mx-4 self-center' : 'w-1/3 mr-2',
               'self-end',
               'py-4',
