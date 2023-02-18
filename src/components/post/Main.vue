@@ -191,7 +191,7 @@
               <button
                 :class="[
                   'px-9',
-                  'rounded-sm',
+                  'rounded-lg',
                   'text-theme-8',
                   'text-bold',
                   'bg-gradient-to-t',
@@ -215,7 +215,7 @@
                 :class="[
                   'py-2',
                   'px-9',
-                  'rounded-sm',
+                  'rounded-lg',
                   'text-theme-8',
                   'text-bold',
                   'bg-gradient-to-t',

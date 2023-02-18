@@ -121,7 +121,7 @@
         <button
           v-if="!$device.isMobile"
           :class="[
-            'rounded-sm',
+            'rounded-lg',
             $device.isMobile ? 'w-5/6 mx-4 self-center' : 'w-1/3 mr-2',
             'self-end',
             'py-4',

@@ -51,7 +51,7 @@
               transform
               px-12
               py-4
-              rounded-sm
+              rounded-lg
               font-bold
               hover:bg-theme-10
               bg-gradient-to-t
@@ -92,9 +92,9 @@
               shadow-inset
               px-12
               py-4
-              rounded-sm
+              rounded-lg
               font-bold
-              text-white
+              text-black
               hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
               focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
             "

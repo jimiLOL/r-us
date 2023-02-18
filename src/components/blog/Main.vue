@@ -68,7 +68,7 @@
           </div>
           <button
             :class="[
-              'rounded-sm',
+              'rounded-lg',
               'bg-gradient-to-t',
               'from-bt-2',
               'to-bt-1',

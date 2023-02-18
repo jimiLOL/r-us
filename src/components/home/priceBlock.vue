@@ -21,8 +21,11 @@
           'hover:underline text-shadow_hover cursor-pointer',
           categoriesTab.chose == 'provaslavny'
             ? 'bg-white w-max rounded-t-lg text-theme-10 underline'
-            : '', 'py-2 px-4', 
-            pageSetting == 'home' && categoriesTab.chose == 'provaslavny'? '' : ''
+            : '',
+          'py-2 px-4',
+          pageSetting == 'home' && categoriesTab.chose == 'provaslavny'
+            ? ''
+            : '',
         ]"
         @click="setNewChose('provaslavny')"
       >
@@ -33,7 +36,9 @@
           'hover:underline text-shadow_hover cursor-pointer',
           categoriesTab.chose == 'mysulman'
             ? 'bg-white w-max rounded-t-lg text-theme-10 underline'
-            : '', 'py-2 px-4', pageSetting == 'home' && categoriesTab.chose == 'mysulman' ? '' : ''
+            : '',
+          'py-2 px-4',
+          pageSetting == 'home' && categoriesTab.chose == 'mysulman' ? '' : '',
         ]"
         @click="setNewChose('mysulman')"
       >
@@ -44,7 +49,9 @@
           'hover:underline text-shadow_hover cursor-pointer',
           categoriesTab.chose == 'kremacia'
             ? 'bg-white w-max rounded-t-lg text-theme-10 underline'
-            : '', 'px-4 py-2', pageSetting == 'home' && categoriesTab.chose == 'kremacia' ? '' : ''
+            : '',
+          'px-4 py-2',
+          pageSetting == 'home' && categoriesTab.chose == 'kremacia' ? '' : '',
         ]"
         @click="setNewChose('kremacia')"
       >
@@ -70,11 +77,11 @@
         'flex-col',
         'rounded-b-lg',
         'rounded-tr-lg',
-        pageSetting == 'home' ? '':'',
+        pageSetting == 'home' ? '' : '',
         'bg-white',
         'text-lg',
         'font-bold',
-        $device.isMobile ? 'px-2' : 'px-9', 
+        $device.isMobile ? 'px-2' : 'px-9',
         'shadow-md',
         'gap-2',
       ]"
@@ -99,9 +106,18 @@
               'border-theme-5',
               'cursor-pointer',
             ]"
-            @click="idVar === index ? closeList() : openMenu = true"
+            @click="idVar === index ? closeList() : (openMenu = true)"
           >
-            <span class="hover inline-flex gap-1">{{ item.title }} <ChevronUpIcon v-if="openMenu" aria-hidden="true" class="mt-1" /><ChevronDownIcon v-if="!openMenu" aria-hidden="true" class="mt-1"/></span>
+            <span class="hover inline-flex gap-1"
+              >{{ item.title }}
+              <ChevronUpIcon
+                v-if="openMenu"
+                aria-hidden="true"
+                class="mt-1" /><ChevronDownIcon
+                v-if="!openMenu"
+                aria-hidden="true"
+                class="mt-1"
+            /></span>
             <span class="grow">от {{ item.price }} ₽</span>
           </div>
 
@@ -136,8 +152,8 @@
               <button
                 :class="[
                   $device.isMobile ? 'py-1 px-2 w-1/3' : 'py-2 px-9',
-                  'rounded-sm',
-                     'bg-gradient-to-t',
+                  'rounded-lg',
+                  'bg-gradient-to-t',
                   'from-bt-4',
                   'to-bt-3',
                   'hover:bg-theme-10',
@@ -146,7 +162,7 @@
                   'hover:underline',
                   'hover:text-black',
                   'max-h-12',
-                  'text-white'
+                  'text-white',
                 ]"
                 @click="closeList"
               >
@@ -188,7 +204,7 @@
                   :class="[
                     'py-2',
                     'px-9',
-                    'rounded-sm',
+                    'rounded-lg',
                     'text-theme-8',
                     'font-bold',
                     'bg-gradient-to-t',
@@ -213,75 +229,88 @@
                   class="flex flex-col gap-2"
                 >
                   <button
-                    :class="[
-                      'py-2',
-                      'px-9',
-                      'border-1',
-                      'rounded-md',
-                      'text-theme-8',
-                      'font-bold',
-                       'bg-gradient-to-t',
-                      'from-bt-wh_2',
-                      'to-bt-wh_1',
-                      'border-solid',
-                      'hover:bg-social-wp_contrast',
-                      'hover:transform',
-                      'hover:scale-95',
-                      'hover:underline',
-                      'focus:bg-social-wp_contrast',
-                      'focus:transform',
-                      'focus:scale-95',
-                      'focus:underline',
-                      $device.isMobile ? 'w-full' : '',
-                    ]"
+                    class="
+                      inline-flex
+                      h-max
+                      gpa-4
+                      justify-center
+                      bg-gradient-to-t
+                      from-bt-wh_2
+                      to-bt-wh_1
+                      text-theme-8
+                      font-semibold
+                      py-4
+                      px-9
+                      rounded-lg
+                      shadow-xl
+                      shadow-bt-wh_2
+                      transform-gpu
+                      hover:scale-95
+                    "
                   >
+                    <font-awesome-icon
+                      :icon="faWhatsappIcon()"
+                      transform="shrink-6"
+                      class="self-center hover:animate-ping shrank-0 h-5 w-5"
+                      :style="{ color: '#FFBB30', fontSize: '1.3rem' }"
+                    />
                     Whatsapp
                   </button>
                   <button
-                    :class="[
-                      'py-2',
-                      'px-9',
-                      'rounded-md',
-                      'text-theme-8',
-                      'font-bold',
-                      'bg-gradient-to-t',
-                      'from-bt-tg_2',
-                      'to-bt-tg_1',
-                      'hover:bg-social-tg_contrast',
-                      'hover:transform',
-                      'hover:scale-95',
-                      'hover:underline',
-                      'focus:bg-social-tg_contrast',
-                      'focus:transform',
-                      'focus:scale-95',
-                      'focus:underline',
-                      $device.isMobile ? 'w-full' : '',
-                    ]"
+                    class="
+                      inline-flex
+                      h-max
+                      gpa-1
+                      justify-center
+                      bg-gradient-to-t
+                      from-bt-tg_2
+                      to-bt-tg_1
+                      hover:bg-social-tg_contrast
+                      text-theme-8
+                      font-semibold
+                      py-4
+                      px-9
+                      rounded-lg
+                      shadow-lg shadow-theme-8
+                      transform-gpu
+                      hover:scale-95
+                    "
                   >
+                    <font-awesome-icon
+                      :icon="faTelegram()"
+                      transform="shrink-6"
+                      class="self-center hover:animate-ping h-5 w-5"
+                      :style="{ color: '#FFBB30', fontSize: '1.3rem' }"
+                    />
                     Telegram
                   </button>
                   <button
-                    :class="[
-                      'py-2',
-                      'px-9',
-                      'rounded-md',
-                      'text-theme-8',
-                      'font-bold',
-                      'bg-gradient-to-t',
-                      'from-bt-call_2',
-                      'to-bt-call_1',
-                      'hover:bg-theme-10',
-                      'hover:transform',
-                      'hover:scale-95',
-                      'hover:underline',
-                      'focus:bg-theme-10',
-                      'focus:transform',
-                      'focus:scale-95',
-                      'focus:underline',
-                      $device.isMobile ? 'w-full' : '',
-                    ]"
-                    @click="switchFormCall"
+                    class="
+                      inline-flex
+                      h-max
+                      gpa-1
+                      justify-center
+                      bg-gradient-to-t
+                      from-bt-call_2
+                      to-bt-call_1
+                      hover:bg-social-tg_contrast
+                      text-black
+                      font-semibold
+                      py-4
+                      px-9
+                      rounded-lg
+                      shadow-lg shadow-theme-8
+                      transform-gpu
+                      hover:scale-95
+                    "
+                    @click="callFrom = !callFrom"
                   >
+                    <font-awesome-icon
+                      icon="phone"
+                      transform="shrink-6"
+                      class="self-center hover:animate-ping h-5 w-5"
+                      :style="{ color: '#080808', fontSize: '1.3rem' }"
+                    />
                     Обратный звонок
                   </button>
                 </div>
@@ -292,14 +321,26 @@
                   <span>Заказать обратный звонок</span>
                   <div class="flex flex-col gap-2">
                     <input
-                      class="px-4 py-2 rounded-md text-black border-2 border-solid border-theme-1"
+                      class="
+                        px-4
+                        py-2
+                        rounded-md
+                        text-black
+                        border-2 border-solid border-theme-1
+                      "
                       type="text"
                       aria-required="true"
                       placeholder="Вашe имя"
                       v-model="userName"
                     />
                     <input
-                      class="px-4 py-2 rounded-md text-black border-2 border-solid border-theme-1"
+                      class="
+                        px-4
+                        py-2
+                        rounded-md
+                        text-black
+                        border-2 border-solid border-theme-1
+                      "
                       type="tel"
                       aria-required="true"
                       placeholder="+7(___)-___-__-__"
@@ -321,8 +362,8 @@
                         'text-theme-8',
                         'font-bold',
                         'bg-gradient-to-t',
-                      'from-bt-2',
-                      'to-bt-1',
+                        'from-bt-2',
+                        'to-bt-1',
                         'border-solid',
                         validPhone
                           ? 'hover:bg-theme-10 hover:transform hover:scale-95 hover:underline'
@@ -383,6 +424,12 @@ import {
   watch,
 } from "@nuxtjs/composition-api";
 import SlickSlider from "~/components/slickSlider.vue";
+
+import {
+  faTelegram,
+  faTelegramPlane,
+  faWhatsapp,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default defineComponent({
   components: {
@@ -549,14 +596,20 @@ export default defineComponent({
       touchMove: true,
     };
 
-    
+    const faTelegram = () => {
+      return faTelegramPlane;
+    };
+    const faWhatsappIcon = () => {
+      return faWhatsapp;
+    };
+
     const categoriesTab = ref({
-        chose: "provaslavny",
-      });
+      chose: "provaslavny",
+    });
 
-      const openMenu = ref(false);
+    const openMenu = ref(false);
 
-      const pageSetting = ref(props.page)
+    const pageSetting = ref(props.page);
 
     const setNewChose = (chose) => {
       categoriesTab.value.chose = chose;
@@ -594,7 +647,7 @@ export default defineComponent({
         showAll.value = true;
         showList.value = false;
         window.scrollTo({
-          top: document.getElementById("priceList").offsetTop+700,
+          top: document.getElementById("priceList").offsetTop + 700,
           left: 0,
           behavior: "smooth",
         });
@@ -627,7 +680,9 @@ export default defineComponent({
       setNewChose,
       categoriesTab,
       pageSetting,
-      openMenu
+      openMenu,
+      faWhatsappIcon,
+      faTelegram,
     };
   },
 });

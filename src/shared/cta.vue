@@ -44,7 +44,7 @@
           py-4
           w-full
           h-max
-          rounded-sm  
+          rounded-lg  
           shadow-lg shadow-theme-8
           transform-gpu
           hover:scale-95
@@ -117,7 +117,7 @@
         from-bt-call_2
             to-bt-call_1
             hover:bg-social-tg_contrast
-            text-theme-8
+            text-black
             font-semibold
             py-4
             rounded-lg
@@ -131,7 +131,7 @@
             icon="phone"
             transform="shrink-6"
             class="self-center hover:animate-ping h-5 w-5"
-            :style="{ color: '#FFBB30', fontSize: '1.3rem' }"
+            :style="{ color: '#080808', fontSize: '1.3rem' }"
           />
           Обратный звонок
         </button>

@@ -30,7 +30,7 @@
           from-bt-2
           to-bt-1
           px-12
-          rounded-sm
+          rounded-lg
           shadow-lg
           shadow-black
           shadow-opacity-50
@@ -56,7 +56,7 @@
           from-bt-2
           to-bt-1
           px-12
-          rounded-sm
+          rounded-lg
           shadow-lg
           shadow-black
           shadow-opacity-50

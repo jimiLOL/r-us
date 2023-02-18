@@ -129,7 +129,7 @@
           to-bt-1
             px-12
             py-4
-            rounded-sm
+            rounded-lg
             font-bold
             focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
           "
@@ -148,7 +148,7 @@
           to-bt-1
             px-12
             py-4
-            rounded-sm
+            rounded-lg
             font-bold
             focus:bg-theme-10 focus:transform focus:scale-95 focus:underline
           "

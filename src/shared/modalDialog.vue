@@ -452,7 +452,7 @@
                   px-6
                   py-2
                   text-white
-                  rounded-sm
+                  rounded-lg
                   hover:bg-theme-12 hover:transform hover:scale-95
                 "
                 @click="nextButton()"
@@ -468,7 +468,7 @@
                   px-6
                   py-2
                   text-white
-                  rounded-sm
+                  rounded-lg
                   hover:bg-theme-3
                   hover:transform
                   hover:scale-120
@@ -669,7 +669,7 @@
                   py-2
                   w-full
                   text-white
-                  rounded-sm
+                  rounded-lg
                   hover:bg-theme-12 hover:transform hover:scale-95
                 "
                 @click="checkProduct = false"
@@ -688,7 +688,7 @@
                 px-6
                 py-2
                 text-white
-                rounded-sm
+                rounded-lg
                 hover:bg-theme-12 hover:transform hover:scale-95
               "
               @click="checkProduct = false"
