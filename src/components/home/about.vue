@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-4 text-black">
-    <span class="text-3xl font-bold">О нас</span>
+    <span :class="[$device.isMobile?'text-2xl': 'text-4xl', 'font-bold']">О нас</span>
     <p class="text-lg">
       Люди полагаются на нас, чтобы обеспечить достойные проводы их погибшего, и мы заботимся о том, чтобы создать похороны, отражающие привязанность к ним. Мы обязуемся провести похороны таким образом, чтобы они стали подтверждением вашей любви.
     </p>

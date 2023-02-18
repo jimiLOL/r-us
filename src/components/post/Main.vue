@@ -103,7 +103,7 @@
       <div v-else>
         <p>{{ load ? "" : post?.description }}</p>
       </div>
-      <span class="text-bold text-3xl">Цены на ритуальные услуги под ключ</span>
+      <span class="text-bold text-2xl">Цены на ритуальные услуги под ключ</span>
 
       <div
         :class="[

@@ -74,14 +74,10 @@
               'to-bt-1',
               'cursor-pointer transform transition ease-in duration-1500 hover:scale-95',
               $device.isMobile ? 'w-5/6 mx-4 self-center' : 'w-1/3 mr-2',
-              'self-end',
+              'self-end hover:underline',
               'py-4',
               'px-1',
               'my-4',
-              'hover:text-black',
-              'hover:border-black',
-              'focus:text-black',
-              'focus:border-black',
               'text-white'
             ]"
             :disabled="load"

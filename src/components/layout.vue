@@ -84,6 +84,8 @@ export default class Layout extends Vue {
   // }
   // hoverEnable = true;
 
+  mount = false;
+
   get computedProp() {
     return this.$route.name == "index" ? true : false;
   }
@@ -100,7 +102,9 @@ export default class Layout extends Vue {
     this.$nextTick(() => {
       this.bodyClasses = [];
     });
-    this.init();
+    if (this.computedProp && !this.mount) {
+      this.init();
+    }
   }
 
   init() {
@@ -112,13 +116,14 @@ export default class Layout extends Vue {
       setTimeout(() => {
         if (entries[0].isIntersecting) {
           let allSvg = cash(vm.$refs.header_svg).find("svg");
+          // console.log(allSvg);
 
           svgAnimate(allSvg);
         }
       }, 500);
 
-      console.log(observer);
-      console.log("callback");
+      // console.log(observer);
+      // console.log("callback");
     }
     function svgAnimate(allSvg) {
       // let allSvg = cash(vm.$refs.header).find("svg");
@@ -183,6 +188,7 @@ export default class Layout extends Vue {
 
   async mounted() {
     // console.log(this.$route);
+    this.mount = true;
     await this.$nextTick();
     this.init();
     window.$nuxt.$on("switchModal", (data) => {

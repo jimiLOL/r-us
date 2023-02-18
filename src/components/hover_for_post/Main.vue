@@ -5,7 +5,8 @@
           :class="[
             load
               ? 'animate-pulse h-2.5 bg-gray-500 rounded-full w-98'
-              : 'text-wraper font-bold text-3xl self-end text-white p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8',
+              : 'text-wraper font-bold self-end text-white p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8',
+              $device.isMobile ? 'text-2xl' : 'text-4xl',
           ]"
         >
           {{ load ? "" : post?.title }}

@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col gap-4 px-4 my-20 text-black font-bold">
+  <div class="flex flex-col gap-4 my-20 text-black font-bold">
     <span
-      :class="['text-2xl', 'font-bold', $device.isMobile ? 'text-center' : '']"
+      :class="['font-bold', $device.isMobile ? 'text-center text-2xl' : 'text-4xl', ]"
       >Полезная информация</span
     >
     <div class="w-full">
@@ -11,28 +11,31 @@
             'flex',
             'flex-col',
             'gap-2',
+            'bg-theme-15',
             $device.isMobile ? '' : 'px-4 my-2',
             'hover:underline',
-            'cursor-pointer', 'rounded-lg',
+            'cursor-pointer',
+            'rounded-lg',
             'shadow-md',
-            'hover:shadow-xl',
+            'hover:shadow-md',
             'hover:shadow-theme-1',
           ]"
           v-for="(item, index) in posts"
           :key="index"
-            @click="
-              $router.push(`/${direction}/${item.category_en}?post=${item.title_en}`)
-            "
+          @click="
+            $router.push(
+              `/${direction}/${item.category_en}?post=${item.title_en}`
+            )
+          "
         >
-        <div class="py-4 h-max">
+          <div class="flex flex-col gap-3 py-4 h-max text-left">
             <img
-            :src="`https://drive.google.com/uc?export=view&id=${item.picterUrl}`"
-            class="rounded-lg hover:shadow-lg hover:shadow-theme-1"
-            :alt="item.h1"
-          />
-          <span class="font-bold text-lg">{{ item.title }}</span>
-          
-        </div>
+              :src="`https://drive.google.com/uc?export=view&id=${item.picterUrl}`"
+              class="rounded-lg"
+              :alt="item.h1"
+            />
+            <span class="font-bold text-2xl">{{ item.title }}</span>
+          </div>
         </div>
       </SlickSlider>
     </div>
@@ -49,8 +52,7 @@ import shopApi from "~/api/shop";
   components: { SlickSlider },
 })
 export default class InformationForHome extends Vue {
-  @Prop({type: String, default: () => 'blog' }) direction;
- 
+  @Prop({ type: String, default: () => "blog" }) direction;
 
   setting_slider = {
     slidesToShow: 3,
@@ -64,12 +66,30 @@ export default class InformationForHome extends Vue {
   };
   categories = [];
   posts = [
-    { title: "Молитвенный дом", picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM" },
-    { title: "Молитвенный дом", picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM" },
-    { title: "Молитвенный дом", picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM" },
-    { title: "Молитвенный дом", picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM" },
-    { title: "Молитвенный дом", picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM" },
-    { title: "Молитвенный дом", picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM" },
+    {
+      title: "Молитвенный дом",
+      picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM",
+    },
+    {
+      title: "Молитвенный дом",
+      picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM",
+    },
+    {
+      title: "Молитвенный дом",
+      picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM",
+    },
+    {
+      title: "Молитвенный дом",
+      picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM",
+    },
+    {
+      title: "Молитвенный дом",
+      picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM",
+    },
+    {
+      title: "Молитвенный дом",
+      picterUrl: "1ppXEp4WBf4KKS6eecEcM03hzzGoA0ALM",
+    },
   ];
   async fetchData(data) {
     await shopApi

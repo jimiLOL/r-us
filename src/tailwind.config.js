@@ -89,8 +89,8 @@ module.exports = {
           wh_2: '#31C74C',
           tg_1: '#62CBFF',
           tg_2: '#278AE5',
-          call_1: '#FFE675',
-          call_2: '#FFC831',
+          call_1: '#FFCC46',
+          call_2: '#FFB500',
         }
       },
       fontFamily: {

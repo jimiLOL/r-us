@@ -7,15 +7,22 @@
   <!-- Main modal -->
   <div
     :class="[
-      'fixed top-0 left-0 right-0 z-50 w-full md:inset-0 h-screen tran overflow-x-hidden text-black',
+      'fixed top-0 left-0 right-0 z-50 w-full md:inset-0 h-screen tran overflow-x-hidden text-black bg-gray-500 bg-opacity-30',
       $device.isMobile ? 'h-full overflow-y-scroll' : 'p-4 overflow-y-hidden',
     ]"
   >
-    <div :class="['relative', 'w-full', 'h-full', checkProduct ? 'overflow-y-scroll':'']">
+    <div
+      :class="[
+        'relative',
+        'w-full',
+        'h-screen',
+        checkProduct ? 'overflow-y-scroll' : '',
+      ]"
+    >
       <!-- Modal content -->
       <div class="relative text-black bg-white rounded-lg">
         <!-- Modal header -->
-        <div v-if="!checkProduct" class="flex flex-col p-6 w-full gap-2">
+        <div v-if="!checkProduct" class="flex flex-col p-6 w-full gap-2 h-fit">
           <div
             v-if="!filterOpen"
             :class="[
@@ -253,6 +260,9 @@
                   :class="[
                     'h-48',
                     'cursor-pointer',
+                    $device.isMobile
+                      ? 'w-full'
+                      : 'xxl:w-full xl:w-96 lg:w-80 md:w-64 sm:w-48 smm:w-40',
                     loadImg && !loadStatus
                       ? ''
                       : 'animate-pulse bg-gray-500 rounded-2xl border-2 border-solid border-black loading',
@@ -269,15 +279,17 @@
                   <img
                     v-show="loadImg && !loadStatus"
                     ref="mainImg"
-                    class="
-                      object-cover
-                      w-full
-                      h-full
-                      rounded-2xl
-                      border-2 border-solid border-black
-                      hover:border-theme-1
-                      lazyload
-                    "
+                    :class="[
+                      'object-cover',
+                      $device.isMobile
+                        ? 'w-full'
+                        : 'xxl:w-full xl:w-96 lg:w-80 md:w-64 sm:w-48 smm:w-40',
+                      'h-full',
+                      'rounded-2xl',
+                      'border-2 border-solid border-black',
+                      'hover:border-theme-1',
+                      'lazyload',
+                    ]"
                     :src="`https://drive.google.com/uc?export=view&id=${
                       item.imgs[imgSwitcher[`img${index}`]] ||
                       '1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC'
@@ -288,7 +300,7 @@
                   />
                 </div>
                 <SlickSlider
-                  :class="[$device.isMobile ? 'w-full' : 'w-96']"
+                  :class="[$device.isMobile ? 'w-full' : 'w-96 smm:hidden']"
                   ref="navSlick"
                   :settings="setting_nav"
                 >
@@ -310,6 +322,7 @@
                         class="
                           object-cover
                           border-2 border-solid border-black
+                          hover:border-theme-1
                           w-max
                           h-20
                           rounded-lg
@@ -327,14 +340,15 @@
                   'flex',
                   $device.isMobile
                     ? 'flex-row'
-                    : 'flex-col items-start justify-between w-64 h-max py-4',
+                    : 'flex-col items-start justify-between w-64 h-max py-4 smm:hidden sm:h-48',
                 ]"
               >
                 <div
                   :class="[
                     'flex',
                     'gap-2',
-                    $device.isMobile ? 'flex-col' : 'flex-col',
+                    'flex-col',
+                    $device.isMobile ? '' : '',
                   ]"
                 >
                   <div>
@@ -383,7 +397,9 @@
             >
               <button
                 class="
-                  bg-theme-5
+                 bg-gradient-to-t
+                  from-bt-2
+                  to-bt-1
                   px-6
                   py-2
                   text-white
@@ -430,11 +446,13 @@
               <button
                 v-if="viewingPage < tabMenu.length - 1"
                 class="
-                  bg-theme-5
+                  bg-gradient-to-t
+                  from-bt-2
+                  to-bt-1
                   px-6
                   py-2
                   text-white
-                  rounded-lg
+                  rounded-sm
                   hover:bg-theme-12 hover:transform hover:scale-95
                 "
                 @click="nextButton()"
@@ -444,11 +462,13 @@
               <button
                 v-else
                 class="
-                  bg-theme-12
+                  bg-gradient-to-t
+                  from-bt-2
+                  to-bt-1
                   px-6
                   py-2
                   text-white
-                  rounded-lg
+                  rounded-sm
                   hover:bg-theme-3
                   hover:transform
                   hover:scale-120
@@ -461,17 +481,15 @@
             </div>
           </div>
         </div>
-        <div
-          v-else
-          class="flex flex-col p-6 w-full gap-2 overflow-y-scroll "
-        >
+        <div v-else class="flex flex-col p-6 w-full gap-2 overflow-y-scroll">
           <div
             :class="[
               'grid',
               $device.isMobile ? 'grid-cols-1 h-screen' : 'grid-cols-4',
               'gap-3',
             ]"
-          > <button
+          >
+            <button
               type="button"
               class="
                 absolute
@@ -514,7 +532,7 @@
                 'flex-col',
                 'gap-4',
                 'w-max',
-                'snap-x'
+                'snap-x',
               ]"
             >
               <div
@@ -613,47 +631,70 @@
                     'gap-4',
                     'font-semibold',
                     'h-12',
-                    $device.isMobile ? 'self-center' : 'self-start']
-                  "
+                    $device.isMobile ? 'self-center' : 'self-start',
+                  ]"
                 >
-                  <div type="button" class="text-theme-5 hover:underline cursor-pointer" @click="changeProduct(item.sheet_title)">Изменить</div>
-                  <div type="button" class="text-theme-7 hover:underline cursor-pointer" @click="deleteItems(item)">Удалить</div>
+                  <div
+                    type="button"
+                    class="text-theme-5 hover:underline cursor-pointer"
+                    @click="changeProduct(item.sheet_title)"
+                  >
+                    Изменить
+                  </div>
+                  <div
+                    type="button"
+                    class="text-theme-7 hover:underline cursor-pointer"
+                    @click="deleteItems(item)"
+                  >
+                    Удалить
+                  </div>
                 </div>
               </div>
             </div>
-            <CtaButton :price="priceSum" :statusService="statusService" :numberBind="numberBind"/>
-            <div v-if="$device.isMobile" class="justify-self-center flex h-max w-48 my-6 py-2 self-center">
-                <button
-                  class="
-                    bg-theme-5
-                    px-9
-                    py-2
-                    w-full
-                    text-white
-                    rounded-lg
-                    hover:bg-theme-12 hover:transform hover:scale-95
-                  "
-                  @click="checkProduct = false"
-                >
-                  Назад
-                </button>
-            </div>
-          </div>
-
-          <div v-if="!$device.isMobile" class="flex h-max mt-2">
+            <CtaButton
+              :price="priceSum"
+              :statusService="statusService"
+              :numberBind="numberBind"
+            />
+            <div
+              v-if="$device.isMobile"
+              class="justify-self-center flex h-max w-48 my-6 py-2 self-center"
+            >
               <button
                 class="
-                  bg-theme-5
-                  px-6
+                  bg-gradient-to-t
+                  from-bt-2
+                  to-bt-1
+                  px-9
                   py-2
+                  w-full
                   text-white
-                  rounded-lg
+                  rounded-sm
                   hover:bg-theme-12 hover:transform hover:scale-95
                 "
                 @click="checkProduct = false"
               >
                 Назад
               </button>
+            </div>
+          </div>
+
+          <div v-if="!$device.isMobile" class="flex h-max mt-2">
+            <button
+              class="
+                bg-gradient-to-t
+                from-bt-2
+                to-bt-1
+                px-6
+                py-2
+                text-white
+                rounded-sm
+                hover:bg-theme-12 hover:transform hover:scale-95
+              "
+              @click="checkProduct = false"
+            >
+              Назад
+            </button>
           </div>
         </div>
       </div>
@@ -695,7 +736,7 @@ export default class ModalDialog extends Vue {
   filterOpen = false;
   selectPrice = "all";
   imgSwitcher = { img0: 0, img1: 0, img2: 0, img3: 0, img4: 0 };
-  numberBind = '';
+  numberBind = "";
 
   page = 0;
 
@@ -744,18 +785,16 @@ export default class ModalDialog extends Vue {
   priceSum = 0;
 
   deleteItems(item) {
-
     // Object.keys(this.productUser.user_choice).forEach((key) => {
     //   if (this.productUser.user_choice[key].title == item.sheet_title) {
     //     delete this.productUser.user_choice[key];
     //   }
     // });
-    const productUser_user_choice = {...this.productUser.user_choice}
+    const productUser_user_choice = { ...this.productUser.user_choice };
     // console.log(this.productUser.user_choice[item.sheet_title]);
     delete productUser_user_choice[item.sheet_title];
     this.priceSum -= item.price;
     this.productUser.user_choice = productUser_user_choice;
-
   }
 
   backButton() {
@@ -782,12 +821,12 @@ export default class ModalDialog extends Vue {
     window.$nuxt.$emit("switchModal", false);
   }
   changeProduct(name) {
-      this.$store.commit("product/setCategory", name);
+    this.$store.commit("product/setCategory", name);
     setTimeout(() => {
       this.viewingPage = this.tabMenu.findIndex(
         (x) => name == this.stateModal.sub_tab
       );
-       this.setting_slider.goTo = this.viewingPage;
+      this.setting_slider.goTo = this.viewingPage;
     }, 200);
 
     this.checkProduct = false;
@@ -919,19 +958,17 @@ export default class ModalDialog extends Vue {
     this.$store.commit("product/setLimit", this.$device.isMobile ? 2 : 4);
     this.$store.dispatch("product/init");
 
-    window.$nuxt.$on('sendData', (data)=> {
+    window.$nuxt.$on("sendData", (data) => {
       console.log(data);
-      let newData = Object.assign({}, this.productUser, data)
+      let newData = Object.assign({}, this.productUser, data);
       shopApi.newBidForСalculator(newData).then((res) => {
         console.log(res);
         if (res.code == 200) {
           this.statusService = true;
           this.numberBind = res.number_bin;
-        
         }
       });
-
-    })
+    });
   }
 }
 </script>

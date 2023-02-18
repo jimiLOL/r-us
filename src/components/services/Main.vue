@@ -131,11 +131,7 @@
             'from-bt-2',
             'to-bt-1',
             'cursor-pointer transform transition ease-in duration-1500 hover:scale-95',
-            'hover:text-black',
-            'hover:border-black',
-            'focus:text-black',
-            'focus:border-black',
-            'text-white',
+            'text-white hover:underline',
             load ? 'animate-pulse bg-gray-500 w-96' : '',
           ]"
           :disabled="load"

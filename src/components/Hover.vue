@@ -225,8 +225,8 @@ export default class Hover extends Vue {
 
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(
-        vm.clientHeight.clientHeight * 0.81,
-        vm.clientHeight.clientHeight * 0.81
+        vm.clientHeight.clientHeight * 0.75,
+        vm.clientHeight.clientHeight * 0.75
       );
       renderer.context.getExtension("OES_standard_derivatives");
 
@@ -429,6 +429,8 @@ export default class Hover extends Vue {
         // });
 
         let endTime = new Date().getTime();
+      animate();
+
         console.log(`Process time ${endTime - startTime} ms`);
       });
     }
@@ -455,11 +457,14 @@ export default class Hover extends Vue {
 
     let time = 0;
     function animate() {
-      time++;
+      if (time < 2000) {
+time++;
       // vm.material.uniforms.time.value = time;
 
       requestAnimationFrame(animate);
       render();
+      }
+      
     }
 
     function render() {
@@ -470,7 +475,8 @@ export default class Hover extends Vue {
 
     if (this.clientHeight.clientHeightWindow > 300 && this.$route.path == "/") {
       init();
-      animate();
+
+     
     }
   }
 }

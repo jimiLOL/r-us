@@ -11,7 +11,7 @@
       ]"
     >
       <div class="flex flex-col justify-center content-center basis-1/2">
-        <h3 :class="['font-bold', 'mb-9', $device.isMobile ? 'self-center text-center text-2xl' : 'text-3xl']">
+        <h3 :class="['font-bold', 'mb-9', $device.isMobile ? 'self-center text-center text-2xl' : 'text-4xl']">
           Официальное похоронное бюро Кургана
         </h3>
         <div :class="['flex', $device.isMobile ? 'flex-col' : '', 'gap-4']">

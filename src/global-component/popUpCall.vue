@@ -94,11 +94,10 @@
           for="phone"
           >Проверьте правильность номера телефона</label
         >
-      </div>
-
+        
       <button
         class="
-          w-max
+          w-full
           bg-gradient-to-t
           from-bt-2
           to-bt-1
@@ -109,12 +108,17 @@
           focus:bg-theme-9
           font-bold
           disabled:bg-theme-2
+          text-white
         "
         :disabled="!validation"
         @click="sendData"
       >
         Позвоните мне
       </button>
+      </div>
+
+     
+
     </div>
     <div
       v-else

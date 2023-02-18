@@ -32,10 +32,9 @@
       >
         <span
           :class="[
-            $device.isMobile ? 'mt-9 text-2xl' : 'mt-28 text-3xl',
-            'font-bold',
+            $device.isMobile ? 'mt-9 text-2xl' : 'mt-28 text-4xl pb-2',
             'border-b-2',
-            'border-theme-1',
+            'border-theme-10',
             'border-solid',
             'text-black',
             'text-center',
@@ -107,7 +106,7 @@
       </div>
     </div>
     <AboutForHomePage :class="[$device.isMobile ? '' : 'px-16']"/>
-    <InformationForHome />
+    <InformationForHome :class="[$device.isMobile ? 'px-4' : 'px-16']"/>
     <CtaGeneral class="my-4" />
   </div>
 </template>

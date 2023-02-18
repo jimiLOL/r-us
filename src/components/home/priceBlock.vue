@@ -13,7 +13,7 @@
         'font-bold',
       ]"
     >
-      Цены на ритуальные услуги под ключ
+      Цены на ритуальные услуги под ключ в Кургане
     </h3>
     <div v-if="!$device.isMobile" class="flex gap-9 text-base mt-9 font-bold">
       <div
@@ -22,7 +22,7 @@
           categoriesTab.chose == 'provaslavny'
             ? 'bg-white w-max rounded-t-lg text-theme-10 underline'
             : '', 'py-2 px-4', 
-            pageSetting == 'home' && categoriesTab.chose == 'provaslavny'? 'border-l-2 border-t-2 border-r-2 border-theme-1 border-solid' : ''
+            pageSetting == 'home' && categoriesTab.chose == 'provaslavny'? '' : ''
         ]"
         @click="setNewChose('provaslavny')"
       >
@@ -33,7 +33,7 @@
           'hover:underline text-shadow_hover cursor-pointer',
           categoriesTab.chose == 'mysulman'
             ? 'bg-white w-max rounded-t-lg text-theme-10 underline'
-            : '', 'py-2 px-4', pageSetting == 'home' && categoriesTab.chose == 'mysulman' ? 'border-l-2 border-t-2 border-r-2 border-theme-1 border-solid' : ''
+            : '', 'py-2 px-4', pageSetting == 'home' && categoriesTab.chose == 'mysulman' ? '' : ''
         ]"
         @click="setNewChose('mysulman')"
       >
@@ -44,7 +44,7 @@
           'hover:underline text-shadow_hover cursor-pointer',
           categoriesTab.chose == 'kremacia'
             ? 'bg-white w-max rounded-t-lg text-theme-10 underline'
-            : '', 'px-4 py-2', pageSetting == 'home' && categoriesTab.chose == 'kremacia' ? 'border-l-2 border-t-2 border-r-2 border-theme-1 border-solid' : ''
+            : '', 'px-4 py-2', pageSetting == 'home' && categoriesTab.chose == 'kremacia' ? '' : ''
         ]"
         @click="setNewChose('kremacia')"
       >
@@ -70,7 +70,7 @@
         'flex-col',
         'rounded-b-lg',
         'rounded-tr-lg',
-        pageSetting == 'home' ? 'border-theme-1 border-b-2 border-r-2 border-l-2 border-solid':'',
+        pageSetting == 'home' ? '':'',
         'bg-white',
         'text-lg',
         'font-bold',
