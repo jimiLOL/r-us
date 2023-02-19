@@ -13,11 +13,11 @@
     <div class="site__container">
       <div
         :class="[
-          !$device.isMobile && computedProp ? 'img-position h-screen back_wraper' : '',
+          !$device.isMobile && computedProp ? 'img-position back_wraper' : '', $route.fullPath == '/'?'h-screen':''
         ]"
         ref="header"
       >
-        <header :class="[$device.isMobile ? 'px-2' : 'px-6']">
+        <header :class="[$device.isMobile ? 'px-2' : 'px-6', $route.fullPath == '/'?'h-screen':'']">
           <div v-if="observerInit && $route.name == 'index'" ref="header_svg">
             <svg
               v-for="(item, index) in 30"
@@ -31,6 +31,7 @@
 
           <Header
             :hoverEnable="$route.name == 'index' ? true : false"
+            :clientHeight="computedProp ? clientHeight : 0"
             :enable="true"
           />
         </header>
@@ -88,6 +89,18 @@ export default class Layout extends Vue {
 
   get computedProp() {
     return this.$route.name == "index" ? true : false;
+  }
+  get clientHeight() {
+      if (this.$refs.header) {
+    return Number(this.$refs.header.clientHeight)
+
+
+      } else {
+        return Number(window?.innerHeight || 0)
+
+      }
+  
+
   }
 
   bodyClasses = ["disable-transitions"];

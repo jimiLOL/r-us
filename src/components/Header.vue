@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!$device.isMobile" ref="clientHeight" class="pt-4">
+  <div v-if="!$device.isMobile" ref="clientHeight" :class="['pt-4', $router.fullPath == '/' ? 'h-screen':'']">
     <div
       v-if="enable"
       class="flex justify-around gap-x-2 font-raleway flex-nowrap"
@@ -21,37 +21,87 @@
           >+7 (3522) 610‒630</a
         >
       </div>
-      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
-         пр-кт Машиностроителей, 34
+      <div
+        class="
+          inline-flex
+          flex-col
+          justify-center
+          whitespace-nowrap
+          text-center
+        "
+      >
+        <address
+          class="text-lg font-semibold md:text-base text-theme-10 text-shadow"
+        >
+          пр-кт Машиностроителей, 34
         </address>
         <a class="font-thin" href="tel:+73522256075">+7 (3522) 25‒60‒75</a>
         <span class="font-thin">с 08:00 до 17:00</span>
       </div>
-      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
-         ул.Коли Мяготина 102а
+      <div
+        class="
+          inline-flex
+          flex-col
+          justify-center
+          whitespace-nowrap
+          text-center
+        "
+      >
+        <address
+          class="text-lg font-semibold md:text-base text-theme-10 text-shadow"
+        >
+          ул.Коли Мяготина 102а
         </address>
         <a class="font-thin" href="tel:+73522256075">+7 (3522) 622‒000</a>
         <span class="font-thin">с 08:00 до 17:00</span>
       </div>
-      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
-         ул.Томина, 67
+      <div
+        class="
+          inline-flex
+          flex-col
+          justify-center
+          whitespace-nowrap
+          text-center
+        "
+      >
+        <address
+          class="text-lg font-semibold md:text-base text-theme-10 text-shadow"
+        >
+          ул.Томина, 67
         </address>
         <a class="font-thin" href="tel:+79128355992">+7 (912) 835‒59‒92</a>
         <span class="font-thin">с 08:00 до 17:00</span>
       </div>
-      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
-         ул.Карбышева 35к5
+      <div
+        class="
+          inline-flex
+          flex-col
+          justify-center
+          whitespace-nowrap
+          text-center
+        "
+      >
+        <address
+          class="text-lg font-semibold md:text-base text-theme-10 text-shadow"
+        >
+          ул.Карбышева 35к5
         </address>
         <a class="font-thin" href="tel:+73522554400">+7 (3522) 554‒400 </a>
         <!-- <span> +7 (3522) 555‒332</span> -->
         <span class="font-thin">с 08:00 до 17:00</span>
       </div>
-      <div class="inline-flex flex-col justify-center whitespace-nowrap text-center">
-        <address class="text-lg font-semibold md:text-base text-theme-10 text-shadow">
+      <div
+        class="
+          inline-flex
+          flex-col
+          justify-center
+          whitespace-nowrap
+          text-center
+        "
+      >
+        <address
+          class="text-lg font-semibold md:text-base text-theme-10 text-shadow"
+        >
           с.Кетово, ул.Космонавтов, 36 оф 9
         </address>
         <a class="font-thin" href="tel:+79129730848">+7 (912) 973-08-48 </a>
@@ -65,7 +115,7 @@
     </div>
     <Hover
       v-if="hoverEnable"
-      :clientHeight="{ clientHeightWindow: 700, clientHeight: 600 }"
+      :clientHeight="{ clientHeightWindow: clientHeightComputed, clientHeight: 600 }"
     />
   </div>
   <div class="pb-4 flex flex-col text-black" v-else>
@@ -93,9 +143,7 @@
           <i>Ритуальная служба в</i><i class="text-theme-10"> Кургане</i>
         </h1>
         <p>
-          Опытный и надежный агент похоронных услуг в Кургане.
-          Мы специализируемся на предоставлении качественных услуг
-          по организации похорон, кремации, перевозке тел и груза 200.
+          Мы - команда опытных и надежных ритуальных агентов в Кургане. Наша специализация - предоставление качественных ритуальных услуг, включая организацию похорон, кремацию и транспортировку тел.
         </p>
       </div>
 
@@ -125,8 +173,8 @@
             duration-1500
             transform
             bg-gradient-to-t
-          from-bt-2
-          to-bt-1
+            from-bt-2
+            to-bt-1
             px-12
             py-4
             rounded-lg
@@ -144,8 +192,8 @@
             duration-1500
             transform
             bg-gradient-to-t
-          from-bt-2
-          to-bt-1
+            from-bt-2
+            to-bt-1
             px-12
             py-4
             rounded-lg
@@ -154,7 +202,7 @@
           "
           @click="openModal"
         >
-          Расчитать стоимость похорон
+          Рассчитать стоимость похорон
         </button>
       </div>
     </div>
@@ -174,41 +222,56 @@ import HamburgerMenu from "~/shared/humburgerMenu.vue";
 export default class Header extends Vue {
   @Prop({ type: Boolean, required: true }) enable;
   @Prop({ type: Boolean, required: true }) hoverEnable;
+  @Prop({ type: Number, required: true }) clientHeight;
 
-  @Watch("$route.fullPath")
-  newclientHeight() {
-    console.log(this.$route.fullPath);
-    setTimeout(() => {
-      if (this.$refs.clientHeight.clientHeight) {
-        console.log(this.$refs.clientHeight.clientHeight);
-        this.clientHeight = this.$refs.clientHeight.clientHeight - this.$refs.clientHeight.clientHeight * 0.14;
-        // this.clientHeight = window.innerHeight;
-      } else {
-        console.log(window.innerHeight);
-        this.clientHeight = window.innerHeight;
-      }
-    }, 2000);
+
+
+  get clientHeightComputed() {
+    return this.clientHeight;
   }
+
+
+  // @Watch("$route.fullPath")
+  // newclientHeight() {
+  //   setTimeout(() => {
+  //     window.$nuxt.$emit("changePage");
+  //   }, 500);
+  //   setTimeout(() => {
+  //     if (this.$refs.clientHeight.clientHeight) {
+  //       console.log(this.$refs.clientHeight.clientHeight);
+  //       this.clientHeight =
+  //         this.$refs.clientHeight.clientHeight -
+  //         this.$refs.clientHeight.clientHeight * 0.14;
+  //       // this.clientHeight = window.innerHeight;
+  //     } else {
+  //       console.log(window.innerHeight);
+  //       this.clientHeight = window.innerHeight;
+  //     }
+  //   }, 2000);
+  // }
 
   mobileMenuOpen = false;
 
-  clientHeight = window.innerHeight;
+  // clientHeight = window.innerHeight;
 
   dataMenuLeft = dataMenuLeft;
   openModal() {
     window.$nuxt.$emit("switchModal", true);
-  };
+  }
   callMe() {
     window.$nuxt.$emit("callMe", true);
-  };
+  }
 
   mounted() {
     window.$nuxt.$on("switchMobileMenu", (data) => {
       this.mobileMenuOpen = data;
-    }); 
-    console.log(this.clientHeight);
+    });
+    // console.log(this.clientHeight);
+
     if (!this.$device.isMobile) {
-      this.clientHeight = this.$refs.clientHeight.clientHeight - this.$refs.clientHeight.clientHeight * 0.34;
+      // this.clientHeight =
+      //   this.$refs.clientHeight.clientHeight -
+      //   this.$refs.clientHeight.clientHeight * 0.34;
 
       // setTimeout(() => {
       //   this.clientHeight = this.$refs.clientHeight.clientHeight;

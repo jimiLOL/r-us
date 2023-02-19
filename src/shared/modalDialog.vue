@@ -258,11 +258,10 @@
               >
                 <div
                   :class="[
-                    'h-48',
                     'cursor-pointer',
                     $device.isMobile
-                      ? 'w-full'
-                      : 'xxl:w-full xl:w-96 lg:w-80 md:w-64 sm:w-48 smm:w-40',
+                      ? 'w-full h-48'
+                      : 'xxl:w-full xl:w-96 xl:h-44 lg:w-80 lg:h-32 md:w-64 md:h-28 sm:w-48 sm:h-24 smm:w-40 smm:h-20',
                     loadImg && !loadStatus
                       ? ''
                       : 'animate-pulse bg-gray-500 rounded-2xl border-2 border-solid border-black loading',
@@ -388,7 +387,8 @@
               'justify-items-center',
               'gap-4',
               'w-full',
-              'h-20',
+              'h-fit',
+              'my-2'
             ]"
           >
             <div

@@ -162,7 +162,7 @@
                   'hover:underline',
                   'hover:text-black',
                   'max-h-12',
-                  'text-white',
+                  'text-black',
                 ]"
                 @click="closeList"
               >

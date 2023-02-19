@@ -49,49 +49,13 @@
     </div>
     <div class="flex flex-col gap-4 pt-20 w-full">
     <HoverForPost :post="post" :load="load" />
-
-      <!-- <div class="flex img_cover h-96 rounded-lg">
-        <h1
-          style="color: #fff"
-          :class="[
-            load
-              ? 'animate-pulse h-2.5 bg-gray-500 rounded-full w-98'
-              : 'text-wraper text-bold text-3xl self-end text-white p-4 bg-clip-text bg-gradient-to-r from-theme-1 to-theme-8',
-          ]"
-        >
-          {{ load ? "" : post?.title }}
-        </h1>
-      </div> -->
-        <!-- <component :is="'style'">
-          :root { --url: url("https://drive.google.com/uc?export=view&id={{
-            post?.picterUrl || "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU"
-          }}")}
-        </component> -->
-      <!-- <div class="flex gap-3 text-normal text-black font-bold">
-      
-        <NuxtLink to="/" class="hover:underline">Главная</NuxtLink>
-        <ChevronRightIcon />
-        <NuxtLink :to="`/${direction}`" class="hover:underline">{{post?.direction == 'blog'?'Блог': 'Услуги'}}</NuxtLink>
-        <ChevronRightIcon />
-        <NuxtLink :to="`/${direction}/${post?.category_en}`" class="hover:underline">{{
-          post?.category
-        }}</NuxtLink>
-        <ChevronRightIcon />
-        <NuxtLink
-          :to="{
-            path: `/${direction}/${post?.category_en}`,
-            query: { post: post?.title_en },
-          }"
-          class="text-theme-17 truncate"
-          >{{ post?.title }}</NuxtLink
-        >
-      </div> -->
+ 
       <Pagination
-        :category_en="post?.category_en"
-        :category="post?.category"
-        :title="post?.title"
+        :category_en="post?.category_en ||'loading'"
+        :category="post?.category || 'loading'"
+        :title="post?.title || 'loading'"
             :post="post"
-        :direction="post?.direction"
+        :direction="post?.direction || 'blog'"
       />
       <div v-if="load" class="flex flex-col gap-2 animate-pulse mb-2">
         <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
@@ -103,8 +67,9 @@
       <div v-else>
         <p>{{ load ? "" : post?.description }}</p>
       </div>
-      <span class="text-bold text-2xl">Цены на ритуальные услуги под ключ</span>
-
+      <TablePriceforpost :category="post.category" :items="post?.items"/>
+      <!-- <span class="text-bold text-2xl">Цены на ритуальные услуги под ключ</span> -->
+<!-- 
       <div
         :class="[
           'flex',
@@ -213,7 +178,6 @@
               </button>
               <button
                 :class="[
-                  'py-2',
                   'px-9',
                   'rounded-lg',
                   'text-theme-8',
@@ -225,11 +189,11 @@
                   'hover:bg-theme-10',
                   'hover:scale-95',
                   'hover:underline',
-                  $device.isMobile ? 'w-full' : '',
+                  $device.isMobile ? 'w-full py-4 whitespace-nowrap' : 'py-2',
                 ]"
                 @click="openModal"
               >
-                Расчитать стоимость похорон
+                Рассчитать стоимость похорон
               </button>
             </div>
           </div>
@@ -244,7 +208,7 @@
           :class="[$device.isMobile ? 'self-center' : 'text-bold text-3xl text-theme-10 text-shadow',]"
           >от 10 000 ₽</span
         >
-      </div>
+      </div> -->
       <div v-if="!load" v-html="post?.body_sub"></div>
       <CtaGeneral />
       <div v-if="!load" v-html="post?.body_main"></div>
@@ -269,9 +233,9 @@ import CtaGeneral from "~/shared/ctaGeneral.vue";
 import shopApi from "~/api/shop";
 import HoverForPost from "~/components/hover_for_post/Main.vue";
 import Pagination from "~/components/pagination/Main.vue";
-
+import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
 @Component({
-  components: { CtaGeneral, HoverForPost, Pagination },
+  components: { CtaGeneral, HoverForPost, Pagination, TablePriceforpost },
   //  head(this) {
   //   return {
   //     title: 'asdasd',
@@ -353,7 +317,12 @@ export default class Post extends Vue {
       category_en: "",
     },
   ];
-  post = null;
+  post = {
+    direction: "services",
+    category_en: "load",
+    category: "Загрузка",
+
+  };
   load = true;
 
   // navigation() {

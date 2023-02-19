@@ -2,9 +2,9 @@
  <div class="flex gap-3 text-normal text-black font-bold">
         <NuxtLink to="/" class="hover:underline">Главная</NuxtLink>
         <ChevronRightIcon />
-        <NuxtLink :to="`/${direction}`" class="hover:underline">{{post?.direction == 'blog'?'Блог': 'Услуги'}}</NuxtLink>
+        <NuxtLink :to="`/${direction}`" class="hover:underline ">{{post?.direction == 'blog'?'Блог': 'Услуги'}}</NuxtLink>
         <ChevronRightIcon />
-        <NuxtLink :to="`/${direction}/${post?.category_en}`" class="hover:underline">{{
+        <NuxtLink :to="`/${direction}/${post?.category_en}`" class="hover:underline truncate">{{
           post?.category
         }}</NuxtLink>
         <ChevronRightIcon />

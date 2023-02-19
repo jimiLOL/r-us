@@ -23,7 +23,7 @@ export default class HamburgerMenu extends Vue {
         }, 200);
        
     }
-    @Watch("$route.path")
+    @Watch("$route.fullPath")
     switchPath () {
         this.active = false;
         setTimeout(() => {

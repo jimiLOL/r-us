@@ -1,6 +1,7 @@
 <template>
   <div :class="['flex flex-col gap-4', $device.isMobile ? 'px-4':'px-20']">
     <div class="flex flex-col gap-4 text-lg my-4">
+      <h1 class="text-4xl font-bold">Зауральский похоронный дом</h1>
       <p>
         Наша команда состоит из опытных профессионалов, которые стремятся
         предоставить уважительные услуги, превосходящие ожидания. Мы считаем,
@@ -130,7 +131,14 @@
 <script>
 import { Vue, Component } from "vue-property-decorator";
 
-@Component({})
+@Component({
+  head() {
+    return {
+      title: "Зауральский похоронный дом контакты",
+    
+    }
+  }
+})
 export default class Contact extends Vue {
   data() {
     return {

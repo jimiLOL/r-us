@@ -5,11 +5,9 @@
         <h1 class="text-5xl font-bold">
           <i>Ритуальная служба в Кургане</i>
         </h1>
-        <p>
-          Опытный и надежный агент похоронных услуг в Кургане.
-          Мы специализируемся на предоставлении качественных услуг
-          по организации похорон, кремации, перевозке тел и груза 200.
-        </p>
+        <vue-typed-js :showCursor="false" :startDelay="1000" :fadeOut="true" :fadeOutDelay="500" :shuffle="true" :strings="['Мы заботимся о каждой детали, чтобы вы могли попрощаться с любимым человеком', 'Профессиональная помощь в трудную минуту', 'Достойное прощание в последний путь']">
+          <p class="typing"></p>
+        </vue-typed-js>
       </div>
 
       <div
@@ -23,10 +21,7 @@
           text-theme-10
         "
       >
-        <span
-          >Горячая линия -
-          <strong>Круглосуточно</strong></span
-        >
+        <span>Горячая линия - <strong>Круглосуточно</strong></span>
         <a href="tel:+73522610630" class="font-bold text-2xl"
           >+7 (3522) 610‒630</a
         >
@@ -43,7 +38,7 @@
             to-bt-1
             px-12
             py-4
-            rounded-sm
+            rounded-lg
             font-bold
             hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
           "
@@ -62,21 +57,17 @@
             to-bt-1
             px-12
             py-4
-            rounded-sm
+            rounded-lg
             font-bold
             hover:bg-theme-10 hover:transform hover:scale-95 hover:underline
           "
           @click="openModal"
         >
-          Расчитать стоимость похорон
+          Рассчитать стоимость похорон
         </button>
       </div>
     </div>
-    <div
-      id="container"
-      class="h-full self-end pt-28"
-      ref="canavs_wraper"
-    >
+    <div id="container" class="h-full self-end" ref="canavs_wraper">
       <div class="img-position"></div>
 
       <!-- <img src="/line.svg" class="w-max-96 line" alt="" /> -->
@@ -89,7 +80,8 @@
       {{ Math.ceil(clientHeight.clientHeight * 1.35) }}px; --backgroundWraper:
       {{ backgroundWraper }}px; --clientH:
       {{ Math.ceil(clientHeight.clientHeight * 0.4) }}px; --wrapperTop:
-      {{ Math.ceil(clientHeight.clientHeight * 1.68) }}px; }
+      {{ Math.ceil(clientHeight.clientHeight * 1.68) }}px; --procentTop:
+      {{ clientHeight.clientHeightWindow > 800 ? "10%" : "5%" }} }
     </component>
   </div>
 </template>
@@ -97,7 +89,6 @@
 <script>
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import SVGMouse from "~/components/svg/Mouse.vue";
-
 import * as THREE from "three";
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
@@ -136,6 +127,26 @@ export default class Hover extends Vue {
     default: () => ({ clientHeight: 500, clientHeightWindow: 600 }),
   })
   clientHeight;
+
+  time = 0;
+
+  @Watch("$route.fullPath")
+  switchRoute() {
+    this.time = 0;
+  }
+
+  get initAnimation() {
+    return (
+      this.clientHeight.clientHeightWindow > 500 && this.$route.path == "/"
+    );
+  }
+
+  @Watch("initAnimation")
+  initAnimationChange() {
+    if (this.initAnimation) {
+      this.animation();
+    }
+  }
 
   @Watch("clientHeight")
   resize() {
@@ -177,15 +188,7 @@ export default class Hover extends Vue {
     window.$nuxt.$emit("callMe", true);
   }
 
-  async mounted() {
-    console.log(this.clientHeight);
-    // const rs = await rustModule;
-    // console.log(rs);
-    // let result = rs.test();
-    // console.log(result);
-    // console.log(result instanceof Uint32Array);
-    // this.clientHeight = this.$refs.block.clientHeight;
-
+  animation() {
     const worker = this.$worker.createWorker();
 
     this.load = true;
@@ -284,6 +287,8 @@ export default class Hover extends Vue {
 
             vm.backgroundWraper = vm.$refs.canavs_wraper.clientWidth;
 
+            positions = e.data.payload.positions;
+
             let uvs = new Float32Array((positions.length / 3) * 2); // необходимые вершины для отресовк
 
             let geometry = new THREE.BufferGeometry();
@@ -310,6 +315,8 @@ export default class Hover extends Vue {
                 blend: { type: "f", value: 0 },
                 size: { type: "f", value: 2.1 }, //window.devicePixelRatio },
                 dimensions: { type: "v2", value: new THREE.Vector2(w, h) },
+                premultipliedAlpha: true,
+                depthWrite: true,
                 // alpha: { value: 0.0625 },
               },
               transparent: true,
@@ -364,46 +371,6 @@ export default class Hover extends Vue {
             index: index,
             img: { width: img.width, height: img.height },
           });
-
-          // let rgb = [];
-          // let c = new THREE.Color();
-
-          // for (var i = 0; i < buffer.length; i = i + 4) {
-          //   c.setRGB(buffer[i], buffer[i + 1], buffer[i + 2]);
-
-          //   rgb.push({ c: c.clone(), id: i / 4 });
-          // }
-          // let result = new Float32Array(img.width * img.height * 2);
-          // let j = 0;
-
-          // rgb.sort(function (a, b) {
-          //   return a.c.getHSL(a.c).s - b.c.getHSL(a.c).s;
-          // });
-
-          // rgb.forEach((e) => {
-          //   if (e.c.getHexString() != "000000") {
-          //     result[j] = e.id % img.width;
-          //     result[j + 1] = Math.floor(e.id / img.height);
-          //     j = j + 2;
-          //   } else {
-          //     result[j] = result[j - 2] || e.id % img.width;
-          //     result[j + 1] = Math.floor(result[j - 3] || e.id / img.height);
-          //     j = j + 2;
-          //   }
-          // });
-
-          // // console.log(result, "result");
-
-          // obj[index].image = img;
-          // obj[index].texture = THREE.ImageUtils.loadTexture(image.file);
-          // obj[index].buffer = result;
-          // obj[index].texture.transparent = true;
-          // obj[index].texture.premultiplyAlpha = true;
-
-          // // console.log(obj[index].texture);
-
-          // obj[index].texture.needsUpdate = true;
-          // obj[index].texture.flipY = false;
         });
 
         // let tl = new TimelineMax({ paused: true });
@@ -429,7 +396,7 @@ export default class Hover extends Vue {
         // });
 
         let endTime = new Date().getTime();
-      animate();
+        animate();
 
         console.log(`Process time ${endTime - startTime} ms`);
       });
@@ -455,16 +422,15 @@ export default class Hover extends Vue {
     //   camera.updateProjectionMatrix();
     // }
 
-    let time = 0;
+    // let time = 0;
     function animate() {
-      if (time < 2000) {
-time++;
-      // vm.material.uniforms.time.value = time;
+      if (vm.time < 10000) {
+        vm.time++;
+        // vm.material.uniforms.time.value = time;
 
-      requestAnimationFrame(animate);
-      render();
+        requestAnimationFrame(animate);
+        render();
       }
-      
     }
 
     function render() {
@@ -472,12 +438,24 @@ time++;
       // scene.rotation.y += (scene.destination.y - scene.rotation.y) * 0.05;
       renderer.render(scene, camera);
     }
+    init();
+  }
 
-    if (this.clientHeight.clientHeightWindow > 300 && this.$route.path == "/") {
-      init();
-
-     
+  async mounted() {
+    console.log(this.clientHeight);
+    if (this.initAnimation) {
+      this.animation();
     }
+    // const rs = await rustModule;
+    // console.log(rs);
+    // let result = rs.test();
+    // console.log(result);
+    // console.log(result instanceof Uint32Array);
+    // this.clientHeight = this.$refs.block.clientHeight;
+
+    // if (this.clientHeight.clientHeightWindow > 500 && this.$route.path == "/") {
+    //   init();
+    // }
   }
 }
 </script>
@@ -486,6 +464,7 @@ time++;
 <style scoped>
 #container {
   z-index: 10;
+  padding-top: var(--procentTop);
 }
 
 .wrapper_b {

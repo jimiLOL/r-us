@@ -11,12 +11,11 @@
             'flex',
             'flex-col',
             'gap-2',
-            'bg-theme-15',
+            'bg-theme-16',
             $device.isMobile ? '' : 'px-4 my-2',
             'hover:underline',
             'cursor-pointer',
             'rounded-lg',
-            'shadow-md',
             'hover:shadow-md',
             'hover:shadow-theme-1',
           ]"
@@ -28,7 +27,7 @@
             )
           "
         >
-          <div class="flex flex-col gap-3 py-4 h-max text-left">
+          <div class="flex flex-col gap-3 pb-4 h-max text-left">
             <img
               :src="`https://drive.google.com/uc?export=view&id=${item.picterUrl}`"
               class="rounded-lg"

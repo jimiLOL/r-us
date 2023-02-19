@@ -20,7 +20,9 @@
         'rounded-lg',
         'border-theme-1',
         'border-solid',
-        'img-hover-zoom--brightness',
+          $device.isMobile
+            ? 'img-hover-zoom--mobile'
+            : 'img-hover-zoom--desktop',
         'p-4',
       ]"
     >
@@ -69,8 +71,8 @@
           <div :class="['flex', $device.isMobile ? 'flex-col gap-1' : 'gap-2']">
             <button
               :class="[
-                'py-2',
                 'px-9',
+                'whitespace-nowrap',
                 'rounded-md',
                 'text-theme-8',
                 'text-bold',
@@ -85,7 +87,7 @@
                 'focus:bg-theme-10',
                 'focus:scale-95',
                 'focus:underline',
-                $device.isMobile ? 'w-full' : '',
+                $device.isMobile ? 'w-full py-4' : 'py-2',
               ]"
               @click="callMe"
             >
@@ -93,7 +95,6 @@
             </button>
             <button
               :class="[
-                'py-2',
                 'px-9',
                 'rounded-md',
                 'text-theme-8',
@@ -105,11 +106,11 @@
                 'hover:bg-theme-10',
                 'hover:scale-95',
                 'hover:underline',
-                $device.isMobile ? 'w-full' : '',
+                !$device.isMobile ? 'w-full py-2' : 'py-4 whitespace-nowrap',
               ]"
               @click="openModal"
             >
-              Расчитать стоимость похорон
+              Рассчитать стоимость похорон
             </button>
           </div>
         </div>
@@ -121,7 +122,7 @@
           self-start
           whitespace-nowrap
         "
-        :class="[$device.isMobile ? 'self-center' : '', 'text-shadow']"
+        :class="[$device.isMobile ? 'self-center' : 'text-bold text-3xl text-theme-10 text-shadow',]"
         >от 10 000 ₽</span
       >
     </div>
@@ -134,7 +135,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component({})
 export default class TablePriceforpost extends Vue {
-  @Prop({ type: Object, default: () => ({ category: "Тайтл", items: [] }) })
+  @Prop({ type: Object, default: () => ({ category: "Ритуальные услуги", items: [{title: 'Поминальный обед'}, {title: 'Омовение'}, {title: 'Ваза'}] }) })
   post!: any;
   openModal() {
     window.$nuxt.$emit("switchModal", true);
@@ -146,20 +147,20 @@ export default class TablePriceforpost extends Vue {
 </script>
 
 <style scoped>
-.img-hover-zoom--brightness {
+.img-hover-zoom--desktop {
   background-size: cover;
-  /* background-repeat: no-repeat;
-  background-position: center center; */
   background: url("/imgs/lp02bi_94766ea5f97792e4672f66037d2c8269841b788f.jpg")
       20% 38%/100% no-repeat,
     radial-gradient(closest-side, transparent 10%, #00000061 75%);
   background-blend-mode: multiply;
-  /* background-filter: blur(15px); */
-  /* 
-  -webkit-filter: blur(1px);
-  -moz-filter: blur(1px);
-  -o-filter: blur(1px);
-  -ms-filter: blur(1px);
-  filter: blur(1px); */
 }
+
+.img-hover-zoom--mobile {
+  background-size: cover;
+  background: url("/imgs/lp02bi_94766ea5f97792e4672f66037d2c8269841b788f.jpg")
+      20% 38%/200% no-repeat,
+    radial-gradient(closest-side, transparent 10%, #00000061 75%);
+  background-blend-mode: multiply;
+}
+
 </style>

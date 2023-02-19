@@ -54,6 +54,7 @@ export default {
       ssr: true
     },
     { src: "~/plugins/notifications.ts", ssr: false },
+    { src: "~/plugins/typed.js", ssr: false },
   ],
   tailwindcss: {
     viewer: false,

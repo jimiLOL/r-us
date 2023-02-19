@@ -38,7 +38,7 @@
                 >
               </li>
               <li class="my-0.5 hover:underline md:hover:bg-transparent  hover:cursor-pointer" @click="openModal">
-                Расчитать стоимость похорон
+                Рассчитать стоимость похорон
                 
               </li>
               <li class="my-0.5">

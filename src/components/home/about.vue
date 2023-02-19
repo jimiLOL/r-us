@@ -1,15 +1,44 @@
 <template>
-  <div class="flex flex-col gap-4 text-black">
-    <span :class="[$device.isMobile?'text-2xl': 'text-4xl', 'font-bold']">О нас</span>
-    <p class="text-lg">
-      Люди полагаются на нас, чтобы обеспечить достойные проводы их погибшего, и мы заботимся о том, чтобы создать похороны, отражающие привязанность к ним. Мы обязуемся провести похороны таким образом, чтобы они стали подтверждением вашей любви.
-    </p>
+  <div :class="['flex flex-col gap-4 text-black', $device.isMobile? 'text-center':'']">
+    <span :class="[$device.isMobile ? 'text-2xl' : 'text-4xl', 'font-bold']"
+      >Об организации похорон нашей компанией </span
+    >
+    <div :class="[!$device.isMobile?'text-lg w-2/3':'w-full']">
+      <p class="pb-2">
+       Наступил момент окончания жизни наших близких и родственников, и мы осознаем важность уважительного подхода к этому трагическому событию. Мы стремимся обеспечить все необходимые ритуальные услуги в соответствии с вероисповеданием или завещанием ушедшего, проявляя высокую чувствительность и этичность в своей работе.
+      </p>
+      <p class="my-2">
+        Команда наших специалистов по организации похорон готова взять на себя
+        все вопросы и заботы, связанные с этим трудным периодом. Мы предлагаем
+        широкий спектр ритуальных услуг, начиная от получения медицинского
+        свидетельства о смерти, до транспортировки гроба с телом покойного и
+        организации поминального обеда.
+      </p>
+      <p class="my-2">
+        Мы понимаем, что эта ситуация может быть очень эмоциональной и сложной
+        для наших клиентов, и поэтому наши специалисты всегда обслуживают
+        клиентов деликатно и тактично.
+      </p>
+      <p class="my-2">
+        Вы можете доверить нам организацию похорон, и мы обеспечим согласование
+        всех важных вопросов с администрацией кладбища или крематория, доставку
+        всех ритуальных принадлежностей в морг, а также живых цветов на
+        церемонию прощания. Мы также готовы предложить поминальную панихиду и
+        обеспечить транспорт для сопровождающих родственников.
+      </p>
+      <p class="my-2">
+        Мы готовы взять на себя все вопросы, связанные с организацией похорон,
+        начиная от оформления документов до заказа поминального обеда. Мы ценим
+        и уважаем пожелания и запросы наших клиентов и стараемся выполнить их
+        тактично и бережно, чтобы увековечить память об усопшем.
+      </p>
+    </div>
     <SlickSlider ref="forSlick" :settings="setting_slider">
       <div v-for="(item, index) in dataImgSlider" :key="index">
         <div class="box px-0">
           <div class="p-0 rounded-lg border-0">
             <img
-              class="rounded-lg"
+              class="rounded-lg w-full"
               :src="require(`~/assets/imgs/${item.img}`)"
               :alt="`${item.title} в Кургане`"
             />
@@ -17,8 +46,11 @@
         </div>
       </div>
     </SlickSlider>
-    <div class="flex justify-center items-center py-2 px-20 w-full">
-      <div v-if="!$device.isMobile" class="flex justify-center items-center w-full">
+    <div class="flex justify-center items-center my-2 px-20 w-full">
+      <div
+        v-if="!$device.isMobile"
+        class="flex justify-center items-center w-full"
+      >
         <div class="flex items-center">
           <input
             id="default-radio-1"
@@ -68,8 +100,23 @@
         </div>
       </div>
 
-      <NuxtLink to="/employee" no-prefetch class="justify-self-end inline-flex items-center mt-4 flex-shrink-0 text-lg align-baseline text-black font-bold hover:underline hover:text-theme-10"
-        >Узнать больше о сотрудниках <font-awesome-icon
+      <NuxtLink
+        to="/employee"
+        no-prefetch
+        class="
+          justify-self-end
+          inline-flex
+          items-center
+          mt-4
+          flex-shrink-0
+          text-lg
+          align-baseline
+          text-black
+          font-bold
+          hover:underline hover:text-theme-10
+        "
+        >Узнать больше о сотрудниках
+        <font-awesome-icon
           icon="arrow-right"
           transform="shrink-6"
           class="self-center hover:animate-ping w-8"
@@ -137,7 +184,7 @@ input[type="radio"]:not(:checked) + label:before {
   top: 0px;
   width: 22.24px;
   height: 22.24px;
-  border: 0.77px solid #79A7F3;
+  border: 0.77px solid #79a7f3;
   background-color: #ffffff;
   @media (max-width: 980px) {
     left: -10px;
@@ -169,7 +216,7 @@ input[type="radio"]:not(:checked) + label:after {
   width: 12.51px;
   height: 12.51px;
   border-radius: 100%;
-  background-color: #79A7F3;
+  background-color: #79a7f3;
   @media (max-width: 980px) {
     left: 0px;
   }

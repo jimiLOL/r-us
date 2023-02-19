@@ -29,7 +29,7 @@
           bg-gradient-to-t
           from-bt-2
           to-bt-1
-          px-12
+          px-14
           rounded-lg
           shadow-lg
           shadow-black
@@ -67,11 +67,11 @@
           hover:bg-gradient-to-b hover:transform hover:scale-95 hover:underline
           focus:bg-gradient-to-b focus:transform focus:scale-95 focus:underline
         "
-        :class="[!$device.isMobile ? 'py-2' : 'py-4']"
+        :class="[!$device.isMobile ? 'py-2' : 'py-4 whitespace-nowrap']"
 
         @click="openModal"
       >
-        Расчитать стоимость похорон
+        Рассчитать стоимость похорон
       </button>
     </div>
   </div>

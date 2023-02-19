@@ -105,8 +105,8 @@
         </div>
       </div>
     </div>
-    <AboutForHomePage :class="[$device.isMobile ? '' : 'px-16']"/>
-    <InformationForHome :class="[$device.isMobile ? 'px-4' : 'px-16']"/>
+    <AboutForHomePage :class="[$device.isMobile ? '' : 'px-20']"/>
+    <InformationForHome :class="[$device.isMobile ? 'px-4' : 'px-20']"/>
     <CtaGeneral class="my-4" />
   </div>
 </template>
@@ -127,11 +127,29 @@ import InformationForHome from "~/components/home/informationBlock.vue";
     AboutForHomePage,
     InformationForHome,
   },
+  head() {
+    return {
+      title: "Похороны в Кургане",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: "Похороны в Кургане",
+        },
+      ],
+    };
+  }
 })
 export default class Home extends Vue {
   observer = null;
   observerInit = false;
   svgElementY = null;
+
+  get routerPath() {
+    return this.$route.fullPath;
+  };
+
+  
 
   callMe() {
     window.$nuxt.$emit("callMe", true);
@@ -139,32 +157,11 @@ export default class Home extends Vue {
   openModal() {
     window.$nuxt.$emit("switchModal", true);
   }
-  mounted() {
-    let vm = this;
-
-    function callback(entries, observer) {
-      vm.observerInit = entries[0].isIntersecting;
-      vm.svgElementY = entries[0].rootBounds.width-200;
-      console.log("observer " + entries[0].isIntersecting);
-      setTimeout(() => {
-        if (entries[0].isIntersecting) {
-          let allSvg = cash(vm.$refs.svg_price_block).find("svg");
-
-          svgAnimate(allSvg);
-        }
-      }, 100);
-
-      console.log(observer);
-      console.log("callback");
-    }
-    if (!this.$device.isMobile) {
-      this.observer = new IntersectionObserver(callback);
-      this.observer.observe(this.$refs.block_price);
-    }
-
-    // this.observer.unobserve(this.$refs.block_price);
-
-    function svgAnimate(allSvg) {
+  startAnimate() {
+    let allSvg = document.querySelectorAll("svg");
+    this.svgAnimate(allSvg);
+  }
+   svgAnimate(allSvg) {
       // console.log(allSvg);
       Object.values(allSvg).forEach((e, i) => {
         if (typeof e == "object") {
@@ -196,31 +193,73 @@ export default class Home extends Vue {
               3000,
               mina.easein
             );
-            let i = 0;
+            // let i = 0;
+
+            
+            //     lineDraw.animate(
+            //       {
+            //         d: "m 1.2 157.6 c 127.8 -8.6 128.8 -128.6 247.8 -151.6 c 234 -37 330.4 144.9 427.2 52.7 c 96.7 -92.1 198.3 -60.2 289.7 -37.9",
+            //       },
+            //       2500
+            //     );
+
             // setTimeout(() => {
             //   s.remove()
             // }, 10000);
-              if (i == 0) {
-                i = 1;
-                lineDraw.animate(
-                  {
-                    d: "m 1.2 157.6 c 127.8 -8.6 128.8 -128.6 247.8 -151.6 c 234 -37 330.4 144.9 427.2 52.7 c 96.7 -92.1 198.3 -60.2 289.7 -37.9",
-                  },
-                  2500
-                );
-              } else {
-                i = 0;
-                lineDraw.animate(
-                  {
-                    d: "M1.22453 157.589C24.7438 91.5367 131.484 -46.1672 290.711 74.6921C489.746 225.766 509.414 155.878 606.16 63.7344C702.905 -28.4092 804.537 3.49177 895.911 25.8446",
-                  },
-                  2500
-                );
-              }
+              // if (i == 0) {
+              //   i = 1;
+              //   lineDraw.animate(
+              //     {
+              //       d: "m 1.2 157.6 c 127.8 -8.6 128.8 -128.6 247.8 -151.6 c 234 -37 330.4 144.9 427.2 52.7 c 96.7 -92.1 198.3 -60.2 289.7 -37.9",
+              //     },
+              //     2500
+              //   );
+              // } else {
+              //   i = 0;
+              //   lineDraw.animate(
+              //     {
+              //       d: "M1.22453 157.589C24.7438 91.5367 131.484 -46.1672 290.711 74.6921C489.746 225.766 509.414 155.878 606.16 63.7344C702.905 -28.4092 804.537 3.49177 895.911 25.8446",
+              //     },
+              //     2500
+              //   );
+              // }
           }, 30 * i);
         }
       });
     }
+  mounted() {
+
+    window.$nuxt.$on("changePage", () => {
+      // console.log("changePage");
+      // setTimeout(() => {
+      // this.startAnimate();
+        
+      // }, 1002);
+    });
+    let vm = this;
+
+    function callback(entries, observer) {
+      vm.observerInit = entries[0].isIntersecting;
+      vm.svgElementY = entries[0].rootBounds.width-200;
+      // console.log("observer " + entries[0].isIntersecting);
+      setTimeout(() => {
+        if (entries[0].isIntersecting) {
+          vm.startAnimate();
+    
+        }
+      }, 100);
+
+      console.log(observer);
+      console.log("callback");
+    }
+    if (!this.$device.isMobile) {
+      this.observer = new IntersectionObserver(callback);
+      this.observer.observe(this.$refs.block_price);
+    }
+
+    // this.observer.unobserve(this.$refs.block_price);
+
+    
   }
 }
 </script>
