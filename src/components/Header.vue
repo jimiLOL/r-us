@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!$device.isMobile" ref="clientHeight" :class="['pt-4', $router.fullPath == '/' ? 'h-screen':'']">
+  <div v-if="!$device.isMobile" ref="clientHeight" :class="['pt-4', $router.fullPath == '/' && !$device.isMobile ? 'h-screen':'']">
     <div
       v-if="enable"
       class="flex justify-around gap-x-2 font-raleway flex-nowrap"

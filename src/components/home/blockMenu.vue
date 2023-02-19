@@ -14,7 +14,7 @@
       ><h2
         :class="[
           'inline-flex',
-          $device.isMobile ? 'text-2xl' : 'text-5xl',
+          $device.isMobile ? 'text-2xl my-4 text-center' : 'text-5xl',
           'font-bold',
           'hover_top',
         ]"

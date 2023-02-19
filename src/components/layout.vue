@@ -13,11 +13,11 @@
     <div class="site__container">
       <div
         :class="[
-          !$device.isMobile && computedProp ? 'img-position back_wraper' : '', $route.fullPath == '/'?'h-screen':''
+          !$device.isMobile && computedProp ? 'img-position back_wraper' : '', $route.fullPath == '/' && !$device.isMobile?'h-screen':''
         ]"
         ref="header"
       >
-        <header :class="[$device.isMobile ? 'px-2' : 'px-6', $route.fullPath == '/'?'h-screen':'']">
+        <header :class="[$device.isMobile ? 'px-2' : 'px-6', $route.fullPath == '/' && !$device.isMobile?'h-screen':'']">
           <div v-if="observerInit && $route.name == 'index'" ref="header_svg">
             <svg
               v-for="(item, index) in 30"
