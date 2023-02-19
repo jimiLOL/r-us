@@ -10,7 +10,7 @@
   >
     <MenuForPost category_en="all"/>
 
-   <div class="flex flex-col gap-4 pt-20 w-full px-9 font-normal text-base">
+   <div class="flex flex-col gap-4 pt-20 w-full">
     <HoverForPost :post="post"/>
 
     <Pagination :category_en="post.category_en" :category="post.category" :title="post.title" :post="post" :direction="post.direction"/>
