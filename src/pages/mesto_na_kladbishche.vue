@@ -11,7 +11,7 @@
     <MenuForPost category_en="all" />
 
     <div class="flex flex-col gap-4 pt-20 w-full">
-       <HoverForPost :post="post"/>
+       <HoverForPost :post="post" :load="false"/>
 
     <Pagination :category_en="post.category_en" :category="post.category" :title="post.title" :post="post" :direction="post.direction"/>
       <h1 class="text-theme-10 text-shadow text-2xl mb-4 ml-2">
@@ -161,10 +161,17 @@ export default class MestoNaKladbishche extends Vue {
   date = new Date().getFullYear();
   post = {
     title: 'Место на кладбище в Кургане и Курганской области',
-    picterUrl: '1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU',
+    picterUrl: '1rSZ8jwSog10dpzcHyc2BLc1cquMGCylP',
     category: 'Захоронения',
     category_en: 'zakoronenia',
-    items: [{title: 'Омовение'}, {title: 'Транспортировка тела'},{title: 'Гроб'}],
+    title_price: 'Благоустройство мест захоронения в Кургане',
+    price: 'от 25 000 ₽',
+    items: [{title: 'Памятник из гранита и мрамора'}, {title: 'Комплекс «стол+скамья»'},
+    {title: 'Металлическая ограда: от простых традиционных до эксклюзивных, ручной ковки'},
+    {title: 'Озеленение места захоронения растениями'},
+    {title: 'Правка и ремонт уже установленных памятников и оград'},
+    {title: 'Устройство покрытия из гранитной или мраморной плитки'},
+    ],
     direction: 'services'
 
 

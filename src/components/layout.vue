@@ -90,6 +90,8 @@ export default class Layout extends Vue {
   get computedProp() {
     return this.$route.name == "index" ? true : false;
   }
+
+   
   get clientHeight() {
       if (this.$refs.header) {
     return Number(this.$refs.header.clientHeight)
@@ -203,7 +205,11 @@ export default class Layout extends Vue {
     // console.log(this.$route);
     this.mount = true;
     await this.$nextTick();
-    this.init();
+
+    if (this.$route.path == "/") {
+      this.init();
+    }
+    // this.init();
     window.$nuxt.$on("switchModal", (data) => {
       // console.log("switchModal " + data);
       this.modalOpen = data;

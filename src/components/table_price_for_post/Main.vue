@@ -28,7 +28,7 @@
     >
       <div :class="['flex', 'flex-col', 'gap-2', 'w-full']">
         <span class="text-bold text-3xl text-theme-10 text-shadow">{{
-          post?.category
+         post?.title_price || post?.title
         }}</span>
         <ul class="leading-snug text-white">
           <li
@@ -123,7 +123,7 @@
           whitespace-nowrap
         "
         :class="[$device.isMobile ? 'self-center' : 'text-bold text-3xl text-theme-10 text-shadow',]"
-        >от 10 000 ₽</span
+        >{{post?.price || 'от 10 000 ₽'}}</span
       >
     </div>
   </div>

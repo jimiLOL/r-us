@@ -48,13 +48,13 @@
       ></div>
     </div>
     <div class="flex flex-col gap-4 pt-20 w-full">
-    <HoverForPost :post="post" :load="load" />
- 
+      <HoverForPost :post="post" :load="load" />
+
       <Pagination
-        :category_en="post?.category_en ||'loading'"
+        :category_en="post?.category_en || 'loading'"
         :category="post?.category || 'loading'"
         :title="post?.title || 'loading'"
-            :post="post"
+        :post="post"
         :direction="post?.direction || 'blog'"
       />
       <div v-if="load" class="flex flex-col gap-2 animate-pulse mb-2">
@@ -64,12 +64,10 @@
         <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
         <div class="h-2 bg-gray-500 rounded-full dark:bg-gray-700"></div>
       </div>
-      <div v-else>
-        <p>{{ load ? "" : post?.description }}</p>
-      </div>
-      <TablePriceforpost :category="post.category" :items="post?.items"/>
+      <div v-html="post?.description" v-else></div>
+      <TablePriceforpost :category="post.category" :items="post?.items" />
       <!-- <span class="text-bold text-2xl">Цены на ритуальные услуги под ключ</span> -->
-<!-- 
+      <!-- 
       <div
         :class="[
           'flex',
@@ -221,6 +219,9 @@
       </div>
 
       <CtaGeneral />
+      <!-- <div class="w-2/3">
+        <InformationForHome :class="[$device.isMobile ? 'px-4' : 'px-2']" />
+      </div> -->
     </div>
   </div>
 </template>
@@ -234,8 +235,16 @@ import shopApi from "~/api/shop";
 import HoverForPost from "~/components/hover_for_post/Main.vue";
 import Pagination from "~/components/pagination/Main.vue";
 import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
+import InformationForHome from "~/components/home/informationBlock.vue";
+
 @Component({
-  components: { CtaGeneral, HoverForPost, Pagination, TablePriceforpost },
+  components: {
+    CtaGeneral,
+    HoverForPost,
+    Pagination,
+    TablePriceforpost,
+    InformationForHome,
+  },
   //  head(this) {
   //   return {
   //     title: 'asdasd',
@@ -321,7 +330,6 @@ export default class Post extends Vue {
     direction: "services",
     category_en: "load",
     category: "Загрузка",
-
   };
   load = true;
 
@@ -399,8 +407,8 @@ export default class Post extends Vue {
 .img_cover {
   background: var(--url) 50% 100% / cover no-repeat;
   /* background-image: var(--url); */
-  backdrop-filter: blur(7px); 
-  overflow: hidden
+  backdrop-filter: blur(7px);
+  overflow: hidden;
 }
 .img_cover::before {
   content: "";

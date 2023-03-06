@@ -15,7 +15,7 @@
             v-for="item in categories"
             :key="item._id"
             class="py-4 cursor-pointer hover"
-            @click="$router.push(`${$route.path}/${item.category_en}`)"
+            @click="!$route.path.includes(item.category_en) ? $router.push(`${$route.path}/${item.category_en}`):''"
           >
             {{ item.category }}
           </li>
@@ -62,9 +62,7 @@
             ]"
           >
             <h3 class="font-bold text-2xl">{{ post?.h1 }}</h3>
-            <p v-if="!$device.isMobile" :class="[$device.isMobile ? 'truncate' : '']">
-              {{ kitcut(post?.description, 100) }}
-            </p>
+            <p v-if="!$device.isMobile" :class="[$device.isMobile ? 'truncate' : '']" v-html="kitcut(post?.description, 100)"></p>
           </div>
           <button
             :class="[

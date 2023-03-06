@@ -43,6 +43,15 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~assets/scss/themes.scss'],
 
+  ckeditor: {
+    // Enable the source editing feature and set it as the default mode
+    config: {
+      sourceEditing: true,
+      startupMode: 'source',
+      // Other CKEditor configuration options
+      // ...
+    }
+  },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {

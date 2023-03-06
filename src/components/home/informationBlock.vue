@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col gap-4 my-20 text-black font-bold">
     <span
-      :class="['font-bold', $device.isMobile ? 'text-center text-2xl' : 'text-4xl', ]"
+      :class="[
+        'font-bold',
+        $device.isMobile ? 'text-center text-2xl' : 'text-4xl',
+      ]"
       >Полезная информация</span
     >
     <div class="w-full">
@@ -12,7 +15,7 @@
             'flex-col',
             'gap-2',
             'bg-theme-16',
-            $device.isMobile ? '' : 'px-4 my-2',
+            $device.isMobile ? '' : 'px-1 my-2 h-96',
             'hover:underline',
             'cursor-pointer',
             'rounded-lg',
@@ -27,13 +30,19 @@
             )
           "
         >
-          <div class="flex flex-col gap-3 pb-4 h-max text-left">
-            <img
-              :src="`https://drive.google.com/uc?export=view&id=${item.picterUrl}`"
-              class="rounded-lg"
-              :alt="item.h1"
-            />
-            <span class="font-bold text-2xl">{{ item.title }}</span>
+          <div class="flex flex-col gap-3 pb-4 h-max text-left w-full">
+            <div class="relative">
+              <img
+                :src="`https://drive.google.com/uc?export=view&id=${item.picterUrl}`"
+                class="rounded-lg w-full h-52 hover:bg-transparent"
+                :alt="item.h1"
+              />
+              <div
+                class="absolute inset-0 rounded-lg bg-black opacity-0 transition-opacity duration-300 hover:opacity-20"
+              ></div>
+            </div>
+
+            <span class="font-bold text-2xl ml-2">{{ item.title }}</span>
           </div>
         </div>
       </SlickSlider>
@@ -56,7 +65,7 @@ export default class InformationForHome extends Vue {
   setting_slider = {
     slidesToShow: 3,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
     dots: false,
     arrows: false,
     slidesToScroll: 1,

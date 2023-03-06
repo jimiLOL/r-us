@@ -134,7 +134,7 @@ import InformationForHome from "~/components/home/informationBlock.vue";
         {
           hid: "description",
           name: "description",
-          content: "Похороны в Кургане",
+          content: "Ритуальная служба - организация под ключ в Кургане - Помощь в сложную минуту круглостуточно по государственным ценам с собственным транспортом без задержек.",
         },
       ],
     };

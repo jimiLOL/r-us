@@ -13,7 +13,6 @@
         md:inset-0 md:h-full
         tran
         overflow-x-hidden
-        bg-theme-8
         flex flex-col
         items-center
         gap-2
@@ -21,27 +20,27 @@
     >
       <client-only placeholder="loading...">
         <input
-          class="self-start w-48 text-theme-8 my-4 ml-4"
+          class="self-start w-48 text-black my-4 ml-4 border rounded-md border-theme-1 pl-2"
           type="text"
           v-model="category"
           placeholder="Категория"
         />
 
         <input
-          class="self-start w-48 text-theme-8 my-4 ml-4"
+          class="self-start w-48 text-black my-4 ml-4 border rounded-md border-theme-1 pl-2"
           type="text"
           v-model="title"
           placeholder="Тайтл"
         />
         <input
-          class="self-start w-48 text-theme-8 my-4 ml-4"
+          class="self-start w-48 text-black my-4 ml-4 border rounded-md border-theme-1 pl-2"
           type="text"
           v-model="picterUrl"
           placeholder="URL картинки"
         />
         <div class="self-start ml-4 flex gap-2 order-first">
           <label
-            class="text-white w-12 flex-none xl:w-auto xl:flex-initial mr-2"
+            class="text-black w-12 flex-none xl:w-auto xl:flex-initial mr-2"
             >Направление</label
           >
           <select
@@ -54,6 +53,7 @@
               mt-2
               sm:mt-0 sm:w-auto
               border
+              rounded-md
             "
           >
             <option value="blog">Блог</option>
@@ -98,6 +98,21 @@
           >
             Clear
           </button>
+           <button
+            type="button"
+            class="
+              bg-theme-1
+              px-2
+              py-4
+              rounded-lg
+              w-48
+              text-theme-8
+              hover:transform hover:scale-95
+            "
+            @click="autoSend()"
+          >
+            autoSend
+          </button>
         </div>
         <div class="mt-4 mb-4">
           {{contentHolder}}
@@ -121,13 +136,13 @@
         justify-center
       "
     >
-      <div class="justify-self-center px-4 flex flex-col justify-center gap-2">
+      <div class="justify-self-center px-4 flex flex-col justify-start gap-2">
         <h2>Вход в режим редактора</h2>
-        <input class="w-48 text-theme-8" type="text" v-model="name" />
-        <input class="w-48 text-theme-8" type="password" v-model="password" />
+        <input class="w-48 text-black" type="text" v-model="name" />
+        <input class="w-48 text-black" type="password" v-model="password" />
         <button
           type="button"
-          class="border-2 rounded-lg bg-theme-1 text-theme-8"
+          class="border-2 rounded-lg bg-theme-1 text-black"
           @click="login()"
         >
           Login
@@ -160,6 +175,7 @@
 
 <script>
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import posts from '../post/post.js'
 
 
 import shopApi from "~/api/shop";
@@ -274,6 +290,7 @@ export default class Admin extends Vue {
   name = "";
   password = "";
   picterUrl = '';
+  posts = posts;
 
   clear() {
     this.contentHolder = "";
@@ -281,7 +298,7 @@ export default class Admin extends Vue {
 
   async sendData() {
     if (this.contentHolder.length > 0) {
-      await shopApi
+      return await shopApi
         .sendText({
           html: this.contentHolder,
           category: this.category,
@@ -307,6 +324,41 @@ export default class Admin extends Vue {
           });
         });
     }
+  }
+
+  async autoSend() {
+
+// console.log(this.posts);
+    this.posts.forEach(async element => {
+      console.log(element);
+      await shopApi
+        .sendText({
+          html: element.html,
+          category: element.category,
+          title: element.title,
+          filter: element.filter,
+          picterUrl: element.picterUrl,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res?.code === 200) {
+            //   this.clear();
+            Vue.notify({
+              type: "success",
+              text: res.message,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          Vue.notify({
+            type: "error",
+            text: err.message,
+          });
+        });
+      
+    });
+
   }
 
   async login() {

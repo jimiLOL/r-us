@@ -10,7 +10,7 @@
   >
     <MenuForPost category_en="all" />
     <div class="flex flex-col gap-4 pt-20 w-full">
-      <HoverForPost :post="post" />
+      <HoverForPost :post="post" :load="false"/>
       <Pagination
         :category_en="post.category_en"
         :category="post.category"
@@ -56,6 +56,17 @@
           участок может быть меньшего размера, а соблюдать санитарный срок в
           15-20 лет необязательно).
         </li>
+      </ul>
+    <TablePriceforpost :post="post"/>
+
+      <h3 class="text-theme-10 text-shadow text-xl my-3 ml-2">Наши специалисты готовы организовать работу по кремации усопшего «под ключ»</h3>
+      <ul class="list-disc ml-4 mb-4">
+        <li>Оформление необходимых документов для отправки тела усопшего в крематорий.</li>
+        <li>Подготовка тела для транспортировки.</li>
+        <li>Доставка тела на кремацию.</li>
+        <li>Сопровождение и контроль процедуры кремирования.</li>
+        <li>Подготовка документов в крематории.</li>
+        <li>Доставка урны с прахом усопшего родственникам.</li>
       </ul>
       <p>
         Процесс кремации предполагает использование высокотемпературного печного
@@ -223,7 +234,7 @@ import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
         {
           hid: "description_post",
           name: "description",
-          content: `Как приобрести захоронение на кладбище в ритуальном агентстве zpd45.ru? Служба похоронных услуг Кургане - самая старая и надежная. Гарантируем высокое качество и безотказную работу.`,
+          content: `Кремация или захоронение на кладбище? Узнайте о различных способах прощания с близкими и выберите подходящий вариант.`,
         },
       ],
     };
@@ -233,14 +244,18 @@ export default class MestoNaKladbishche extends Vue {
   date = new Date().getFullYear();
   post = {
     title: "Кремация или захоронение на кладбище?",
-    picterUrl: "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU",
+    picterUrl: "1eSnOdFD8GV5e9enYDjOQ359vuiZ4fniQ",
     category: "Захоронения",
     category_en: "zakoronenia",
     direction: 'services',
+    title_price: "Кремция в Кугране под ключ",
     items: [
-      { title: "Омовение" },
-      { title: "Транспортировка тела" },
-      { title: "Гроб" },
+      { title: "Оформление необходимых документов для отправки тела усопшего в крематорий." },
+      { title: "Подготовка тела для транспортировки." },
+      { title: "Доставка тела на кремацию." },
+      { title: "Сопровождение и контроль процедуры кремирования." },
+      { title: "Подготовка документов в крематории." },
+      { title: "Доставка урны с прахом усопшего родственникам." },
     ],
   };
 }
