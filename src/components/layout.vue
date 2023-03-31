@@ -13,7 +13,7 @@
     <div class="site__container">
       <div
         :class="[
-          !$device.isMobile && computedProp ? 'img-position back_wraper' : '', $route.fullPath == '/' && !$device.isMobile?'h-screen':''
+          !$device.isMobile && computedProp ? 'img-position back_wraper' : '', $route.fullPath == '/' && !$device.isMobile?'h-screen':'', routComputed ? 'hover_mobile':''
         ]"
         ref="header"
       >
@@ -89,6 +89,10 @@ export default class Layout extends Vue {
 
   get computedProp() {
     return this.$route.name == "index" ? true : false;
+  }
+
+  get routComputed() {
+   return this.$device.isMobile && this.$route.fullPath == '/'
   }
 
    
@@ -232,6 +236,23 @@ export default class Layout extends Vue {
 <style scoped>
 .back_wraper {
   backdrop-filter: blur(5px);
+}
+.hover_mobile {
+    background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("@/assets/imgs/background-hover_2.webp");
+  backdrop-filter: blur(9px);
+}
+.hover_mobile::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.567);
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out;
 }
 .img-position {
   /* overflow: hidden; */

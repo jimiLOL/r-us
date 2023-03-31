@@ -1,5 +1,5 @@
 <template>
-  <nav class="border-gray-200 dark:border-gray-600" id="main-nav">
+  <nav class="border-gray-200 dark:border-gray-600" :class="[$device.isMobile && $route.fullPath == '/'? 'text-theme-2':'']" id="main-nav">
     <div
       class="
         flex flex-nowrap

@@ -247,6 +247,7 @@
                       transform-gpu
                       hover:scale-95
                     "
+                    @click="Whatsapp('Доброго времени суток! Я хочу заказать комплекс')"
                   >
                     <font-awesome-icon
                       :icon="faWhatsappIcon()"
@@ -303,7 +304,7 @@
                       transform-gpu
                       hover:scale-95
                     "
-                    @click="callFrom = !callFrom"
+                    @click="openForm = !openForm"
                   >
                     <font-awesome-icon
                       icon="phone"
@@ -653,6 +654,11 @@ export default defineComponent({
         });
       }, 200); // иначе реактивность не успевает
     };
+
+    const Whatsapp = (text) => {
+      let textMessage = encodeURIComponent(text);
+      window.open(`https://api.whatsapp.com/send?phone=79225620405&text=${textMessage}`)
+    }
     const insert = (id) => {
       idVar.value = id;
       showAll.value = false;
@@ -683,6 +689,7 @@ export default defineComponent({
       openMenu,
       faWhatsappIcon,
       faTelegram,
+      Whatsapp
     };
   },
 });

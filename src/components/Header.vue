@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!$device.isMobile" ref="clientHeight" :class="['pt-4', $router.fullPath == '/' && !$device.isMobile ? 'h-screen':'']">
+  <div v-if="!$device.isMobile" ref="clientHeight" :class="['pt-4', $route.fullPath == '/' && !$device.isMobile ? 'h-screen':'']">
     <div
       v-if="enable"
       class="flex justify-around gap-x-2 font-raleway flex-nowrap"
@@ -118,7 +118,7 @@
       :clientHeight="{ clientHeightWindow: clientHeightComputed, clientHeight: 600 }"
     />
   </div>
-  <div class="pb-4 flex flex-col text-black" v-else>
+  <div class="pb-4 flex flex-col text-black" :class="[$device.isMobile && $route.fullPath == '/'?'text-theme-2':'']" v-else>
     <div class="flex flex-nowrap justify-between content-center gap-2">
       <NuxtLink to="/" class="flex items-center mt-2">
         <img
@@ -137,7 +137,7 @@
     <div>
       <NavMenu v-if="mobileMenuOpen" :dataMenu="dataMenuLeft" />
     </div>
-    <div v-if="$route.fullPath == '/'" class="flex flex-col gap-6 mt-9">
+    <div v-if="$route.fullPath == '/'" class="flex flex-col gap-6 mt-9" :class="[$device.isMobile ? 'text-theme-2':'']">
       <div class="flex flex-col gap-6">
         <h1 class="text-2xl font-bold">
           <i>Ритуальная служба в</i><i class="text-theme-10"> Кургане</i>
