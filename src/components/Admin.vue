@@ -338,6 +338,7 @@ export default class Admin extends Vue {
           title: element.title,
           filter: element.filter,
           picterUrl: element.picterUrl,
+          meta: element.meta,
         })
         .then((res) => {
           console.log(res);

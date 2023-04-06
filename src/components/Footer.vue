@@ -264,8 +264,8 @@
         <span>Все права защищены © 2001 - {{date}} </span>
       </div>
       <div :class="['flex', $device.isMobile?'flex-col gap-2':'gap-4']">
-        <a href="/">Правила использования</a>
-        <a href="/">Политика конфиденциальности</a>
+        <a href="/usloviya-predostavleniya-informacii">Условия использования</a>
+        <a href="/polzovatelskoe-soglashenie">Пользовательское соглашение</a>
       </div>
     </div>
   </div>

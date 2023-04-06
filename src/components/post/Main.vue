@@ -228,7 +228,7 @@
 
 
 
-<script>
+<script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import CtaGeneral from "~/shared/ctaGeneral.vue";
 import shopApi from "~/api/shop";
@@ -245,28 +245,73 @@ import InformationForHome from "~/components/home/informationBlock.vue";
     TablePriceforpost,
     InformationForHome,
   },
-  //  head(this) {
-  //   return {
-  //     title: 'asdasd',
-  //     meta: [
-  //       {
-  //         hid: "description_post",
-  //         name: "description",
-  //         content: `Как приобрести захоронение на кладбище в ритуальном агентстве zpd45.ru? Служба похоронных услуг Кургане - самая старая и надежная. Гарантируем высокое качество и безотказную работу.`,
-  //       },
-  //     ],
-  //   };
-  // },
+   head(this:any) {
+    return {
+      title: this.post.title,
+     meta: [
+        {
+          hid: "description_post",
+          name: "description",
+          content: this.post.meta.meta_description,
+        },
+        {
+          hid: "keywords_post",
+          name: "keywords",
+          content: this.post.meta.meta_keywords,
+        },
+        {
+          hid: "og:title_post",
+          property: "og:title",
+          content: this.post.meta.meta_title,
+        },
+        {
+          hid: "og:description_post",
+          property: "og:description",
+          content: this.post.meta.meta_description,
+        },
+        {
+          hid: "og:image_post",
+          property: "og:image",
+          content: this.post.meta.picterUrl,
+        },
+        {
+          hid: "og:url_post",
+          property: "og:url",
+          content: this.post.meta.meta_url,
+        },
+        {
+          hid: "twitter:title_post",
+          name: "twitter:title",
+          content: this.post.meta.meta_title,
+        },
+        {
+          hid: "twitter:description_post",
+          name: "twitter:description",
+          content: this.post.meta.meta_description,
+        },
+        {
+          hid: "twitter:image_post",
+          name: "twitter:image",
+          content: this.post.meta.picterUrl,
+        },
+        {
+          hid: "twitter:card_post",
+          name: "twitter:card",
+          content: "summary_large_image",
+        },
+      ],
+    };
+  },
 })
 export default class Post extends Vue {
-  @Prop({ type: String, required: true }) postSlug;
-  @Prop({ type: String, required: true }) direction;
+  @Prop({ type: String, required: true }) postSlug:any;
+  @Prop({ type: String, required: true }) direction:any;
 
-  head() {
-    return {
-      title: this.post?.title,
-    };
-  }
+  // head() {
+  //   return {
+  //     title: 'xx',
+  //   };
+  // }
 
   categories = [
     {
@@ -330,6 +375,11 @@ export default class Post extends Vue {
     direction: "services",
     category_en: "load",
     category: "Загрузка",
+    meta: {
+      meta_description: "",
+      meta_keywords: "",
+    },
+    picterUrl: ''
   };
   load = true;
 
@@ -363,14 +413,14 @@ export default class Post extends Vue {
       });
   }
 
-  async fetchData(data) {
+  async fetchData(data:any) {
     await shopApi
       .getCategory(data)
       .then((res) => {
         console.log(res);
         this.categories.length = 0;
 
-        res.forEach((ele) => {
+        res.forEach((ele:any) => {
           const filter = this.categories.filter(
             (x) => x.category_en === ele.category_en
           );

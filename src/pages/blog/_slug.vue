@@ -19,10 +19,17 @@ import Post from "~/components/post/Main.vue";
       query: query,
     };
   },
+  
 })
 export default class Page extends Vue {
   category = this.$route.params.slug;
   query = this.$route.query;
+
+  //   head() {
+  //   return {
+  //     title: 'asd',
+  //   };
+  // }
 
   @Watch("$route")
   switchRoute() {

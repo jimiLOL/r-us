@@ -1,5 +1,5 @@
 // const url = "http://localhost:5005";
-const url = "https://serene-sea-11993.herokuapp.com";
+const url = "https://node.zpd45.ru";
 
 const shopApi = {
   getProduct: async (

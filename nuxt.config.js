@@ -9,7 +9,9 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Ритуальная служба Кургана',
+     titleTemplate(titleChunk) {
+      return titleChunk ? `${titleChunk} — Зауральский похоронный дом` : "Зауральский похоронный дом";
+  },
     title: 'Ритуальное агентство, организация похорон в Кургане',
     htmlAttrs: {
       lang: 'ru'
@@ -64,6 +66,7 @@ export default {
     },
     { src: "~/plugins/notifications.ts", ssr: false },
     { src: "~/plugins/typed.js", ssr: false },
+    // {src: "~/plugins/vue-meta.js", ssr: false}
   ],
   tailwindcss: {
     viewer: false,

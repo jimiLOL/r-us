@@ -61,7 +61,7 @@
               $device.isMobile ? 'text-center' : '',
             ]"
           >
-            <h3 class="font-bold text-2xl">{{ post?.h1 }}</h3>
+            <h3 class="font-bold text-2xl">{{ post?.title }}</h3>
             <p v-if="!$device.isMobile" :class="[$device.isMobile ? 'truncate' : '']" v-html="kitcut(post?.description, 100)"></p>
           </div>
           <button
@@ -103,15 +103,27 @@
 </template>
 
 
-<script>
+<script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import shopApi from "~/api/shop";
 
 @Component({
   components: {},
+   head(this:any) {
+    return {
+      title: this.post.title,
+      meta: [
+        {
+          hid: "description_post",
+          name: "description",
+          content: this.post.meta.meta_description,
+        },
+      ],
+    };
+  },
 })
 export default class Blog extends Vue {
-  @Prop({ type: String, required: true }) category_en;
+  @Prop({ type: String, required: true }) category_en: any;
   load = false;
   categories = [
     {
@@ -229,7 +241,7 @@ export default class Blog extends Vue {
       category_en: "",
     },
   ];
-  handlePageChange(page) {
+  handlePageChange(page: any) {
     console.log(page);
     // this.$store.dispatch("shop/setOptionValue", {
     //   option: "page",
@@ -237,7 +249,7 @@ export default class Blog extends Vue {
     // });
   }
 
-  kitcut(text, limit) {
+  kitcut(text: string, limit: number) {
     text = text.trim();
     if (text.length <= limit) return text;
 
@@ -246,7 +258,7 @@ export default class Blog extends Vue {
     return text.trim() + "...";
   }
 
-  async fetchData(data) {
+  async fetchData(data: any) {
     await shopApi
       .getCategory(data)
       .then((res) => {
@@ -255,7 +267,7 @@ export default class Blog extends Vue {
         this.posts.length = 0;
 
         this.posts = res;
-        res.forEach((ele) => {
+        res.forEach((ele: any) => {
           const filter = this.categories.filter(
             (x) => x.category_en === ele.category_en
           );
