@@ -236,6 +236,7 @@ import HoverForPost from "~/components/hover_for_post/Main.vue";
 import Pagination from "~/components/pagination/Main.vue";
 import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
 import InformationForHome from "~/components/home/informationBlock.vue";
+import helper from "~/utils/helper";
 
 @Component({
   components: {
@@ -245,10 +246,10 @@ import InformationForHome from "~/components/home/informationBlock.vue";
     TablePriceforpost,
     InformationForHome,
   },
-   head(this:any) {
+  head(this: any) {
     return {
-      title: this.post.title,
-     meta: [
+      title: this.post?.title,
+      meta: [
         {
           hid: "description_post",
           name: "description",
@@ -304,14 +305,8 @@ import InformationForHome from "~/components/home/informationBlock.vue";
   },
 })
 export default class Post extends Vue {
-  @Prop({ type: String, required: true }) postSlug:any;
-  @Prop({ type: String, required: true }) direction:any;
-
-  // head() {
-  //   return {
-  //     title: 'xx',
-  //   };
-  // }
+  @Prop({ type: String, required: true }) postSlug: any;
+  @Prop({ type: String, required: true }) direction: any;
 
   categories = [
     {
@@ -372,14 +367,16 @@ export default class Post extends Vue {
     },
   ];
   post = {
+    title: "",
     direction: "services",
     category_en: "load",
     category: "Загрузка",
+    body_sub: "",
     meta: {
       meta_description: "",
       meta_keywords: "",
     },
-    picterUrl: ''
+    picterUrl: "",
   };
   load = true;
 
@@ -413,14 +410,14 @@ export default class Post extends Vue {
       });
   }
 
-  async fetchData(data:any) {
+  async fetchData(data: any) {
     await shopApi
       .getCategory(data)
       .then((res) => {
         console.log(res);
         this.categories.length = 0;
 
-        res.forEach((ele:any) => {
+        res.forEach((ele: any) => {
           const filter = this.categories.filter(
             (x) => x.category_en === ele.category_en
           );
@@ -440,6 +437,113 @@ export default class Post extends Vue {
       });
   }
 
+  createJsonLd() {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = (date.getMonth() + 1).toString().padStart(2, "0");
+    let day = date.getDate().toString().padStart(2, "0");
+    let formattedDate = year + "-" + month + "-" + day;
+
+    const ele = document.createElement("script");
+    ele.type = "application/ld+json";
+    this.direction === "services"
+      ? (ele.innerHTML = JSON.stringify({
+          "@context": "http://schema.org",
+          "@graph": [
+            {
+              "@context": "http://schema.org",
+              "@type": "Product",
+              name: this.post.title,
+              description: this.post.meta.meta_description,
+              image: this.post.picterUrl,
+              url: window.location.href,
+              brand: {
+                "@type": "Thing",
+                name: "Домклик",
+              },
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "RUB",
+                price: 2331,
+                itemCondition: "http://schema.org/NewCondition",
+                availability: "http://schema.org/InStock",
+                url: window.location.href,
+              },
+            },
+          ],
+        }))
+      : (ele.innerHTML = JSON.stringify({
+          "@context": "http://schema.org",
+          "@type": "Article",
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": "https://example.com/article",
+          },
+          headline: this.post.title,
+          image: this.post.picterUrl,
+          datePublished: "2023-01-02",
+          dateModified: formattedDate,
+          author: {
+            "@type": "Person",
+            name: "Автор статьи",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Ритуальные услуги - Зауральский похоронный дом",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://example.com/logo.png",
+              width: 600,
+              height: 60,
+            },
+          },
+          description: this.post.meta.meta_description,
+          articleBody: this.post.body_sub,
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: `${helper.getRandomInt(2, 5)}`,
+            ratingCount: `${helper.getRandomInt(2, 100)}`,
+          },
+        }));
+
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+
+    script.innerHTML = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          item: {
+            "@id": window.location.hostname,
+            name: "Похороны в Кургане",
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          item: {
+            "@id": window.location.hostname + "/blog/",
+            name: "☑️ Полезные статьи",
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          item: {
+            "@id": window.location.href,
+            name: `⭐ ${this.post.title}`,
+          },
+        },
+      ],
+    });
+
+    cash("body").append(script);
+    cash("body").append(ele);
+  }
+
   mounted() {
     const data = {
       direction: this.direction,
@@ -447,11 +551,12 @@ export default class Post extends Vue {
       offset: 0,
     };
     this.fetchData(data);
+    this.createJsonLd();
     this.fetchPost();
   }
 }
 </script>
-
+ 
 
 <style scoped>
 .img_cover {

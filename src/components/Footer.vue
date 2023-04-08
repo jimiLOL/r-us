@@ -185,7 +185,7 @@
               </li>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/about"
                   class="
                     hover:underline
                     md:hover:bg-transparent 

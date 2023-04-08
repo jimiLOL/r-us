@@ -111,12 +111,12 @@ import shopApi from "~/api/shop";
   components: {},
    head(this:any) {
     return {
-      title: this.post.title,
+      title: 'Похороны: традиции, расходы, организация – полезная информация',
       meta: [
-        {
+        { 
           hid: "description_post",
           name: "description",
-          content: this.post.meta.meta_description,
+          content: 'Организация похорон: полезная информация для близких и родственников умершего.✝️',
         },
       ],
     };

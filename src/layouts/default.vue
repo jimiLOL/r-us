@@ -17,6 +17,11 @@ import Layout from '~/components/layout.vue'
     }
     }
 })
-export default class DefaultLayout extends Vue { }
+export default class DefaultLayout extends Vue { 
+    mounted() {
+        this.$store.dispatch('city/ACTION_GET_DOMAIN', window.location.host)
+        
+    }
+}
 
 </script>

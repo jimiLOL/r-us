@@ -1,5 +1,5 @@
 <template>
-  <div :class="['flex flex-col gap-4', $device.isMobile ? 'px-4':'px-20']">
+  <div :class="['flex flex-col gap-4', $device.isMobile ? 'px-4' : 'px-20']">
     <div class="flex flex-col gap-4 text-lg my-4">
       <h1 class="text-4xl font-bold">Зауральский похоронный дом</h1>
       <p>
@@ -86,7 +86,9 @@
         >
           <span
             >Горячая линия -
-            <strong class="text-theme-10 text-shadow">Круглосуточно</strong></span
+            <strong class="text-theme-10 text-shadow"
+              >Круглосуточно</strong
+            ></span
           >
           <a href="tel:+73522610630" class="font-bold text-2xl"
             >+7 (3522) 610‒630</a
@@ -134,10 +136,9 @@ import { Vue, Component } from "vue-property-decorator";
 @Component({
   head() {
     return {
-      title: "Зауральский похоронный дом контакты",
-    
-    }
-  }
+      title: "Контакты",
+    };
+  },
 })
 export default class Contact extends Vue {
   data() {
@@ -176,6 +177,40 @@ export default class Contact extends Vue {
         },
       ],
     };
+  }
+  mounted() {
+    const ele = document.createElement("script");
+    ele.type = "application/ld+json";
+    ele.innerHTML = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Зауральский похоронный дом",
+      url: "https://zpd45.ru/",
+      logo: "https://zpd45.ru/logo.png",
+      description: "Мы оказываем услуги любым социальным слоям населения и поэтому в сентябре 2016 года открыли «Прощальный комплекс», расположенный по адресу пр. Машиностроителей, 34. Комплекс включает в себя ритуальный магазин с широким выбором ритуальных товаров, холодильную камеру для хранения тел умерших, помещения для подготовки умершего к погребению, два современных траурных зала, удобную парковку и транспортную развязку.",
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+73522610630",
+        contactType: "customer service",
+        areaServed: "RU",
+        availableLanguage: ["English", "Russian"],
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "пр-кт Машиностроителей, 34",
+        addressLocality: "Курган",
+        postalCode: "640000",
+        addressCountry: "RU",
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "22:30",
+      },
+    });
+    cash("body").append(ele);
+
   }
 }
 </script>
