@@ -4,7 +4,7 @@ import arrayCity from "./../utils/array";
 
 
 function getDefaultState() {
-  return {city: { city_en: "Orenburge", city_ru: "Оренбурге" }}
+  return {city: {link: '/orenburg', name_eng: "Orenburge", name: "Оренбурге" }}
 }
 
 export const state = getDefaultState;
@@ -22,6 +22,9 @@ export const actions = {
   ACTION_GET_DOMAIN({ commit }, payload) {
     console.log('Action');
     console.log(payload);
+    if (!payload) {
+      return
+    }
     if (payload.includes('localhost')) {
       // console.log('localhost:8001');
       payload = 'artem.zpd45.ru'

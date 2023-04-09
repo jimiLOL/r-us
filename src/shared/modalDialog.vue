@@ -293,7 +293,7 @@
                       item.imgs[imgSwitcher[`img${index}`]] ||
                       '1Sys-zgzAPhe-yb_5QY-kZsCTEfOmqxyC'
                     }`"
-                    :alt="`${item.title} в Кургане`"
+                    :alt="`${item.title} в ${CITY_G.name}`"
                     @load="onImgLoad(index)"
                     @click="setUserProduct(item)"
                   />
@@ -328,7 +328,7 @@
                           tran
                         "
                         :src="`https://drive.google.com/uc?export=view&id=${img}`"
-                        :alt="`${item.title} в Кургане`"
+                        :alt="`${item.title} в ${CITY_G.name}`"
                       />
                     </div>
                   </div>
@@ -598,7 +598,7 @@
                         'lazyload',
                       ]"
                       :src="`https://drive.google.com/uc?export=view&id=${item.img}`"
-                      :alt="`${item.title} в Кургане`"
+                      :alt="`${item.title} в ${CITY_G.name}`"
                       @load="onImgLoad(index)"
                     />
                   </div>
@@ -716,12 +716,15 @@ import CtaButton from "~/shared/cta.vue";
 const translit = new CyrillicToTranslit();
 import shopApi from "~/api/shop";
 
+
 // lazysizes.cfg.blurupMode = "always";
 
 @Component({
   components: { SlickSlider, SvgFilter, CtaButton },
 })
 export default class ModalDialog extends Vue {
+  @Getter("city/CITY_G") CITY_G;
+
   // @Prop({type: Object, default: () => ({ tab: "provaslavny", sub_tab: "Grob" })}) stateModal;
   @Watch("selectPrice")
   setNewFilterPrice() {

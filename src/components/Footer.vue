@@ -12,14 +12,14 @@
     >
       <div class="flex flex-col justify-center content-center basis-1/2">
         <h3 :class="['font-bold', 'mb-9', $device.isMobile ? 'self-center text-center text-2xl' : 'text-4xl']">
-          Официальное похоронное бюро Кургана
+          Официальное похоронное бюро в г.{{CITY_G.name}}
         </h3>
         <div :class="['flex', $device.isMobile ? 'flex-col' : '', 'gap-4']">
           <NuxtLink to="/" :class="['flex', $device.isMobile ? 'self-center' :'self-start mr-6']">
             <img
               :src="require('@/assets/imgs/logo.png')"
               class="w-40"
-              alt="Ритуальная служба Кургана"
+              :alt="`Ритуальная служба ${CITY_G.name}`"
             />
           </NuxtLink>
           <div
@@ -274,9 +274,12 @@
 
 <script>
 import { Vue, Component } from "vue-property-decorator";
+import { Getter } from "vuex-class";
 
 @Component({})
 export default class Footer extends Vue {
+   @Getter("city/CITY_G") CITY_G;
+
   date = new Date().getFullYear();
   openModal() {
     window.$nuxt.$emit("switchModal", true);

@@ -15,7 +15,7 @@
         <img
           :src="require('@/assets/imgs/logo.png')"
           class="w-24"
-          alt="Ритуальная служба Кургана"
+          :alt="`Ритуальная служба ${CITY_G.name}`"
         />
       </NuxtLink>
 
@@ -78,9 +78,13 @@
 
 <script>
 import { Vue, Component, Prop } from "vue-property-decorator";
+import { Getter } from "vuex-class";
+
 
 @Component({})
 export default class NavMenu extends Vue {
+   @Getter("city/CITY_G") CITY_G;
+
   @Prop({ type: Array, default: () => [] }) dataMenu;
 
   // dataMenu = dataMenu;

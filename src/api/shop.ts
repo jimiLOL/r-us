@@ -1,5 +1,5 @@
-// const url = "http://localhost:5005";
-const url = "https://node.zpd45.ru";
+const url = "http://localhost:4223";
+// const url = "https://node.zpd45.ru";
 
 const shopApi = {
   getProduct: async (
@@ -103,6 +103,17 @@ const shopApi = {
         return { message: e.message, status: e.status, code: e.code };
       });
   },
+  getKladbisha: async (data: string) => {
+    return await fetch(`${url}/get_kladbishche?city=${data}`)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((e) => {
+        return { message: e.message, status: e.status, code: e.code };
+      });
+  }
 };
 
 export default shopApi;

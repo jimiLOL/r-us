@@ -40,7 +40,7 @@
             <img
               class="rounded-lg w-full"
               :src="require(`~/assets/imgs/${item.img}`)"
-              :alt="`${item.title} в Кургане`"
+              :alt="`${item.title} в ${cityName}`"
             />
           </div>
         </div>
@@ -129,9 +129,17 @@
 
 <script>
 import { Vue, Component, Prop } from "vue-property-decorator";
+import { Getter } from "vuex-class";
+import declineNoun from "~/utils/decline";
+
 
 @Component({})
 export default class AboutForHomePage extends Vue {
+   @Getter("city/CITY_G") CITY_G;
+
+  get cityName() {
+    return declineNoun(this.CITY_G.name);
+  }
   dataImgSlider = [
     { title: "Молитвенный дом", img: "cc5cdec7d436aff2ddf4298b0f1163dc.jpg" },
     { title: "Молитвенный дом", img: "img_slider_for_1.jpg" },

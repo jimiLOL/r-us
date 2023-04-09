@@ -70,7 +70,7 @@
 
           <span>Захоронение</span>
           <p>
-            Помощь в подготовке похорон в Кургане и Курганской области.
+            Помощь в подготовке похорон в {{cityName}} и области.
           </p>
         </div>
       </NuxtLink>
@@ -231,9 +231,19 @@
 
 <script>
 import { Vue, Component } from "vue-property-decorator";
+import { Getter } from "vuex-class";
+import declineNoun from "~/utils/decline";
+
 
 @Component({})
 export default class BlockMenu extends Vue {
+  @Getter("city/CITY_G") CITY_G;
+
+  get cityName() {
+    return declineNoun(this.CITY_G.name);
+  }
+
+  
   openModal() {
     window.$nuxt.$emit("switchModal", true);
   }

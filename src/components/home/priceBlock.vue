@@ -13,7 +13,7 @@
         'font-bold',
       ]"
     >
-      Цены на ритуальные услуги под ключ в Кургане
+      Цены на ритуальные услуги под ключ в {{city}}
     </h3>
     <div v-if="!$device.isMobile" class="flex gap-9 text-base mt-9 font-bold">
       <div
@@ -179,15 +179,7 @@
                 ]"
               >
                 <div
-                  class="
-                    inline-flex
-                    flex-col
-                    justify-center
-                    flex-nowrap
-                    text-base
-                    xl:whitespace-nowrap
-                    font-normal
-                  "
+                  class="inline-flex flex-col justify-center flex-nowrap text-base xl:whitespace-nowrap font-normal"
                 >
                   <span
                     >Горячая линия -
@@ -229,25 +221,12 @@
                   class="flex flex-col gap-2"
                 >
                   <button
-                    class="
-                      inline-flex
-                      h-max
-                      gpa-4
-                      justify-center
-                      bg-gradient-to-t
-                      from-bt-wh_2
-                      to-bt-wh_1
-                      text-theme-8
-                      font-semibold
-                      py-4
-                      px-9
-                      rounded-lg
-                      shadow-xl
-                      shadow-bt-wh_2
-                      transform-gpu
-                      hover:scale-95
+                    class="inline-flex h-max gpa-4 justify-center bg-gradient-to-t from-bt-wh_2 to-bt-wh_1 text-theme-8 font-semibold py-4 px-9 rounded-lg shadow-xl shadow-bt-wh_2 transform-gpu hover:scale-95"
+                    @click="
+                      Whatsapp(
+                        'Доброго времени суток! Я хочу заказать комплекс'
+                      )
                     "
-                    @click="Whatsapp('Доброго времени суток! Я хочу заказать комплекс')"
                   >
                     <font-awesome-icon
                       :icon="faWhatsappIcon()"
@@ -258,24 +237,7 @@
                     Whatsapp
                   </button>
                   <button
-                    class="
-                      inline-flex
-                      h-max
-                      gpa-1
-                      justify-center
-                      bg-gradient-to-t
-                      from-bt-tg_2
-                      to-bt-tg_1
-                      hover:bg-social-tg_contrast
-                      text-theme-8
-                      font-semibold
-                      py-4
-                      px-9
-                      rounded-lg
-                      shadow-lg shadow-theme-8
-                      transform-gpu
-                      hover:scale-95
-                    "
+                    class="inline-flex h-max gpa-1 justify-center bg-gradient-to-t from-bt-tg_2 to-bt-tg_1 hover:bg-social-tg_contrast text-theme-8 font-semibold py-4 px-9 rounded-lg shadow-lg shadow-theme-8 transform-gpu hover:scale-95"
                   >
                     <font-awesome-icon
                       :icon="faTelegram()"
@@ -286,24 +248,7 @@
                     Telegram
                   </button>
                   <button
-                    class="
-                      inline-flex
-                      h-max
-                      gpa-1
-                      justify-center
-                      bg-gradient-to-t
-                      from-bt-call_2
-                      to-bt-call_1
-                      hover:bg-social-tg_contrast
-                      text-black
-                      font-semibold
-                      py-4
-                      px-9
-                      rounded-lg
-                      shadow-lg shadow-theme-8
-                      transform-gpu
-                      hover:scale-95
-                    "
+                    class="inline-flex h-max gpa-1 justify-center bg-gradient-to-t from-bt-call_2 to-bt-call_1 hover:bg-social-tg_contrast text-black font-semibold py-4 px-9 rounded-lg shadow-lg shadow-theme-8 transform-gpu hover:scale-95"
                     @click="openForm = !openForm"
                   >
                     <font-awesome-icon
@@ -322,26 +267,14 @@
                   <span>Заказать обратный звонок</span>
                   <div class="flex flex-col gap-2">
                     <input
-                      class="
-                        px-4
-                        py-2
-                        rounded-md
-                        text-black
-                        border-2 border-solid border-theme-1
-                      "
+                      class="px-4 py-2 rounded-md text-black border-2 border-solid border-theme-1"
                       type="text"
                       aria-required="true"
                       placeholder="Вашe имя"
                       v-model="userName"
                     />
                     <input
-                      class="
-                        px-4
-                        py-2
-                        rounded-md
-                        text-black
-                        border-2 border-solid border-theme-1
-                      "
+                      class="px-4 py-2 rounded-md text-black border-2 border-solid border-theme-1"
                       type="tel"
                       aria-required="true"
                       placeholder="+7(___)-___-__-__"
@@ -423,14 +356,21 @@ import {
   ref,
   onMounted,
   watch,
+  useContext
+  
 } from "@nuxtjs/composition-api";
 import SlickSlider from "~/components/slickSlider.vue";
+import declineNoun from "~/utils/decline";
+
 
 import {
   faTelegram,
   faTelegramPlane,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
+// import { useStore } from "@/store";
+
+
 
 export default defineComponent({
   components: {
@@ -576,6 +516,10 @@ export default defineComponent({
     };
   },
   setup(props) {
+    // const store = useStore();
+    const { store } = useContext();
+
+
     const showAll = ref(null);
     const idVar = ref(null);
     const showList = ref(false);
@@ -596,6 +540,9 @@ export default defineComponent({
       swipeToSlide: true,
       touchMove: true,
     };
+    const city = computed(() => {
+      return declineNoun(store.state.city.city.name);
+    });
 
     const faTelegram = () => {
       return faTelegramPlane;
@@ -657,8 +604,10 @@ export default defineComponent({
 
     const Whatsapp = (text) => {
       let textMessage = encodeURIComponent(text);
-      window.open(`https://api.whatsapp.com/send?phone=79225620405&text=${textMessage}`)
-    }
+      window.open(
+        `https://api.whatsapp.com/send?phone=79225620405&text=${textMessage}`
+      );
+    };
     const insert = (id) => {
       idVar.value = id;
       showAll.value = false;
@@ -689,7 +638,8 @@ export default defineComponent({
       openMenu,
       faWhatsappIcon,
       faTelegram,
-      Whatsapp
+      Whatsapp,
+      city
     };
   },
 });

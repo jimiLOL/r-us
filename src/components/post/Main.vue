@@ -237,6 +237,7 @@ import Pagination from "~/components/pagination/Main.vue";
 import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
 import InformationForHome from "~/components/home/informationBlock.vue";
 import helper from "~/utils/helper";
+import {Getter} from "vuex-class";
 
 @Component({
   components: {
@@ -307,6 +308,9 @@ import helper from "~/utils/helper";
 export default class Post extends Vue {
   @Prop({ type: String, required: true }) postSlug: any;
   @Prop({ type: String, required: true }) direction: any;
+  @Getter("city/CITY_G") CITY_G!: any;
+
+  
 
   categories = [
     {
@@ -518,7 +522,7 @@ export default class Post extends Vue {
           position: 1,
           item: {
             "@id": window.location.hostname,
-            name: "Похороны в Кургане",
+            name: `Похороны в ${this.CITY_G.name}`,
           },
         },
         {

@@ -12,14 +12,14 @@ export default {
      titleTemplate(titleChunk) {
       return titleChunk ? `${titleChunk} — Зауральский похоронный дом` : "Зауральский похоронный дом";
   },
-    title: 'Ритуальное агентство, организация похорон в Кургане',
+    title: 'Ритуальное агентство, организация похорон',
     htmlAttrs: {
       lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Организация ритуальных услуг В Кургане. Мы предлагаем помощь в проведении похорон и других ритуальных мероприятий с максимально высоким уровнем обслуживания. Закажите услуги по телефону или онлайн.' },
+      { hid: 'description', name: 'description', content: 'Организация ритуальных услуг. Мы предлагаем помощь в проведении похорон и других ритуальных мероприятий с максимально высоким уровнем обслуживания. Закажите услуги по телефону или онлайн.' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [

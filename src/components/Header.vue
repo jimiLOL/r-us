@@ -124,7 +124,7 @@
         <img
           :src="require('@/assets/imgs/logo.png')"
           class="w-14"
-          alt="Ритуальная служба Кургана"
+          :alt="`Ритуальная служба ${CITY_G.name}`"
         />
       </NuxtLink>
       <a
@@ -140,10 +140,10 @@
     <div v-if="$route.fullPath == '/'" class="flex flex-col gap-6 mt-9" :class="[$device.isMobile ? 'text-theme-2':'']">
       <div class="flex flex-col gap-6">
         <h1 class="text-2xl font-bold">
-          <i>Ритуальная служба в</i><i class="text-theme-10"> Кургане</i>
+          <i>Ритуальная служба в</i><i class="text-theme-10"> {{cityName}}</i>
         </h1>
         <p>
-          Мы - команда опытных и надежных ритуальных агентов в Кургане. Наша специализация - предоставление качественных ритуальных услуг, включая организацию похорон, кремацию и транспортировку тел.
+          Мы - команда опытных и надежных ритуальных агентов в {{cityName}}. Наша специализация - предоставление качественных ритуальных услуг, включая организацию похорон, кремацию и транспортировку тел.
         </p>
       </div>
 
@@ -215,6 +215,8 @@ import NavMenu from "./nav-menu.vue";
 import dataMenuLeft from "~/data/MenuLeft";
 import Hover from "./Hover.vue";
 import HamburgerMenu from "~/shared/humburgerMenu.vue";
+import {Getter} from "vuex-class";
+import declineNoun from "~/utils/decline";
 
 @Component({
   components: { NavMenu, Hover, HamburgerMenu },
@@ -223,6 +225,11 @@ export default class Header extends Vue {
   @Prop({ type: Boolean, required: true }) enable;
   @Prop({ type: Boolean, required: true }) hoverEnable;
   @Prop({ type: Number, required: true }) clientHeight;
+   @Getter("city/CITY_G") CITY_G;
+
+  get cityName() {
+    return declineNoun(this.CITY_G.name);
+  }
 
 
 

@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-6 w-full pt-14">
       <div class="flex flex-col gap-8">
         <h1 class="text-5xl font-bold">
-          <i>Ритуальная служба в Кургане</i>
+          <i>Ритуальная служба в {{cityName}}</i>
         </h1>
         <vue-typed-js :showCursor="false" :startDelay="1000" :fadeOut="true" :fadeOutDelay="500" :shuffle="true" :strings="['Мы заботимся о каждой детали, чтобы вы могли попрощаться с любимым человеком', 'Профессиональная помощь в трудную минуту', 'Достойное прощание в последний путь']">
           <p class="typing"></p>
@@ -90,6 +90,9 @@
 <script>
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import SVGMouse from "~/components/svg/Mouse.vue";
+import {Getter} from "vuex-class";
+import declineNoun from "~/utils/decline";
+
 // import * as THREE from "three";
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
@@ -123,6 +126,11 @@ import SVGMouse from "~/components/svg/Mouse.vue";
   },
 })
 export default class Hover extends Vue {
+    @Getter("city/CITY_G") CITY_G;
+
+  get cityName() {
+    return declineNoun(this.CITY_G.name);
+  }
   @Prop({
     type: Object,
     default: () => ({ clientHeight: 500, clientHeightWindow: 600 }),

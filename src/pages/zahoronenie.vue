@@ -96,6 +96,7 @@ import MenuForPost from "~/components/menu_for_post/Main.vue";
 import Pagination from "~/components/pagination/Main.vue";
 import HoverForPost from "~/components/hover_for_post/Main.vue";
 import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
+import { Getter } from "vuex-class";
 
 @Component({
   components: {
@@ -113,16 +114,18 @@ import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
         {
           hid: "description_post",
           name: "description",
-          content: `Как приобрести захоронение на кладбище в ритуальном агентстве zpd45.ru? Служба похоронных услуг Кургане - самая старая и надежная. Гарантируем высокое качество и безотказную работу.`,
+          content: `Как приобрести захоронение на кладбище в ритуальном агентстве zpd45.ru? Служба похоронных услуг ${this.CITY_G.name} - самая старая и надежная. Гарантируем высокое качество и безотказную работу.`,
         },
       ],
     };
   },
 })
 export default class MestoNaKladbishche extends Vue {
+  @Getter("city/CITY_G") CITY_G!: any;
+
   date = new Date().getFullYear();
   post = {
-    title: "Организация похорон в Кургане и Курганской области",
+    title: `Организация похорон в ${this.CITY_G.name} и Курганской области`,
     picterUrl: "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU",
     category: "Захоронения",
     category_en: "zakoronenia",
