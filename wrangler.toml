@@ -1,0 +1,8 @@
+account_id = "2de99d5db60e0e42afb47ef3104db391"
+name = "spring-pond-5de1"
+type = "webpack"
+workers_dev = true
+
+[site]
+bucket = "dist"
+entry-point = "workers-site"
