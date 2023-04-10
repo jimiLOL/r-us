@@ -29,7 +29,7 @@
       <div
         class="bg-theme-2 rounded-md my-2 flex gap-2"
         :class="[
-          $device.isMobile ? 'flex-col' : '',
+          $device.isMobile ? 'flex-col' : 'max-h-64',
           load
             ? ''
             : 'space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center',
@@ -72,19 +72,19 @@
                   class="self-center hover:animate-ping w-4 shrank-0"
                   :style="{ color: '#1d13a0' }"
                 />
-                <p>{{ load? kladbisha.address:'' }}</p>
+                <p class="cursor-default">{{ load? kladbisha.address:'' }}</p>
               </div>
             </div>
             <button
-              class="justify-self-end w-full transition ease-in duration-1500 transform px-12 py-4 rounded-lg font-bold hover:bg-theme-10 bg-gradient-to-t from-bt-2 to-bt-1 shadow-lg shadow-black shadow-opacity-50 shadow-offset-2 shadow-radius-2 shadow-inset hover:transform hover:scale-95 hover:underline hover:text-black focus:bg-theme-10 focus:transform focus:scale-95 focus:underline focus:text-white"
+              class="justify-self-end w-full max-h-14 transition ease-in duration-1500 transform px-12 py-4 rounded-lg font-bold hover:bg-theme-10 bg-gradient-to-t from-bt-2 to-bt-1 shadow-lg shadow-black shadow-opacity-50 shadow-offset-2 shadow-radius-2 shadow-inset hover:transform hover:scale-95 hover:underline hover:text-black focus:bg-theme-10 focus:transform focus:scale-95 focus:underline focus:text-white"
               :class="[$device.isMobile ? 'mb-4' : '']"
-              @click="$router.push('/kladbisha/' + roteLink(kladbisha.h4))"
+              @click="$router.push('/kladbisha?name=' + roteLink(kladbisha.h4 + '-' + kladbisha.cityInfo.name_eng + '-' + kladbisha._id))"
             >
               ПОДРОБНЕЕ
             </button>
           </div>
           <div v-if="!$device.isMobile && load" class="px-8 py-2">
-            <p class="mb-4" v-html="kladbisha.annotation"></p>
+            <p class="mb-4 antialiased hover:subpixel-antialiased cursor-default" v-html="kladbisha.annotation"></p>
           </div>
           <div class="w-full" v-else>
             <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
@@ -136,7 +136,8 @@ export default class KladbishaCategory extends Vue {
   }
 
   roteLink(name) {
-    return CyrillicToTranslit().transform(name, "-");
+    const link = CyrillicToTranslit().transform(name, "-");
+     return link.toLowerCase();
   }
 
   data() {

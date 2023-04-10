@@ -163,13 +163,13 @@
             <ul>
               <li class="my-0.5">
                 <NuxtLink
-                  to="/"
+                  to="/kladbisha"
                   class="
                     hover:underline
                     md:hover:bg-transparent 
                   "
                   no-prefetch
-                  >Сотрудничество</NuxtLink
+                  >Кладбища</NuxtLink
                 >
               </li>
               <li class="my-0.5">

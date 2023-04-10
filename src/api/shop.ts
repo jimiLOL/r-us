@@ -113,6 +113,18 @@ const shopApi = {
       .catch((e) => {
         return { message: e.message, status: e.status, code: e.code };
       });
+  },
+  getKladbishaForId: async (id: string) => {
+    return await fetch(`${url}/get_kladbishche/${id}`)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((e) => {
+        return { message: e.message, status: e.status, code: e.code };
+      });
+
   }
 };
 

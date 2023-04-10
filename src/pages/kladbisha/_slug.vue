@@ -1,6 +1,6 @@
 <template>
   <KladbishaCategory v-if="!Object.keys(query).length" />
-  <!-- <Post v-else :postSlug="query.post" direction="services" /> -->
+  <KladbishaPost v-else :postSlug="query" />
 </template>
 
 <script>
@@ -9,10 +9,11 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import Services from '~/components/services/Main.vue';
 import Post from '~/components/post/Main.vue';
 import KladbishaCategory from '~/components/kladbisha.vue';
+import KladbishaPost from '~/components/kladbishaPost.vue';
 
 
 @Component({
-    components: {KladbishaCategory},
+    components: {KladbishaCategory, KladbishaPost},
       async asyncData({ store, params, query }) {
     
 

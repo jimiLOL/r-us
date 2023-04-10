@@ -132,7 +132,7 @@ export default {
       svgRule.test = /\.(png|jpe?g|gif|webp)$/;
 
 
-      config.module.rules.push({test: /\.(glsl|vs|fs|vert|frag)$/, use: ['raw-loader','glslify-loader']})
+      // config.module.rules.push({test: /\.(glsl|vs|fs|vert|frag)$/, use: ['raw-loader','glslify-loader']})
       // config.module.rules.push({
       //   test: require.resolve('snapsvg/dist/snap.svg.js'),
       //   use: 'imports-loader?this=>window,fix=>module.exports=0',

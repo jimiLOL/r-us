@@ -45,6 +45,7 @@
             'bg-theme-15',
             'shadow-sm shadow-black shadow-opacity-50 shadow-offset-2 shadow-radius-2 shadow-inset hover:shadow-lg',
             'border-solid',
+            'min-h-24'
           ]"
         >
           <img

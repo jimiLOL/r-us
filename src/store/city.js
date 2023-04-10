@@ -4,7 +4,7 @@ import arrayCity from "./../utils/array";
 
 
 function getDefaultState() {
-  return {city: {link: '/orenburg', name_eng: "Orenburge", name: "Оренбурге" }}
+  return {city: {link: '/', name_eng: "kurgan", name: "Курган" }}
 }
 
 export const state = getDefaultState;
@@ -25,9 +25,12 @@ export const actions = {
     if (!payload) {
       return
     }
+    if (payload == 'zpd45.ru'  || payload.includes('localhost')) {
+      return
+    }
     if (payload.includes('localhost')) {
       // console.log('localhost:8001');
-      payload = 'artem.zpd45.ru'
+      payload = 'kurgan.zpd45.ru'
 
     }
     let sub = payload.split('.', 3);
