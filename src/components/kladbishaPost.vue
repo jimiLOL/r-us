@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex flex-col"
-    :class="[$device.isMobile ? '' : 'gap-2', load ? '' : 'animate-pulse']"
+    class="flex flex-col mt-4 mb-24"
+    :class="[$device.isMobile ? 'px-4' : 'gap-2', load ? '' : 'animate-pulse']"
   >
-    <div class="flex" :class="[$device.isMobile ? 'flex-col' : 'gap-2']">
+    <div class="flex" :class="[$device.isMobile ? 'flex-col gap-4' : 'gap-2']">
       <div v-if="load" class="w-max">
         <img class="rounded-md" :src="post.img" alt="" />
       </div>
@@ -23,8 +23,8 @@
           />
         </svg>
       </div>
-      <div class="w-2/3 flex flex-col gap-2">
-        <div class="flex justify-between gap-2 text-center">
+      <div class="flex flex-col gap-2" :class="[$device.isMobile ? 'w-full gap-3':'w-2/3']">
+        <div class="flex gap-2 text-center" :class="[$device.isMobile ? 'flex-col':'justify-between']">
           <h1 v-show="load" class="text-2xl">{{ post.h4 }}</h1>
           <span class="inline-flex gap-2 text-center align-middle content-center"
             ><font-awesome-icon

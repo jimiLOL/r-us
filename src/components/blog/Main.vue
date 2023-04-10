@@ -8,7 +8,7 @@
       'px-4',
     ]"
   >
-    <div :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10 w-48']">
+    <div v-if="!$device.isMobile" :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10 w-48']">
       <nav>
         <ul class="font-bold text-center whitespace-nowrap">
           <li

@@ -86,7 +86,7 @@
           <div v-if="!$device.isMobile && load" class="px-8 py-2">
             <p class="mb-4 antialiased hover:subpixel-antialiased cursor-default" v-html="kladbisha.annotation"></p>
           </div>
-          <div class="w-full" v-else>
+          <div class="w-full" v-else-if="!$device.isMobile">
             <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
             <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
             <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>

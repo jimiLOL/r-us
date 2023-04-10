@@ -1,5 +1,5 @@
-const url = "http://localhost:4223";
-// const url = "https://node.zpd45.ru";
+// const url = "http://localhost:4223";
+const url = "https://node.zpd45.ru";
 
 const shopApi = {
   getProduct: async (

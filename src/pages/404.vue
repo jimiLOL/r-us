@@ -46,7 +46,13 @@ import { TweenMax } from "gsap";
 @Component({
   layout: "errorHandler",
 })
-export default class Page extends Vue {}
+export default class Page extends Vue {
+	mounted() {
+	// 	TweenMax.fromTo('textPath', 3, {attr: {startOffset: '0'}}, {attr: {startOffset: '28.8%'}, ease: Linear.easeNone, repeat: -1});
+	// TweenMax.to('svg', 3, {x: '-28.8%', ease: Linear.easeNone, repeat: -1});
+	
+	}
+}
 </script>
 
 <style scoped>

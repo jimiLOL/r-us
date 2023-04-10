@@ -9,7 +9,8 @@
       'h-screen',
     ]"
   >
-    <div
+    <div v-if="!$device.isMobile">
+      <div
       v-if="!load && !Object.keys($route.params).length"
       :class="[$device.isMobile ? '' : 'w-3/10 pt-20', 'basis-3/10 w-48']"
     >
@@ -52,11 +53,13 @@
         ><ChevronsLeftIcon aria-hidden="true" />Назад</nuxt-link
       >
     </div>
+    </div>
 
     <TransitionGroup
       name="slide-in"
       tag="div"
-      class="flex flex-col gap-4 pt-20 w-full"
+      class="flex flex-col gap-4 w-full"
+      :class="[$device.isMobile ? 'pt-0' : 'pt-20']"
     >
       <div
         v-for="post in posts"
