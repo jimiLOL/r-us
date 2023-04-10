@@ -38,10 +38,10 @@
         <img v-if="load" class="rounded-md" :src="kladbisha.img" alt="" />
         <div
           v-else
-          class="flex items-center justify-center w-48 h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700"
+          class="flex items-center justify-center w-full h-64 bg-gray-300 rounded sm:w-96 dark:bg-gray-700"
         >
           <svg
-            class="w-12 h-12 text-gray-200"
+            class="w-96 h-full text-gray-200"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             fill="currentColor"
@@ -58,31 +58,42 @@
             :class="[$device.isMobile ? 'grid-cols-1' : 'grid-cols-2']"
           >
             <div :class="[$device.isMobile ? 'text-center' : '']">
-              <h3 :class="[load?'text-2xl font-bold cursor-pointer hover:underline':'h-4 bg-gray-700 rounded-full dark:bg-gray-700 w-48 mb-4']">
+              <h3 :class="[load?'text-2xl font-bold cursor-pointer hover:underline':'h-4 bg-gray-500 rounded-full dark:bg-gray-700 w-48 mb-4']">
                 {{ load?kladbisha.h4:'' }}
               </h3>
               <div
                 class="inline-flex pt-2"
-                :class="[$device.isMobile ? '' : 'gap-2']"
+                :class="[$device.isMobile ? '' : 'gap-2', load ? '' : 'h-3 bg-gray-500 rounded-full dark:bg-gray-700 w-48 pl-4']"
               >
                 <font-awesome-icon
+                v-if="load"
                   icon="location"
                   transform="shrink-6"
                   class="self-center hover:animate-ping w-4 shrank-0"
                   :style="{ color: '#1d13a0' }"
                 />
-                <p>{{ kladbisha.address }}</p>
+                <p>{{ load? kladbisha.address:'' }}</p>
               </div>
             </div>
             <button
               class="justify-self-end w-full transition ease-in duration-1500 transform px-12 py-4 rounded-lg font-bold hover:bg-theme-10 bg-gradient-to-t from-bt-2 to-bt-1 shadow-lg shadow-black shadow-opacity-50 shadow-offset-2 shadow-radius-2 shadow-inset hover:transform hover:scale-95 hover:underline hover:text-black focus:bg-theme-10 focus:transform focus:scale-95 focus:underline focus:text-white"
               :class="[$device.isMobile ? 'mb-4' : '']"
+              @click="$router.push('/kladbisha/' + roteLink(kladbisha.h4))"
             >
               ПОДРОБНЕЕ
             </button>
           </div>
-          <div v-show="!$device.isMobile" class="px-8 py-2">
+          <div v-if="!$device.isMobile && load" class="px-8 py-2">
             <p class="mb-4" v-html="kladbisha.annotation"></p>
+          </div>
+          <div class="w-full" v-else>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+
+            
           </div>
         </div>
       </div>
@@ -95,8 +106,10 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import shopApi from "~/api/shop";
 import { Getter } from "vuex-class";
+import CyrillicToTranslit from "cyrillic-to-translit-js";
+
 @Component({})
-export default class Kladbisha extends Vue {
+export default class KladbishaCategory extends Vue {
   @Getter("city/CITY_G") CITY_G;
   arrayKladbisha = [
     {
@@ -120,6 +133,10 @@ export default class Kladbisha extends Vue {
   @Watch("arrayKladbisha")
   onArrayKladbishaChanged(val, oldVal) {
     console.log(val);
+  }
+
+  roteLink(name) {
+    return CyrillicToTranslit().transform(name, "-");
   }
 
   data() {
@@ -153,7 +170,7 @@ export default class Kladbisha extends Vue {
               lng: Number(item.location.y),
             };
           });
-          // this.load = true;
+          this.load = true;
         }
       });
     }, 1000);
