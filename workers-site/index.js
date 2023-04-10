@@ -25,7 +25,8 @@ addEventListener('fetch', event => {
 })
 
 async function handleEvent(event) {
-  const url = new URL(event.request.url)
+  const url = new URL(event.request.url);
+ 
    const options = {
     cacheControl: {
       bypassCache: true,
