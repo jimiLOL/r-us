@@ -120,21 +120,30 @@ import { Getter } from "vuex-class";
     };
   },
 })
-export default class MestoNaKladbishche extends Vue {
+
+export default class Zahoronenie extends Vue {
   @Getter("city/CITY_G") CITY_G!: any;
 
   date = new Date().getFullYear();
   post = {
-    title: `Организация похорон в ${this.CITY_G.name} и Курганской области`,
+    title: `Организация похорон`,
     picterUrl: "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU",
     category: "Захоронения",
     category_en: "zakoronenia",
     direction: 'services',
+    title_price: 'Сколько стоят похороны: какие расходы включены в цену?',
+    price: 'от 20 000 ₽',
     items: [
       { title: "Омовение" },
       { title: "Транспортировка тела" },
       { title: "Гроб" },
     ],
   };
+  mounted() {
+    console.log(this.CITY_G.name);
+    this.post.title = `Организация похорон в ${this.CITY_G.name} и области`;
+    
+  }
+   
 }
 </script>

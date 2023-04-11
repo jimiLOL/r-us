@@ -42,7 +42,7 @@
             'text-black',
             'text-center',
           ]"
-          >Или расчитайте стоимость похорон под любой бюджет</span
+          >Расчитайте стоимость похорон под любой бюджет</span
         >
         <div class="flex flex-col gap-4 py-9">
           <button

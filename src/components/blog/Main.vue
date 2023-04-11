@@ -62,8 +62,8 @@
               $device.isMobile ? 'text-center' : '',
             ]"
           >
-            <h3 class="font-bold text-2xl">{{ post?.title }}</h3>
-            <p v-if="!$device.isMobile" :class="[$device.isMobile ? 'truncate' : '']" v-html="kitcut(post?.description, 100)"></p>
+            <h3 class="font-bold text-2xl cursor-default">{{ post?.title }}</h3>
+            <p v-if="!$device.isMobile" class="cursor-default" :class="[$device.isMobile ? 'truncate' : '']" v-html="kitcut(post?.description, 100)"></p>
           </div>
           <button
             :class="[

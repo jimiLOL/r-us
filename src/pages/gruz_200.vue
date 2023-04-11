@@ -115,19 +115,19 @@ import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
         {
           hid: "description_post",
           name: "description",
-          content: `Как приобрести захоронение на кладбище в ритуальном агентстве zpd45.ru? Служба похоронных услуг Кургане - самая старая и надежная. Гарантируем высокое качество и безотказную работу.`,
+          content: `На данной странице вы найдете подробную информацию об услугах по отправке тел умерших на территории Кругана и Краснодарской области. Мы предоставляем качественные и оперативные услуги по доставке тел во всех направлениях, включая отправку "Груза 200" по железной дороге или автомобильным транспортом.`,
         },
       ],
     };
   },
 })
-export default class MestoNaKladbishche extends Vue {
+export default class Gruz200 extends Vue {
   date = new Date().getFullYear();
   post = {
     title: 'Груз 200 (оцинковка, отправка) доставка умерших в Круган и Краснодарскую область',
     picterUrl: '1iOf0uHJ3oB82YnCONTyqNirzgYXpc-Dn',
-    category: 'Захоронения',
-    category_en: 'zakoronenia',
+    category: 'Организация похорон',
+    category_en: 'organizaciya_pohoron',
     title_price: 'Что входит в стоимость перевозки груза 200?',
     price: 'от 20 000 ₽',
     items: [{title: 'Соберет все необходимые документы и справки'}, {title: 'Осуществим обязательное в случае переправки умершего — бальзамирование.'},

@@ -125,7 +125,7 @@
             <div
               v-for="(listItem, index) in item.list"
               :key="index"
-              class="flex justify-between text-base font-normal py-2 gap-4"
+              class="flex justify-between text-base font-normal py-2 gap-4 item-list"
             >
               <span class="inline-flex gap-1">
                 <font-awesome-icon
@@ -652,6 +652,27 @@ export default defineComponent({
   margin-bottom: -8%;
   animation: view 0.6s linear forwards;
 }
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.item-list {
+  opacity: 0; /* начальное значение прозрачности для каждого элемента */
+}
+.item-list { animation: fadeIn 0.4s ease-in-out 0.1s forwards; }
+.item-list:nth-child(1) { animation-delay: 0.1s; }
+.item-list:nth-child(2) { animation-delay: 0.2s; }
+.item-list:nth-child(3) { animation-delay: 0.3s; }
+.item-list:nth-child(4) { animation-delay: 0.5s; }
+.item-list:nth-child(5) { animation-delay: 0.6s; }
+.item-list:nth-child(6) { animation-delay: 0.7s; }
+.item-list:nth-child(7) { animation-delay: 0.8s; }
+.item-list:nth-child(8) { animation-delay: 0.9s; }
+.item-list:nth-child(9) { animation-delay: 1.0s; }
+.item-list:nth-child(10) { animation-delay: 1.1s; }
+.item-list:nth-child(11) { animation-delay: 1.2s; }
+.item-list:nth-child(12) { animation-delay: 1.3s; }
+.item-list:nth-child(13) { animation-delay: 1.4s; }
 @keyframes view {
   0% {
     opacity: 0;

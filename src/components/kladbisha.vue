@@ -102,15 +102,32 @@
 </template>
 
 
-<script>
+<script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import shopApi from "~/api/shop";
 import { Getter } from "vuex-class";
 import CyrillicToTranslit from "cyrillic-to-translit-js";
+import declineNoun from "~/utils/decline";
 
-@Component({})
+
+@Component({
+  head(this) {
+    return {
+      title: `Кладбища в ${declineNoun((this as any).CITY_G.name)}`,
+       meta: [
+        {
+          hid: "description",
+          name: "description",
+          content:
+            `На странице о кладбищах города ${(this as any).CITY_G.name} вы найдете подробную информацию о всех кладбищах, расположенных на территории города. Здесь вы узнаете об их истории, особенностях, услугах, которые они предоставляют, а также о порядке оформления могил и других важных вопросах. Эта страница является незаменимым источником информации для тех, кто ищет кладбище для захоронения близких или просто заинтересован в истории местных могил. Мы стараемся следить за актуальностью информации и обновлять ее регулярно, чтобы вы всегда имели доступ к самой свежей и точной информации.`,
+        },
+      ],
+
+    };
+  },
+})
 export default class KladbishaCategory extends Vue {
-  @Getter("city/CITY_G") CITY_G;
+  @Getter("city/CITY_G") CITY_G!: any;
   arrayKladbisha = [
     {
       _id: 1,
@@ -130,12 +147,9 @@ export default class KladbishaCategory extends Vue {
     },
   ];
   load = false;
-  @Watch("arrayKladbisha")
-  onArrayKladbishaChanged(val, oldVal) {
-    console.log(val);
-  }
+  
 
-  roteLink(name) {
+  roteLink(name: string) {
     const link = CyrillicToTranslit().transform(name, "-");
      return link.toLowerCase();
   }
@@ -143,7 +157,6 @@ export default class KladbishaCategory extends Vue {
   data() {
     return {
       currentLocation: {},
-      locations: [],
       pins: {
         selected:
           "data:image/png;base64,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",
@@ -160,12 +173,14 @@ export default class KladbishaCategory extends Vue {
       ],
     };
   }
+      locations: any = [];
+
   mounted() {
     setTimeout(() => {
       shopApi.getKladbisha(this.CITY_G.name_eng).then((res) => {
         if (res.code == 200) {
           this.arrayKladbisha = res.data;
-          this.locations = res.data.map((item) => {
+          this.locations = res.data.map((item: any) => {
             return {
               lat: Number(item.location.x),
               lng: Number(item.location.y),

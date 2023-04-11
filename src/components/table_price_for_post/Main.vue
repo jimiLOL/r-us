@@ -1,15 +1,6 @@
 <template>
   <div>
-    <div
-      :class="[
-        $device.isMobile ? 'text-center' : '',
-        'text-bold',
-        'text-3xl',
-        'my-2',
-      ]"
-    >
-      Цены на ритуальные услуги под ключ
-    </div>
+     
 
     <div
       :class="[
@@ -30,9 +21,9 @@
         <span class="text-bold text-3xl text-theme-10 text-shadow">{{
          post?.title_price || post?.title
         }}</span>
-        <ul class="leading-snug text-white">
+        <ul class="leading-snug text-white cursor-default">
           <li
-            class="flex gap-1"
+            class="flex gap-1 cursor-default"
             v-for="(item, index) in post?.items"
             :key="index"
           >
@@ -121,6 +112,7 @@
           justify-self-end
           self-start
           whitespace-nowrap
+          cursor-default
         "
         :class="[$device.isMobile ? 'self-center' : 'text-bold text-3xl text-theme-10 text-shadow',]"
         >{{post?.price || 'от 10 000 ₽'}}</span
