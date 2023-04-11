@@ -260,8 +260,10 @@
       </div>
     </div>
     <div :class="['flex text-black', $device.isMobile?'flex-col items-center content-center mt-8 text-center gap-9':'gap-44 mt-4 pb-4', 'justify-start']">
-      <div>
-        <span>Все права защищены © 2001 - {{date}} </span>
+      <div class="flex gap-2">
+        <span>ООО «Зауральский похоронный дом» Все права защищены © 2001 - {{date}} </span>
+        <!-- <span>ИНН 4501159590, КПП 450101001</span> -->
+        <span>ОГРН 1104501003067</span>
       </div>
       <div :class="['flex', $device.isMobile?'flex-col gap-2':'gap-4']">
         <a href="/usloviya-predostavleniya-informacii">Условия использования</a>
