@@ -363,6 +363,20 @@ export default class Services extends Vue {
       direction: "services",
       picterUrl: "1uv3D-bhiX76qGRsRno-ZUSCUf-6ARyzY",
     },
+     {
+      _id: "63bdb27981168203287b128f46d2",
+      link_post: "/ritualnyj-transport",
+      title:
+        "Аренда ритуального транспорта",
+      title_en: "organizatsiya_pominalnikh_obedov_v_kurgane",
+      category: "Организация похорон",
+      category_en: "organizaciya_pohoron",
+      description:
+        "Мы расскажем о доступных вариантах организации церемонии, которые позволят значительно сэкономить на расходах...",
+      h1: `Аренда ритуального транспорта`,
+      direction: "services",
+      picterUrl: "1JAc5CMLca2QZ7Ry-SITJZiiLuorXsjY",
+    },
   ];
 
   async fetchData(data) {
