@@ -97,6 +97,7 @@ import Pagination from "~/components/pagination/Main.vue";
 import HoverForPost from "~/components/hover_for_post/Main.vue";
 import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
 import { Getter } from "vuex-class";
+import declineNoun from "~/utils/decline";
 
 @Component({
   components: {
@@ -123,6 +124,9 @@ import { Getter } from "vuex-class";
 
 export default class Zahoronenie extends Vue {
   @Getter("city/CITY_G") CITY_G!: any;
+   cityName(name: string) {
+    return declineNoun(name);
+  }
 
   date = new Date().getFullYear();
   post = {

@@ -311,13 +311,13 @@ export default class Services extends Vue {
       _id: "63bdb9798112b3287b128f46d2",
       link_post: "/pravoslavnie-pokhoroni",
       title:
-        "Православных похорон",
+        "Организация православных похорон",
       title_en: "organizatsiya_pominalnikh_obedov_v_kurgane",
       category: "Организация похорон",
       category_en: "organizaciya_pohoron",
       description:
         "Когда усопший был верующим, важно устроить православные похороны с учетом его прижизненных ценностей и соблюдением всех обрядов. Наша ритуальная служба имеет огромный опыт и помогает провести православные  похороны..",
-      h1: `Православных похорон`,
+      h1: `Организация православных похорон`,
       direction: "services",
       picterUrl: "1ffL4mMoXz6vhodRsGwyszC9_uUN-Jj7c",
     },

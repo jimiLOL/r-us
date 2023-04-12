@@ -33,6 +33,8 @@ export default class HoverForPost extends Vue {
 .img_cover {
   background: var(--url) 50% 100% / cover no-repeat;
   /* background-image: var(--url); */
+  object-fit: cover;
+ object-position: 0px 10%; 
   backdrop-filter: blur(7px); 
   overflow: hidden
 }

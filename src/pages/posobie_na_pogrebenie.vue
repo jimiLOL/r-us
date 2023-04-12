@@ -206,6 +206,9 @@ import MenuForPost from "~/components/menu_for_post/Main.vue";
 import Pagination from "~/components/pagination/Main.vue";
 import HoverForPost from "~/components/hover_for_post/Main.vue";
 import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
+import { Getter } from "vuex-class";
+import declineNoun from "~/utils/decline";
+
 
 @Component({
   components: {
@@ -231,6 +234,11 @@ import TablePriceforpost from "~/components/table_price_for_post/Main.vue";
 })
 export default class MestoNaKladbishche extends Vue {
   date = new Date().getFullYear();
+  @Getter("city/CITY_G") CITY_G!: any;
+
+   cityName(name: string) {
+    return declineNoun(name);
+  }
   post = {
     title: "Получить пособие на погребение в Кургане",
     picterUrl: "1SRUqTLDdfMfFOWdes-EFCtsPZbEsG7TU",
