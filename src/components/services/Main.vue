@@ -6,7 +6,7 @@
       'justify-center',
       'gap-6',
       'px-4',
-      'h-screen',
+      'h-max',
     ]"
   >
     <div v-if="!$device.isMobile">
@@ -84,7 +84,7 @@
         @click="r(post)"
       >
         <img
-          :class="[$device.isMobile ? 'w-full' : 'w-48 object-cover object-top', 'rounded-md']"
+          :class="[$device.isMobile ? 'w-16 object-cover self-center' : 'w-48 object-cover object-top', 'rounded-md']"
           :src="require('@/assets/imgs/logo.png')"
           :alt="`Услуги ${post.title}`"
         />
