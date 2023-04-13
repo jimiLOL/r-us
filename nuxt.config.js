@@ -19,7 +19,6 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Организация ритуальных услуг. Мы предлагаем помощь в проведении похорон и других ритуальных мероприятий с максимально высоким уровнем обслуживания. Закажите услуги по телефону или онлайн.' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
