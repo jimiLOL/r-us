@@ -84,8 +84,8 @@
         @click="r(post)"
       >
         <img
-          :class="[$device.isMobile ? 'w-16 object-cover self-center' : 'w-48 object-cover object-top', 'rounded-md']"
-          :src="require('@/assets/imgs/logo.png')"
+          :class="[$device.isMobile ? 'w-16 object-cover self-center' : 'w-64 object-cover object-top', 'rounded-md']"
+          :src="`https://drive.google.com/uc?export=view&id=${post?.picterUrl}`"
           :alt="`Услуги ${post.title}`"
         />
         <div
@@ -375,7 +375,7 @@ export default class Services extends Vue {
         "Мы расскажем о доступных вариантах организации церемонии, которые позволят значительно сэкономить на расходах...",
       h1: `Аренда ритуального транспорта`,
       direction: "services",
-      picterUrl: "1JAc5CMLca2QZ7Ry-SITJZiiLuorXsjY",
+      picterUrl: "1JAc5CMLca2QZ7Ry-SITJZiiLuorXsjYI",
     },
        {
       _id: "63bdb27981168203287b128f46d2",
@@ -387,9 +387,9 @@ export default class Services extends Vue {
       category_en: "organizaciya_pohoron",
       description:
         "Как правильно организовать поминальный обед и уважительно отпраздновать память ушедших близких.",
-      h1: `Аренда ритуального транспорта`,
+      h1: `Организация поминальных обедов`,
       direction: "services",
-      picterUrl: "1JAc5CMLca2QZ7Ry-SITJZiiLuorXsjY",
+      picterUrl: "1lRVruFx6d-5yoAWVZi9q0WJm1LSzDZmq",
     },
     
   ];
