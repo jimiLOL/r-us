@@ -377,6 +377,21 @@ export default class Services extends Vue {
       direction: "services",
       picterUrl: "1JAc5CMLca2QZ7Ry-SITJZiiLuorXsjY",
     },
+       {
+      _id: "63bdb27981168203287b128f46d2",
+      link_post: "/pominalnye_obedy",
+      title:
+        "Организация поминальных обедов",
+      title_en: "organizatsiya_pominalnikh_obedov_v_kurgane",
+      category: "Организация похорон",
+      category_en: "organizaciya_pohoron",
+      description:
+        "Как правильно организовать поминальный обед и уважительно отпраздновать память ушедших близких.",
+      h1: `Аренда ритуального транспорта`,
+      direction: "services",
+      picterUrl: "1JAc5CMLca2QZ7Ry-SITJZiiLuorXsjY",
+    },
+    
   ];
 
   async fetchData(data) {
