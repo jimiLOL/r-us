@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4 my-20 text-black font-bold">
+  <div v-if="posts.length > 0" class="flex flex-col gap-4 my-20 text-black font-bold">
     <span
       :class="[
         'font-bold',
