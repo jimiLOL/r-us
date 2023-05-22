@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$device.isMobile ? 'px-2' : 'px-24']">
+  <div :class="[$device.isMobile ? 'px-2' : '', page == 'full'?'':'px-24']">
     <div>
       <h1 class="text-2xl font-bold">Кладбища в городе {{ CITY_G.name }}</h1>
     </div>
@@ -112,6 +112,10 @@ import declineNoun from "~/utils/decline";
 
 @Component({
   head(this) {
+    if ((this as any).page == 'full') {
+      return {}
+      
+    }
     return {
       title: `Кладбища в ${declineNoun((this as any).CITY_G.name)}`,
        meta: [
@@ -128,6 +132,7 @@ import declineNoun from "~/utils/decline";
 })
 export default class KladbishaCategory extends Vue {
   @Getter("city/CITY_G") CITY_G!: any;
+  @Prop({ default: "non-full" }) page!: string;
   arrayKladbisha = [
     {
       _id: 1,
