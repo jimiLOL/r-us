@@ -391,6 +391,21 @@ export default class Services extends Vue {
       direction: "services",
       picterUrl: "1lRVruFx6d-5yoAWVZi9q0WJm1LSzDZmq",
     },
+
+    {
+      _id: "63bdb27981168203287b128f462P",
+      link_post: "/organizatsiya_pokhoron_dlya_pogibshikh_uchastnikov_svo",
+      title:
+        "Организация похорон для погибших участников СВО",
+      title_en: "organizatsiya_pominalnikh_obedov_v_kurgane",
+      category: "Организация похорон",
+      category_en: "organizaciya_pohoron",
+      description:
+        "Запросы касаются церемоний похорон, связанных с погибшими в Сирийской военной операции (СВО), а также с Частными Военными Компаниями (ЧВК) Вагнера. Требуется информация о похоронах военнослужащих с военными почестями",
+      h1: `Организация похорон для погибших участников СВО`,
+      direction: "services",
+      picterUrl: "1eb8GMlCz9uYzaLZ2CWFuuqGxmKJiGrQC",
+    },
     
   ];
 
