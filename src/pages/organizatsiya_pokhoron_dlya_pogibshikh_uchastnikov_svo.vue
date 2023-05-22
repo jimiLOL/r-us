@@ -24,18 +24,7 @@
       <p class="text-lg mb-4">
        Для тех, кто погиб во время выполнения своего военного долга в рамках Специальной военной операции в Украине, существуют специальные льготы для организации похорон и других нужд. Родственники умершего могут обратиться в военный комиссариат, администрацию региона, где жил военнослужащий, или к руководству воинской части, в которой он был зарегистрирован до участия в военных действиях, чтобы получить эти льготы.
       </p>
-        <h3 class="text-2xl font-bold text-center mb-3">Наш автопарк</h3>
-
-      <div class="flex gap-2 flex-wrap items-center justify-center">
-        <img class="w-96 rounded-md" src="https://drive.google.com/uc?export=view&id=1TK2S5o2oytaA6Hxx1-tt3Qdi-MG5WPkQ" alt="">
-        <img class="w-96 rounded-md" src="https://drive.google.com/uc?export=view&id=1CZiOLCbEbMFHBOM5mS9GPNsr1O8xPUEp" alt="">
-        <img class="w-96 rounded-md" src="https://drive.google.com/uc?export=view&id=1JAc5CMLca2QZ7Ry-SITJZiiLuorXsjYI" alt="">
-        <img class="w-96 rounded-md" src="https://drive.google.com/uc?export=view&id=1sXyeBJwyOZg95bCRaF5WXymgzSliwe_u" alt="">
-       
-        
-        
-        
-      </div>
+ 
       <!-- <AboutServices /> -->
 
       <div class="list-decimal">
@@ -137,7 +126,7 @@ export default class Covid19 extends Vue {
   date = new Date().getFullYear();
   post = {
     title: `Организация похорон для погибших участников СВО`,
-    picterUrl: "1JAc5CMLca2QZ7Ry-SITJZiiLuorXsjYI",
+    picterUrl: "1eb8GMlCz9uYzaLZ2CWFuuqGxmKJiGrQC",
     category: "Захоронения",
     category_en: "zakoronenia",
     direction: "services",
