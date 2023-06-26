@@ -21,16 +21,16 @@
         <span class="text-bold text-3xl text-theme-10 text-shadow">{{
          post?.title_price || post?.title
         }}</span>
-        <ul class="leading-snug text-white cursor-default text-left">
+        <ul class="flex flex-col gap-1 sm:gap-2 md:gap-2 items-start justify-start leading-snug text-white cursor-default text-left">
           <li
-            class="inline-flex gap-1 cursor-default justify-start text-left"
+            class="self-start inline-flex gap-1 cursor-default justify-start text-left"
             v-for="(item, index) in post?.items"
             :key="index"
           >
             <font-awesome-icon
               icon="circle-dot"
               transform="shrink-6"
-              class="self-center hover:animate-ping min-w-5 w-5 shrank-0 "
+              class="self-center hover:animate-ping min-w-5 w-5 shrank-0"
               :style="{ color: '#FFBB30' }"
             />{{ item.title }}
           </li>
