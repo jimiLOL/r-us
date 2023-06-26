@@ -1,10 +1,10 @@
 <template>
- <div class="flex gap-3 text-normal text-black font-bold">
+ <div :class="['flex gap-3 text-normal text-black font-bold', $device.isMobile ? 'text-sm':'text-normal']">
         <NuxtLink to="/" class="hover:underline">Главная</NuxtLink>
         <ChevronRightIcon />
         <NuxtLink :to="`/${direction}`" class="hover:underline ">{{post?.direction == 'blog'?'Блог': 'Услуги'}}</NuxtLink>
-        <ChevronRightIcon />
-        <NuxtLink :to="`/${direction}/${post?.category_en}`" class="hover:underline truncate">{{
+        <ChevronRightIcon v-if="!$device.isMobile"/>
+        <NuxtLink v-if="!$device.isMobile" :to="`/${direction}/${post?.category_en}`" class="hover:underline truncate">{{
           post?.category
         }}</NuxtLink>
         <ChevronRightIcon />

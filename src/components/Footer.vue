@@ -7,7 +7,7 @@
         'font-raleway',
         'flex-nowrap',
         'w-full',
-        'text-black'
+        'text-black',
       ]"
     >
       <div class="flex flex-col justify-center content-center basis-1/2">
@@ -23,7 +23,7 @@
             />
           </NuxtLink>
           <div
-            :class="['flex', 'flex-col', $device.isMobile ? 'gap-4 self-center text-center leading-6' : 'gap-11']"
+            :class="['flex', 'underline', $device.isMobile ? 'text-sm justify-start px-4 gap-6 text-start leading-6' : 'flex-col gap-11']"
           >
             <ul>
               <li class="my-0.5">
@@ -95,7 +95,7 @@
                     md:hover:bg-transparent 
                   "
                   no-prefetch
-                  >Справка о смерти по форме 11</NuxtLink
+                  >Справка о смерти</NuxtLink
                 >
               </li>
               <li class="my-0.5">
@@ -112,7 +112,7 @@
             </ul>
           </div>
           <div
-            :class="['flex', 'flex-col', $device.isMobile ? 'gap-4 self-center text-center' : 'gap-11']"
+            :class="['flex', 'underline', $device.isMobile ? 'justify-start px-4 gap-6 text-start leading-6 text-sm' : 'flex-col gap-11']"
           >
             <ul>
               <li class="my-0.5">
@@ -260,9 +260,9 @@
       </div>
     </div>
     <div :class="['flex text-black', $device.isMobile?'flex-col items-center content-center mt-8 text-center gap-9':'gap-44 mt-4 pb-4', 'justify-start']">
-      <div class="flex gap-2">
-        <span>ООО «Зауральский похоронный дом» Все права защищены © 2001 - {{date}} </span>
-        <!-- <span>ИНН 4501159590, КПП 450101001</span> -->
+      <div :class="['flex gap-2', $device.isMobile ? 'flex-col':'']">
+        <span>ООО «Зауральский похоронный дом» </span>
+        <span>Все права защищены © 2001 - {{date}}</span>
         <span>ОГРН 1104501003067</span>
       </div>
       <div :class="['flex', $device.isMobile?'flex-col gap-2':'gap-4']">
