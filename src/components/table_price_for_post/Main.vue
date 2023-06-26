@@ -21,16 +21,16 @@
         <span class="text-bold text-3xl text-theme-10 text-shadow">{{
          post?.title_price || post?.title
         }}</span>
-        <ul class="leading-snug text-white cursor-default">
+        <ul class="leading-snug text-white cursor-default text-left">
           <li
-            class="flex gap-1 cursor-default"
+            class="inline-flex gap-1 cursor-default justify-start text-left"
             v-for="(item, index) in post?.items"
             :key="index"
           >
             <font-awesome-icon
               icon="circle-dot"
               transform="shrink-6"
-              class="self-center hover:animate-ping w-4 shrank-0"
+              class="self-center hover:animate-ping min-w-5 w-5 shrank-0 "
               :style="{ color: '#FFBB30' }"
             />{{ item.title }}
           </li>
@@ -150,7 +150,7 @@ export default class TablePriceforpost extends Vue {
 .img-hover-zoom--mobile {
   background-size: cover;
   background: url("/imgs/lp02bi_94766ea5f97792e4672f66037d2c8269841b788f.jpg")
-      20% 38%/200% no-repeat,
+      70% 38%/400% no-repeat,
     radial-gradient(closest-side, transparent 10%, #00000061 75%);
   background-blend-mode: multiply;
 }
