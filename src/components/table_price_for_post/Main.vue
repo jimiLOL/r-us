@@ -29,8 +29,7 @@
           >
             <font-awesome-icon
               icon="circle-dot"
-              transform="shrink-6"
-              class="self-center hover:animate-ping min-w-5 w-5 shrank-0"
+              class="self-center hover:animate-ping min-w-5 min-h-5 w-5 shrank-0"
               :style="{ color: '#FFBB30' }"
             />{{ item.title }}
           </li>
