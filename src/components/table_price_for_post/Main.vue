@@ -28,8 +28,9 @@
             :key="index"
           >
             <font-awesome-icon
+            v-if="!$device.isMobile"
               icon="circle-dot"
-              class="self-center hover:animate-ping min-w-5 min-h-5 w-5 shrank-0"
+              class="self-center hover:animate-ping min-w-5 min-h-5 w-5 h-5"
               :style="{ color: '#FFBB30' }"
             />{{ item.title }}
           </li>
