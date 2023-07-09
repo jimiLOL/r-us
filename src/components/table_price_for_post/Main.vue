@@ -21,18 +21,19 @@
         <span class="text-bold text-3xl text-theme-10 text-shadow">{{
          post?.title_price || post?.title
         }}</span>
-        <ul class="flex flex-col gap-1 sm:gap-2 md:gap-2 items-start justify-start leading-snug text-white cursor-default text-left">
+        <ul role="list" class="flex flex-col gap-1 sm:gap-2 md:gap-2 leading-snug text-white cursor-default text-left"
+        :class="[$device.isMobile ? 'items-center justify-center ' : 'items-start justify-start']"
+        >
           <li
             class="self-start inline-flex gap-1 cursor-default justify-start text-left"
             v-for="(item, index) in post?.items"
             :key="index"
           >
             <font-awesome-icon
-            v-if="!$device.isMobile"
               icon="circle-dot"
-              class="self-center hover:animate-ping min-w-5 min-h-5 w-5 h-5"
+              class="self-center hover:animate-ping list-icon"
               :style="{ color: '#FFBB30' }"
-            />{{ item.title }}
+            /><span>{{ item.title }}</span>
           </li>
         </ul>
         <div
@@ -139,6 +140,11 @@ export default class TablePriceforpost extends Vue {
 </script>
 
 <style scoped>
+.list-icon {
+  width: 9px;
+  max-width: 9px;
+  min-width: 9px;
+}
 .img-hover-zoom--desktop {
   background-size: cover;
   background: url("/imgs/lp02bi_94766ea5f97792e4672f66037d2c8269841b788f.jpg")

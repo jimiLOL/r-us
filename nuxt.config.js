@@ -111,7 +111,7 @@ export default {
       plugins: {
         // Disable a plugin by passing false as value
         'postcss-custom-properties': false,
-        tailwindcss: './tailwind.config.js',
+        tailwindcss: './src/tailwind.config.js',
         'postcss-import': {},
         autoprefixer: {},
         // "focus-within-pseudo-class": false,
